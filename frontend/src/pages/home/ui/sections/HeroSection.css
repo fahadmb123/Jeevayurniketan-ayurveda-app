@@ -1,0 +1,140 @@
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 5% 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.hero-background-circle {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-green-light) 0%, rgba(255,255,255,0) 70%);
+  opacity: 0.15;
+  z-index: -1;
+  filter: blur(40px);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: rgba(44, 94, 67, 0.1);
+  color: var(--primary-green);
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.text-primary-green {
+  color: var(--primary-green);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 90%;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-large {
+  padding: 14px 32px;
+  font-size: 1rem;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+  border-radius: 30px;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.hero-image-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  max-width: 500px;
+  transform: translateY(0);
+  transition: transform 0.5s ease;
+}
+
+.hero-image-glass:hover {
+  transform: translateY(-10px);
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 150px;
+  }
+  
+  .hero-content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-subtitle {
+    margin: 0 auto 40px;
+  }
+  
+  .hero-image-wrapper {
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
