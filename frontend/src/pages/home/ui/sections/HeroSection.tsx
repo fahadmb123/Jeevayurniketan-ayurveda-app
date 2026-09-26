@@ -1,13 +1,20 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './HeroSection.css';
-import heroImg from '@/assets/hero.png'; // Using the provided hero image
+import heroImg from '@/assets/hero.png';
 
 export const HeroSection: React.FC = () => {
   return (
     <section id="home" className="hero-section">
       <div className="hero-background-circle"></div>
       
-      <div className="hero-content animate-fade-in">
+      <motion.div 
+        className="hero-content"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="hero-badge">Ayurveda Counseling & Psychotherapy</div>
         <h1 className="hero-title">
           Heal Your Mind, <br />
@@ -20,13 +27,20 @@ export const HeroSection: React.FC = () => {
           <button className="btn-primary btn-large">Start Your Journey</button>
           <button className="btn-outline btn-large">Learn More</button>
         </div>
-      </div>
+      </motion.div>
       
-      <div className="hero-image-wrapper animate-fade-in" style={{ animationDelay: '0.2s' }}>
+      <motion.div 
+        className="hero-image-wrapper"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <div className="hero-image-glass">
           <img src={heroImg} alt="Ayurveda Healing" className="hero-img" />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
+

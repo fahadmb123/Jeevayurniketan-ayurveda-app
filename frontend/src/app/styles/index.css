@@ -16,8 +16,28 @@
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.4);
   --glass-shadow: 0 8px 32px 0 rgba(44, 94, 67, 0.1);
+  --glass-logo-bg: rgba(255, 255, 255, 1);
   
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  --primary-green: #3A7A57;
+  --primary-green-light: #4CAF6A;
+  --primary-green-dark: #8FD8A8; /* Lighter for text contrast in dark mode */
+  --accent-gold: #D4AF37;
+  --accent-gold-light: #F3E5AB;
+  
+  --bg-color: #0A140F; /* Deep premium green/black */
+  --surface-color: #11221A;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --text-light: #6B7280;
+  
+  --glass-bg: rgba(17, 34, 26, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --glass-logo-bg: rgba(255, 255, 255, 0.9);
 }
 
 * {

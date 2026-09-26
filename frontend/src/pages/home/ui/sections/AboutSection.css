@@ -18,7 +18,10 @@
 }
 
 .about-image-placeholder {
-  background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--primary-green-dark) 100%);
+  background: linear-gradient(135deg, rgba(44, 94, 67, 0.4) 0%, rgba(26, 56, 40, 0.7) 100%),
+              url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
   height: 500px;
   width: 100%;
@@ -28,6 +31,7 @@
   justify-content: flex-end;
   padding: 30px;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .about-image-placeholder::before {

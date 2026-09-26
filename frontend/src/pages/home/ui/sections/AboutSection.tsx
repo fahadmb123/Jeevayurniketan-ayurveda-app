@@ -1,11 +1,18 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './AboutSection.css';
 
 export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="about-section">
       <div className="about-container">
-        <div className="about-image-side animate-fade-in">
+        <motion.div 
+          className="about-image-side"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="about-image-placeholder">
             {/* Can use a real image later */}
             <div className="glass-card">
@@ -13,9 +20,15 @@ export const AboutSection: React.FC = () => {
               <p>Of Healing Experience</p>
             </div>
           </div>
-        </div>
+        </motion.div>
         
-        <div className="about-content animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <motion.div 
+          className="about-content"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <h4 className="section-subtitle">About Us</h4>
           <h2 className="section-title">Discover the path to your inner peace</h2>
           <p className="section-description">
@@ -45,8 +58,9 @@ export const AboutSection: React.FC = () => {
               </div>
             </li>
           </ul>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
+

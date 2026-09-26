@@ -36,6 +36,9 @@
   height: 40px;
   width: 150px;
   overflow: hidden;
+  background: var(--glass-logo-bg); /* ensure PDF contrast */
+  border-radius: 8px;
+  padding: 2px 8px;
 }
 
 .logo-pdf {
@@ -48,7 +51,7 @@
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
-  color: var(--primary-green-dark);
+  color: #1A3828; /* Always dark so it's readable if the PDF fails */
 }
 
 .navbar-links {
@@ -84,6 +87,29 @@
 
 .navbar-links a:hover::after {
   width: 100%;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+.theme-toggle:hover {
+  background: rgba(128, 128, 128, 0.1);
 }
 
 .btn-primary {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './ServicesSection.css';
 
 export const ServicesSection: React.FC = () => {
@@ -37,18 +38,22 @@ export const ServicesSection: React.FC = () => {
 
       <div className="services-grid">
         {services.map((service, index) => (
-          <div 
-            className="service-card animate-fade-in" 
+          <motion.div 
+            className="service-card" 
             key={index}
-            style={{ animationDelay: `${index * 0.15}s` }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div className="service-icon">{service.icon}</div>
             <h3 className="service-title">{service.title}</h3>
             <p className="service-desc">{service.description}</p>
             <button className="service-btn">Learn More &rarr;</button>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
   );
 };
+
