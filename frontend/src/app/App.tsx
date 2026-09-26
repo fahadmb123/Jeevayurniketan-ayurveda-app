@@ -1,9 +1,17 @@
-import { HomePage } from '@/pages/home'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HomePage } from '@/pages/home';
+import { DoctorDashboard } from '@/pages/doctor';
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
-    <div className="app">
-      <HomePage />
-    </div>
-  )
-}
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/doctor" element={<DoctorDashboard />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
