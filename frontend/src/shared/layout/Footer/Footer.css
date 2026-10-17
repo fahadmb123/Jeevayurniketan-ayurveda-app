@@ -1,8 +1,9 @@
 .footer {
-  background-color: var(--primary-green-dark);
+  background: linear-gradient(180deg, var(--primary-green-dark, #124C38) 0%, var(--primary-green-deep, #0B3326) 100%);
   color: white;
   padding: 80px 5% 0;
   position: relative;
+  border-top: 1px solid rgba(201, 141, 59, 0.15);
 }
 
 .footer-container {
@@ -15,9 +16,10 @@
 }
 
 .footer-col h3 {
-  color: var(--accent-gold-light);
+  color: var(--accent-gold);
   margin-bottom: 24px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
 }
 
 .footer-logo {

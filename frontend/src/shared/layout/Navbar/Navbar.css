@@ -55,7 +55,7 @@
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
-  color: var(--text-primary);
+  color: var(--primary-green-deep);
   letter-spacing: -0.5px;
 }
 
@@ -70,7 +70,7 @@
 .navbar-links a {
   font-weight: 500;
   font-size: 0.95rem;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   position: relative;
   transition: var(--transition-smooth);
 }
@@ -103,20 +103,21 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-green);
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
   color: #fff;
   padding: 10px 24px;
   border-radius: 30px;
   font-weight: 600;
   font-size: 0.9rem;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.25);
   transition: var(--transition-smooth);
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-green-dark);
+  background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--primary-green) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+  box-shadow: 0 6px 20px rgba(27, 107, 80, 0.35);
 }
 
 @media (max-width: 768px) {

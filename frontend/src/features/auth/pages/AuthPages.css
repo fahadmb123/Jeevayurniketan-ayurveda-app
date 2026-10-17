@@ -3,9 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at top right, rgba(5, 150, 105, 0.08), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(217, 119, 6, 0.05), transparent 40%),
-              var(--bg-main, #f8fafc);
+  background: radial-gradient(circle at top right, rgba(27, 107, 80, 0.09), transparent 45%),
+              radial-gradient(circle at bottom left, rgba(201, 141, 59, 0.08), transparent 45%),
+              var(--bg-color, #FBFBF9);
   padding: 40px 20px;
 }
 
@@ -14,10 +14,10 @@
   max-width: 480px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid var(--border-color, #E2E8DE);
   border-radius: 24px;
   padding: 40px;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 24px 48px -15px rgba(18, 76, 56, 0.1);
 }
 
 .auth-header {

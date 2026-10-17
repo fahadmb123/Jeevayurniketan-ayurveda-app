@@ -1,13 +1,14 @@
 .app-card {
   background-color: var(--surface-color, #FFFFFF);
-  border: 1px solid var(--border-color, #E2E8F0);
-  border-radius: 12px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 16px;
   padding: 24px;
-  box-shadow: var(--card-shadow, 0 1px 3px rgba(15, 23, 42, 0.04));
-  transition: var(--transition-smooth, all 0.2s ease);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-smooth, all 0.25s ease);
 }
 
 .app-card--interactive:hover {
-  border-color: #CBD5E1;
-  box-shadow: var(--card-shadow-hover, 0 8px 20px rgba(15, 23, 42, 0.06));
+  border-color: var(--border-color-hover, #CCD6C6);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
 }

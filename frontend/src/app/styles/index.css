@@ -5,32 +5,42 @@
 
 
 :root {
-  --primary-green: #059669;
-  --primary-green-light: #10B981;
-  --primary-green-dark: #047857;
-  --primary-green-deep: #064E3B;
+  /* Sacred Kerala Botanical Green (Holy Basil / Tulsi & Deep Rainforest) */
+  --primary-green: #1B6B50;
+  --primary-green-light: #2A8566;
+  --primary-green-dark: #124C38;
+  --primary-green-deep: #0B3326;
+  --primary-green-tint: #EDF6F1;
   
-  --accent-gold: #D97706;
-  --accent-gold-light: #FEF3C7;
+  /* Sandalwood & Ceremonial Saffron Warm Gold */
+  --accent-gold: #C98D3B;
+  --accent-gold-hover: #B47A2B;
+  --accent-gold-light: #FBF3E4;
+  --accent-gold-glow: rgba(201, 141, 59, 0.22);
   
-  --bg-color: #F8FAFC;
+  /* Calming Warm Linen & Organic Silk Canvas */
+  --bg-color: #FBFBF9;
   --surface-color: #FFFFFF;
-  --surface-secondary: #F1F5F9;
-  --border-color: #E2E8F0;
+  --surface-secondary: #F3F6F1;
+  --border-color: #E2E8DE;
+  --border-color-hover: #CCD6C6;
   
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-light: #94A3B8;
+  /* Deep Forest Earth Typography */
+  --text-primary: #14241C;
+  --text-secondary: #485E53;
+  --text-light: #7E9387;
   
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: #E2E8F0;
-  --glass-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --glass-logo-bg: rgba(255, 255, 255, 1);
+  /* Translucent Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(226, 232, 222, 0.85);
+  --glass-shadow: 0 8px 30px -4px rgba(18, 76, 56, 0.07);
+  --glass-logo-bg: #FFFFFF;
   
-  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  --card-shadow-hover: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  /* Organic Diffuse Shadows */
+  --card-shadow: 0 2px 8px -2px rgba(18, 76, 56, 0.05), 0 1px 3px 0 rgba(18, 76, 56, 0.03);
+  --card-shadow-hover: 0 16px 36px -6px rgba(18, 76, 56, 0.1), 0 4px 12px -2px rgba(18, 76, 56, 0.04);
   
-  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -49,10 +59,34 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background-color: var(--primary-green);
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8D5CD;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-green-light);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
-  color: var(--primary-green-dark);
-  line-height: 1.2;
+  color: var(--primary-green-deep);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 a {
