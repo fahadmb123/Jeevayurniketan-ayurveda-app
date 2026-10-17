@@ -20,4 +20,5 @@ export * from './pages/DoctorDashboardPage';
 export * from './pages/DoctorAppointmentsPage';
 export * from './pages/DoctorPatientsPage';
 export * from './pages/DoctorRecordsPage';
+export * from './pages/DoctorYogaSchedulePage';
 export * from './pages/DoctorSettingsPage';

@@ -23,7 +23,6 @@ export const Footer: React.FC = () => {
             <li><Link to={ROUTES.HOME}>Home</Link></li>
             <li><Link to={ROUTES.ABOUT}>About Us</Link></li>
             <li><Link to={ROUTES.SERVICES}>Services</Link></li>
-            <li><Link to={ROUTES.YOGA}>Yoga Schedule</Link></li>
             <li><Link to={ROUTES.TEAM}>Our Team</Link></li>
             <li><Link to={ROUTES.BLOG}>Blog</Link></li>
             <li><Link to={ROUTES.CONTACT}>Contact Us</Link></li>

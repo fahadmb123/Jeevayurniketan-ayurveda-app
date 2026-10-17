@@ -19,6 +19,7 @@ import {
   DoctorDashboardPage,
   DoctorPatientsPage,
   DoctorAppointmentsPage,
+  DoctorYogaSchedulePage,
   DoctorRecordsPage,
   DoctorSettingsPage,
 } from '@/features/doctor';
@@ -43,6 +44,7 @@ export const AppRoutes: React.FC = () => {
       <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
       <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
       <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />
+      <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />
       <Route path={ROUTES.DOCTOR_RECORDS} element={<DoctorRecordsPage />} />
       <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
 
