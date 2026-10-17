@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import './DoctorDashboard.css';
 import { 
   Users, 
@@ -14,28 +14,16 @@ import {
   Video,
   Menu,
   ChevronLeft,
-  Moon,
-  Sun,
   MoreVertical,
   CheckCircle2
 } from 'lucide-react';
 
 export const DoctorDashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isDark, setIsDark] = useState(true); // Default to dark theme as requested
-
-  // Prevent body scrolling issues when sidebar is open on mobile
-  useEffect(() => {
-    if (isDark) {
-      document.body.setAttribute('data-theme', 'dark');
-    } else {
-      document.body.removeAttribute('data-theme');
-    }
-  }, [isDark]);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -43,13 +31,13 @@ export const DoctorDashboard: React.FC = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
   };
 
   return (
-    <div className={`doctor-dashboard-container ${isDark ? 'theme-black' : ''}`}>
+    <div className="doctor-dashboard-container">
       {/* Sidebar */}
       <motion.aside 
         className="doctor-sidebar"
@@ -110,9 +98,6 @@ export const DoctorDashboard: React.FC = () => {
             </div>
           </div>
           <div className="header-actions">
-            <button className="icon-btn theme-toggle" onClick={() => setIsDark(!isDark)}>
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <button className="icon-btn notification-btn">
               <Bell size={20} />
               <span className="notification-dot animate-pulse"></span>

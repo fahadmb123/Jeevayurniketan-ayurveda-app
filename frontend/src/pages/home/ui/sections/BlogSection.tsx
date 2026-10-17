@@ -40,24 +40,30 @@ export const BlogSection: React.FC = () => {
       <div className="blog-grid">
         {blogs.map((blog, index) => (
           <motion.article 
-            className="blog-card" 
+            className="blog-card group cursor-pointer border border-transparent hover:border-green-500/20 hover:bg-green-50/20 transition-all duration-300 overflow-hidden rounded-2xl" 
             key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -10, scale: 1.02 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
           >
-            <div className="blog-image-wrapper">
-              <img src={blog.image} alt={blog.title} className="blog-image" />
+            <div className="blog-image-wrapper overflow-hidden relative">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-10"></div>
+              <img 
+                src={blog.image} 
+                alt={blog.title} 
+                className="blog-image transform group-hover:scale-110 transition-transform duration-700" 
+              />
             </div>
             <div className="blog-content">
-              <div className="blog-meta">
-                <span className="blog-author">{blog.author}</span>
-                <span className="blog-date">{blog.date}</span>
+              <div className="blog-meta text-sm font-medium">
+                <span className="blog-author text-green-700">{blog.author}</span>
+                <span className="blog-date text-gray-500">{blog.date}</span>
               </div>
-              <h3 className="blog-title">{blog.title}</h3>
-              <p className="blog-excerpt">{blog.excerpt}</p>
-              <button className="btn-read-more">Read More &rarr;</button>
+              <h3 className="blog-title group-hover:text-green-700 transition-colors duration-300">{blog.title}</h3>
+              <p className="blog-excerpt text-gray-600">{blog.excerpt}</p>
+              <button className="btn-read-more group-hover:translate-x-2 transition-transform duration-300">Read More &rarr;</button>
             </div>
           </motion.article>
         ))}

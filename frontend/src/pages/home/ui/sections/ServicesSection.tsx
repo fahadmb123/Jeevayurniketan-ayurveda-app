@@ -39,17 +39,18 @@ export const ServicesSection: React.FC = () => {
       <div className="services-grid">
         {services.map((service, index) => (
           <motion.div 
-            className="service-card" 
+            className="service-card group cursor-pointer border border-transparent hover:border-green-500/30 hover:bg-green-50/50 transition-all duration-300" 
             key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -10, scale: 1.02, boxShadow: "0 25px 50px rgba(0,0,0,0.1)" }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <div className="service-icon">{service.icon}</div>
-            <h3 className="service-title">{service.title}</h3>
+            <div className="service-icon group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 ease-out">{service.icon}</div>
+            <h3 className="service-title group-hover:text-green-800 transition-colors">{service.title}</h3>
             <p className="service-desc">{service.description}</p>
-            <button className="service-btn">Learn More &rarr;</button>
+            <button className="service-btn group-hover:translate-x-2 transition-transform duration-300">Learn More &rarr;</button>
           </motion.div>
         ))}
       </div>

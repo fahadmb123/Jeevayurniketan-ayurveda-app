@@ -1,43 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
-  --primary-green: #2C5E43;
-  --primary-green-light: #3A7A57;
-  --primary-green-dark: #1A3828;
-  --accent-gold: #D4AF37;
-  --accent-gold-light: #F3E5AB;
+  --primary-green: #059669;
+  --primary-green-light: #10B981;
+  --primary-green-dark: #047857;
+  --primary-green-deep: #064E3B;
   
-  --bg-color: #F8FAF8;
+  --accent-gold: #D97706;
+  --accent-gold-light: #FEF3C7;
+  
+  --bg-color: #F8FAFC;
   --surface-color: #FFFFFF;
-  --text-primary: #1F2937;
-  --text-secondary: #4B5563;
-  --text-light: #9CA3AF;
+  --surface-secondary: #F1F5F9;
+  --border-color: #E2E8F0;
   
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px 0 rgba(44, 94, 67, 0.1);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-light: #94A3B8;
+  
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: #E2E8F0;
+  --glass-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
   --glass-logo-bg: rgba(255, 255, 255, 1);
   
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-[data-theme='dark'] {
-  --primary-green: #3A7A57;
-  --primary-green-light: #4CAF6A;
-  --primary-green-dark: #8FD8A8; /* Lighter for text contrast in dark mode */
-  --accent-gold: #D4AF37;
-  --accent-gold-light: #F3E5AB;
+  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
   
-  --bg-color: #0A140F; /* Deep premium green/black */
-  --surface-color: #11221A;
-  --text-primary: #E5E7EB;
-  --text-secondary: #9CA3AF;
-  --text-light: #6B7280;
-  
-  --glass-bg: rgba(17, 34, 26, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  --glass-logo-bg: rgba(255, 255, 255, 0.9);
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {

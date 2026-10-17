@@ -40,21 +40,23 @@ export const TeamSection: React.FC = () => {
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <motion.div 
-            className="team-card" 
+            className="team-card group cursor-pointer border border-transparent hover:border-green-500/20 hover:bg-green-50/30 transition-all duration-300" 
             key={index}
             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
             whileInView={{ opacity: 1, x: 0 }}
+            whileHover={{ y: -10, scale: 1.02 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
           >
-            <div className="team-image-wrapper">
-              <img src={member.image} alt={member.name} className="team-image" />
+            <div className="team-image-wrapper overflow-hidden relative">
+              <div className="absolute inset-0 bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 mix-blend-overlay"></div>
+              <img src={member.image} alt={member.name} className="team-image transform group-hover:scale-110 transition-transform duration-500" />
             </div>
             <div className="team-info">
-              <h3 className="team-name">{member.name}</h3>
-              <h4 className="team-role">{member.role}</h4>
-              <p className="team-qualifications">{member.qualifications}</p>
-              <p className="team-description">{member.description}</p>
+              <h3 className="team-name group-hover:text-green-700 transition-colors">{member.name}</h3>
+              <h4 className="team-role text-green-600">{member.role}</h4>
+              <p className="team-qualifications font-semibold text-gray-500">{member.qualifications}</p>
+              <p className="team-description text-gray-600">{member.description}</p>
             </div>
           </motion.div>
         ))}

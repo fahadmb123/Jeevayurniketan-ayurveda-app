@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.css';
-import logoPdf from '@/assets/Jeevayurniketan-logo.pdf';
 
 export const Footer: React.FC = () => {
   return (
@@ -8,9 +7,8 @@ export const Footer: React.FC = () => {
       <div className="footer-container">
         <div className="footer-col">
           <div className="footer-logo">
-            <object data={logoPdf} type="application/pdf" className="footer-logo-pdf">
-              <span className="logo-text">Jeevayurniketan</span>
-            </object>
+            <img src="/android-chrome-512x512.png" alt="Jeevayurniketan Logo" className="footer-logo-img" />
+            <span className="logo-text">Jeevayurniketan</span>
           </div>
           <p className="footer-desc">
             Reach out to society through direct and online clinics to address various illnesses where a psychological component has a definite role in the aetiology and pathogenesis of the illness.

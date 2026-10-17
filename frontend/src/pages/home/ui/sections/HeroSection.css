@@ -13,15 +13,32 @@
 
 .hero-background-circle {
   position: absolute;
-  top: -10%;
-  right: -5%;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation: floatOrb 10s infinite alternate ease-in-out;
+}
+
+.hero-background-circle.orb-1 {
   width: 600px;
   height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--primary-green-light) 0%, rgba(255,255,255,0) 70%);
-  opacity: 0.15;
-  z-index: -1;
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
+  top: -100px;
+  left: -200px;
+}
+
+.hero-background-circle.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, rgba(248, 250, 252, 0) 70%);
+  bottom: -50px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 50px) scale(1.1); }
 }
 
 .hero-content {
@@ -32,7 +49,7 @@
 .hero-badge {
   display: inline-block;
   padding: 8px 16px;
-  background-color: rgba(44, 94, 67, 0.1);
+  background-color: rgba(5, 150, 105, 0.08);
   color: var(--primary-green);
   border-radius: 30px;
   font-size: 0.85rem;
@@ -51,6 +68,13 @@
 
 .text-primary-green {
   color: var(--primary-green);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-green) 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-subtitle {

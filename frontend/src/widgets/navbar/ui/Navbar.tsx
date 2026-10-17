@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logoPdf from '@/assets/Jeevayurniketan-logo.pdf'; // Assuming Vite alias @ is configured, otherwise relative
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,21 +13,13 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
-
   return (
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <nav className="navbar">
-        <div className="navbar-logo">
-          {/* Embedding PDF directly as an object, with a fallback text */}
-          <object data={logoPdf} type="application/pdf" className="logo-pdf">
-            <span className="logo-text">Jeevayurniketan</span>
-          </object>
-        </div>
+        <Link to="/" className="navbar-logo">
+          <img src="/android-chrome-512x512.png" alt="Jeevayurniketan Logo" className="logo-img" />
+          <span className="logo-text">Jeevayurniketan</span>
+        </Link>
         
         <ul className="navbar-links">
           <li><a href="#home">Home</a></li>
@@ -40,9 +30,6 @@ export const Navbar: React.FC = () => {
         </ul>
         
         <div className="navbar-actions">
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
-            {theme === 'light' ? '🌙' : '☀️'}
-          </button>
           <button className="btn-primary">Book Appointment</button>
         </div>
       </nav>

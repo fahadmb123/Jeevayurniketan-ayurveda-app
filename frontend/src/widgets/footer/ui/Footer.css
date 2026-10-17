@@ -21,19 +21,26 @@
 }
 
 .footer-logo {
-  height: 60px;
-  width: 200px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  background: white; /* PDF logos usually have dark text, need white bg to be visible */
-  border-radius: 8px;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  width: auto;
+  margin-bottom: 24px;
 }
 
-.footer-logo-pdf {
-  width: 100%;
+.footer-logo-img {
   height: 100%;
-  pointer-events: none;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-logo .logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: white;
+  letter-spacing: -0.5px;
 }
 
 .footer-desc {
