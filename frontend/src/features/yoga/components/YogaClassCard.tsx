@@ -4,7 +4,6 @@ import {
   User,
   MapPin,
   Video,
-  Globe,
   Edit2,
   Trash2,
   Target,
@@ -37,25 +36,11 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
   onEnroll,
 }) => {
   const getFormatIcon = () => {
-    switch (session.format) {
-      case 'online':
-        return <Video size={13} />;
-      case 'offline':
-        return <MapPin size={13} />;
-      case 'hybrid':
-        return <Globe size={13} />;
-    }
+    return session.format === 'online' ? <Video size={13} /> : <MapPin size={13} />;
   };
 
   const getFormatLabel = () => {
-    switch (session.format) {
-      case 'online':
-        return 'Online Live';
-      case 'offline':
-        return 'In Shala';
-      case 'hybrid':
-        return 'Hybrid';
-    }
+    return session.format === 'online' ? 'Online' : 'Offline';
   };
 
   return (

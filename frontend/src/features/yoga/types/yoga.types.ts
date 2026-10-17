@@ -1,4 +1,4 @@
-export type YogaFormat = 'online' | 'offline' | 'hybrid';
+export type YogaFormat = 'online' | 'offline';
 
 export type YogaLevel = 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
 

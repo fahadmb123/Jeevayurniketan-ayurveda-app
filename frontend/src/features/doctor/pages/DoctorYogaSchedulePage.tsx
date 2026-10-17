@@ -51,12 +51,8 @@ export const DoctorYogaSchedulePage: React.FC = () => {
 
   // Metrics
   const totalClasses = sessions.length;
-  const inShalaCount = sessions.filter(
-    (s) => s.format === 'offline' || s.format === 'hybrid'
-  ).length;
-  const onlineCount = sessions.filter(
-    (s) => s.format === 'online' || s.format === 'hybrid'
-  ).length;
+  const inShalaCount = sessions.filter((s) => s.format === 'offline').length;
+  const onlineCount = sessions.filter((s) => s.format === 'online').length;
 
   return (
     <div className="doctor-page-layout">

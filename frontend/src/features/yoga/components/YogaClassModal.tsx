@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Video, MapPin, Globe, Sparkles } from 'lucide-react';
+import { X, Video, MapPin, Sparkles } from 'lucide-react';
 import type {
   YogaSession,
   YogaFormData,
@@ -137,6 +137,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
         </div>
 
         {/* Format (Online / Offline / Hybrid) */}
+        {/* Format (Offline / Online) */}
         <div className="yoga-modal__field">
           <label>
             Format <span className="required">*</span>
@@ -150,7 +151,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
               onClick={() => setFormData({ ...formData, format: 'offline' })}
             >
               <MapPin size={16} />
-              <span>In Shala (Offline)</span>
+              <span>Offline (In Shala)</span>
             </button>
             <button
               type="button"
@@ -160,17 +161,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
               onClick={() => setFormData({ ...formData, format: 'online' })}
             >
               <Video size={16} />
-              <span>Live Stream (Online)</span>
-            </button>
-            <button
-              type="button"
-              className={`yoga-modal__format-btn ${
-                formData.format === 'hybrid' ? 'active' : ''
-              }`}
-              onClick={() => setFormData({ ...formData, format: 'hybrid' })}
-            >
-              <Globe size={16} />
-              <span>Hybrid (Both)</span>
+              <span>Online (Live Stream)</span>
             </button>
           </div>
         </div>

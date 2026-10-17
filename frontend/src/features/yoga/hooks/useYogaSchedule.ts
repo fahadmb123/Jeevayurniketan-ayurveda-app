@@ -77,14 +77,9 @@ export const useYogaSchedule = () => {
         if (!matchesDay) return false;
       }
 
-      // Format filter
-      if (selectedFormat !== 'all') {
-        if (selectedFormat === 'online' && session.format !== 'online' && session.format !== 'hybrid') {
-          return false;
-        }
-        if (selectedFormat === 'offline' && session.format !== 'offline' && session.format !== 'hybrid') {
-          return false;
-        }
+      // Format filter (online / offline)
+      if (selectedFormat !== 'all' && session.format !== selectedFormat) {
+        return false;
       }
 
       // Level / Suitable For filter
