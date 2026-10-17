@@ -87,9 +87,13 @@ export const useYogaSchedule = () => {
         }
       }
 
-      // Level filter
-      if (selectedLevel !== 'all' && session.level !== selectedLevel) {
-        return false;
+      // Level / Suitable For filter
+      if (selectedLevel !== 'all') {
+        const matchesLevel = session.level === selectedLevel;
+        const matchesSuitable = session.suitableFor?.toLowerCase().includes(selectedLevel.toLowerCase());
+        if (!matchesLevel && !matchesSuitable) {
+          return false;
+        }
       }
 
       // Search Query

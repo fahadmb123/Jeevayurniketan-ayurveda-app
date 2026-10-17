@@ -7,7 +7,6 @@ import {
   Globe,
   Edit2,
   Trash2,
-  Users,
   Target,
   Sparkles,
 } from 'lucide-react';
@@ -124,12 +123,6 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
             <Target size={14} />
             <span>
               <strong>Suitable for:</strong> {session.suitableFor}
-            </span>
-          </div>
-          <div className="yoga-card__meta-item">
-            <Users size={14} />
-            <span>
-              <strong>Target Group:</strong> {session.ageGroup}
             </span>
           </div>
           {session.location && (

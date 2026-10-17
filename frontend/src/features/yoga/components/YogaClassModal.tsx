@@ -3,10 +3,9 @@ import { X, Video, MapPin, Globe, Sparkles } from 'lucide-react';
 import type {
   YogaSession,
   YogaFormData,
-  YogaLevel,
   DayOfWeek,
 } from '../types/yoga.types';
-import { DAYS_OF_WEEK } from '../types/yoga.types';
+import { DAYS_OF_WEEK, SUITABLE_FOR_OPTIONS } from '../types/yoga.types';
 import './YogaClassModal.css';
 
 interface YogaClassModalProps {
@@ -22,13 +21,6 @@ const DURATION_PRESETS = [
   '75 mins',
   '90 mins',
   '120 mins',
-];
-
-const LEVEL_OPTIONS: YogaLevel[] = [
-  'Beginner',
-  'Intermediate',
-  'Advanced',
-  'All Levels',
 ];
 
 interface FormContentProps {
@@ -50,11 +42,9 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
         title: initialData.title || '',
         duration: initialData.duration || '60 mins',
         format: initialData.format || 'offline',
-        suitableFor: initialData.suitableFor || '',
-        ageGroup: initialData.ageGroup || 'All Ages',
+        suitableFor: initialData.suitableFor || SUITABLE_FOR_OPTIONS[0],
         days: initialData.days || ['Monday', 'Wednesday', 'Friday'],
         time: initialData.time || '06:30 AM - 07:30 AM',
-        level: initialData.level || 'Beginner',
         description: initialData.description || '',
         price: initialData.price || '₹500 / session',
       };
@@ -63,11 +53,9 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
       title: '',
       duration: '60 mins',
       format: 'offline',
-      suitableFor: 'Beginners & Stress Relief',
-      ageGroup: 'All Ages',
+      suitableFor: SUITABLE_FOR_OPTIONS[0],
       days: ['Monday', 'Wednesday', 'Friday'],
       time: '06:30 AM - 07:30 AM',
-      level: 'Beginner',
       description: '',
       price: '₹500 / session',
     };
@@ -92,7 +80,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
     const newErrors: Record<string, string> = {};
     if (!formData.title.trim()) newErrors.title = 'Class title is required.';
     if (!formData.duration.trim()) newErrors.duration = 'Duration is required.';
-    if (!formData.suitableFor.trim()) newErrors.suitableFor = 'Target suitability is required.';
+    if (!formData.suitableFor.trim()) newErrors.suitableFor = 'Please select who this is suitable for.';
     if (!formData.time.trim()) newErrors.time = 'Time slot is required.';
     if (formData.days.length === 0) newErrors.days = 'Select at least one day.';
 
@@ -187,7 +175,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           </div>
         </div>
 
-        {/* Duration & Difficulty Level */}
+        {/* Duration & Suitable For (Difficulty with Age in Bracket) */}
         <div className="yoga-modal__grid-2">
           <div className="yoga-modal__field">
             <label htmlFor="yoga-duration">
@@ -213,53 +201,26 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           </div>
 
           <div className="yoga-modal__field">
-            <label htmlFor="yoga-level">Difficulty / Practice Level</label>
-            <select
-              id="yoga-level"
-              className="yoga-modal__select"
-              value={formData.level}
-              onChange={(e) =>
-                setFormData({ ...formData, level: e.target.value as YogaLevel })
-              }
-            >
-              {LEVEL_OPTIONS.map((lvl) => (
-                <option key={lvl} value={lvl}>
-                  {lvl}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Suitable For & Age Group */}
-        <div className="yoga-modal__grid-2">
-          <div className="yoga-modal__field">
             <label htmlFor="yoga-suitable">
               Suitable For <span className="required">*</span>
             </label>
-            <input
+            <select
               id="yoga-suitable"
-              type="text"
-              className="yoga-modal__input"
-              placeholder="e.g. Beginners, Stress Relief, Spine & Joint Care"
+              className="yoga-modal__select"
               value={formData.suitableFor}
-              onChange={(e) => setFormData({ ...formData, suitableFor: e.target.value })}
-            />
+              onChange={(e) =>
+                setFormData({ ...formData, suitableFor: e.target.value })
+              }
+            >
+              {SUITABLE_FOR_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
             {errors.suitableFor && (
               <span className="yoga-modal__error-hint">{errors.suitableFor}</span>
             )}
-          </div>
-
-          <div className="yoga-modal__field">
-            <label htmlFor="yoga-age">Age / Target Audience Group</label>
-            <input
-              id="yoga-age"
-              type="text"
-              className="yoga-modal__input"
-              placeholder="e.g. All Ages, Adults (18+), Seniors (50+)"
-              value={formData.ageGroup}
-              onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
-            />
           </div>
         </div>
 
