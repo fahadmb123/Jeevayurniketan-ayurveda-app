@@ -41,6 +41,11 @@ export const Navbar: React.FC = () => {
             </Link>
           </li>
           <li>
+            <Link to={ROUTES.YOGA} className={location.pathname === ROUTES.YOGA ? 'active-link' : ''}>
+              Yoga Schedule
+            </Link>
+          </li>
+          <li>
             <Link to={ROUTES.TEAM} className={location.pathname === ROUTES.TEAM ? 'active-link' : ''}>
               Our Team
             </Link>

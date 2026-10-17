@@ -1,0 +1,193 @@
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import type {
+  YogaSession,
+  YogaFormData,
+  DayOfWeek,
+} from '../types/yoga.types';
+import { yogaService } from '../services/yogaService';
+
+export const useYogaSchedule = () => {
+  const [sessions, setSessions] = useState<YogaSession[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Filters
+  const [selectedDay, setSelectedDay] = useState<string>('All');
+  const [selectedFormat, setSelectedFormat] = useState<string>('all');
+  const [selectedLevel, setSelectedLevel] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [editingSession, setEditingSession] = useState<YogaSession | null>(null);
+  const [actionSuccessMessage, setActionSuccessMessage] = useState<string | null>(null);
+
+  const fetchSessions = useCallback(() => {
+    setIsLoading(true);
+    yogaService
+      .getAll()
+      .then((data) => {
+        setSessions(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Failed to load yoga schedules');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    yogaService
+      .getAll()
+      .then((data) => {
+        if (isMounted) {
+          setSessions(data);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err instanceof Error ? err.message : 'Failed to load yoga schedules');
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Flash message helper
+  const showToast = (message: string) => {
+    setActionSuccessMessage(message);
+    setTimeout(() => {
+      setActionSuccessMessage(null);
+    }, 3500);
+  };
+
+  // Filtered Sessions
+  const filteredSessions = useMemo(() => {
+    return sessions.filter((session) => {
+      // Day filter
+      if (selectedDay !== 'All') {
+        const matchesDay = session.days.includes(selectedDay as DayOfWeek);
+        if (!matchesDay) return false;
+      }
+
+      // Format filter
+      if (selectedFormat !== 'all') {
+        if (selectedFormat === 'online' && session.format !== 'online' && session.format !== 'hybrid') {
+          return false;
+        }
+        if (selectedFormat === 'offline' && session.format !== 'offline' && session.format !== 'hybrid') {
+          return false;
+        }
+      }
+
+      // Level filter
+      if (selectedLevel !== 'all' && session.level !== selectedLevel) {
+        return false;
+      }
+
+      // Search Query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchesTitle = session.title.toLowerCase().includes(q);
+        const matchesInstructor = session.instructor.toLowerCase().includes(q);
+        const matchesSuitable = session.suitableFor.toLowerCase().includes(q);
+        const matchesLocation = session.location.toLowerCase().includes(q);
+        if (!matchesTitle && !matchesInstructor && !matchesSuitable && !matchesLocation) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [sessions, selectedDay, selectedFormat, selectedLevel, searchQuery]);
+
+  // Handlers for Add / Edit / Delete
+  const handleOpenAddModal = () => {
+    setEditingSession(null);
+    setIsModalOpen(true);
+  };
+
+  const handleOpenEditModal = (session: YogaSession) => {
+    setEditingSession(session);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingSession(null);
+  };
+
+  const handleSaveSession = async (formData: YogaFormData) => {
+    try {
+      if (editingSession) {
+        const updated = await yogaService.update(editingSession.id, formData);
+        setSessions((prev) =>
+          prev.map((s) => (s.id === editingSession.id ? updated : s))
+        );
+        showToast(`"${formData.title}" updated successfully.`);
+      } else {
+        const created = await yogaService.create(formData);
+        setSessions((prev) => [created, ...prev]);
+        showToast(`"${formData.title}" scheduled successfully.`);
+      }
+      handleCloseModal();
+    } catch (err) {
+      console.error('Failed to save yoga session:', err);
+      throw err;
+    }
+  };
+
+  const handleDeleteSession = async (id: string, title: string) => {
+    if (window.confirm(`Are you sure you want to remove "${title}" from the yoga schedule?`)) {
+      try {
+        await yogaService.delete(id);
+        setSessions((prev) => prev.filter((s) => s.id !== id));
+        showToast(`"${title}" has been removed.`);
+      } catch (err) {
+        console.error('Failed to delete session:', err);
+      }
+    }
+  };
+
+  const handleResetDefaults = async () => {
+    if (window.confirm('Reset schedule to default Ayurvedic yoga timetable?')) {
+      const defaults = await yogaService.resetDefaults();
+      setSessions(defaults);
+      showToast('Yoga schedule reset to default sessions.');
+    }
+  };
+
+  return {
+    sessions,
+    filteredSessions,
+    isLoading,
+    error,
+    // Filters
+    selectedDay,
+    setSelectedDay,
+    selectedFormat,
+    setSelectedFormat,
+    selectedLevel,
+    setSelectedLevel,
+    searchQuery,
+    setSearchQuery,
+    // Modal
+    isModalOpen,
+    editingSession,
+    actionSuccessMessage,
+    handleOpenAddModal,
+    handleOpenEditModal,
+    handleCloseModal,
+    handleSaveSession,
+    handleDeleteSession,
+    handleResetDefaults,
+    refresh: fetchSessions,
+  };
+};

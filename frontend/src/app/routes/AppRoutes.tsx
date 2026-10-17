@@ -6,6 +6,7 @@ import { ROUTES } from '@/shared/config/routes';
 import { HomePage, NotFoundPage } from '@/features/home';
 import { AboutPage } from '@/features/about';
 import { ServicesPage } from '@/features/services';
+import { YogaSchedulePage } from '@/features/yoga';
 import { TeamPage } from '@/features/team';
 import { BlogPage } from '@/features/blog';
 import { ContactPage } from '@/features/contact';
@@ -29,6 +30,7 @@ export const AppRoutes: React.FC = () => {
       <Route path={ROUTES.HOME} element={<HomePage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SERVICES} element={<ServicesPage />} />
+      <Route path={ROUTES.YOGA} element={<YogaSchedulePage />} />
       <Route path={ROUTES.TEAM} element={<TeamPage />} />
       <Route path={ROUTES.BLOG} element={<BlogPage />} />
       <Route path={ROUTES.CONTACT} element={<ContactPage />} />

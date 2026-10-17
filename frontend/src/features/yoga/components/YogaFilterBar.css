@@ -1,0 +1,147 @@
+.yoga-filter-bar {
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.yoga-filter-bar__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.yoga-filter-bar__search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.yoga-filter-bar__search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light, #7E9387);
+}
+
+.yoga-filter-bar__search-input {
+  width: 100%;
+  padding: 10px 14px 10px 42px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 12px;
+  background-color: var(--bg-color, #FBFBF9);
+  color: var(--text-primary, #14241C);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.yoga-filter-bar__search-input:focus {
+  border-color: var(--primary-green, #1B6B50);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.12);
+}
+
+.yoga-filter-bar__selectors {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.yoga-filter-bar__select {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 12px;
+  background-color: var(--bg-color, #FBFBF9);
+  color: var(--text-primary, #14241C);
+  font-size: 0.875rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.yoga-filter-bar__select:focus {
+  border-color: var(--primary-green, #1B6B50);
+  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.12);
+}
+
+.yoga-filter-bar__btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--primary-green, #1B6B50) 0%, var(--primary-green-dark, #124C38) 100%);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.25);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.yoga-filter-bar__btn-add:hover {
+  background: linear-gradient(135deg, var(--primary-green-light, #2A8566) 0%, var(--primary-green, #1B6B50) 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(27, 107, 80, 0.35);
+}
+
+/* Day Selector Track */
+.yoga-filter-bar__days-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.yoga-filter-bar__day-btn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  background-color: var(--bg-color, #FBFBF9);
+  color: var(--text-secondary, #485E53);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.yoga-filter-bar__day-btn:hover {
+  border-color: var(--primary-green, #1B6B50);
+  color: var(--primary-green, #1B6B50);
+}
+
+.yoga-filter-bar__day-btn.active {
+  background: var(--primary-green, #1B6B50);
+  border-color: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(27, 107, 80, 0.25);
+}
+
+@media (max-width: 768px) {
+  .yoga-filter-bar {
+    padding: 16px;
+  }
+  .yoga-filter-bar__top-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .yoga-filter-bar__btn-add {
+    justify-content: center;
+  }
+}
