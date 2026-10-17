@@ -98,6 +98,21 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* View Transition API Circular Ripple Expansion */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999999;
+}
+
 ::selection {
   background-color: var(--primary-green);
   color: #FFFFFF;

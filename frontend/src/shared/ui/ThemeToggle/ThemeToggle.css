@@ -86,12 +86,48 @@
     0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Silhouette Dark Icon inside Knob */
-.astro-theme-toggle__icon {
+/* Morphing Stage for Smooth Icon Rotation & Scaling */
+.astro-theme-toggle__icons-stage {
+  position: relative;
   width: 18px;
   height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.astro-theme-toggle__icon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   color: #070D1E;
-  transition: transform 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1), opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* Light Mode: Sun is active, Moon is hidden */
+.astro-theme-toggle--light .astro-theme-toggle__icon--sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.astro-theme-toggle--light .astro-theme-toggle__icon--moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.3);
+  pointer-events: none;
+}
+
+/* Dark Mode: Moon is active, Sun is hidden */
+.astro-theme-toggle--dark .astro-theme-toggle__icon--sun {
+  opacity: 0;
+  transform: rotate(120deg) scale(0.3);
+  pointer-events: none;
+}
+
+.astro-theme-toggle--dark .astro-theme-toggle__icon--moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 .astro-theme-toggle--light:hover .astro-theme-toggle__thumb {
