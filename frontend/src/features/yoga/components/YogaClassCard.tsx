@@ -7,7 +7,6 @@ import {
   Edit2,
   Trash2,
   Target,
-  Sparkles,
 } from 'lucide-react';
 import type { YogaSession, DayOfWeek } from '../types/yoga.types';
 import './YogaClassCard.css';
@@ -16,7 +15,6 @@ interface YogaClassCardProps {
   session: YogaSession;
   onEdit: (session: YogaSession) => void;
   onDelete?: (id: string, title: string) => void;
-  onEnroll?: (session: YogaSession) => void;
 }
 
 const ALL_DAYS_SHORT: { key: DayOfWeek; label: string }[] = [
@@ -33,7 +31,6 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
   session,
   onEdit,
   onDelete,
-  onEnroll,
 }) => {
   const getFormatIcon = () => {
     return session.format === 'online' ? <Video size={13} /> : <MapPin size={13} />;
@@ -129,12 +126,12 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
           {onDelete && (
             <button
               type="button"
-              className="yoga-card__btn-edit"
+              className="yoga-card__btn-delete"
               onClick={() => onDelete(session.id, session.title)}
               title="Delete session"
               aria-label={`Delete ${session.title}`}
             >
-              <Trash2 size={14} />
+              <Trash2 size={15} />
             </button>
           )}
 
@@ -146,15 +143,6 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
           >
             <Edit2 size={14} />
             <span>Edit</span>
-          </button>
-
-          <button
-            type="button"
-            className="yoga-card__btn-enroll"
-            onClick={() => onEnroll && onEnroll(session)}
-          >
-            <Sparkles size={14} />
-            <span>Book Class</span>
           </button>
         </div>
       </div>

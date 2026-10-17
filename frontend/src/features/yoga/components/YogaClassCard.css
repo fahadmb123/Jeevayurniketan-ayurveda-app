@@ -265,45 +265,44 @@
   gap: 8px;
 }
 
-.yoga-card__btn-edit {
+.yoga-card__btn-delete {
   background: none;
   border: 1px solid var(--border-color, #E2E8DE);
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 8px;
   font-size: 0.825rem;
-  font-weight: 600;
-  color: var(--text-secondary, #485E53);
+  color: var(--text-light, #7E9387);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.yoga-card__btn-delete:hover {
+  border-color: #FCA5A5;
+  color: #DC2626;
+  background: #FEF2F2;
+}
+
+.yoga-card__btn-edit {
+  background: var(--primary-green-tint, #EDF6F1);
+  border: 1px solid rgba(27, 107, 80, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-green, #1B6B50);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .yoga-card__btn-edit:hover {
   border-color: var(--primary-green, #1B6B50);
-  color: var(--primary-green, #1B6B50);
-  background: var(--primary-green-tint, #EDF6F1);
-}
-
-.yoga-card__btn-enroll {
-  background: linear-gradient(135deg, var(--primary-green, #1B6B50) 0%, var(--primary-green-dark, #124C38) 100%);
+  background: var(--primary-green, #1B6B50);
   color: #FFFFFF;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
   box-shadow: 0 4px 12px rgba(27, 107, 80, 0.2);
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.yoga-card__btn-enroll:hover {
-  background: linear-gradient(135deg, var(--primary-green-light, #2A8566) 0%, var(--primary-green, #1B6B50) 100%);
-  transform: translateY(-1.5px);
-  box-shadow: 0 6px 16px rgba(27, 107, 80, 0.3);
 }

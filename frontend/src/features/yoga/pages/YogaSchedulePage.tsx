@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Sparkles,
@@ -13,7 +13,6 @@ import { useYogaSchedule } from '../hooks/useYogaSchedule';
 import { YogaClassCard } from '../components/YogaClassCard';
 import { YogaClassModal } from '../components/YogaClassModal';
 import { YogaFilterBar } from '../components/YogaFilterBar';
-import type { YogaSession } from '../types/yoga.types';
 import './YogaSchedulePage.css';
 
 export const YogaSchedulePage: React.FC = () => {
@@ -39,17 +38,6 @@ export const YogaSchedulePage: React.FC = () => {
     handleDeleteSession,
     handleResetDefaults,
   } = useYogaSchedule();
-
-  const [bookingNotice, setBookingNotice] = useState<string | null>(null);
-
-  const handleEnroll = (session: YogaSession) => {
-    setBookingNotice(
-      `Your spot for "${session.title}" (${session.time}) has been reserved! Our wellness coordinator will contact you with entry details.`
-    );
-    setTimeout(() => {
-      setBookingNotice(null);
-    }, 5000);
-  };
 
   return (
     <main className="yoga-page">
@@ -164,7 +152,6 @@ export const YogaSchedulePage: React.FC = () => {
                 session={session}
                 onEdit={handleOpenEditModal}
                 onDelete={handleDeleteSession}
-                onEnroll={handleEnroll}
               />
             ))}
           </motion.div>
@@ -207,14 +194,6 @@ export const YogaSchedulePage: React.FC = () => {
           <div className="yoga-toast" role="status">
             <CheckCircle2 size={18} color="#C98D3B" />
             <span>{actionSuccessMessage}</span>
-          </div>
-        )}
-
-        {/* Booking Confirmation Toast */}
-        {bookingNotice && (
-          <div className="yoga-toast" role="status" style={{ maxWidth: '600px' }}>
-            <CheckCircle2 size={18} color="#4ADE80" />
-            <span>{bookingNotice}</span>
           </div>
         )}
       </div>
