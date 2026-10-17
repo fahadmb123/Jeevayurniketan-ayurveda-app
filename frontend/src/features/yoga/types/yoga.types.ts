@@ -41,8 +41,8 @@ export interface YogaSession {
   format: YogaFormat;         // 'online' | 'offline'
   suitableFor: string;        // e.g. "Beginner (All Ages)"
   days: DayOfWeek[];          // ['Monday', 'Wednesday', 'Friday']
-  time: string;               // e.g. "06:30 AM - 07:30 AM"
-  scheduleItems?: DayScheduleItem[]; // Per-day specific time slots
+  time?: string;              // Optional time slot
+  scheduleItems?: DayScheduleItem[];
   description: string;
   level?: YogaLevel;
   ageGroup?: string;
@@ -61,8 +61,8 @@ export interface YogaFormData {
   format: YogaFormat;
   suitableFor: string;
   days: DayOfWeek[];
-  time: string;
-  scheduleItems?: DayScheduleItem[]; // Per-day specific time slots
+  time?: string;
+  scheduleItems?: DayScheduleItem[];
   description: string;
   level?: YogaLevel;
   ageGroup?: string;

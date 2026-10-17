@@ -80,7 +80,7 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
           )}
         </div>
 
-        {/* Days & Time Schedule */}
+        {/* Days Schedule */}
         <div className="yoga-card__days-schedule">
           <div className="yoga-card__days-row">
             {ALL_DAYS_SHORT.map((day) => {
@@ -96,26 +96,6 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
               );
             })}
           </div>
-
-          {session.scheduleItems &&
-          session.scheduleItems.length > 1 &&
-          session.scheduleItems.some(
-            (item) => item.time.trim() !== session.scheduleItems![0].time.trim()
-          ) ? (
-            <div className="yoga-card__day-times-list">
-              {session.scheduleItems.map((item) => (
-                <div key={item.day} className="yoga-card__day-time-badge">
-                  <span className="yoga-card__day-badge-name">{item.day.slice(0, 3)}</span>
-                  <span className="yoga-card__day-badge-time">{item.time}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="yoga-card__time-row">
-              <Clock size={14} />
-              <span>{session.time}</span>
-            </div>
-          )}
         </div>
 
         {/* Metadata Details */}
