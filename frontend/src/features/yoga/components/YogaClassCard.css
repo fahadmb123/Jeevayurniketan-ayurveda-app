@@ -177,6 +177,34 @@
   color: var(--primary-green-dark, #124C38);
 }
 
+.yoga-card__day-times-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.yoga-card__day-time-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.775rem;
+}
+
+.yoga-card__day-badge-name {
+  font-weight: 700;
+  color: var(--primary-green-dark, #124C38);
+}
+
+.yoga-card__day-badge-time {
+  font-weight: 600;
+  color: var(--text-secondary, #485E53);
+}
+
 .yoga-card__meta-tags {
   display: flex;
   flex-direction: column;

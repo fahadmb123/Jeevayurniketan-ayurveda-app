@@ -29,14 +29,20 @@ export const SUITABLE_FOR_OPTIONS = [
   'Gentle & Restorative (Seniors 50+)',
 ] as const;
 
+export interface DayScheduleItem {
+  day: DayOfWeek;
+  time: string; // e.g. "06:30 AM - 07:30 AM"
+}
+
 export interface YogaSession {
   id: string;
   title: string;
   duration: string;           // e.g. "60 mins"
-  format: YogaFormat;         // 'online' | 'offline' | 'hybrid'
+  format: YogaFormat;         // 'online' | 'offline'
   suitableFor: string;        // e.g. "Beginner (All Ages)"
   days: DayOfWeek[];          // ['Monday', 'Wednesday', 'Friday']
   time: string;               // e.g. "06:30 AM - 07:30 AM"
+  scheduleItems?: DayScheduleItem[]; // Per-day specific time slots
   description: string;
   level?: YogaLevel;
   ageGroup?: string;
@@ -56,6 +62,7 @@ export interface YogaFormData {
   suitableFor: string;
   days: DayOfWeek[];
   time: string;
+  scheduleItems?: DayScheduleItem[]; // Per-day specific time slots
   description: string;
   level?: YogaLevel;
   ageGroup?: string;

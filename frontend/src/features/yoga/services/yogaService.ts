@@ -11,6 +11,11 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     suitableFor: 'Beginner (All Ages)',
     days: ['Monday', 'Wednesday', 'Friday'],
     time: '06:30 AM - 07:30 AM',
+    scheduleItems: [
+      { day: 'Monday', time: '06:30 AM - 07:30 AM' },
+      { day: 'Wednesday', time: '06:30 AM - 07:30 AM' },
+      { day: 'Friday', time: '06:30 AM - 07:30 AM' },
+    ],
     level: 'Beginner',
     description: 'Awaken your Prana (life-force) through traditional sun salutations combined with Anulom-Vilom and Bhastrika breathing techniques to balance Tridoshas.',
     price: '₹450 / session',
@@ -25,6 +30,11 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     suitableFor: 'Gentle & Restorative (Seniors 50+)',
     days: ['Tuesday', 'Thursday', 'Saturday'],
     time: '08:00 AM - 08:45 AM',
+    scheduleItems: [
+      { day: 'Tuesday', time: '08:00 AM - 08:45 AM' },
+      { day: 'Thursday', time: '08:00 AM - 08:45 AM' },
+      { day: 'Saturday', time: '08:30 AM - 09:15 AM' },
+    ],
     level: 'All Levels',
     description: 'Gentle micro-movements (Sukshma Vyayama) and customized postures targeting lumbar relaxation, cervical comfort, and arthritis alleviation.',
     price: '₹600 / session',
@@ -39,6 +49,11 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     suitableFor: 'All Levels (All Ages)',
     days: ['Monday', 'Wednesday', 'Sunday'],
     time: '07:30 PM - 08:30 PM',
+    scheduleItems: [
+      { day: 'Monday', time: '07:30 PM - 08:30 PM' },
+      { day: 'Wednesday', time: '07:30 PM - 08:30 PM' },
+      { day: 'Sunday', time: '07:30 PM - 08:30 PM' },
+    ],
     level: 'All Levels',
     description: 'Deep psychological reset through guided psychic sleep (Yoga Nidra). Reduces cortisol, calms hyperactive Vata dosha, and restores restorative sleep cycles.',
     price: '₹400 / session',
@@ -53,6 +68,11 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     suitableFor: 'Intermediate (Adults 18-50)',
     days: ['Tuesday', 'Thursday', 'Saturday'],
     time: '06:00 AM - 07:15 AM',
+    scheduleItems: [
+      { day: 'Tuesday', time: '06:00 AM - 07:15 AM' },
+      { day: 'Thursday', time: '06:00 AM - 07:15 AM' },
+      { day: 'Saturday', time: '06:30 AM - 07:45 AM' },
+    ],
     level: 'Intermediate',
     description: 'Dynamic synchronized breath-movement sequences to kindle digestive fire (Jatharagni), build muscular endurance, and enhance cardiovascular tone.',
     price: '₹550 / session',
@@ -66,7 +86,11 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     format: 'offline',
     suitableFor: 'Advanced (Adults 18+)',
     days: ['Saturday', 'Sunday'],
-    time: '05:00 PM - 06:30 PM',
+    time: 'Sat: 05:00 PM - 06:30 PM | Sun: 06:00 PM - 07:30 PM',
+    scheduleItems: [
+      { day: 'Saturday', time: '05:00 PM - 06:30 PM' },
+      { day: 'Sunday', time: '06:00 PM - 07:30 PM' },
+    ],
     level: 'Advanced',
     description: 'Slow-paced restorative poses supported by bolsters and natural herbs, combined with Tibetan singing bowl resonance for cellular harmony.',
     price: '₹750 / session',
@@ -81,6 +105,10 @@ const DEFAULT_YOGA_SESSIONS: YogaSession[] = [
     suitableFor: 'All Levels (All Ages)',
     days: ['Monday', 'Thursday'],
     time: '10:00 AM - 11:00 AM',
+    scheduleItems: [
+      { day: 'Monday', time: '10:00 AM - 11:00 AM' },
+      { day: 'Thursday', time: '10:00 AM - 11:00 AM' },
+    ],
     level: 'All Levels',
     description: 'Specialized therapeutic sequences designed to nourish the reproductive system, ease pelvic tension, and restore metabolic equilibrium.',
     price: '₹500 / session',
@@ -95,7 +123,19 @@ const loadSessionsFromStorage = (): YogaSession[] => {
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+        return parsed.map((item: YogaSession) => {
+          if (!item.scheduleItems || item.scheduleItems.length === 0) {
+            const defaultTime = item.time || '06:30 AM - 07:30 AM';
+            return {
+              ...item,
+              scheduleItems: (item.days || []).map((day) => ({
+                day,
+                time: defaultTime,
+              })),
+            };
+          }
+          return item;
+        });
       }
     }
   } catch (err) {
