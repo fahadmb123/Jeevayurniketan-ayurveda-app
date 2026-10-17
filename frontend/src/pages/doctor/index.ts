@@ -1,1 +1,1 @@
-export { DoctorDashboard } from './ui/DoctorDashboard';
+export { DoctorDashboardPage, DoctorDashboardPage as DoctorDashboard } from './ui/DoctorDashboardPage';

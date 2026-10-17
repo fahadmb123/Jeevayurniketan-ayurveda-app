@@ -1,0 +1,54 @@
+.recent-patients-widget {
+  width: 100%;
+}
+
+.recent-patients-widget__card {
+  padding: 24px;
+}
+
+.recent-patients-widget__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recent-patients-widget__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin: 0;
+}
+
+.recent-patients-widget__view-all-btn {
+  background: none;
+  border: none;
+  color: var(--primary-green, #059669);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.recent-patients-widget__view-all-btn:hover {
+  background-color: rgba(5, 150, 105, 0.08);
+}
+
+.recent-patients-widget__filter-bar {
+  margin-bottom: 16px;
+}
+
+.recent-patients-widget__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-patients-widget__empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--text-light, #94A3B8);
+  font-size: 0.875rem;
+}

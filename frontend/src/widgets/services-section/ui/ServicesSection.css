@@ -1,0 +1,28 @@
+.services-section {
+  padding: 100px 5%;
+  background-color: var(--bg-color, #F8FAFC);
+  position: relative;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.services-header {
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.services-subtitle {
+  color: var(--text-secondary, #475569);
+  font-size: 1.05rem;
+  margin-top: 16px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}

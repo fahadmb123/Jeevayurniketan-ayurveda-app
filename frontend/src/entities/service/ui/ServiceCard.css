@@ -1,0 +1,84 @@
+.service-card {
+  background: var(--surface-color, #FFFFFF);
+  padding: 36px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--border-color, #E2E8F0);
+  transition: var(--transition-smooth, all 0.25s ease);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-green, #059669);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.08);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card__icon {
+  font-size: 2.25rem;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-card__icon {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.service-card__title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.service-card:hover .service-card__title {
+  color: var(--primary-green, #059669);
+}
+
+.service-card__desc {
+  color: var(--text-secondary, #475569);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.service-card__btn {
+  background: none;
+  border: none;
+  color: var(--primary-green, #059669);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+  align-self: flex-start;
+}
+
+.service-card:hover .service-card__btn {
+  transform: translateX(4px);
+}

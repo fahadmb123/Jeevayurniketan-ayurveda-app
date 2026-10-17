@@ -1,0 +1,97 @@
+.doctor-settings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+}
+
+.settings-section-card {
+  padding: 28px;
+}
+
+.settings-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.settings-icon {
+  color: var(--primary-green, #059669);
+  flex-shrink: 0;
+}
+
+.settings-section-header h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin: 0;
+}
+
+.settings-section-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #475569);
+  margin: 2px 0 0;
+}
+
+.settings-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+}
+
+.settings-field input,
+.settings-field select {
+  border: 1px solid var(--border-color, #E2E8F0);
+  border-radius: 8px;
+  padding: 10px 14px;
+  background-color: var(--bg-color, #F8FAFC);
+  font-size: 0.9rem;
+  color: var(--text-primary, #0F172A);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.settings-field input:focus,
+.settings-field select:focus {
+  border-color: var(--primary-green, #059669);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-primary, #0F172A);
+}
+
+.settings-save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.settings-saved-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-green, #059669);
+  font-size: 0.875rem;
+  font-weight: 600;
+}

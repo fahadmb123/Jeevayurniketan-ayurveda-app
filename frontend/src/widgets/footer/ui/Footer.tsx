@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
 import './Footer.css';
 
 export const Footer: React.FC = () => {
@@ -18,10 +20,12 @@ export const Footer: React.FC = () => {
         <div className="footer-col">
           <h3>Quick Links</h3>
           <ul className="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Smriti Meditation</a></li>
-            <li><a href="#team">Our Team</a></li>
+            <li><Link to={ROUTES.HOME}>Home</Link></li>
+            <li><Link to={ROUTES.ABOUT}>About Us</Link></li>
+            <li><Link to={ROUTES.SERVICES}>Services</Link></li>
+            <li><Link to={ROUTES.TEAM}>Our Team</Link></li>
+            <li><Link to={ROUTES.BLOG}>Blog</Link></li>
+            <li><Link to={ROUTES.CONTACT}>Contact Us</Link></li>
           </ul>
         </div>
         

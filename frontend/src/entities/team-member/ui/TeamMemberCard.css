@@ -1,0 +1,75 @@
+.team-card {
+  background: var(--surface-color, #FFFFFF);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  border: 1px solid var(--border-color, #E2E8F0);
+  transition: var(--transition-smooth, all 0.25s ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.08);
+}
+
+.team-card__image-wrapper {
+  height: 280px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--surface-secondary, #F1F5F9);
+}
+
+.team-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-card__image {
+  transform: scale(1.05);
+}
+
+.team-card__info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.team-card__name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.team-card:hover .team-card__name {
+  color: var(--primary-green, #059669);
+}
+
+.team-card__role {
+  color: var(--primary-green, #059669);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.team-card__qualifications {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light, #94A3B8);
+  margin: 0;
+}
+
+.team-card__desc {
+  color: var(--text-secondary, #475569);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 8px;
+}

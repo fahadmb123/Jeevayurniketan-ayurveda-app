@@ -1,0 +1,59 @@
+.search-patients-field {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color, #F8FAFC);
+  border: 1px solid var(--border-color, #E2E8F0);
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 320px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.search-patients-field:focus-within {
+  border-color: var(--primary-green, #059669);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.search-patients-field__icon {
+  color: var(--text-light, #94A3B8);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.search-patients-field__input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary, #0F172A);
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.search-patients-field__input::placeholder {
+  color: var(--text-light, #94A3B8);
+}
+
+.search-patients-field__clear {
+  background: none;
+  border: none;
+  color: var(--text-light, #94A3B8);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-patients-field__clear:hover {
+  color: var(--text-primary, #0F172A);
+  background-color: var(--surface-secondary, #F1F5F9);
+}
+
+@media (max-width: 768px) {
+  .search-patients-field {
+    width: 100%;
+  }
+}

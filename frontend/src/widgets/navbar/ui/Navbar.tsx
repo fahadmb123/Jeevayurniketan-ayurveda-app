@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
+import { BookAppointmentButton } from '@/features/book-appointment';
 import './Navbar.css';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,21 +19,51 @@ export const Navbar: React.FC = () => {
   return (
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <nav className="navbar">
-        <Link to="/" className="navbar-logo">
+        <Link to={ROUTES.HOME} className="navbar-logo">
           <img src="/android-chrome-512x512.png" alt="Jeevayurniketan Logo" className="logo-img" />
           <span className="logo-text">Jeevayurniketan</span>
         </Link>
         
         <ul className="navbar-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#team">Our Team</a></li>
-          <li><Link to="/doctor">Doctor Portal</Link></li>
+          <li>
+            <Link to={ROUTES.HOME} className={location.pathname === ROUTES.HOME ? 'active-link' : ''}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.ABOUT} className={location.pathname === ROUTES.ABOUT ? 'active-link' : ''}>
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.SERVICES} className={location.pathname === ROUTES.SERVICES ? 'active-link' : ''}>
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.TEAM} className={location.pathname === ROUTES.TEAM ? 'active-link' : ''}>
+              Our Team
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.BLOG} className={location.pathname === ROUTES.BLOG ? 'active-link' : ''}>
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.CONTACT} className={location.pathname === ROUTES.CONTACT ? 'active-link' : ''}>
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.DOCTOR} className={location.pathname.startsWith('/doctor') ? 'active-link' : ''}>
+              Doctor Portal
+            </Link>
+          </li>
         </ul>
         
         <div className="navbar-actions">
-          <button className="btn-primary">Book Appointment</button>
+          <BookAppointmentButton size="md" />
         </div>
       </nav>
     </header>

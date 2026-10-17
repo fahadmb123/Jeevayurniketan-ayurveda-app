@@ -1,0 +1,43 @@
+.today-schedule-widget {
+  width: 100%;
+}
+
+.today-schedule-widget__card {
+  padding: 24px;
+}
+
+.today-schedule-widget__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.today-schedule-widget__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin: 0;
+}
+
+.today-schedule-widget__calendar-btn {
+  background: none;
+  border: none;
+  color: var(--primary-green, #059669);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.today-schedule-widget__calendar-btn:hover {
+  background-color: rgba(5, 150, 105, 0.08);
+}
+
+.today-schedule-widget__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,73 @@
+.patient-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8F0);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.patient-list-item:hover {
+  border-color: #CBD5E1;
+  background-color: var(--surface-secondary, #F8FAFC);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.patient-list-item__info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.patient-list-item__details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.patient-list-item__name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary, #0F172A);
+}
+
+.patient-list-item__meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #475569);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.patient-list-item__dot {
+  font-size: 1rem;
+  line-height: 0.5;
+  color: var(--text-light, #94A3B8);
+}
+
+.patient-list-item__status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.patient-list-item__action-btn {
+  background: none;
+  border: none;
+  color: var(--text-light, #94A3B8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.patient-list-item__action-btn:hover {
+  color: var(--text-primary, #0F172A);
+  background-color: var(--surface-secondary, #F1F5F9);
+}

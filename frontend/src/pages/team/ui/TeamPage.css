@@ -1,0 +1,41 @@
+.team-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color, #F8FAFC);
+}
+
+.advisory-section {
+  padding: 80px 5% 100px;
+  background-color: var(--surface-color, #FFFFFF);
+  border-top: 1px solid var(--border-color, #E2E8F0);
+}
+
+.advisory-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.advisory-card {
+  padding: 32px 24px;
+}
+
+.advisory-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 12px;
+}
+
+.advisory-card p {
+  color: var(--text-secondary, #475569);
+  font-size: 0.925rem;
+  line-height: 1.7;
+  margin: 0;
+}

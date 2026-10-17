@@ -1,0 +1,24 @@
+.blog-section {
+  padding: 100px 5%;
+  background-color: var(--bg-color, #F8FAFC);
+  position: relative;
+}
+
+.blog-header {
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.blog-subtitle {
+  color: var(--text-secondary, #475569);
+  font-size: 1.05rem;
+  margin-top: 16px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
