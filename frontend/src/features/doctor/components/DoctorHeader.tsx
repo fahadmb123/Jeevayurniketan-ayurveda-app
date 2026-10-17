@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { SearchPatientsInput } from './SearchPatientsInput';
 import { AddPatientButton } from './AddPatientButton';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
@@ -40,13 +40,6 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = ({
       </div>
       <div className="doctor-header__actions">
         <ThemeToggle />
-        <button
-          className="doctor-header__icon-btn"
-          aria-label="Notifications"
-        >
-          <Bell size={20} />
-          <span className="doctor-header__notification-dot" />
-        </button>
         <AddPatientButton onAddPatient={onAddPatient} />
       </div>
     </header>
