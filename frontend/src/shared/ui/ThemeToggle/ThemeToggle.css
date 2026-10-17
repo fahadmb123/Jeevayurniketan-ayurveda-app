@@ -1,119 +1,117 @@
-.luxury-theme-toggle {
+.astro-theme-toggle {
   position: relative;
   display: inline-flex;
   align-items: center;
   width: 58px;
-  height: 32px;
-  padding: 3px;
-  border-radius: 9999px;
-  background: none;
+  height: 34px;
+  padding: 0;
+  background: transparent;
   border: none;
   cursor: pointer;
   outline: none;
   user-select: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   vertical-align: middle;
+  transition: transform 0.2s ease;
 }
 
-.luxury-theme-toggle:focus-visible {
-  box-shadow: 0 0 0 3px var(--accent-gold-glow, rgba(201, 141, 59, 0.4));
-}
-
-/* Recessed / Debossed Track */
-.luxury-theme-toggle__track {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.astro-theme-toggle:focus-visible {
+  outline: 2px solid #00F0FF;
+  outline-offset: 3px;
   border-radius: 9999px;
+}
+
+/* Hollow Gradient Outline Pill Track */
+.astro-theme-toggle__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  bottom: 6px;
+  border-radius: 9999px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+/* Light / Sun State Track (Sunset Orange to Violet Magenta Outline) */
+.astro-theme-toggle--light .astro-theme-toggle__track {
+  border: 2.5px solid transparent;
+  background: 
+    linear-gradient(#0A1124, #0A1124) padding-box, 
+    linear-gradient(90deg, #FF6B35 0%, #FA462A 35%, #E6227B 70%, #8E2DE2 100%) border-box;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.25);
+}
+
+/* Dark / Moon State Track (Royal Blue to Electric Cyan Outline) */
+.astro-theme-toggle--dark .astro-theme-toggle__track {
+  border: 2.5px solid transparent;
+  background: 
+    linear-gradient(#0A1124, #0A1124) padding-box, 
+    linear-gradient(90deg, #1A3FE2 0%, #2968FF 35%, #00B4D8 75%, #00F0FF 100%) border-box;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+/* Gradient Knob (Thumb) with Silhouette Icon */
+.astro-theme-toggle__thumb {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  overflow: hidden;
-}
-
-/* OFF / Light Theme Track (Muted Sage Green - Left in Image) */
-.luxury-theme-toggle--light .luxury-theme-toggle__track {
-  background-color: #9ABAA8;
-  border: 1.5px solid #8FAFA0;
-  box-shadow: 
-    inset 0 3px 6px rgba(11, 45, 30, 0.32),
-    inset 0 -2px 3px rgba(255, 255, 255, 0.35),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-/* ON / Dark Theme Track (Deep Emerald - Right in Image) */
-.luxury-theme-toggle--dark .luxury-theme-toggle__track {
-  background-color: #0E563E;
-  border: 1.5px solid #09402D;
-  box-shadow: 
-    inset 0 3px 6px rgba(0, 0, 0, 0.45),
-    inset 0 -1.5px 3px rgba(255, 255, 255, 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-/* Brushed Metallic Knob (Thumb) */
-.luxury-theme-toggle__thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  justify-content: center;
+  z-index: 2;
   transition: 
-    transform 0.36s cubic-bezier(0.34, 1.45, 0.64, 1),
+    transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1),
     background 0.35s ease,
     box-shadow 0.35s ease;
-  z-index: 2;
 }
 
-/* Light / OFF Position (Left) - Champagne Brushed Pearl Silver Dial */
-.luxury-theme-toggle--light .luxury-theme-toggle__thumb {
+/* Light Mode: Thumb on Left with Sun Gradient */
+.astro-theme-toggle--light .astro-theme-toggle__thumb {
   transform: translateX(0);
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    #ECE8DC 0deg,
-    #FFFFFF 55deg,
-    #DCD7C8 120deg,
-    #FAF8F2 180deg,
-    #D2CCC0 240deg,
-    #FFFFFF 305deg,
-    #ECE8DC 360deg
-  );
+  background: linear-gradient(135deg, #FFA03A 0%, #FF512F 45%, #B3207E 100%);
   box-shadow: 
-    0 3px 8px rgba(18, 48, 35, 0.3),
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px #FFFFFF,
-    inset 0 -1px 1px rgba(160, 150, 130, 0.35);
+    0 3px 12px rgba(255, 81, 47, 0.5),
+    0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark / ON Position (Right) - Luxury Brushed Ayurvedic Temple Gold Dial */
-.luxury-theme-toggle--dark .luxury-theme-toggle__thumb {
+/* Dark Mode: Thumb on Right with Cyan-Blue Gradient */
+.astro-theme-toggle--dark .astro-theme-toggle__thumb {
   transform: translateX(26px);
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    #D4A643 0deg,
-    #FFE89E 55deg,
-    #B38222 120deg,
-    #FFF4C4 180deg,
-    #A0731A 240deg,
-    #FFE28E 305deg,
-    #D4A643 360deg
-  );
+  background: linear-gradient(135deg, #00F5FF 0%, #0099FF 50%, #0055FE 100%);
   box-shadow: 
-    0 4px 10px rgba(0, 0, 0, 0.45),
-    0 1px 4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.75),
-    inset 0 -1px 1px rgba(90, 60, 10, 0.4);
+    0 3px 14px rgba(0, 153, 255, 0.6),
+    0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.luxury-theme-toggle:hover .luxury-theme-toggle__thumb {
-  filter: brightness(1.04);
+/* Silhouette Dark Icon inside Knob */
+.astro-theme-toggle__icon {
+  width: 18px;
+  height: 18px;
+  color: #070D1E;
+  transition: transform 0.3s ease;
 }
 
-.luxury-theme-toggle:active .luxury-theme-toggle__thumb {
-  transform: scale(0.95) translateX(var(--thumb-pos, 0));
+.astro-theme-toggle--light:hover .astro-theme-toggle__thumb {
+  box-shadow: 
+    0 4px 16px rgba(255, 81, 47, 0.7),
+    0 1px 4px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.06);
 }
 
-.luxury-theme-toggle--dark:active .luxury-theme-toggle__thumb {
-  transform: scale(0.95) translateX(27px);
+.astro-theme-toggle--dark:hover .astro-theme-toggle__thumb {
+  box-shadow: 
+    0 4px 18px rgba(0, 245, 255, 0.75),
+    0 1px 4px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.06);
+}
+
+.astro-theme-toggle:active .astro-theme-toggle__thumb {
+  transform: scale(0.94) translateX(var(--astro-pos, 0));
+}
+
+.astro-theme-toggle--dark:active .astro-theme-toggle__thumb {
+  transform: scale(0.94) translateX(27.5px);
 }
