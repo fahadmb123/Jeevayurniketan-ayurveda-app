@@ -1,9 +1,9 @@
 .yoga-modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(11, 51, 38, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(5, 20, 15, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .yoga-modal {
-  background: #FFFFFF;
+  background: var(--surface-color, #FFFFFF);
   border: 1px solid var(--border-color, #E2E8DE);
   border-radius: 24px;
   width: 100%;
@@ -21,8 +21,9 @@
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 60px -15px rgba(11, 51, 38, 0.25);
+  box-shadow: var(--card-shadow-hover);
   animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  color: var(--text-primary, #14241C);
 }
 
 @keyframes modalPopIn {
@@ -128,8 +129,8 @@
 .yoga-modal__select:focus,
 .yoga-modal__textarea:focus {
   border-color: var(--primary-green, #1B6B50);
-  background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.12);
+  background-color: var(--surface-color, #FFFFFF);
+  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.18);
 }
 
 /* Format Pill Selectors */
@@ -147,7 +148,7 @@
   padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--border-color, #E2E8DE);
-  background: var(--bg-color, #FBFBF9);
+  background: var(--surface-secondary, #F3F6F1);
   color: var(--text-secondary, #485E53);
   font-weight: 600;
   font-size: 0.85rem;
@@ -176,7 +177,7 @@
   text-align: center;
   border-radius: 8px;
   border: 1px solid var(--border-color, #E2E8DE);
-  background: var(--bg-color, #FBFBF9);
+  background: var(--surface-secondary, #F3F6F1);
   color: var(--text-secondary, #485E53);
   font-size: 0.825rem;
   font-weight: 600;
@@ -235,7 +236,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #FFFFFF;
+  background: var(--surface-color, #FFFFFF);
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid var(--border-color, #E2E8DE);
@@ -245,7 +246,7 @@
   min-width: 90px;
   font-weight: 600;
   font-size: 0.825rem;
-  color: var(--primary-green-dark, #124C38);
+  color: var(--primary-green, #124C38);
 }
 
 .yoga-modal__day-time-input {
@@ -261,7 +262,7 @@
 
 .yoga-modal__day-time-input:focus {
   border-color: var(--primary-green, #1B6B50);
-  background: #FFFFFF;
+  background: var(--surface-color, #FFFFFF);
 }
 
 .yoga-modal__error-hint {
@@ -277,7 +278,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  background: #FFFFFF;
+  background: var(--surface-color, #FFFFFF);
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
@@ -287,23 +288,23 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #FFFFFF;
+  background: var(--surface-secondary, #F3F6F1);
   border: 1px solid var(--border-color, #E2E8DE);
   padding: 11px 22px;
   min-height: 44px;
   border-radius: 12px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--text-secondary, #485E53);
+  color: var(--text-primary, #14241C);
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s ease;
 }
 
 .yoga-modal__btn-cancel:hover {
-  background: var(--surface-secondary, #F3F6F1);
+  background: var(--surface-color, #FFFFFF);
   color: var(--text-primary, #14241C);
-  border-color: #CCD6C6;
+  border-color: var(--primary-green, #1B6B50);
 }
 
 .yoga-modal__btn-submit {

@@ -1,9 +1,9 @@
 .add-patient-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(5, 20, 15, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,8 @@
   width: 100%;
   max-width: 440px;
   padding: 24px;
-  box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.15);
+  box-shadow: var(--card-shadow-hover);
+  color: var(--text-primary);
 }
 
 .add-patient-modal__header {
@@ -95,8 +96,8 @@
 .add-patient-modal__field input:focus,
 .add-patient-modal__field select:focus {
   border-color: var(--primary-green, #059669);
-  background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+  background-color: var(--surface-color, #FFFFFF);
+  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.18);
 }
 
 .add-patient-modal__actions {

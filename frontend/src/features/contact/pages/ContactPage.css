@@ -129,8 +129,8 @@
 .contact-form__field input:focus,
 .contact-form__field textarea:focus {
   border-color: var(--primary-green, #059669);
-  background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+  background-color: var(--surface-color, #FFFFFF);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
 }
 
 .contact-form__success {

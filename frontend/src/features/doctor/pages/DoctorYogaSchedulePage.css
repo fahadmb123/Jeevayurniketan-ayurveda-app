@@ -105,7 +105,7 @@
 
 .doctor-yoga-search-input:focus {
   border-color: var(--primary-green, #1B6B50);
-  background-color: #FFFFFF;
+  background-color: var(--surface-color, #FFFFFF);
   box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.12);
 }
 

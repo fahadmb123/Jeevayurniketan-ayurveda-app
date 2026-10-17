@@ -54,7 +54,7 @@
 .doctor-header__icon-btn:hover {
   color: var(--primary-green, #059669);
   background-color: var(--surface-secondary, #F1F5F9);
-  border-color: #CBD5E1;
+  border-color: var(--border-color-hover, #CBD5E1);
 }
 
 .doctor-header__notification-dot {
