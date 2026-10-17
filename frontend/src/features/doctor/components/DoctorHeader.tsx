@@ -2,6 +2,7 @@ import React from 'react';
 import { Bell, Menu } from 'lucide-react';
 import { SearchPatientsInput } from './SearchPatientsInput';
 import { AddPatientButton } from './AddPatientButton';
+import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 import type { Patient } from '../types';
 import './DoctorHeader.css';
 
@@ -38,6 +39,7 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = ({
         />
       </div>
       <div className="doctor-header__actions">
+        <ThemeToggle />
         <button
           className="doctor-header__icon-btn"
           aria-label="Notifications"

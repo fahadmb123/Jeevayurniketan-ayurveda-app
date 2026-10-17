@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { BookAppointmentButton } from '@/features/appointments';
+import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 import './Navbar.css';
 
 export const Navbar: React.FC = () => {
@@ -63,6 +64,7 @@ export const Navbar: React.FC = () => {
         </ul>
         
         <div className="navbar-actions">
+          <ThemeToggle />
           <BookAppointmentButton size="md" />
         </div>
       </nav>

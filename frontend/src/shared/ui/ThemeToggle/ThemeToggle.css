@@ -1,0 +1,119 @@
+.luxury-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 58px;
+  height: 32px;
+  padding: 3px;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  vertical-align: middle;
+}
+
+.luxury-theme-toggle:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-gold-glow, rgba(201, 141, 59, 0.4));
+}
+
+/* Recessed / Debossed Track */
+.luxury-theme-toggle__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+}
+
+/* OFF / Light Theme Track (Muted Sage Green - Left in Image) */
+.luxury-theme-toggle--light .luxury-theme-toggle__track {
+  background-color: #9ABAA8;
+  border: 1.5px solid #8FAFA0;
+  box-shadow: 
+    inset 0 3px 6px rgba(11, 45, 30, 0.32),
+    inset 0 -2px 3px rgba(255, 255, 255, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ON / Dark Theme Track (Deep Emerald - Right in Image) */
+.luxury-theme-toggle--dark .luxury-theme-toggle__track {
+  background-color: #0E563E;
+  border: 1.5px solid #09402D;
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.45),
+    inset 0 -1.5px 3px rgba(255, 255, 255, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Brushed Metallic Knob (Thumb) */
+.luxury-theme-toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: 
+    transform 0.36s cubic-bezier(0.34, 1.45, 0.64, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+  z-index: 2;
+}
+
+/* Light / OFF Position (Left) - Champagne Brushed Pearl Silver Dial */
+.luxury-theme-toggle--light .luxury-theme-toggle__thumb {
+  transform: translateX(0);
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #ECE8DC 0deg,
+    #FFFFFF 55deg,
+    #DCD7C8 120deg,
+    #FAF8F2 180deg,
+    #D2CCC0 240deg,
+    #FFFFFF 305deg,
+    #ECE8DC 360deg
+  );
+  box-shadow: 
+    0 3px 8px rgba(18, 48, 35, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px #FFFFFF,
+    inset 0 -1px 1px rgba(160, 150, 130, 0.35);
+}
+
+/* Dark / ON Position (Right) - Luxury Brushed Ayurvedic Temple Gold Dial */
+.luxury-theme-toggle--dark .luxury-theme-toggle__thumb {
+  transform: translateX(26px);
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #D4A643 0deg,
+    #FFE89E 55deg,
+    #B38222 120deg,
+    #FFF4C4 180deg,
+    #A0731A 240deg,
+    #FFE28E 305deg,
+    #D4A643 360deg
+  );
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.45),
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.75),
+    inset 0 -1px 1px rgba(90, 60, 10, 0.4);
+}
+
+.luxury-theme-toggle:hover .luxury-theme-toggle__thumb {
+  filter: brightness(1.04);
+}
+
+.luxury-theme-toggle:active .luxury-theme-toggle__thumb {
+  transform: scale(0.95) translateX(var(--thumb-pos, 0));
+}
+
+.luxury-theme-toggle--dark:active .luxury-theme-toggle__thumb {
+  transform: scale(0.95) translateX(27px);
+}
