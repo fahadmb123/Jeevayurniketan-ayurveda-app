@@ -1,0 +1,26 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'doctor' | 'patient' | 'admin';
+  avatarUrl?: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+}
+
+export interface RegisterData {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  role?: 'patient' | 'doctor';
+}
+
+export interface AuthResponse {
+  user: User;
+  token: string;
+}

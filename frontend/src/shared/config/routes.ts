@@ -6,6 +6,10 @@ export const ROUTES = {
   BLOG: '/blog',
   CONTACT: '/contact',
   
+  // Auth
+  LOGIN: '/login',
+  REGISTER: '/register',
+
   // Doctor Portal
   DOCTOR: '/doctor',
   DOCTOR_PATIENTS: '/doctor/patients',

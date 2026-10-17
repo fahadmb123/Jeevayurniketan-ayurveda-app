@@ -1,0 +1,20 @@
+.doctor-patients-card {
+  padding: 24px;
+}
+
+.doctor-patients-card__toolbar {
+  margin-bottom: 20px;
+}
+
+.doctor-patients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.doctor-patients-empty {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--text-light, #94A3B8);
+  font-size: 0.9rem;
+}

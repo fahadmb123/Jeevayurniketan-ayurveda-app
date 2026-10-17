@@ -1,19 +1,26 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { HomePage } from '@/pages/home';
-import { AboutPage } from '@/pages/about';
-import { ServicesPage } from '@/pages/services';
-import { TeamPage } from '@/pages/team';
-import { BlogPage } from '@/pages/blog';
-import { ContactPage } from '@/pages/contact';
-import { NotFoundPage } from '@/pages/not-found';
 
-import { DoctorDashboardPage } from '@/pages/doctor';
-import { DoctorPatientsPage } from '@/pages/doctor-patients';
-import { DoctorAppointmentsPage } from '@/pages/doctor-appointments';
-import { DoctorRecordsPage } from '@/pages/doctor-records';
-import { DoctorSettingsPage } from '@/pages/doctor-settings';
+// Public & Marketing Feature Pages
+import { HomePage, NotFoundPage } from '@/features/home';
+import { AboutPage } from '@/features/about';
+import { ServicesPage } from '@/features/services';
+import { TeamPage } from '@/features/team';
+import { BlogPage } from '@/features/blog';
+import { ContactPage } from '@/features/contact';
+
+// Auth Feature Pages
+import { LoginPage, RegisterPage } from '@/features/auth';
+
+// Doctor Portal Feature Pages
+import {
+  DoctorDashboardPage,
+  DoctorPatientsPage,
+  DoctorAppointmentsPage,
+  DoctorRecordsPage,
+  DoctorSettingsPage,
+} from '@/features/doctor';
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -25,6 +32,10 @@ export const AppRoutes: React.FC = () => {
       <Route path={ROUTES.TEAM} element={<TeamPage />} />
       <Route path={ROUTES.BLOG} element={<BlogPage />} />
       <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+
+      {/* Auth Pages */}
+      <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
 
       {/* Doctor Portal Pages */}
       <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
