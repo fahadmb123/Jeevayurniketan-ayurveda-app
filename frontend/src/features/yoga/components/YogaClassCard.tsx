@@ -88,10 +88,12 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
       <div className="yoga-card__body">
         <div className="yoga-card__header">
           <h3 className="yoga-card__title">{session.title}</h3>
-          <div className="yoga-card__instructor">
-            <User size={14} />
-            <span>{session.instructor}</span>
-          </div>
+          {session.instructor && (
+            <div className="yoga-card__instructor">
+              <User size={14} />
+              <span>{session.instructor}</span>
+            </div>
+          )}
         </div>
 
         {/* Days & Time Schedule */}
@@ -130,12 +132,14 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
               <strong>Target Group:</strong> {session.ageGroup}
             </span>
           </div>
-          <div className="yoga-card__meta-item">
-            <MapPin size={14} />
-            <span>
-              <strong>Location:</strong> {session.location}
-            </span>
-          </div>
+          {session.location && (
+            <div className="yoga-card__meta-item">
+              <MapPin size={14} />
+              <span>
+                <strong>Location:</strong> {session.location}
+              </span>
+            </div>
+          )}
         </div>
 
         <p className="yoga-card__desc">{session.description}</p>

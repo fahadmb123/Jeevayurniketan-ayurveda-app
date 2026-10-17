@@ -96,9 +96,9 @@ export const useYogaSchedule = () => {
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchesTitle = session.title.toLowerCase().includes(q);
-        const matchesInstructor = session.instructor.toLowerCase().includes(q);
+        const matchesInstructor = Boolean(session.instructor?.toLowerCase().includes(q));
         const matchesSuitable = session.suitableFor.toLowerCase().includes(q);
-        const matchesLocation = session.location.toLowerCase().includes(q);
+        const matchesLocation = Boolean(session.location?.toLowerCase().includes(q));
         if (!matchesTitle && !matchesInstructor && !matchesSuitable && !matchesLocation) {
           return false;
         }

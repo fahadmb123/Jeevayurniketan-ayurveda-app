@@ -48,36 +48,28 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
     if (initialData) {
       return {
         title: initialData.title || '',
-        instructor: initialData.instructor || '',
         duration: initialData.duration || '60 mins',
         format: initialData.format || 'offline',
         suitableFor: initialData.suitableFor || '',
         ageGroup: initialData.ageGroup || 'All Ages',
         days: initialData.days || ['Monday', 'Wednesday', 'Friday'],
         time: initialData.time || '06:30 AM - 07:30 AM',
-        location: initialData.location || '',
         level: initialData.level || 'Beginner',
         description: initialData.description || '',
-        capacity: initialData.capacity || 20,
-        price: initialData.price || '',
-        imageUrl: initialData.imageUrl || '',
+        price: initialData.price || '₹500 / session',
       };
     }
     return {
       title: '',
-      instructor: '',
       duration: '60 mins',
       format: 'offline',
       suitableFor: 'Beginners & Stress Relief',
       ageGroup: 'All Ages',
       days: ['Monday', 'Wednesday', 'Friday'],
       time: '06:30 AM - 07:30 AM',
-      location: 'Main Shala, Kottakkal',
       level: 'Beginner',
       description: '',
-      capacity: 20,
       price: '₹500 / session',
-      imageUrl: '',
     };
   });
 
@@ -99,12 +91,10 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
     if (!formData.title.trim()) newErrors.title = 'Class title is required.';
-    if (!formData.instructor.trim()) newErrors.instructor = 'Instructor name is required.';
     if (!formData.duration.trim()) newErrors.duration = 'Duration is required.';
     if (!formData.suitableFor.trim()) newErrors.suitableFor = 'Target suitability is required.';
     if (!formData.time.trim()) newErrors.time = 'Time slot is required.';
     if (formData.days.length === 0) newErrors.days = 'Select at least one day.';
-    if (formData.capacity < 1) newErrors.capacity = 'Capacity must be at least 1.';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -129,7 +119,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
       <div className="yoga-modal__header">
         <div className="yoga-modal__title-group">
           <h3>{isEditing ? 'Edit Yoga Class Schedule' : 'Add New Yoga Class'}</h3>
-          <p>Schedule traditional Ayurvedic Asana, Pranayama & Meditation sessions</p>
+          <p>Configure Asana, Pranayama & Meditation clinical programs</p>
         </div>
         <button
           type="button"
@@ -142,39 +132,20 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
       </div>
 
       <form onSubmit={handleSubmit} className="yoga-modal__form">
-        {/* Class Title & Instructor */}
-        <div className="yoga-modal__grid-2">
-          <div className="yoga-modal__field">
-            <label htmlFor="yoga-title">
-              Yoga Class Name <span className="required">*</span>
-            </label>
-            <input
-              id="yoga-title"
-              type="text"
-              className="yoga-modal__input"
-              placeholder="e.g. Hatha Yoga & Pranayama"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            />
-            {errors.title && <span className="yoga-modal__error-hint">{errors.title}</span>}
-          </div>
-
-          <div className="yoga-modal__field">
-            <label htmlFor="yoga-instructor">
-              Instructor / Yogacharya <span className="required">*</span>
-            </label>
-            <input
-              id="yoga-instructor"
-              type="text"
-              className="yoga-modal__input"
-              placeholder="e.g. Acharya Vinod, E-RYT 500"
-              value={formData.instructor}
-              onChange={(e) => setFormData({ ...formData, instructor: e.target.value })}
-            />
-            {errors.instructor && (
-              <span className="yoga-modal__error-hint">{errors.instructor}</span>
-            )}
-          </div>
+        {/* Class Title */}
+        <div className="yoga-modal__field">
+          <label htmlFor="yoga-title">
+            Yoga Class Name <span className="required">*</span>
+          </label>
+          <input
+            id="yoga-title"
+            type="text"
+            className="yoga-modal__input"
+            placeholder="e.g. Hatha Yoga & Pranayama"
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          />
+          {errors.title && <span className="yoga-modal__error-hint">{errors.title}</span>}
         </div>
 
         {/* Format (Online / Offline / Hybrid) */}
@@ -216,7 +187,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           </div>
         </div>
 
-        {/* Duration & Level */}
+        {/* Duration & Difficulty Level */}
         <div className="yoga-modal__grid-2">
           <div className="yoga-modal__field">
             <label htmlFor="yoga-duration">
@@ -270,7 +241,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
               id="yoga-suitable"
               type="text"
               className="yoga-modal__input"
-              placeholder="e.g. Beginners, Stress Relief, Spine Health"
+              placeholder="e.g. Beginners, Stress Relief, Spine & Joint Care"
               value={formData.suitableFor}
               onChange={(e) => setFormData({ ...formData, suitableFor: e.target.value })}
             />
@@ -315,7 +286,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           {errors.days && <span className="yoga-modal__error-hint">{errors.days}</span>}
         </div>
 
-        {/* Time & Location */}
+        {/* Time Slot & Fee / Price */}
         <div className="yoga-modal__grid-2">
           <div className="yoga-modal__field">
             <label htmlFor="yoga-time">
@@ -333,36 +304,6 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           </div>
 
           <div className="yoga-modal__field">
-            <label htmlFor="yoga-location">Location / Room / Platform</label>
-            <input
-              id="yoga-location"
-              type="text"
-              className="yoga-modal__input"
-              placeholder="e.g. Main Shala, Kottakkal or Zoom"
-              value={formData.location}
-              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-            />
-          </div>
-        </div>
-
-        {/* Capacity, Price & Image URL */}
-        <div className="yoga-modal__grid-2">
-          <div className="yoga-modal__field">
-            <label htmlFor="yoga-capacity">Max Capacity (Seats)</label>
-            <input
-              id="yoga-capacity"
-              type="number"
-              min="1"
-              max="100"
-              className="yoga-modal__input"
-              value={formData.capacity}
-              onChange={(e) =>
-                setFormData({ ...formData, capacity: parseInt(e.target.value, 10) || 1 })
-              }
-            />
-          </div>
-
-          <div className="yoga-modal__field">
             <label htmlFor="yoga-price">Fee / Price</label>
             <input
               id="yoga-price"
@@ -375,7 +316,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
           </div>
         </div>
 
-        {/* Description */}
+        {/* Description & Health Benefits */}
         <div className="yoga-modal__field">
           <label htmlFor="yoga-desc">Description & Health Benefits</label>
           <textarea
@@ -385,19 +326,6 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
             placeholder="Describe postures, breathing techniques, and therapeutic benefits..."
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          />
-        </div>
-
-        {/* Image URL */}
-        <div className="yoga-modal__field">
-          <label htmlFor="yoga-image">Cover Image URL (Optional)</label>
-          <input
-            id="yoga-image"
-            type="url"
-            className="yoga-modal__input"
-            placeholder="https://images.unsplash.com/..."
-            value={formData.imageUrl}
-            onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
           />
         </div>
 

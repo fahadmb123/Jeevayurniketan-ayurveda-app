@@ -6,7 +6,6 @@ import {
   Search,
   Video,
   MapPin,
-  Users,
   Calendar,
   CheckCircle2,
   Inbox,
@@ -58,7 +57,6 @@ export const DoctorYogaSchedulePage: React.FC = () => {
   const onlineCount = sessions.filter(
     (s) => s.format === 'online' || s.format === 'hybrid'
   ).length;
-  const totalEnrolled = sessions.reduce((sum, s) => sum + (s.enrolledCount || 0), 0);
 
   return (
     <div className="doctor-page-layout">
@@ -121,11 +119,11 @@ export const DoctorYogaSchedulePage: React.FC = () => {
 
             <div className="doctor-yoga-kpi">
               <div className="doctor-yoga-kpi__icon">
-                <Users size={20} />
+                <Sparkles size={20} />
               </div>
               <div className="doctor-yoga-kpi__info">
-                <span className="doctor-yoga-kpi__value">{totalEnrolled}</span>
-                <span className="doctor-yoga-kpi__label">Enrolled Patients</span>
+                <span className="doctor-yoga-kpi__value">Mon - Sun</span>
+                <span className="doctor-yoga-kpi__label">Weekly Schedule</span>
               </div>
             </div>
           </div>
