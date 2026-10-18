@@ -1,7 +1,7 @@
-import type { ConsultationRequest } from '../types';
+import type { PatientRequest } from '../types';
 import { patientService } from '@/features/patients';
 
-export const INITIAL_CONSULTATION_REQUESTS: ConsultationRequest[] = [
+export const INITIAL_REQUESTS: PatientRequest[] = [
   {
     id: 'REQ-101',
     patientName: 'Pooja Nair',
@@ -96,34 +96,36 @@ export const INITIAL_CONSULTATION_REQUESTS: ConsultationRequest[] = [
   },
 ];
 
-let requestsDatabase: ConsultationRequest[] = [...INITIAL_CONSULTATION_REQUESTS];
-const listeners = new Set<(requests: ConsultationRequest[]) => void>();
+export const INITIAL_CONSULTATION_REQUESTS = INITIAL_REQUESTS;
+
+let requestsDatabase: PatientRequest[] = [...INITIAL_REQUESTS];
+const listeners = new Set<(requests: PatientRequest[]) => void>();
 
 function notify() {
   const current = [...requestsDatabase];
   listeners.forEach((l) => l(current));
 }
 
-export const consultationService = {
-  subscribe(listener: (requests: ConsultationRequest[]) => void) {
+export const requestService = {
+  subscribe(listener: (requests: PatientRequest[]) => void) {
     listeners.add(listener);
     return () => {
       listeners.delete(listener);
     };
   },
 
-  async getRequests(): Promise<ConsultationRequest[]> {
+  async getRequests(): Promise<PatientRequest[]> {
     return [...requestsDatabase];
   },
 
-  async acceptRequest(id: string): Promise<ConsultationRequest> {
+  async acceptRequest(id: string): Promise<PatientRequest> {
     const index = requestsDatabase.findIndex((r) => r.id === id);
     if (index === -1) {
       throw new Error(`Request with id ${id} not found.`);
     }
 
     const currentReq = requestsDatabase[index];
-    const updated: ConsultationRequest = {
+    const updated: PatientRequest = {
       ...currentReq,
       status: 'accepted',
       acceptedAt: 'Just now',
@@ -147,14 +149,14 @@ export const consultationService = {
     return updated;
   },
 
-  async rejectRequest(id: string, reason?: string): Promise<ConsultationRequest> {
+  async rejectRequest(id: string, reason?: string): Promise<PatientRequest> {
     const index = requestsDatabase.findIndex((r) => r.id === id);
     if (index === -1) {
       throw new Error(`Request with id ${id} not found.`);
     }
 
     const currentReq = requestsDatabase[index];
-    const updated: ConsultationRequest = {
+    const updated: PatientRequest = {
       ...currentReq,
       status: 'rejected',
       rejectionReason: reason || 'Declined by consulting physician due to scheduling capacity.',
@@ -165,3 +167,5 @@ export const consultationService = {
     return updated;
   },
 };
+
+export const consultationService = requestService;

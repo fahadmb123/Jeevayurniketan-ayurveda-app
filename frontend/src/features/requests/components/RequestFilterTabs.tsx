@@ -1,10 +1,10 @@
 import React from 'react';
-import type { ConsultationFilterOption } from '../types';
-import './ConsultationFilterTabs.css';
+import type { RequestFilterOption } from '../types';
+import './RequestFilterTabs.css';
 
-export interface ConsultationFilterTabsProps {
-  activeFilter: ConsultationFilterOption;
-  onFilterChange: (filter: ConsultationFilterOption) => void;
+export interface RequestFilterTabsProps {
+  activeFilter: RequestFilterOption;
+  onFilterChange: (filter: RequestFilterOption) => void;
   counts: {
     All: number;
     Pending: number;
@@ -13,9 +13,9 @@ export interface ConsultationFilterTabsProps {
   };
 }
 
-const TABS: ConsultationFilterOption[] = ['All', 'Pending', 'Accepted', 'Rejected'];
+const TABS: RequestFilterOption[] = ['All', 'Pending', 'Accepted', 'Rejected'];
 
-export const ConsultationFilterTabs: React.FC<ConsultationFilterTabsProps> = React.memo(({
+export const RequestFilterTabs: React.FC<RequestFilterTabsProps> = React.memo(({
   activeFilter,
   onFilterChange,
   counts,
@@ -43,4 +43,5 @@ export const ConsultationFilterTabs: React.FC<ConsultationFilterTabsProps> = Rea
   );
 });
 
-ConsultationFilterTabs.displayName = 'ConsultationFilterTabs';
+RequestFilterTabs.displayName = 'RequestFilterTabs';
+export const ConsultationFilterTabs = RequestFilterTabs;

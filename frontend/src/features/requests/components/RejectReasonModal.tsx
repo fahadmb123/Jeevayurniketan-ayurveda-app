@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, AlertTriangle } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
-import type { ConsultationRequest } from '../types';
+import type { PatientRequest } from '../types';
 import './RejectReasonModal.css';
 
 export interface RejectReasonModalProps {
-  request: ConsultationRequest | null;
+  request: PatientRequest | null;
   isOpen: boolean;
   onClose: () => void;
-  onConfirmReject: (request: ConsultationRequest, reason: string) => void;
+  onConfirmReject: (request: PatientRequest, reason: string) => void;
   isProcessing?: boolean;
 }
 

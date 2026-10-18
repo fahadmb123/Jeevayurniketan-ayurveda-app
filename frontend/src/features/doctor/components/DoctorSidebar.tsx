@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Menu, ChevronLeft, Activity, Users, Calendar, Sparkles, FileText, Settings, Inbox } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import { useConsultationRequests } from '@/features/consultations';
+import { useRequests } from '@/features/requests';
 import type { DoctorNavItem } from '../types';
 import './DoctorSidebar.css';
 
@@ -36,15 +36,15 @@ export const useDoctorSidebar = () => {
 
 export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen, onToggle }) => {
   const location = useLocation();
-  const { pendingCount } = useConsultationRequests();
+  const { pendingCount } = useRequests();
 
   const navItems = useMemo<DoctorNavItem[]>(
     () => [
       { id: 'dashboard', label: 'Dashboard', path: ROUTES.DOCTOR, icon: <Activity size={20} /> },
       {
-        id: 'consultation-requests',
-        label: 'Consultation Requests',
-        path: ROUTES.DOCTOR_CONSULTATION_REQUESTS,
+        id: 'requests',
+        label: 'Requests',
+        path: ROUTES.DOCTOR_REQUESTS,
         icon: <Inbox size={20} />,
         badge: pendingCount > 0 ? pendingCount : undefined,
       },

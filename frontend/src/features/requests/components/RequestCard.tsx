@@ -3,19 +3,19 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, Video, MapPin, Check, X, Eye, UserCheck, AlertCircle } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import { StatusPill } from '@/shared/ui/status-pill';
-import type { ConsultationRequest } from '../types';
-import './ConsultationRequestCard.css';
+import type { PatientRequest } from '../types';
+import './RequestCard.css';
 
-export interface ConsultationRequestCardProps {
-  request: ConsultationRequest;
+export interface RequestCardProps {
+  request: PatientRequest;
   index: number;
-  onAccept: (request: ConsultationRequest) => void;
-  onReject: (request: ConsultationRequest) => void;
-  onViewDetails: (request: ConsultationRequest) => void;
+  onAccept: (request: PatientRequest) => void;
+  onReject: (request: PatientRequest) => void;
+  onViewDetails: (request: PatientRequest) => void;
   isProcessing?: boolean;
 }
 
-export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = React.memo(({
+export const RequestCard: React.FC<RequestCardProps> = React.memo(({
   request,
   index,
   onAccept,
@@ -170,4 +170,5 @@ export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = R
   );
 });
 
-ConsultationRequestCard.displayName = 'ConsultationRequestCard';
+RequestCard.displayName = 'RequestCard';
+export const ConsultationRequestCard = RequestCard;

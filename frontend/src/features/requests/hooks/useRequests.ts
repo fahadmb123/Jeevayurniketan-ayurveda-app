@@ -1,18 +1,18 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import type { ConsultationRequest } from '../types';
-import { consultationService } from '../services/consultationService';
+import type { PatientRequest } from '../types';
+import { requestService } from '../services/requestService';
 
-export const useConsultationRequests = () => {
-  const [requests, setRequests] = useState<ConsultationRequest[]>([]);
+export const useRequests = () => {
+  const [requests, setRequests] = useState<PatientRequest[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    consultationService.getRequests().then((data) => {
+    requestService.getRequests().then((data) => {
       setRequests(data);
       setLoading(false);
     });
 
-    const unsubscribe = consultationService.subscribe((updated) => {
+    const unsubscribe = requestService.subscribe((updated) => {
       setRequests(updated);
     });
 
@@ -22,11 +22,11 @@ export const useConsultationRequests = () => {
   }, []);
 
   const acceptRequest = useCallback(async (id: string) => {
-    return await consultationService.acceptRequest(id);
+    return await requestService.acceptRequest(id);
   }, []);
 
   const rejectRequest = useCallback(async (id: string, reason?: string) => {
-    return await consultationService.rejectRequest(id, reason);
+    return await requestService.rejectRequest(id, reason);
   }, []);
 
   const { pendingCount, acceptedCount, rejectedCount } = useMemo(() => {
@@ -55,3 +55,5 @@ export const useConsultationRequests = () => {
     rejectRequest,
   };
 };
+
+export const useConsultationRequests = useRequests;

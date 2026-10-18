@@ -16,19 +16,19 @@ import {
 } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import { StatusPill } from '@/shared/ui/status-pill';
-import type { ConsultationRequest } from '../types';
-import './ConsultationDetailModal.css';
+import type { PatientRequest } from '../types';
+import './RequestDetailModal.css';
 
-export interface ConsultationDetailModalProps {
-  request: ConsultationRequest | null;
+export interface RequestDetailModalProps {
+  request: PatientRequest | null;
   isOpen: boolean;
   onClose: () => void;
-  onAccept: (request: ConsultationRequest) => void;
-  onReject: (request: ConsultationRequest) => void;
+  onAccept: (request: PatientRequest) => void;
+  onReject: (request: PatientRequest) => void;
   isProcessing?: boolean;
 }
 
-export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = React.memo(({
+export const RequestDetailModal: React.FC<RequestDetailModalProps> = React.memo(({
   request,
   isOpen,
   onClose,
@@ -242,4 +242,5 @@ export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = R
   );
 });
 
-ConsultationDetailModal.displayName = 'ConsultationDetailModal';
+RequestDetailModal.displayName = 'RequestDetailModal';
+export const ConsultationDetailModal = RequestDetailModal;

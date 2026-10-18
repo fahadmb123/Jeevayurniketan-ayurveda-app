@@ -11,17 +11,17 @@ import {
   Check,
 } from 'lucide-react';
 import { Card } from '@/shared/ui/card';
-import { useConsultationRequests } from '../hooks/useConsultationRequests';
-import { ConsultationRequestCard } from '../components/ConsultationRequestCard';
-import { ConsultationFilterTabs } from '../components/ConsultationFilterTabs';
-import { ConsultationDetailModal } from '../components/ConsultationDetailModal';
+import { useRequests } from '../hooks/useRequests';
+import { RequestCard } from '../components/RequestCard';
+import { RequestFilterTabs } from '../components/RequestFilterTabs';
+import { RequestDetailModal } from '../components/RequestDetailModal';
 import { RejectReasonModal } from '../components/RejectReasonModal';
-import type { ConsultationRequest, ConsultationFilterOption } from '../types';
+import type { PatientRequest, RequestFilterOption } from '../types';
 import type { DoctorOutletContext } from '@/shared/layout';
 import { ROUTES } from '@/shared/config/routes';
-import './DoctorConsultationRequestsPage.css';
+import './DoctorRequestsPage.css';
 
-export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
+export const DoctorRequestsPage: React.FC = React.memo(() => {
   const context = useOutletContext<DoctorOutletContext>();
   const globalSearchQuery = context?.searchQuery ?? '';
 
@@ -33,15 +33,15 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
     rejectedCount,
     acceptRequest,
     rejectRequest,
-  } = useConsultationRequests();
+  } = useRequests();
 
-  const [activeFilter, setActiveFilter] = useState<ConsultationFilterOption>('Pending');
+  const [activeFilter, setActiveFilter] = useState<RequestFilterOption>('Pending');
   const [localSearch, setLocalSearch] = useState('');
   const [selectedService, setSelectedService] = useState('All');
 
   // Modals state
-  const [detailRequest, setDetailRequest] = useState<ConsultationRequest | null>(null);
-  const [rejectingRequest, setRejectingRequest] = useState<ConsultationRequest | null>(null);
+  const [detailRequest, setDetailRequest] = useState<PatientRequest | null>(null);
+  const [rejectingRequest, setRejectingRequest] = useState<PatientRequest | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Success toast state
@@ -55,7 +55,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
   }, []);
 
   const handleAccept = useCallback(
-    async (req: ConsultationRequest) => {
+    async (req: PatientRequest) => {
       try {
         setIsProcessing(true);
         await acceptRequest(req.id);
@@ -70,12 +70,12 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
     [acceptRequest, showToast]
   );
 
-  const handleOpenReject = useCallback((req: ConsultationRequest) => {
+  const handleOpenReject = useCallback((req: PatientRequest) => {
     setRejectingRequest(req);
   }, []);
 
   const handleConfirmReject = useCallback(
-    async (req: ConsultationRequest, reason: string) => {
+    async (req: PatientRequest, reason: string) => {
       try {
         setIsProcessing(true);
         await rejectRequest(req.id, reason);
@@ -91,7 +91,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
     [rejectRequest, showToast]
   );
 
-  const handleViewDetails = useCallback((req: ConsultationRequest) => {
+  const handleViewDetails = useCallback((req: PatientRequest) => {
     setDetailRequest(req);
   }, []);
 
@@ -165,9 +165,9 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
       <div className="doctor-page-heading">
         <div className="doctor-consult-heading-row">
           <div>
-            <h1 className="doctor-page-title">Consultation Requests</h1>
+            <h1 className="doctor-page-title">Patient Requests</h1>
             <p className="doctor-page-sub">
-              Review incoming patient bookings, assess clinical concerns, and accept or decline
+              Review incoming consultation requests, assess clinical concerns, and accept or decline
             </p>
           </div>
 
@@ -185,7 +185,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
             <Inbox size={22} />
           </div>
           <div className="doctor-consult-stat-card__info">
-            <span className="doctor-consult-stat-card__label">Total Inbound</span>
+            <span className="doctor-consult-stat-card__label">Total Requests</span>
             <strong className="doctor-consult-stat-card__value">{requests.length}</strong>
           </div>
         </div>
@@ -225,7 +225,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
       <Card className="doctor-consult-card">
         {/* Toolbar */}
         <div className="doctor-consult-toolbar">
-          <ConsultationFilterTabs
+          <RequestFilterTabs
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
             counts={counts}
@@ -266,10 +266,10 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
         {/* Requests List */}
         <div className="doctor-consult-list">
           {loading ? (
-            <div className="doctor-consult-loading">Loading consultation requests...</div>
+            <div className="doctor-consult-loading">Loading requests...</div>
           ) : filteredRequests.length > 0 ? (
             filteredRequests.map((request, index) => (
-              <ConsultationRequestCard
+              <RequestCard
                 key={request.id}
                 request={request}
                 index={index}
@@ -282,7 +282,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
           ) : (
             <div className="doctor-consult-empty">
               <Inbox size={42} className="doctor-consult-empty__icon" />
-              <h3 className="doctor-consult-empty__title">No consultation requests found</h3>
+              <h3 className="doctor-consult-empty__title">No requests found</h3>
               <p className="doctor-consult-empty__desc">
                 {effectiveSearch || selectedService !== 'All'
                   ? 'Try clearing your search or service filters.'
@@ -294,7 +294,7 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
       </Card>
 
       {/* View Details Modal */}
-      <ConsultationDetailModal
+      <RequestDetailModal
         request={detailRequest}
         isOpen={Boolean(detailRequest)}
         onClose={handleCloseDetail}
@@ -315,4 +315,5 @@ export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
   );
 });
 
-DoctorConsultationRequestsPage.displayName = 'DoctorConsultationRequestsPage';
+DoctorRequestsPage.displayName = 'DoctorRequestsPage';
+export const DoctorConsultationRequestsPage = DoctorRequestsPage;
