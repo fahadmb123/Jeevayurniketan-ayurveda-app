@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import { Menu, LogOut } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 import { useAuth } from '@/features/auth';
 import { ROUTES } from '@/shared/config/routes';
+import logoSvg from '@/assets/logo.svg';
 import './DoctorHeader.css';
 
 export interface DoctorHeaderProps {
@@ -40,6 +41,10 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
             <Menu size={20} />
           </button>
         )}
+        <Link to={ROUTES.DOCTOR} className="doctor-header__brand">
+          <img src={logoSvg} alt="Jeevayurniketan Logo" className="doctor-header__logo-img" />
+          <span className="doctor-header__logo-title">Jeevayurniketan</span>
+        </Link>
       </div>
       <div className="doctor-header__actions">
         <ThemeToggle />

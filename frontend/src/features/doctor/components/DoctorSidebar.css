@@ -42,6 +42,22 @@
   gap: 8px;
 }
 
+.doctor-sidebar__logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.doctor-sidebar__logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
 .doctor-sidebar__logo h2 {
   color: var(--text-primary, #0F172A);
   font-size: 1.25rem;
@@ -58,12 +74,12 @@
   display: none;
 }
 
-.doctor-sidebar--collapsed .doctor-sidebar__logo-full {
+.doctor-sidebar--collapsed .doctor-sidebar__logo {
   display: none;
 }
 
-.doctor-sidebar--collapsed .doctor-sidebar__logo-short {
-  display: block;
+.doctor-sidebar--collapsed .doctor-sidebar__logo-link {
+  justify-content: center;
 }
 
 .doctor-sidebar__highlight {

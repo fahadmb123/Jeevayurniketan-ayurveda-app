@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
+import logoSvg from '@/assets/logo.svg';
 import './Footer.css';
 
 export const Footer: React.FC = React.memo(() => {
@@ -9,7 +10,7 @@ export const Footer: React.FC = React.memo(() => {
       <div className="footer-container">
         <div className="footer-col">
           <div className="footer-logo">
-            <img src="/android-chrome-512x512.png" alt="Jeevayurniketan Logo" className="footer-logo-img" />
+            <img src={logoSvg} alt="Jeevayurniketan Logo" className="footer-logo-img" />
             <span className="logo-text">Jeevayurniketan</span>
           </div>
           <p className="footer-desc">

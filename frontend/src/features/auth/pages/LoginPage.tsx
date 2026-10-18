@@ -5,6 +5,7 @@ import { ROUTES } from '@/shared/config/routes';
 import { LoginForm } from '../components/LoginForm';
 import { useAuth } from '../hooks/useAuth';
 import type { LoginCredentials } from '../types';
+import logoSvg from '@/assets/logo.svg';
 import './AuthPages.css';
 
 export const LoginPage: React.FC = React.memo(() => {
@@ -40,7 +41,7 @@ export const LoginPage: React.FC = React.memo(() => {
       >
         <div className="auth-header">
           <Link to={ROUTES.HOME} className="auth-logo">
-            <img src="/android-chrome-512x512.png" alt="Jeevayurniketan Logo" />
+            <img src={logoSvg} alt="Jeevayurniketan Logo" />
             <span>Jeevayurniketan</span>
           </Link>
           <h1 className="auth-title">Welcome Back</h1>

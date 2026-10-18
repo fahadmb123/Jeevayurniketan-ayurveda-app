@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
 import type { DoctorNavItem } from '../types';
+import logoSvg from '@/assets/logo.svg';
 import './DoctorSidebar.css';
 
 export interface DoctorSidebarProps {
@@ -58,14 +59,17 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
   return (
     <aside className={`doctor-sidebar ${!isOpen ? 'doctor-sidebar--collapsed' : ''}`}>
       <div className={`doctor-sidebar__logo-container ${!isOpen ? 'doctor-sidebar__logo-container--collapsed' : ''}`}>
-        <div className="doctor-sidebar__logo">
-          <h2 className="doctor-sidebar__logo-full">
-            Jeeva<span className="doctor-sidebar__highlight">Ayur</span>
-          </h2>
-          <h2 className="doctor-sidebar__logo-short">
-            J<span className="doctor-sidebar__highlight">A</span>
-          </h2>
-        </div>
+        <Link to={ROUTES.DOCTOR} className="doctor-sidebar__logo-link">
+          <img src={logoSvg} alt="Jeevayurniketan Logo" className="doctor-sidebar__logo-img" />
+          <div className="doctor-sidebar__logo">
+            <h2 className="doctor-sidebar__logo-full">
+              Jeeva<span className="doctor-sidebar__highlight">Ayur</span>
+            </h2>
+            <h2 className="doctor-sidebar__logo-short">
+              J<span className="doctor-sidebar__highlight">A</span>
+            </h2>
+          </div>
+        </Link>
         <button
           className="doctor-sidebar__collapse-btn"
           onClick={onToggle}
