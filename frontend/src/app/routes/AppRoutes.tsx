@@ -6,54 +6,71 @@ import { LoadingScreen } from '@/shared/ui';
 // Layouts
 import { DoctorLayout } from '@/shared/layout';
 
-// Public & Marketing Feature Pages (Code-split with React.lazy)
-const HomePage = lazy(() =>
+/**
+ * Helper to ensure lazy loading displays the luxury LoadingScreen for 5 seconds
+ * so the user can clearly see and experience the loading animation.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const lazyWithDelay = <T extends React.ComponentType<any>>(
+  importFn: () => Promise<{ default: T }>,
+  delayMs = 5000
+) => {
+  return lazy(() =>
+    Promise.all([
+      importFn(),
+      new Promise((resolve) => setTimeout(resolve, delayMs)),
+    ]).then(([module]) => module)
+  );
+};
+
+// Public & Marketing Feature Pages (Code-split with 5-second visual delay)
+const HomePage = lazyWithDelay(() =>
   import('@/features/home/pages/HomePage').then((m) => ({ default: m.HomePage }))
 );
-const AboutPage = lazy(() =>
+const AboutPage = lazyWithDelay(() =>
   import('@/features/about/pages/AboutPage').then((m) => ({ default: m.AboutPage }))
 );
-const ServicesPage = lazy(() =>
+const ServicesPage = lazyWithDelay(() =>
   import('@/features/services/pages/ServicesPage').then((m) => ({ default: m.ServicesPage }))
 );
-const YogaSchedulePage = lazy(() =>
+const YogaSchedulePage = lazyWithDelay(() =>
   import('@/features/yoga/pages/YogaSchedulePage').then((m) => ({ default: m.YogaSchedulePage }))
 );
-const TeamPage = lazy(() =>
+const TeamPage = lazyWithDelay(() =>
   import('@/features/team/pages/TeamPage').then((m) => ({ default: m.TeamPage }))
 );
-const BlogPage = lazy(() =>
+const BlogPage = lazyWithDelay(() =>
   import('@/features/blog/pages/BlogPage').then((m) => ({ default: m.BlogPage }))
 );
-const ContactPage = lazy(() =>
+const ContactPage = lazyWithDelay(() =>
   import('@/features/contact/pages/ContactPage').then((m) => ({ default: m.ContactPage }))
 );
-const NotFoundPage = lazy(() =>
+const NotFoundPage = lazyWithDelay(() =>
   import('@/features/home/pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
 
-// Auth Feature Pages (Code-split with React.lazy)
-const LoginPage = lazy(() =>
+// Auth Feature Pages (Code-split with 5-second visual delay)
+const LoginPage = lazyWithDelay(() =>
   import('@/features/auth/pages/LoginPage').then((m) => ({ default: m.LoginPage }))
 );
-const RegisterPage = lazy(() =>
+const RegisterPage = lazyWithDelay(() =>
   import('@/features/auth/pages/RegisterPage').then((m) => ({ default: m.RegisterPage }))
 );
 
-// Domain-Specific Portal Feature Pages (Code-split with React.lazy)
-const DoctorDashboardPage = lazy(() =>
+// Domain-Specific Portal Feature Pages (Code-split with 5-second visual delay)
+const DoctorDashboardPage = lazyWithDelay(() =>
   import('@/features/doctor/pages/DoctorDashboardPage').then((m) => ({ default: m.DoctorDashboardPage }))
 );
-const DoctorRequestsPage = lazy(() =>
+const DoctorRequestsPage = lazyWithDelay(() =>
   import('@/features/requests/pages/DoctorRequestsPage').then((m) => ({ default: m.DoctorRequestsPage }))
 );
-const DoctorPatientsPage = lazy(() =>
+const DoctorPatientsPage = lazyWithDelay(() =>
   import('@/features/patients/pages/DoctorPatientsPage').then((m) => ({ default: m.DoctorPatientsPage }))
 );
-const DoctorYogaSchedulePage = lazy(() =>
+const DoctorYogaSchedulePage = lazyWithDelay(() =>
   import('@/features/yoga/pages/DoctorYogaSchedulePage').then((m) => ({ default: m.DoctorYogaSchedulePage }))
 );
-const DoctorSettingsPage = lazy(() =>
+const DoctorSettingsPage = lazyWithDelay(() =>
   import('@/features/doctor/pages/DoctorSettingsPage').then((m) => ({ default: m.DoctorSettingsPage }))
 );
 
