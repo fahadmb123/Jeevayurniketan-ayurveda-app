@@ -6,4 +6,3 @@ export * from './components/BookAppointmentModal';
 export * from './components/BookAppointmentButton';
 export * from './components/AppointmentListItem';
 export * from './components/TodayScheduleWidget';
-export * from './pages/DoctorAppointmentsPage';

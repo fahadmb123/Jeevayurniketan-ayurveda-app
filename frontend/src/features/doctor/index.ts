@@ -11,6 +11,5 @@ export * from './pages/DoctorSettingsPage';
 // Domain feature re-exports for backwards compatibility
 export { DoctorRequestsPage, DoctorRequestsPage as DoctorConsultationRequestsPage } from '@/features/requests';
 export { DoctorPatientsPage } from '@/features/patients';
-export { DoctorAppointmentsPage } from '@/features/appointments';
 export { DoctorYogaSchedulePage } from '@/features/yoga';
 export { DoctorRecordsPage } from '@/features/records';

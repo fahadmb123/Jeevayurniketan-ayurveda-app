@@ -21,7 +21,6 @@ import { DoctorLayout } from '@/shared/layout';
 import { DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
 import { DoctorRequestsPage } from '@/features/requests';
 import { DoctorPatientsPage } from '@/features/patients';
-import { DoctorAppointmentsPage } from '@/features/appointments';
 import { DoctorRecordsPage } from '@/features/records';
 
 export const AppRoutes: React.FC = React.memo(() => {
@@ -45,7 +44,6 @@ export const AppRoutes: React.FC = React.memo(() => {
         <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
         <Route path={ROUTES.DOCTOR_REQUESTS} element={<DoctorRequestsPage />} />
         <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
-        <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />
         <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />
         <Route path={ROUTES.DOCTOR_RECORDS} element={<DoctorRecordsPage />} />
         <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
