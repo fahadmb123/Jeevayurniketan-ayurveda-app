@@ -1,12 +1,13 @@
 .brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: inherit;
   user-select: none;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  flex-shrink: 0;
 }
 
 .brand-logo--with-divider {
@@ -29,15 +30,27 @@
   object-fit: contain;
   flex-shrink: 0;
   display: block;
+  transition: filter 0.2s ease;
+}
+
+/* Dark mode luminescence & contrast boost for emerald botanical branding */
+[data-theme='dark'] .brand-logo__text,
+.dark .brand-logo__text {
+  filter: brightness(2.1) contrast(1.18) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+}
+
+[data-theme='dark'] .brand-logo__emblem,
+.dark .brand-logo__emblem {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45)) brightness(1.1);
 }
 
 /* Size Variants */
 .brand-logo--sm .brand-logo__emblem {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
 }
 .brand-logo--sm .brand-logo__text {
-  height: 24px;
+  height: 32px;
   width: auto;
 }
 
@@ -46,16 +59,16 @@
   height: 44px;
 }
 .brand-logo--md .brand-logo__text {
-  height: 34px;
+  height: 42px;
   width: auto;
 }
 
 .brand-logo--lg .brand-logo__emblem {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
 }
 .brand-logo--lg .brand-logo__text {
-  height: 42px;
+  height: 52px;
   width: auto;
 }
 

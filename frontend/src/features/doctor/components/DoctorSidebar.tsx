@@ -59,7 +59,7 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
   return (
     <aside className={`doctor-sidebar ${!isOpen ? 'doctor-sidebar--collapsed' : ''}`}>
       <div className={`doctor-sidebar__logo-container ${!isOpen ? 'doctor-sidebar__logo-container--collapsed' : ''}`}>
-        <BrandLogo linkTo={ROUTES.DOCTOR} collapsed={!isOpen} size="sm" />
+        <BrandLogo linkTo={ROUTES.DOCTOR} collapsed={!isOpen} size="md" />
         <button
           className="doctor-sidebar__collapse-btn"
           onClick={onToggle}
