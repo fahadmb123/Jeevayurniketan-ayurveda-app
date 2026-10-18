@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
-import { BaseController } from '../../shared/controllers/BaseController.js';
+import { BaseController } from '../../../shared/controllers/BaseController.js';
 
 export class DoctorController extends BaseController {
   public login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
