@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DoctorSidebar, useDoctorSidebar, DoctorHeader, DoctorBottomNav } from '@/features/doctor';
+import { DoctorSidebar, useDoctorSidebar, DoctorHeader, DoctorBottomNav } from '@/features/doctor/components';
 import { usePatients, type Patient } from '@/features/patients';
+import { LoadingScreen } from '@/shared/ui';
 import './DoctorLayout.css';
 
 export interface DoctorOutletContext {
@@ -47,8 +48,10 @@ export const DoctorLayout: React.FC = React.memo(() => {
           onToggleSidebar={toggleSidebar}
         />
 
-        {/* Dynamic Nested Route Content */}
-        <Outlet context={outletContext} />
+        {/* Dynamic Nested Route Content with In-Layout Suspense */}
+        <Suspense fallback={<LoadingScreen fullScreen={false} message="Loading section..." />}>
+          <Outlet context={outletContext} />
+        </Suspense>
       </main>
 
       {/* Mobile Bottom Navigation Bar */}

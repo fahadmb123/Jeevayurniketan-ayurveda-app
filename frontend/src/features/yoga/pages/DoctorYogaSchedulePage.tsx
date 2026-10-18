@@ -11,12 +11,10 @@ import {
   Inbox,
   RotateCcw,
 } from 'lucide-react';
-import {
-  useYogaSchedule,
-  YogaClassCard,
-  YogaClassModal,
-  DAYS_OF_WEEK,
-} from '@/features/yoga';
+import { useYogaSchedule } from '../hooks/useYogaSchedule';
+import { YogaClassCard } from '../components/YogaClassCard';
+import { YogaClassModal } from '../components/YogaClassModal';
+import { DAYS_OF_WEEK } from '../types/yoga.types';
 import './DoctorYogaSchedulePage.css';
 
 export const DoctorYogaSchedulePage: React.FC = React.memo(() => {

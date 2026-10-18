@@ -5,4 +5,3 @@ export * from './components/RequestCard';
 export * from './components/RequestFilterTabs';
 export * from './components/RequestDetailModal';
 export * from './components/RejectReasonModal';
-export * from './pages/DoctorRequestsPage';

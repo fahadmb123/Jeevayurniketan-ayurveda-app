@@ -1,0 +1,310 @@
+/* ==========================================================================
+   LoadingScreen Component Styles
+   Supports both fullScreen (fixed overlay) & inline (layout-contained)
+   ========================================================================== */
+
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: inherit;
+  z-index: 9999;
+  user-select: none;
+}
+
+/* Fullscreen Overlay Mode */
+.loading-screen--fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg-primary, #0c1813);
+}
+
+/* Inline Container Mode (e.g. inside nested DoctorLayout / page outlets) */
+.loading-screen--inline {
+  width: 100%;
+  min-height: 380px;
+  flex: 1;
+  padding: 40px 20px;
+  background: transparent;
+}
+
+/* Ambient Backdrop Glow */
+.loading-screen__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(16, 185, 129, 0.14) 0%,
+    rgba(217, 119, 6, 0.06) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  animation: loadingAuraPulse 4s ease-in-out infinite alternate;
+}
+
+/* Central Card */
+.loading-screen__card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(16, 185, 129, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Light Mode Overrides for Card */
+[data-theme='light'] .loading-screen--fullscreen {
+  background-color: #f7faf8;
+}
+
+[data-theme='light'] .loading-screen__backdrop {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(16, 185, 129, 0.12) 0%,
+    rgba(217, 119, 6, 0.08) 45%,
+    transparent 75%
+  );
+}
+
+[data-theme='light'] .loading-screen__card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 
+    0 16px 36px -12px rgba(16, 185, 129, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Logo Wrapper with Ambient Aura */
+.loading-screen__logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.loading-screen__aura {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.28) 0%,
+    rgba(217, 119, 6, 0.12) 50%,
+    transparent 70%
+  );
+  filter: blur(18px);
+  animation: loadingAuraPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Logo SVG Element */
+.loading-screen__logo {
+  position: relative;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  animation: loadingLogoBreathing 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .loading-screen__logo {
+  filter: brightness(1.1) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 12px rgba(16, 185, 129, 0.3));
+}
+
+/* Indicator & Progress Bar */
+.loading-screen__indicator-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loading-screen__progress-track {
+  width: 180px;
+  height: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme='light'] .loading-screen__progress-track {
+  background: rgba(16, 185, 129, 0.18);
+}
+
+.loading-screen__progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.2) 0%,
+    var(--color-primary-500, #10b981) 50%,
+    #d97706 100%
+  );
+  border-radius: 9999px;
+  animation: loadingProgressBar 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Status dots & message */
+.loading-screen__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.loading-screen__dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loading-screen__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary-500, #10b981);
+  opacity: 0.3;
+  animation: loadingDotBounce 1.4s ease-in-out infinite;
+}
+
+.loading-screen__dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-screen__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-screen__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.loading-screen__message {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary, #94a3b8);
+  animation: loadingTextFade 2.4s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .loading-screen__message {
+  color: #475569;
+}
+
+/* Keyframe Animations */
+@keyframes loadingLogoBreathing {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.97);
+    opacity: 0.92;
+  }
+}
+
+@keyframes loadingAuraPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0.45;
+  }
+}
+
+@keyframes loadingProgressBar {
+  0% {
+    left: -45%;
+    width: 30%;
+  }
+  50% {
+    left: 35%;
+    width: 55%;
+  }
+  100% {
+    left: 100%;
+    width: 30%;
+  }
+}
+
+@keyframes loadingDotBounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes loadingTextFade {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .loading-screen__card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .loading-screen__logo {
+    width: 110px;
+    height: 110px;
+  }
+
+  .loading-screen__aura {
+    width: 110px;
+    height: 110px;
+  }
+
+  .loading-screen__progress-track {
+    width: 140px;
+  }
+}
