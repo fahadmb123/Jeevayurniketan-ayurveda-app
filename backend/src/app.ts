@@ -7,16 +7,12 @@ import { NotFoundMiddleware } from './presentation/middlewares/NotFoundMiddlewar
 import { ErrorMiddleware } from './presentation/middlewares/ErrorMiddleware.js';
 import { RootController } from './presentation/controllers/RootController.js';
 import { HealthController } from './presentation/controllers/HealthController.js';
-import { ConsultationRequestController } from './presentation/controllers/ConsultationRequestController.js';
 import { RootRoutes } from './presentation/routes/RootRoutes.js';
 import { HealthRoutes } from './presentation/routes/HealthRoutes.js';
-import { ConsultationRequestRoutes } from './presentation/routes/ConsultationRequestRoutes.js';
 import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
 import type { IRoute } from './presentation/routes/IRoute.js';
 import { SystemHealthRepository } from './infrastructure/repositories/SystemHealthRepository.js';
-import { InMemoryConsultationRequestRepository } from './infrastructure/repositories/InMemoryConsultationRequestRepository.js';
 import { HealthService } from './application/services/HealthService.js';
-import { ConsultationRequestService } from './application/services/ConsultationRequestService.js';
 
 export class App {
   public readonly app: Application;
@@ -36,18 +32,13 @@ export class App {
     const healthRepository = new SystemHealthRepository(config);
     const healthService = new HealthService(healthRepository);
 
-    const consultationRepository = new InMemoryConsultationRequestRepository();
-    const consultationService = new ConsultationRequestService(consultationRepository);
-
     const rootController = new RootController(config);
     const healthController = new HealthController(healthService);
-    const consultationController = new ConsultationRequestController(consultationService);
 
     const rootRoutes = new RootRoutes(rootController);
     const healthRoutes = new HealthRoutes(healthController);
-    const consultationRequestRoutes = new ConsultationRequestRoutes(consultationController);
 
-    const apiRoutes = new ApiRoutes(rootController, [healthRoutes, consultationRequestRoutes]);
+    const apiRoutes = new ApiRoutes(rootController, [healthRoutes]);
 
     const errorMiddleware = new ErrorMiddleware(config);
 

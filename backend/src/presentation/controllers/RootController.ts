@@ -24,7 +24,6 @@ export class RootController extends BaseController {
       description: 'Ayurveda & Psychotherapy Clinical Services Backend',
       endpoints: {
         health: '/api/health',
-        consultationRequests: '/api/consultation-requests',
       },
     });
   };
