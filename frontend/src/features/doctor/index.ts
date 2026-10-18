@@ -12,4 +12,3 @@ export * from './pages/DoctorSettingsPage';
 export { DoctorRequestsPage, DoctorRequestsPage as DoctorConsultationRequestsPage } from '@/features/requests';
 export { DoctorPatientsPage } from '@/features/patients';
 export { DoctorYogaSchedulePage } from '@/features/yoga';
-export { DoctorRecordsPage } from '@/features/records';

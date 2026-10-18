@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Menu, ChevronLeft, Activity, Users, Sparkles, FileText, Settings, Inbox } from 'lucide-react';
+import { Menu, ChevronLeft, Activity, Users, Sparkles, Settings, Inbox } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
@@ -50,7 +50,6 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
       },
       { id: 'patients', label: 'Patients', path: ROUTES.DOCTOR_PATIENTS, icon: <Users size={20} /> },
       { id: 'yoga', label: 'Yoga Schedule', path: ROUTES.DOCTOR_YOGA, icon: <Sparkles size={20} /> },
-      { id: 'records', label: 'Clinical Records', path: ROUTES.DOCTOR_RECORDS, icon: <FileText size={20} /> },
       { id: 'settings', label: 'Settings', path: ROUTES.DOCTOR_SETTINGS, icon: <Settings size={20} /> },
     ],
     [pendingCount]

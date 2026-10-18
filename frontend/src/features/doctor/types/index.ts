@@ -1,7 +1,6 @@
 import React from 'react';
 export type { Appointment, AppointmentStatus } from '@/features/appointments';
 export type { Patient, PatientStatus } from '@/features/patients';
-export type { ClinicalRecord } from '@/features/records';
 
 export interface DoctorStatItem {
   id: string;

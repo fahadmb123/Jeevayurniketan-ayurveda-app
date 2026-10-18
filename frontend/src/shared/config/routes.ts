@@ -17,7 +17,6 @@ export const ROUTES = {
   DOCTOR_CONSULTATION_REQUESTS: '/doctor/requests',
   DOCTOR_PATIENTS: '/doctor/patients',
   DOCTOR_YOGA: '/doctor/yoga',
-  DOCTOR_RECORDS: '/doctor/records',
   DOCTOR_SETTINGS: '/doctor/settings',
 } as const;
 

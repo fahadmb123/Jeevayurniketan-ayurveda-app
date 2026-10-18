@@ -1,9 +1,8 @@
 import React from 'react';
-import { Users, Calendar, FileText, Inbox } from 'lucide-react';
+import { Users, Calendar, Activity, Inbox } from 'lucide-react';
 import type { DoctorStatItem } from '../types';
 import { appointmentService, type Appointment } from '@/features/appointments';
 import { patientService, type Patient } from '@/features/patients';
-import { recordsService, type ClinicalRecord } from '@/features/records';
 
 export const INITIAL_STATS: DoctorStatItem[] = [
   {
@@ -31,12 +30,12 @@ export const INITIAL_STATS: DoctorStatItem[] = [
     icon: React.createElement(Calendar, { size: 22 }),
   },
   {
-    id: 'pending-reports',
-    title: 'Clinical Records',
+    id: 'active-treatments',
+    title: 'Active Treatments',
     value: '28',
-    trend: 'Updated today',
+    trend: 'In progress',
     variant: 'green',
-    icon: React.createElement(FileText, { size: 22 }),
+    icon: React.createElement(Activity, { size: 22 }),
   },
 ];
 
@@ -51,10 +50,6 @@ export const doctorService = {
 
   async getPatients(): Promise<Patient[]> {
     return patientService.getPatients();
-  },
-
-  async getRecords(): Promise<ClinicalRecord[]> {
-    return recordsService.getRecords();
   },
 
   async addPatient(patient: Omit<Patient, 'id'>): Promise<Patient> {
