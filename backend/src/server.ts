@@ -25,7 +25,6 @@ const startServer = (): void => {
       process.exit(0);
     });
 
-    // Force shutdown after 10s timeout
     setTimeout(() => {
       console.error('[Server] Forcefully shutting down due to timeout.');
       process.exit(1);

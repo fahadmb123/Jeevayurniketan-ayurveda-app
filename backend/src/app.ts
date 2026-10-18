@@ -11,7 +11,6 @@ import { healthRouter } from './routes/healthRoutes.js';
 export const createApp = (): Application => {
   const app = express();
 
-  // Basic security and parsing middlewares
   app.use(
     cors({
       origin: env.corsOrigin === '*' ? '*' : env.corsOrigin.split(','),
@@ -24,13 +23,10 @@ export const createApp = (): Application => {
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-  // Non-blocking request logger
   app.use(requestLogger);
 
-  // Direct Health check endpoint
   app.use('/health', healthRouter);
 
-  // Root welcome endpoint
   app.get('/', (_req: Request, res: Response) => {
     res.status(200).json({
       message: 'Welcome to Jeevayurniketan Ayurveda & Psychotherapy API',
@@ -41,13 +37,10 @@ export const createApp = (): Application => {
     });
   });
 
-  // Mount API v1 router
   app.use('/api', apiRouter);
 
-  // 404 handler
   app.use(notFoundHandler);
 
-  // Centralized Error handler
   app.use(errorHandler);
 
   return app;

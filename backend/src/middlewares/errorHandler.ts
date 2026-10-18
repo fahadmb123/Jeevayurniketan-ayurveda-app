@@ -18,8 +18,6 @@ export const errorHandler = (
   err: Error | AppError,
   _req: Request,
   res: Response,
-  // Express identifies error handlers by 4 parameters; next must be declared
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _next: NextFunction
 ): void => {
   const statusCode = err instanceof AppError ? err.statusCode : 500;
