@@ -1,6 +1,7 @@
 /* ==========================================================================
    LoadingScreen Component Styles
-   Full covered, tranquil light green background, logo centered and that's it.
+   Full covered, tranquil light green background, logo static & centered.
+   No animations (no zooming in / zooming out).
    ========================================================================== */
 
 .loading-screen {
@@ -12,9 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Sacred tranquil Kerala Ayurveda light green background */
+  /* Clean, serene Kerala Ayurveda light green background */
   background-color: #ebf7ed;
-  background: radial-gradient(circle at 50% 50%, #f4fbf5 0%, #ebf7ed 55%, #dfefe2 100%);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -37,28 +37,13 @@
   z-index: 10;
 }
 
-/* Logo SVG Element with gentle, organic breathing animation */
+/* Logo SVG Element - completely static, no zooming animation */
 .loading-screen__logo {
   width: 260px;
   height: auto;
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
-  filter: drop-shadow(0 10px 28px rgba(27, 107, 80, 0.12));
-  animation: loadingLogoBreathing 2.4s ease-in-out infinite alternate;
-  will-change: transform, opacity;
-}
-
-@keyframes loadingLogoBreathing {
-  0% {
-    transform: scale(0.96);
-    opacity: 0.92;
-  }
-  100% {
-    transform: scale(1.04);
-    opacity: 1;
-    filter: drop-shadow(0 14px 36px rgba(27, 107, 80, 0.18));
-  }
 }
 
 /* Mobile Responsiveness */

@@ -100,6 +100,9 @@ export const AppRoutes: React.FC = React.memo(() => {
           <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
         </Route>
 
+        {/* Dev Preview Routes */}
+        <Route path="/dev/loading" element={<LoadingScreen fullScreen />} />
+
         {/* 404 Fallback */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
