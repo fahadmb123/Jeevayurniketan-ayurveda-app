@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DoctorSidebar, useDoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { DoctorSidebar, useDoctorSidebar, DoctorHeader } from '@/features/doctor';
 import { usePatients, type Patient } from '@/features/patients';
 import './DoctorLayout.css';
 

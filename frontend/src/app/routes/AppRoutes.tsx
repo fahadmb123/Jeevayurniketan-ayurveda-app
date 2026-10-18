@@ -14,8 +14,11 @@ import { ContactPage } from '@/features/contact';
 // Auth Feature Pages
 import { LoginPage, RegisterPage } from '@/features/auth';
 
+// Layouts
+import { DoctorLayout } from '@/shared/layout';
+
 // Domain-Specific Portal Feature Pages
-import { DoctorLayout, DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
+import { DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
 import { DoctorPatientsPage } from '@/features/patients';
 import { DoctorAppointmentsPage } from '@/features/appointments';
 import { DoctorRecordsPage } from '@/features/records';

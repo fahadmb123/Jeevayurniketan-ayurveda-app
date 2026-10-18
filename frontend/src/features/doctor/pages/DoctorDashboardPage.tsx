@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import { DoctorStats } from '../components/DoctorStats';
 import { RecentPatientsWidget, usePatients } from '@/features/patients';
 import { TodayScheduleWidget } from '@/features/appointments';
-import type { DoctorOutletContext } from '../layouts/DoctorLayout';
+import type { DoctorOutletContext } from '@/shared/layout';
 import './DoctorDashboardPage.css';
 
 const gridVariants: Variants = {

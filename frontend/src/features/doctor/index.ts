@@ -4,7 +4,7 @@ export * from './hooks/useDoctorStats';
 export * from './components/DoctorHeader';
 export * from './components/DoctorSidebar';
 export * from './components/DoctorStats';
-export * from './layouts/DoctorLayout';
+export { DoctorLayout, type DoctorOutletContext } from '@/shared/layout';
 export * from './pages/DoctorDashboardPage';
 export * from './pages/DoctorSettingsPage';
 
