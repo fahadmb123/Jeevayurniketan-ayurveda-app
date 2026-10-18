@@ -13,6 +13,7 @@ export const ROUTES = {
 
   // Doctor Portal
   DOCTOR: '/doctor',
+  DOCTOR_CONSULTATION_REQUESTS: '/doctor/consultation-requests',
   DOCTOR_PATIENTS: '/doctor/patients',
   DOCTOR_APPOINTMENTS: '/doctor/appointments',
   DOCTOR_YOGA: '/doctor/yoga',

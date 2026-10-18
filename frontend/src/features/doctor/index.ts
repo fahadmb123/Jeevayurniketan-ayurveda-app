@@ -9,6 +9,7 @@ export * from './pages/DoctorDashboardPage';
 export * from './pages/DoctorSettingsPage';
 
 // Domain feature re-exports for backwards compatibility
+export { DoctorConsultationRequestsPage } from '@/features/consultations';
 export { DoctorPatientsPage } from '@/features/patients';
 export { DoctorAppointmentsPage } from '@/features/appointments';
 export { DoctorYogaSchedulePage } from '@/features/yoga';

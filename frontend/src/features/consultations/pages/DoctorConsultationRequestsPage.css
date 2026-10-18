@@ -1,0 +1,337 @@
+.doctor-consult-page {
+  position: relative;
+}
+
+/* Toast */
+.doctor-consult-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid #A7F3D0;
+  border-left: 5px solid #059669;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px -6px rgba(18, 76, 56, 0.2);
+  color: var(--text-primary, #14241C);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: consultToastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes consultToastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.doctor-consult-toast__icon {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+.doctor-consult-toast__text {
+  flex: 1;
+}
+
+.doctor-consult-toast__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.doctor-consult-toast__link:hover {
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+}
+
+/* Heading row */
+.doctor-consult-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.doctor-consult-patients-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8DE);
+  color: var(--primary-green, #1B6B50);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.doctor-consult-patients-btn:hover {
+  border-color: var(--primary-green, #1B6B50);
+  background: var(--primary-green-tint, #EDF6F1);
+}
+
+/* Stats summary grid */
+.doctor-consult-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.doctor-consult-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: var(--card-shadow, 0 2px 8px -2px rgba(18, 76, 56, 0.05));
+  transition: all 0.2s ease;
+}
+
+.doctor-consult-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-color-hover, #CCD6C6);
+}
+
+.doctor-consult-stat-card--highlight {
+  border-color: var(--accent-gold, #C98D3B);
+  background: linear-gradient(to right, var(--surface-color, #FFFFFF), var(--surface-secondary, #F3F6F1));
+}
+
+.doctor-consult-stat-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doctor-consult-stat-card__icon--total {
+  background: var(--surface-secondary, #F3F6F1);
+  color: var(--text-primary, #14241C);
+}
+
+.doctor-consult-stat-card__icon--pending {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.doctor-consult-stat-card__icon--accepted {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.doctor-consult-stat-card__icon--rejected {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.doctor-consult-stat-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-consult-stat-card__label {
+  font-size: 0.78rem;
+  color: var(--text-light, #7E9387);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.doctor-consult-stat-card__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+}
+
+.text-amber {
+  color: #B45309 !important;
+}
+
+.text-green {
+  color: #059669 !important;
+}
+
+/* Card & Toolbar */
+.doctor-consult-card {
+  padding: 24px;
+}
+
+.doctor-consult-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-color, #E2E8DE);
+}
+
+.doctor-consult-filters-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.doctor-consult-service-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.doctor-consult-filter-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-light, #7E9387);
+  pointer-events: none;
+}
+
+.doctor-consult-service-select {
+  padding: 8px 14px 8px 34px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  background: var(--surface-color, #FFFFFF);
+  color: var(--text-primary, #14241C);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.doctor-consult-service-select:focus {
+  border-color: var(--primary-green, #1B6B50);
+}
+
+.doctor-consult-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.doctor-consult-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-light, #7E9387);
+  pointer-events: none;
+}
+
+.doctor-consult-search-input {
+  padding: 8px 14px 8px 34px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  background: var(--surface-color, #FFFFFF);
+  color: var(--text-primary, #14241C);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  width: 240px;
+  transition: all 0.2s ease;
+}
+
+.doctor-consult-search-input:focus {
+  border-color: var(--primary-green, #1B6B50);
+  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.12);
+  width: 280px;
+}
+
+/* List */
+.doctor-consult-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.doctor-consult-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-light, #7E9387);
+  font-size: 0.92rem;
+}
+
+.doctor-consult-empty {
+  padding: 60px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.doctor-consult-empty__icon {
+  color: var(--text-light, #7E9387);
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+
+.doctor-consult-empty__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary, #14241C);
+  margin: 0;
+}
+
+.doctor-consult-empty__desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary, #485E53);
+  margin: 0;
+  max-width: 420px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .doctor-consult-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .doctor-consult-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .doctor-consult-filters-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .doctor-consult-search-input {
+    width: 100%;
+  }
+  .doctor-consult-search-input:focus {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .doctor-consult-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

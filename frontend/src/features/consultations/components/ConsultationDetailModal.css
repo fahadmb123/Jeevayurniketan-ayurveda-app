@@ -1,0 +1,293 @@
+.consult-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(10, 20, 15, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.consult-detail-modal {
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(18, 76, 56, 0.25);
+  overflow: hidden;
+}
+
+/* Header */
+.consult-detail-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color, #E2E8DE);
+  background: var(--surface-secondary, #F3F6F1);
+}
+
+.consult-detail-modal__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.consult-detail-modal__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.consult-detail-modal__name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consult-detail-modal__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  margin: 0;
+}
+
+.consult-detail-modal__sub {
+  font-size: 0.82rem;
+  color: var(--text-light, #7E9387);
+}
+
+.consult-detail-modal__close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #485E53);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.consult-detail-modal__close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary, #14241C);
+}
+
+/* Body */
+.consult-detail-modal__body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.consult-detail-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.consult-detail-modal__section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary-green, #1B6B50);
+  margin: 0;
+}
+
+/* Contact Grid */
+.consult-detail-modal__contact-grid {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.consult-detail-modal__contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--surface-secondary, #F3F6F1);
+  border: 1px solid var(--border-color, #E2E8DE);
+  color: var(--text-primary, #14241C);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.consult-detail-modal__contact-pill:not(.consult-detail-modal__contact-pill--static):hover {
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+  border-color: var(--primary-green, #1B6B50);
+}
+
+/* Schedule Card */
+.consult-detail-modal__schedule-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--surface-secondary, #F3F6F1);
+  border: 1px solid var(--border-color, #E2E8DE);
+}
+
+.consult-detail-modal__schedule-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consult-detail-modal__item-label {
+  font-size: 0.75rem;
+  color: var(--text-light, #7E9387);
+}
+
+.consult-detail-modal__item-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: var(--text-primary, #14241C);
+}
+
+.text-primary-green {
+  color: var(--primary-green, #1B6B50) !important;
+}
+
+.consult-detail-modal__mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #485E53);
+}
+
+/* Concern & Symptoms */
+.consult-detail-modal__concern-box,
+.consult-detail-modal__notes-box {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface-secondary, #F3F6F1);
+  border: 1px solid var(--border-color, #E2E8DE);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-primary, #14241C);
+}
+
+.consult-detail-modal__concern-desc {
+  margin: 0 0 10px 0;
+}
+
+.consult-detail-modal__symptoms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.consult-detail-modal__symptom-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Alerts */
+.consult-detail-modal__alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.consult-detail-modal__alert--danger {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+.consult-detail-modal__alert--success {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+/* Footer */
+.consult-detail-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-top: 1px solid var(--border-color, #E2E8DE);
+  background: var(--surface-secondary, #F3F6F1);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.consult-detail-modal__action-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consult-detail-modal__btn-reject {
+  color: #DC2626 !important;
+  border-color: #FCA5A5 !important;
+}
+
+.consult-detail-modal__btn-reject:hover {
+  background: #FEE2E2 !important;
+  border-color: #EF4444 !important;
+}
+
+.consult-detail-modal__btn-accept {
+  background: var(--primary-green, #1B6B50) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.28);
+}
+
+.consult-detail-modal__btn-accept:hover {
+  background: var(--primary-green-light, #2A8566) !important;
+}
+
+@media (max-width: 640px) {
+  .consult-detail-modal__schedule-card {
+    grid-template-columns: 1fr;
+  }
+  .consult-detail-modal__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .consult-detail-modal__action-group {
+    flex-direction: column;
+  }
+}

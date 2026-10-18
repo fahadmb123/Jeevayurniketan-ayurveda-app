@@ -19,6 +19,7 @@ import { DoctorLayout } from '@/shared/layout';
 
 // Domain-Specific Portal Feature Pages
 import { DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
+import { DoctorConsultationRequestsPage } from '@/features/consultations';
 import { DoctorPatientsPage } from '@/features/patients';
 import { DoctorAppointmentsPage } from '@/features/appointments';
 import { DoctorRecordsPage } from '@/features/records';
@@ -42,6 +43,7 @@ export const AppRoutes: React.FC = () => {
       {/* Doctor Portal Routes (Structured with persistent DoctorLayout & Outlet) */}
       <Route element={<DoctorLayout />}>
         <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
+        <Route path={ROUTES.DOCTOR_CONSULTATION_REQUESTS} element={<DoctorConsultationRequestsPage />} />
         <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
         <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />
         <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />

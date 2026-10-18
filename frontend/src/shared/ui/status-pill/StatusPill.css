@@ -26,3 +26,15 @@
   color: #15803D;
   border-color: #BBF7D0;
 }
+
+.app-status-pill--danger {
+  background-color: #FEF2F2;
+  color: #DC2626;
+  border-color: #FECACA;
+}
+
+.app-status-pill--neutral {
+  background-color: #F1F5F9;
+  color: #475569;
+  border-color: #E2E8F0;
+}

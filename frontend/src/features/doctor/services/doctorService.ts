@@ -1,11 +1,19 @@
 import React from 'react';
-import { Users, Calendar, FileText } from 'lucide-react';
+import { Users, Calendar, FileText, Inbox } from 'lucide-react';
 import type { DoctorStatItem } from '../types';
 import { appointmentService, type Appointment } from '@/features/appointments';
 import { patientService, type Patient } from '@/features/patients';
 import { recordsService, type ClinicalRecord } from '@/features/records';
 
 export const INITIAL_STATS: DoctorStatItem[] = [
+  {
+    id: 'consultation-requests',
+    title: 'Inbound Requests',
+    value: '3',
+    trend: 'Pending review',
+    variant: 'orange',
+    icon: React.createElement(Inbox, { size: 22 }),
+  },
   {
     id: 'total-patients',
     title: 'Total Patients',
@@ -24,10 +32,10 @@ export const INITIAL_STATS: DoctorStatItem[] = [
   },
   {
     id: 'pending-reports',
-    title: 'Pending Reports',
-    value: '5',
-    trend: 'Needs attention',
-    variant: 'orange',
+    title: 'Clinical Records',
+    value: '28',
+    trend: 'Updated today',
+    variant: 'green',
     icon: React.createElement(FileText, { size: 22 }),
   },
 ];

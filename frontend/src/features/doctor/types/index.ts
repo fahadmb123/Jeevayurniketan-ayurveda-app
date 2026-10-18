@@ -17,6 +17,7 @@ export interface DoctorNavItem {
   label: string;
   path: string;
   icon: React.ReactNode;
+  badge?: number | string;
 }
 
 export interface DoctorProfile {

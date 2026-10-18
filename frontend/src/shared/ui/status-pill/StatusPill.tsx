@@ -3,7 +3,7 @@ import './StatusPill.css';
 
 export interface StatusPillProps {
   status: string;
-  variant?: 'success' | 'pending' | 'info';
+  variant?: 'success' | 'pending' | 'info' | 'danger' | 'neutral';
   className?: string;
 }
 

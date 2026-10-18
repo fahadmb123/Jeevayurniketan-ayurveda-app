@@ -9,7 +9,7 @@ export const INITIAL_PATIENTS: Patient[] = [
 
 export const patientService = {
   async getPatients(): Promise<Patient[]> {
-    return INITIAL_PATIENTS;
+    return [...INITIAL_PATIENTS];
   },
 
   async addPatient(patient: Omit<Patient, 'id'>): Promise<Patient> {
@@ -17,6 +17,7 @@ export const patientService = {
       ...patient,
       id: Date.now(),
     };
+    INITIAL_PATIENTS.unshift(newPatient);
     return newPatient;
   },
 };

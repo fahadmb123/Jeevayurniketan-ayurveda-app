@@ -156,6 +156,25 @@
   display: none;
 }
 
+.doctor-sidebar__nav-badge {
+  margin-left: auto;
+  background: var(--accent-gold, #C98D3B);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  line-height: 1.2;
+}
+
+.doctor-sidebar--collapsed .doctor-sidebar__nav-badge {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  padding: 2px 5px;
+  font-size: 0.65rem;
+}
+
 .doctor-sidebar__footer {
   padding: 20px;
   border-top: 1px solid var(--border-color, #E2E8DE);
