@@ -21,7 +21,7 @@ const COMMON_REASONS = [
   'Insufficient clinical information provided',
 ];
 
-export const RejectReasonModal: React.FC<RejectReasonModalProps> = ({
+export const RejectReasonModal: React.FC<RejectReasonModalProps> = React.memo(({
   request,
   isOpen,
   onClose,
@@ -32,13 +32,17 @@ export const RejectReasonModal: React.FC<RejectReasonModalProps> = ({
   const [customReason, setCustomReason] = useState('');
   const [isCustom, setIsCustom] = useState(false);
 
-  if (!request) return null;
+  const handleConfirm = React.useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!request) return;
+      const finalReason = isCustom && customReason.trim() ? customReason.trim() : selectedReason;
+      onConfirmReject(request, finalReason);
+    },
+    [request, isCustom, customReason, selectedReason, onConfirmReject]
+  );
 
-  const handleConfirm = (e: React.FormEvent) => {
-    e.preventDefault();
-    const finalReason = isCustom && customReason.trim() ? customReason.trim() : selectedReason;
-    onConfirmReject(request, finalReason);
-  };
+  if (!request) return null;
 
   return (
     <AnimatePresence>
@@ -134,4 +138,6 @@ export const RejectReasonModal: React.FC<RejectReasonModalProps> = ({
       )}
     </AnimatePresence>
   );
-};
+});
+
+RejectReasonModal.displayName = 'RejectReasonModal';

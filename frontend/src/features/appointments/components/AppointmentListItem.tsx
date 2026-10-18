@@ -9,7 +9,7 @@ export interface AppointmentListItemProps {
   onStart?: (appointment: Appointment) => void;
 }
 
-export const AppointmentListItem: React.FC<AppointmentListItemProps> = ({
+export const AppointmentListItem: React.FC<AppointmentListItemProps> = React.memo(({
   appointment,
   onStart,
 }) => {
@@ -51,4 +51,6 @@ export const AppointmentListItem: React.FC<AppointmentListItemProps> = ({
       )}
     </motion.div>
   );
-};
+});
+
+AppointmentListItem.displayName = 'AppointmentListItem';

@@ -296,7 +296,7 @@ const YogaClassFormContent: React.FC<FormContentProps> = ({
   );
 };
 
-export const YogaClassModal: React.FC<YogaClassModalProps> = ({
+export const YogaClassModal: React.FC<YogaClassModalProps> = React.memo(({
   isOpen,
   onClose,
   onSave,
@@ -319,4 +319,6 @@ export const YogaClassModal: React.FC<YogaClassModalProps> = ({
       />
     </div>
   );
-};
+});
+
+YogaClassModal.displayName = 'YogaClassModal';

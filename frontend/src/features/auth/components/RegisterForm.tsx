@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Mail, Lock, User as UserIcon, Phone, UserPlus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import type { RegisterData } from '../types';
@@ -9,7 +9,7 @@ interface RegisterFormProps {
   onSwitchToLogin?: () => void;
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({
+export const RegisterForm: React.FC<RegisterFormProps> = React.memo(({
   onSubmit,
   isLoading = false,
   onSwitchToLogin,
@@ -20,11 +20,14 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'patient' | 'doctor'>('patient');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !password) return;
     onSubmit({ name, email, phone, password, role });
-  };
+  }, [name, email, phone, password, role, onSubmit]);
+
+  const handleRolePatient = useCallback(() => setRole('patient'), []);
+  const handleRoleDoctor = useCallback(() => setRole('doctor'), []);
 
   return (
     <form onSubmit={handleSubmit} className="auth-form">
@@ -78,14 +81,14 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <button
             type="button"
             className={`auth-form__role-btn ${role === 'patient' ? 'active' : ''}`}
-            onClick={() => setRole('patient')}
+            onClick={handleRolePatient}
           >
             Patient / Client
           </button>
           <button
             type="button"
             className={`auth-form__role-btn ${role === 'doctor' ? 'active' : ''}`}
-            onClick={() => setRole('doctor')}
+            onClick={handleRoleDoctor}
           >
             Doctor / Practitioner
           </button>
@@ -127,4 +130,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       )}
     </form>
   );
-};
+});
+
+RegisterForm.displayName = 'RegisterForm';
+

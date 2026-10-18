@@ -7,7 +7,7 @@ import { TeamSection } from '@/features/team';
 import { BlogSection } from '@/features/blog';
 import './HomePage.css';
 
-export const HomePage: React.FC = () => {
+export const HomePage: React.FC = React.memo(() => {
   return (
     <main className="home-page">
       <Navbar />
@@ -19,4 +19,7 @@ export const HomePage: React.FC = () => {
       <Footer />
     </main>
   );
-};
+});
+
+HomePage.displayName = 'HomePage';
+

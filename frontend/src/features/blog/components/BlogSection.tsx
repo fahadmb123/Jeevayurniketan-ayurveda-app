@@ -3,7 +3,7 @@ import { BlogPostCard } from './BlogPostCard';
 import { useBlogPosts } from '../hooks/useBlogPosts';
 import './BlogSection.css';
 
-export const BlogSection: React.FC = () => {
+export const BlogSection: React.FC = React.memo(() => {
   const { posts } = useBlogPosts();
 
   return (
@@ -23,4 +23,7 @@ export const BlogSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+BlogSection.displayName = 'BlogSection';
+

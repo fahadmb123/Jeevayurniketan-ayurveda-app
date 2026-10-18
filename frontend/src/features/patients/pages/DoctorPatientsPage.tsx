@@ -7,11 +7,15 @@ import { usePatients } from '../hooks/usePatients';
 import type { DoctorOutletContext } from '@/features/doctor';
 import './DoctorPatientsPage.css';
 
-export const DoctorPatientsPage: React.FC = () => {
+export const DoctorPatientsPage: React.FC = React.memo(() => {
   const context = useOutletContext<DoctorOutletContext>();
   const searchQuery = context?.searchQuery ?? '';
   const [activeFilter, setActiveFilter] = useState<PatientFilterOption>('All');
   const { patients } = usePatients();
+
+  const handleFilterChange = React.useCallback((filter: PatientFilterOption) => {
+    setActiveFilter(filter);
+  }, []);
 
   const filteredPatients = useMemo(() => {
     return patients.filter((patient) => {
@@ -41,7 +45,7 @@ export const DoctorPatientsPage: React.FC = () => {
         <div className="doctor-patients-card__toolbar">
           <PatientFilterTabs
             activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
+            onFilterChange={handleFilterChange}
             counts={counts}
           />
         </div>
@@ -60,4 +64,6 @@ export const DoctorPatientsPage: React.FC = () => {
       </Card>
     </div>
   );
-};
+});
+
+DoctorPatientsPage.displayName = 'DoctorPatientsPage';

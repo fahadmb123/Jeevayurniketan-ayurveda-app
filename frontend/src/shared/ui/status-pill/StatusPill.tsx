@@ -7,7 +7,7 @@ export interface StatusPillProps {
   className?: string;
 }
 
-export const StatusPill: React.FC<StatusPillProps> = ({
+export const StatusPill: React.FC<StatusPillProps> = React.memo(({
   status,
   variant = 'info',
   className = '',
@@ -17,4 +17,6 @@ export const StatusPill: React.FC<StatusPillProps> = ({
       {status}
     </span>
   );
-};
+});
+
+StatusPill.displayName = 'StatusPill';

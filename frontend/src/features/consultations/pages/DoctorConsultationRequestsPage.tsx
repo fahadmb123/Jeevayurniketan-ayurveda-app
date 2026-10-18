@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useOutletContext, Link } from 'react-router-dom';
 import {
   Inbox,
@@ -21,7 +21,7 @@ import type { DoctorOutletContext } from '@/shared/layout';
 import { ROUTES } from '@/shared/config/routes';
 import './DoctorConsultationRequestsPage.css';
 
-export const DoctorConsultationRequestsPage: React.FC = () => {
+export const DoctorConsultationRequestsPage: React.FC = React.memo(() => {
   const context = useOutletContext<DoctorOutletContext>();
   const globalSearchQuery = context?.searchQuery ?? '';
 
@@ -47,47 +47,61 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
   // Success toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const showToast = (message: string) => {
+  const showToast = useCallback((message: string) => {
     setToastMessage(message);
     setTimeout(() => {
       setToastMessage(null);
     }, 4500);
-  };
+  }, []);
 
-  const handleAccept = async (req: ConsultationRequest) => {
-    try {
-      setIsProcessing(true);
-      await acceptRequest(req.id);
-      if (detailRequest?.id === req.id) {
-        setDetailRequest(null);
+  const handleAccept = useCallback(
+    async (req: ConsultationRequest) => {
+      try {
+        setIsProcessing(true);
+        await acceptRequest(req.id);
+        setDetailRequest((prev) => (prev?.id === req.id ? null : prev));
+        showToast(`Request accepted! ${req.patientName} has been enrolled into your patient directory.`);
+      } catch {
+        // Handled
+      } finally {
+        setIsProcessing(false);
       }
-      showToast(`Request accepted! ${req.patientName} has been enrolled into your patient directory.`);
-    } catch {
-      // Handled
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+    },
+    [acceptRequest, showToast]
+  );
 
-  const handleOpenReject = (req: ConsultationRequest) => {
+  const handleOpenReject = useCallback((req: ConsultationRequest) => {
     setRejectingRequest(req);
-  };
+  }, []);
 
-  const handleConfirmReject = async (req: ConsultationRequest, reason: string) => {
-    try {
-      setIsProcessing(true);
-      await rejectRequest(req.id, reason);
-      setRejectingRequest(null);
-      if (detailRequest?.id === req.id) {
-        setDetailRequest(null);
+  const handleConfirmReject = useCallback(
+    async (req: ConsultationRequest, reason: string) => {
+      try {
+        setIsProcessing(true);
+        await rejectRequest(req.id, reason);
+        setRejectingRequest(null);
+        setDetailRequest((prev) => (prev?.id === req.id ? null : prev));
+        showToast(`Request for ${req.patientName} was declined.`);
+      } catch {
+        // Handled
+      } finally {
+        setIsProcessing(false);
       }
-      showToast(`Request for ${req.patientName} was declined.`);
-    } catch {
-      // Handled
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+    },
+    [rejectRequest, showToast]
+  );
+
+  const handleViewDetails = useCallback((req: ConsultationRequest) => {
+    setDetailRequest(req);
+  }, []);
+
+  const handleCloseDetail = useCallback(() => {
+    setDetailRequest(null);
+  }, []);
+
+  const handleCloseReject = useCallback(() => {
+    setRejectingRequest(null);
+  }, []);
 
   const servicesList = useMemo(() => {
     const set = new Set<string>();
@@ -95,7 +109,10 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
     return ['All', ...Array.from(set)];
   }, [requests]);
 
-  const effectiveSearch = localSearch.trim() || globalSearchQuery.trim();
+  const effectiveSearch = useMemo(
+    () => localSearch.trim() || globalSearchQuery.trim(),
+    [localSearch, globalSearchQuery]
+  );
 
   const filteredRequests = useMemo(() => {
     return requests.filter((r) => {
@@ -121,12 +138,15 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
     });
   }, [requests, activeFilter, selectedService, effectiveSearch]);
 
-  const counts = {
-    All: requests.length,
-    Pending: pendingCount,
-    Accepted: acceptedCount,
-    Rejected: rejectedCount,
-  };
+  const counts = useMemo(
+    () => ({
+      All: requests.length,
+      Pending: pendingCount,
+      Accepted: acceptedCount,
+      Rejected: rejectedCount,
+    }),
+    [requests.length, pendingCount, acceptedCount, rejectedCount]
+  );
 
   return (
     <div className="doctor-page-content doctor-consult-page">
@@ -255,7 +275,7 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
                 index={index}
                 onAccept={handleAccept}
                 onReject={handleOpenReject}
-                onViewDetails={(req) => setDetailRequest(req)}
+                onViewDetails={handleViewDetails}
                 isProcessing={isProcessing}
               />
             ))
@@ -277,7 +297,7 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
       <ConsultationDetailModal
         request={detailRequest}
         isOpen={Boolean(detailRequest)}
-        onClose={() => setDetailRequest(null)}
+        onClose={handleCloseDetail}
         onAccept={handleAccept}
         onReject={handleOpenReject}
         isProcessing={isProcessing}
@@ -287,10 +307,12 @@ export const DoctorConsultationRequestsPage: React.FC = () => {
       <RejectReasonModal
         request={rejectingRequest}
         isOpen={Boolean(rejectingRequest)}
-        onClose={() => setRejectingRequest(null)}
+        onClose={handleCloseReject}
         onConfirmReject={handleConfirmReject}
         isProcessing={isProcessing}
       />
     </div>
   );
-};
+});
+
+DoctorConsultationRequestsPage.displayName = 'DoctorConsultationRequestsPage';

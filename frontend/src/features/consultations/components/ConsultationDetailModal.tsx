@@ -28,7 +28,7 @@ export interface ConsultationDetailModalProps {
   isProcessing?: boolean;
 }
 
-export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = ({
+export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = React.memo(({
   request,
   isOpen,
   onClose,
@@ -36,10 +36,9 @@ export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = (
   onReject,
   isProcessing = false,
 }) => {
-  if (!request) return null;
-
-  const getStatusVariant = (status: ConsultationRequest['status']) => {
-    switch (status) {
+  const statusVariant = React.useMemo(() => {
+    if (!request) return 'info';
+    switch (request.status) {
       case 'accepted':
         return 'success';
       case 'pending':
@@ -49,7 +48,9 @@ export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = (
       default:
         return 'info';
     }
-  };
+  }, [request]);
+
+  if (!request) return null;
 
   return (
     <AnimatePresence>
@@ -74,7 +75,7 @@ export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = (
                     <h2 className="consult-detail-modal__name">{request.patientName}</h2>
                     <StatusPill
                       status={request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-                      variant={getStatusVariant(request.status)}
+                      variant={statusVariant}
                     />
                   </div>
                   <span className="consult-detail-modal__sub">
@@ -239,4 +240,6 @@ export const ConsultationDetailModal: React.FC<ConsultationDetailModalProps> = (
       )}
     </AnimatePresence>
   );
-};
+});
+
+ConsultationDetailModal.displayName = 'ConsultationDetailModal';

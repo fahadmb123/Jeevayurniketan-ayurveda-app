@@ -11,7 +11,7 @@ export interface BookAppointmentButtonProps {
   onBookSuccess?: (data: BookingFormData) => void;
 }
 
-export const BookAppointmentButton: React.FC<BookAppointmentButtonProps> = ({
+export const BookAppointmentButton: React.FC<BookAppointmentButtonProps> = React.memo(({
   label = 'Book Appointment',
   size = 'md',
   variant = 'primary',
@@ -20,22 +20,32 @@ export const BookAppointmentButton: React.FC<BookAppointmentButtonProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleOpen = React.useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const handleClose = React.useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
     <>
       <Button
         variant={variant}
         size={size}
         className={className}
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
       >
         {label}
       </Button>
 
       <BookAppointmentModal
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={handleClose}
         onSuccess={onBookSuccess}
       />
     </>
   );
-};
+});
+
+BookAppointmentButton.displayName = 'BookAppointmentButton';

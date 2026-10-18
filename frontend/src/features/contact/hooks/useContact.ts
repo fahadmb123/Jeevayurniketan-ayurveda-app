@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { contactService } from '../services/contactService';
 import type { ContactMessage } from '../types';
 
@@ -7,7 +7,7 @@ export const useContact = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const sendMessage = async (message: ContactMessage) => {
+  const sendMessage = useCallback(async (message: ContactMessage) => {
     setLoading(true);
     setError(null);
     try {
@@ -19,13 +19,13 @@ export const useContact = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setSuccess(false);
     setError(null);
     setLoading(false);
-  };
+  }, []);
 
   return { sendMessage, loading, success, error, reset };
 };

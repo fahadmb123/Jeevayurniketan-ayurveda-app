@@ -61,12 +61,12 @@ export const useYogaSchedule = () => {
   }, []);
 
   // Flash message helper
-  const showToast = (message: string) => {
+  const showToast = useCallback((message: string) => {
     setActionSuccessMessage(message);
     setTimeout(() => {
       setActionSuccessMessage(null);
     }, 3500);
-  };
+  }, []);
 
   // Filtered Sessions
   const filteredSessions = useMemo(() => {
@@ -108,22 +108,22 @@ export const useYogaSchedule = () => {
   }, [sessions, selectedDay, selectedFormat, selectedLevel, searchQuery]);
 
   // Handlers for Add / Edit / Delete
-  const handleOpenAddModal = () => {
+  const handleOpenAddModal = useCallback(() => {
     setEditingSession(null);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleOpenEditModal = (session: YogaSession) => {
+  const handleOpenEditModal = useCallback((session: YogaSession) => {
     setEditingSession(session);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setEditingSession(null);
-  };
+  }, []);
 
-  const handleSaveSession = async (formData: YogaFormData) => {
+  const handleSaveSession = useCallback(async (formData: YogaFormData) => {
     try {
       if (editingSession) {
         const updated = await yogaService.update(editingSession.id, formData);
@@ -141,9 +141,9 @@ export const useYogaSchedule = () => {
       console.error('Failed to save yoga session:', err);
       throw err;
     }
-  };
+  }, [editingSession, handleCloseModal, showToast]);
 
-  const handleDeleteSession = async (id: string, title: string) => {
+  const handleDeleteSession = useCallback(async (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to remove "${title}" from the yoga schedule?`)) {
       try {
         await yogaService.delete(id);
@@ -153,15 +153,15 @@ export const useYogaSchedule = () => {
         console.error('Failed to delete session:', err);
       }
     }
-  };
+  }, [showToast]);
 
-  const handleResetDefaults = async () => {
+  const handleResetDefaults = useCallback(async () => {
     if (window.confirm('Reset schedule to default Ayurvedic yoga timetable?')) {
       const defaults = await yogaService.resetDefaults();
       setSessions(defaults);
       showToast('Yoga schedule reset to default sessions.');
     }
-  };
+  }, [showToast]);
 
   return {
     sessions,

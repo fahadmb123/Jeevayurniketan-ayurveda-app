@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import { Card } from '@/shared/ui/card';
 import { Button } from '@/shared/ui/button';
 import { useContact } from '../hooks/useContact';
 import type { ContactMessage } from '../types';
 
-export const ContactForm: React.FC = () => {
+export const ContactForm: React.FC = React.memo(() => {
   const [form, setForm] = useState<ContactMessage>({ name: '', email: '', phone: '', message: '' });
   const { sendMessage, loading, success, reset } = useContact();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email) return;
     try {
@@ -21,7 +21,7 @@ export const ContactForm: React.FC = () => {
     } catch {
       // Handled in hook
     }
-  };
+  }, [form, sendMessage, reset]);
 
   return (
     <div className="contact-form-wrapper">
@@ -45,7 +45,7 @@ export const ContactForm: React.FC = () => {
                 required
                 placeholder="Full Name"
                 value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                onChange={(e) => setForm(prev => ({ ...prev, name: e.target.value }))}
               />
             </div>
 
@@ -57,7 +57,7 @@ export const ContactForm: React.FC = () => {
                 required
                 placeholder="you@example.com"
                 value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                onChange={(e) => setForm(prev => ({ ...prev, email: e.target.value }))}
               />
             </div>
 
@@ -68,7 +68,7 @@ export const ContactForm: React.FC = () => {
                 type="tel"
                 placeholder="+91..."
                 value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                onChange={(e) => setForm(prev => ({ ...prev, phone: e.target.value }))}
               />
             </div>
 
@@ -80,7 +80,7 @@ export const ContactForm: React.FC = () => {
                 required
                 placeholder="How can we assist you?"
                 value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                onChange={(e) => setForm(prev => ({ ...prev, message: e.target.value }))}
               />
             </div>
 
@@ -93,4 +93,7 @@ export const ContactForm: React.FC = () => {
       </Card>
     </div>
   );
-};
+});
+
+ContactForm.displayName = 'ContactForm';
+

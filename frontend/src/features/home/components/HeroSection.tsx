@@ -18,7 +18,7 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
 };
 
-export const HeroSection: React.FC = () => {
+export const HeroSection: React.FC = React.memo(() => {
   const { heroData } = useHome();
 
   return (
@@ -80,4 +80,7 @@ export const HeroSection: React.FC = () => {
       </motion.div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = 'HeroSection';
+

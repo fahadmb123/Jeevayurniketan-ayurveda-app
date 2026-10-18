@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
@@ -7,12 +7,12 @@ import { useAuth } from '../hooks/useAuth';
 import type { LoginCredentials } from '../types';
 import './AuthPages.css';
 
-export const LoginPage: React.FC = () => {
+export const LoginPage: React.FC = React.memo(() => {
   const navigate = useNavigate();
   const { login, loading, error: authError } = useAuth();
   const [localError, setLocalError] = useState<string | null>(null);
 
-  const handleLogin = async (credentials: LoginCredentials) => {
+  const handleLogin = useCallback(async (credentials: LoginCredentials) => {
     try {
       setLocalError(null);
       const user = await login(credentials);
@@ -24,7 +24,11 @@ export const LoginPage: React.FC = () => {
     } catch (err: unknown) {
       setLocalError(err instanceof Error ? err.message : 'Invalid credentials. Please try again.');
     }
-  };
+  }, [login, navigate]);
+
+  const handleSwitchToRegister = useCallback(() => {
+    navigate(ROUTES.REGISTER || '/register');
+  }, [navigate]);
 
   return (
     <div className="auth-page">
@@ -50,9 +54,12 @@ export const LoginPage: React.FC = () => {
         <LoginForm
           onSubmit={handleLogin}
           isLoading={loading}
-          onSwitchToRegister={() => navigate(ROUTES.REGISTER || '/register')}
+          onSwitchToRegister={handleSwitchToRegister}
         />
       </motion.div>
     </div>
   );
-};
+});
+
+LoginPage.displayName = 'LoginPage';
+

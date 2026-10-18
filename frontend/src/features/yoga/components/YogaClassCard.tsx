@@ -27,18 +27,18 @@ const ALL_DAYS_SHORT: { key: DayOfWeek; label: string }[] = [
   { key: 'Sunday', label: 'Sun' },
 ];
 
-export const YogaClassCard: React.FC<YogaClassCardProps> = ({
+export const YogaClassCard: React.FC<YogaClassCardProps> = React.memo(({
   session,
   onEdit,
   onDelete,
 }) => {
-  const getFormatIcon = () => {
+  const formatIcon = React.useMemo(() => {
     return session.format === 'online' ? <Video size={13} /> : <MapPin size={13} />;
-  };
+  }, [session.format]);
 
-  const getFormatLabel = () => {
+  const formatLabel = React.useMemo(() => {
     return session.format === 'online' ? 'Online' : 'Offline';
-  };
+  }, [session.format]);
 
   return (
     <article className="yoga-card" aria-label={session.title}>
@@ -54,8 +54,8 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
             <span
               className={`yoga-card__format-badge yoga-card__format-badge--${session.format}`}
             >
-              {getFormatIcon()}
-              {getFormatLabel()}
+              {formatIcon}
+              {formatLabel}
             </span>
             <span className="yoga-card__level-badge">{session.level}</span>
           </div>
@@ -148,4 +148,6 @@ export const YogaClassCard: React.FC<YogaClassCardProps> = ({
       </div>
     </article>
   );
-};
+});
+
+YogaClassCard.displayName = 'YogaClassCard';

@@ -3,8 +3,10 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card } from '@/shared/ui/card';
 import { contactService } from '../services/contactService';
 
-export const ContactInfo: React.FC = () => {
-  const info = contactService.getClinicInfo();
+const CLINIC_INFO = contactService.getClinicInfo();
+
+export const ContactInfo: React.FC = React.memo(() => {
+  const info = CLINIC_INFO;
 
   return (
     <div className="contact-info">
@@ -48,4 +50,7 @@ export const ContactInfo: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+ContactInfo.displayName = 'ContactInfo';
+

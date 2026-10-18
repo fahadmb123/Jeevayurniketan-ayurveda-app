@@ -8,7 +8,7 @@ export interface BlogPostCardProps {
   index: number;
 }
 
-export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, index }) => {
+export const BlogPostCard: React.FC<BlogPostCardProps> = React.memo(({ post, index }) => {
   return (
     <motion.article
       className="blog-card"
@@ -33,4 +33,7 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, index }) => {
       </div>
     </motion.article>
   );
-};
+});
+
+BlogPostCard.displayName = 'BlogPostCard';
+

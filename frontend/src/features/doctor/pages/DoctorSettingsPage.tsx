@@ -5,7 +5,7 @@ import { CheckCircle2, User, Bell, Shield, Clock } from 'lucide-react';
 import type { DoctorProfile } from '../types';
 import './DoctorSettingsPage.css';
 
-export const DoctorSettingsPage: React.FC = () => {
+export const DoctorSettingsPage: React.FC = React.memo(() => {
   const [profile, setProfile] = useState<DoctorProfile>({
     name: 'Dr. Sharma',
     specialty: 'Ayurvedic Psychotherapy & Smriti Meditation',
@@ -18,11 +18,11 @@ export const DoctorSettingsPage: React.FC = () => {
 
   const [saved, setSaved] = useState(false);
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = React.useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-  };
+  }, []);
 
   return (
     <div className="doctor-page-content">
@@ -144,4 +144,6 @@ export const DoctorSettingsPage: React.FC = () => {
           </form>
         </div>
   );
-};
+});
+
+DoctorSettingsPage.displayName = 'DoctorSettingsPage';

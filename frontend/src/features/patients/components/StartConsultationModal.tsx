@@ -12,7 +12,7 @@ export interface StartConsultationModalProps {
   onComplete?: (appointmentId: number) => void;
 }
 
-export const StartConsultationModal: React.FC<StartConsultationModalProps> = ({
+export const StartConsultationModal: React.FC<StartConsultationModalProps> = React.memo(({
   appointment,
   isOpen,
   onClose,
@@ -21,16 +21,17 @@ export const StartConsultationModal: React.FC<StartConsultationModalProps> = ({
   const [notes, setNotes] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
 
-  if (!appointment) return null;
-
-  const handleFinish = () => {
+  const handleFinish = React.useCallback(() => {
+    if (!appointment) return;
     setIsCompleted(true);
     setTimeout(() => {
       onComplete?.(appointment.id);
       setIsCompleted(false);
       onClose();
     }, 1000);
-  };
+  }, [appointment, onComplete, onClose]);
+
+  if (!appointment) return null;
 
   return (
     <AnimatePresence>
@@ -99,4 +100,6 @@ export const StartConsultationModal: React.FC<StartConsultationModalProps> = ({
       )}
     </AnimatePresence>
   );
-};
+});
+
+StartConsultationModal.displayName = 'StartConsultationModal';

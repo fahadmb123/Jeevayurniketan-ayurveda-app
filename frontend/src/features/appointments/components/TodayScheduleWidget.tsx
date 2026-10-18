@@ -14,21 +14,31 @@ export interface TodayScheduleWidgetProps {
   variants?: Variants;
 }
 
-export const TodayScheduleWidget: React.FC<TodayScheduleWidgetProps> = ({
+export const TodayScheduleWidget: React.FC<TodayScheduleWidgetProps> = React.memo(({
   appointments: propAppointments,
   onOpenCalendar,
   onStartAppointment,
   variants,
 }) => {
   const { appointments: hookAppointments } = useAppointments();
-  const appointments = propAppointments || hookAppointments;
+  const appointments = React.useMemo(
+    () => propAppointments || hookAppointments,
+    [propAppointments, hookAppointments]
+  );
 
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
 
-  const handleStart = (apt: Appointment) => {
-    setSelectedAppointment(apt);
-    onStartAppointment?.(apt);
-  };
+  const handleStart = React.useCallback(
+    (apt: Appointment) => {
+      setSelectedAppointment(apt);
+      onStartAppointment?.(apt);
+    },
+    [onStartAppointment]
+  );
+
+  const handleClose = React.useCallback(() => {
+    setSelectedAppointment(null);
+  }, []);
 
   return (
     <>
@@ -55,8 +65,10 @@ export const TodayScheduleWidget: React.FC<TodayScheduleWidgetProps> = ({
       <StartConsultationModal
         appointment={selectedAppointment}
         isOpen={Boolean(selectedAppointment)}
-        onClose={() => setSelectedAppointment(null)}
+        onClose={handleClose}
       />
     </>
   );
-};
+});
+
+TodayScheduleWidget.displayName = 'TodayScheduleWidget';

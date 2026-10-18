@@ -8,7 +8,7 @@ export interface TeamMemberCardProps {
   index: number;
 }
 
-export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member, index }) => {
+export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ member, index }) => {
   return (
     <motion.div
       className="team-card"
@@ -29,4 +29,6 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member, index })
       </div>
     </motion.div>
   );
-};
+});
+
+TeamMemberCard.displayName = 'TeamMemberCard';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import { DoctorSidebar, useDoctorSidebar, DoctorHeader } from '@/features/doctor';
 import { usePatients, type Patient } from '@/features/patients';
@@ -12,14 +12,28 @@ export interface DoctorOutletContext {
   handleAddPatient: (newPatient: Omit<Patient, 'id'>) => void;
 }
 
-export const DoctorLayout: React.FC = () => {
+export const DoctorLayout: React.FC = React.memo(() => {
   const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [searchQuery, setSearchQuery] = useState('');
   const { addPatient } = usePatients();
 
-  const handleAddPatient = (newPatient: Omit<Patient, 'id'>) => {
-    addPatient(newPatient);
-  };
+  const handleAddPatient = useCallback(
+    (newPatient: Omit<Patient, 'id'>) => {
+      addPatient(newPatient);
+    },
+    [addPatient]
+  );
+
+  const outletContext = useMemo<DoctorOutletContext>(
+    () => ({
+      searchQuery,
+      setSearchQuery,
+      isSidebarOpen,
+      toggleSidebar,
+      handleAddPatient,
+    }),
+    [searchQuery, isSidebarOpen, toggleSidebar, handleAddPatient]
+  );
 
   return (
     <div className="doctor-layout doctor-dashboard-layout doctor-page-layout">
@@ -37,16 +51,10 @@ export const DoctorLayout: React.FC = () => {
         />
 
         {/* Dynamic Nested Route Content */}
-        <Outlet
-          context={{
-            searchQuery,
-            setSearchQuery,
-            isSidebarOpen,
-            toggleSidebar,
-            handleAddPatient,
-          } satisfies DoctorOutletContext}
-        />
+        <Outlet context={outletContext} />
       </main>
     </div>
   );
-};
+});
+
+DoctorLayout.displayName = 'DoctorLayout';

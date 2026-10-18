@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useAbout } from '../hooks/useAbout';
 import './AboutSection.css';
 
-export const AboutSection: React.FC = () => {
+export const AboutSection: React.FC = React.memo(() => {
   const { features } = useAbout();
 
   return (
@@ -52,4 +52,7 @@ export const AboutSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+AboutSection.displayName = 'AboutSection';
+

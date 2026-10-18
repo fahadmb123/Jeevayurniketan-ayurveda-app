@@ -5,7 +5,7 @@ import { TeamSection } from '../components/TeamSection';
 import { Card } from '@/shared/ui/card';
 import './TeamPage.css';
 
-export const TeamPage: React.FC = () => {
+export const TeamPage: React.FC = React.memo(() => {
   return (
     <div className="team-page">
       <Navbar />
@@ -69,4 +69,7 @@ export const TeamPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+TeamPage.displayName = 'TeamPage';
+

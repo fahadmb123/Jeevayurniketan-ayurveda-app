@@ -19,8 +19,7 @@ import {
 } from '@/features/yoga';
 import './DoctorYogaSchedulePage.css';
 
-export const DoctorYogaSchedulePage: React.FC = () => {
-
+export const DoctorYogaSchedulePage: React.FC = React.memo(() => {
   const {
     sessions,
     filteredSessions,
@@ -45,10 +44,16 @@ export const DoctorYogaSchedulePage: React.FC = () => {
     handleResetDefaults,
   } = useYogaSchedule();
 
-  // Metrics
+  // Metrics memoized
   const totalClasses = sessions.length;
-  const inShalaCount = sessions.filter((s) => s.format === 'offline').length;
-  const onlineCount = sessions.filter((s) => s.format === 'online').length;
+  const inShalaCount = React.useMemo(
+    () => sessions.filter((s) => s.format === 'offline').length,
+    [sessions]
+  );
+  const onlineCount = React.useMemo(
+    () => sessions.filter((s) => s.format === 'online').length,
+    [sessions]
+  );
 
   return (
     <>
@@ -269,4 +274,6 @@ export const DoctorYogaSchedulePage: React.FC = () => {
       )}
     </>
   );
-};
+});
+
+DoctorYogaSchedulePage.displayName = 'DoctorYogaSchedulePage';

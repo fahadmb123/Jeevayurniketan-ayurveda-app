@@ -8,21 +8,31 @@ export interface AddPatientButtonProps {
   onAddPatient?: (patient: Omit<Patient, 'id'>) => void;
 }
 
-export const AddPatientButton: React.FC<AddPatientButtonProps> = ({ onAddPatient }) => {
+export const AddPatientButton: React.FC<AddPatientButtonProps> = React.memo(({ onAddPatient }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = React.useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const handleClose = React.useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   return (
     <>
-      <Button variant="primary" size="md" onClick={() => setIsOpen(true)}>
+      <Button variant="primary" size="md" onClick={handleOpen}>
         <Plus size={18} />
         <span>New Patient</span>
       </Button>
 
       <AddPatientModal
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={handleClose}
         onAddPatient={onAddPatient}
       />
     </>
   );
-};
+});
+
+AddPatientButton.displayName = 'AddPatientButton';

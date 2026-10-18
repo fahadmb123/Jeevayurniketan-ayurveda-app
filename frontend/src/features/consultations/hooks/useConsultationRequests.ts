@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import type { ConsultationRequest } from '../types';
 import { consultationService } from '../services/consultationService';
 
@@ -29,9 +29,21 @@ export const useConsultationRequests = () => {
     return await consultationService.rejectRequest(id, reason);
   }, []);
 
-  const pendingCount = requests.filter((r) => r.status === 'pending').length;
-  const acceptedCount = requests.filter((r) => r.status === 'accepted').length;
-  const rejectedCount = requests.filter((r) => r.status === 'rejected').length;
+  const { pendingCount, acceptedCount, rejectedCount } = useMemo(() => {
+    let pending = 0;
+    let accepted = 0;
+    let rejected = 0;
+    for (const r of requests) {
+      if (r.status === 'pending') pending++;
+      else if (r.status === 'accepted') accepted++;
+      else if (r.status === 'rejected') rejected++;
+    }
+    return {
+      pendingCount: pending,
+      acceptedCount: accepted,
+      rejectedCount: rejected,
+    };
+  }, [requests]);
 
   return {
     requests,

@@ -11,7 +11,7 @@ export interface AddPatientModalProps {
   onAddPatient?: (patient: Omit<Patient, 'id'>) => void;
 }
 
-export const AddPatientModal: React.FC<AddPatientModalProps> = ({
+export const AddPatientModal: React.FC<AddPatientModalProps> = React.memo(({
   isOpen,
   onClose,
   onAddPatient,
@@ -25,16 +25,19 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({
 
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      onAddPatient?.(formData);
-      setSubmitted(false);
-      onClose();
-    }, 1000);
-  };
+  const handleSubmit = React.useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!formData.name) return;
+      setSubmitted(true);
+      setTimeout(() => {
+        onAddPatient?.(formData);
+        setSubmitted(false);
+        onClose();
+      }, 1000);
+    },
+    [formData, onAddPatient, onClose]
+  );
 
   return (
     <AnimatePresence>
@@ -123,4 +126,6 @@ export const AddPatientModal: React.FC<AddPatientModalProps> = ({
       )}
     </AnimatePresence>
   );
-};
+});
+
+AddPatientModal.displayName = 'AddPatientModal';

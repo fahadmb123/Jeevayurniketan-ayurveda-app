@@ -12,7 +12,7 @@ export interface PatientListItemProps {
   onSelect?: (patient: Patient) => void;
 }
 
-export const PatientListItem: React.FC<PatientListItemProps> = ({
+export const PatientListItem: React.FC<PatientListItemProps> = React.memo(({
   patient,
   index,
   onSelect,
@@ -56,4 +56,6 @@ export const PatientListItem: React.FC<PatientListItemProps> = ({
       </div>
     </motion.div>
   );
-};
+});
+
+PatientListItem.displayName = 'PatientListItem';

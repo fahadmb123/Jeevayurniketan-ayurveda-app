@@ -3,7 +3,7 @@ import { ServiceCard } from './ServiceCard';
 import { useTreatments } from '../hooks/useTreatments';
 import './ServicesSection.css';
 
-export const ServicesSection: React.FC = () => {
+export const ServicesSection: React.FC = React.memo(() => {
   const { services } = useTreatments();
 
   return (
@@ -23,4 +23,6 @@ export const ServicesSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+ServicesSection.displayName = 'ServicesSection';

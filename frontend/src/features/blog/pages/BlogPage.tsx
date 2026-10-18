@@ -4,7 +4,7 @@ import { Navbar, Footer } from '@/shared/layout';
 import { BlogSection } from '../components/BlogSection';
 import './BlogPage.css';
 
-export const BlogPage: React.FC = () => {
+export const BlogPage: React.FC = React.memo(() => {
   return (
     <div className="blog-page">
       <Navbar />
@@ -42,4 +42,7 @@ export const BlogPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+BlogPage.displayName = 'BlogPage';
+

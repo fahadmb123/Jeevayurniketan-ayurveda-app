@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@/shared/context/ThemeContext';
 import { AppRoutes } from './routes';
 
-export const App: React.FC = () => {
+export const App: React.FC = React.memo(() => {
   return (
     <ThemeProvider>
       <Router>
@@ -13,4 +13,7 @@ export const App: React.FC = () => {
       </Router>
     </ThemeProvider>
   );
-};
+});
+
+App.displayName = 'App';
+

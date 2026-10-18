@@ -6,19 +6,30 @@ import { useAppointments } from '../hooks/useAppointments';
 import type { Appointment } from '../types';
 import './DoctorAppointmentsPage.css';
 
-export const DoctorAppointmentsPage: React.FC = () => {
+const UPCOMING_APPOINTMENTS: Appointment[] = [
+  { id: 10, time: '09:30', meridian: 'AM', patient: 'Deepak Nambiar', type: 'Smriti Follow-up', status: 'upcoming' },
+  { id: 11, time: '11:00', meridian: 'AM', patient: 'Fathima Zahra', type: 'Diet Evaluation', status: 'upcoming' },
+  { id: 12, time: '03:30', meridian: 'PM', patient: 'Dr. Suresh Raj', type: 'Clinical Consultation', status: 'upcoming', isVideo: true },
+];
+
+export const DoctorAppointmentsPage: React.FC = React.memo(() => {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [tab, setTab] = useState<'today' | 'upcoming'>('today');
 
   const { appointments: todayAppointments } = useAppointments();
 
-  const upcomingAppointments: Appointment[] = [
-    { id: 10, time: '09:30', meridian: 'AM', patient: 'Deepak Nambiar', type: 'Smriti Follow-up', status: 'upcoming' },
-    { id: 11, time: '11:00', meridian: 'AM', patient: 'Fathima Zahra', type: 'Diet Evaluation', status: 'upcoming' },
-    { id: 12, time: '03:30', meridian: 'PM', patient: 'Dr. Suresh Raj', type: 'Clinical Consultation', status: 'upcoming', isVideo: true },
-  ];
+  const handleStart = React.useCallback((item: Appointment) => {
+    setSelectedAppointment(item);
+  }, []);
 
-  const currentList = tab === 'today' ? todayAppointments : upcomingAppointments;
+  const handleClose = React.useCallback(() => {
+    setSelectedAppointment(null);
+  }, []);
+
+  const currentList = React.useMemo(
+    () => (tab === 'today' ? todayAppointments : UPCOMING_APPOINTMENTS),
+    [tab, todayAppointments]
+  );
 
   return (
     <div className="doctor-page-content">
@@ -39,7 +50,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
             className={`doctor-tab ${tab === 'upcoming' ? 'doctor-tab--active' : ''}`}
             onClick={() => setTab('upcoming')}
           >
-            Upcoming Dates ({upcomingAppointments.length})
+            Upcoming Dates ({UPCOMING_APPOINTMENTS.length})
           </button>
         </div>
 
@@ -48,7 +59,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
             <AppointmentListItem
               key={apt.id}
               appointment={apt}
-              onStart={(item) => setSelectedAppointment(item)}
+              onStart={handleStart}
             />
           ))}
         </div>
@@ -57,8 +68,10 @@ export const DoctorAppointmentsPage: React.FC = () => {
       <StartConsultationModal
         appointment={selectedAppointment}
         isOpen={Boolean(selectedAppointment)}
-        onClose={() => setSelectedAppointment(null)}
+        onClose={handleClose}
       />
     </div>
   );
-};
+});
+
+DoctorAppointmentsPage.displayName = 'DoctorAppointmentsPage';

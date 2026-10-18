@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { appointmentService } from '../services/appointmentService';
 import type { AppointmentConfirmation, BookingFormData } from '../types';
 
@@ -7,7 +7,7 @@ export const useBookAppointment = () => {
   const [confirmation, setConfirmation] = useState<AppointmentConfirmation | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const book = async (data: BookingFormData) => {
+  const book = useCallback(async (data: BookingFormData) => {
     setLoading(true);
     setError(null);
     try {
@@ -21,13 +21,13 @@ export const useBookAppointment = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setConfirmation(null);
     setError(null);
     setLoading(false);
-  };
+  }, []);
 
   return {
     book,

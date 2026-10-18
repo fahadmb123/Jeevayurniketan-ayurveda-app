@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import './Footer.css';
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC = React.memo(() => {
   return (
     <footer className="footer" id="contact">
       <div className="footer-container">
@@ -60,4 +60,6 @@ export const Footer: React.FC = () => {
       </a>
     </footer>
   );
-};
+});
+
+Footer.displayName = 'Footer';

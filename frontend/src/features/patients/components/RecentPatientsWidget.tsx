@@ -15,7 +15,7 @@ export interface RecentPatientsWidgetProps {
   searchFilter?: string;
 }
 
-export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = ({
+export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = React.memo(({
   patients: propPatients,
   onViewAll,
   onSelectPatient,
@@ -26,6 +26,10 @@ export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = ({
   const patients = propPatients || hookPatients;
 
   const [activeFilter, setActiveFilter] = useState<PatientFilterOption>('All');
+
+  const handleFilterChange = React.useCallback((filter: PatientFilterOption) => {
+    setActiveFilter(filter);
+  }, []);
 
   const filteredPatients = useMemo(() => {
     return patients.filter((patient) => {
@@ -59,7 +63,7 @@ export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = ({
         <div className="recent-patients-widget__filter-bar">
           <PatientFilterTabs
             activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
+            onFilterChange={handleFilterChange}
             counts={counts}
           />
         </div>
@@ -83,4 +87,6 @@ export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = ({
       </Card>
     </motion.section>
   );
-};
+});
+
+RecentPatientsWidget.displayName = 'RecentPatientsWidget';

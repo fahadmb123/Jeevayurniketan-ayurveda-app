@@ -12,7 +12,7 @@ export interface DoctorHeaderProps {
   onAddPatient?: (patient: Omit<Patient, 'id'>) => void;
 }
 
-export const DoctorHeader: React.FC<DoctorHeaderProps> = ({
+export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
   isSidebarOpen,
   onToggleSidebar,
   searchQuery = '',
@@ -33,7 +33,7 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = ({
         )}
         <SearchPatientsInput
           value={searchQuery}
-          onChange={(query) => onSearchChange?.(query)}
+          onChange={onSearchChange || (() => {})}
         />
       </div>
       <div className="doctor-header__actions">
@@ -42,4 +42,6 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = ({
       </div>
     </header>
   );
-};
+});
+
+DoctorHeader.displayName = 'DoctorHeader';

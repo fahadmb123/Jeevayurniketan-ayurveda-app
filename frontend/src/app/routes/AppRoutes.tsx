@@ -24,7 +24,7 @@ import { DoctorPatientsPage } from '@/features/patients';
 import { DoctorAppointmentsPage } from '@/features/appointments';
 import { DoctorRecordsPage } from '@/features/records';
 
-export const AppRoutes: React.FC = () => {
+export const AppRoutes: React.FC = React.memo(() => {
   return (
     <Routes>
       {/* Public Pages */}
@@ -55,4 +55,7 @@ export const AppRoutes: React.FC = () => {
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
-};
+});
+
+AppRoutes.displayName = 'AppRoutes';
+

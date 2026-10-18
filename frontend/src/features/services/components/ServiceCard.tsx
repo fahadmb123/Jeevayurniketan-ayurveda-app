@@ -8,7 +8,7 @@ export interface ServiceCardProps {
   index: number;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service, index }) => {
   return (
     <motion.div
       className="service-card"
@@ -24,4 +24,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       <button className="service-card__btn">Learn More &rarr;</button>
     </motion.div>
   );
-};
+});
+
+ServiceCard.displayName = 'ServiceCard';

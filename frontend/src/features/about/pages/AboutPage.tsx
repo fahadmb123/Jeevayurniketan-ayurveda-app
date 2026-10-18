@@ -7,7 +7,7 @@ import { Card } from '@/shared/ui/card';
 import { useAbout } from '../hooks/useAbout';
 import './AboutPage.css';
 
-export const AboutPage: React.FC = () => {
+export const AboutPage: React.FC = React.memo(() => {
   const { pillars } = useAbout();
 
   return (
@@ -72,4 +72,7 @@ export const AboutPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+AboutPage.displayName = 'AboutPage';
+

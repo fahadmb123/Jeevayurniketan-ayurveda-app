@@ -9,12 +9,23 @@ export interface SearchPatientsInputProps {
   className?: string;
 }
 
-export const SearchPatientsInput: React.FC<SearchPatientsInputProps> = ({
+export const SearchPatientsInput: React.FC<SearchPatientsInputProps> = React.memo(({
   value,
   onChange,
   placeholder = 'Search patients, records...',
   className = '',
 }) => {
+  const handleClear = React.useCallback(() => {
+    onChange('');
+  }, [onChange]);
+
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value);
+    },
+    [onChange]
+  );
+
   return (
     <div className={`search-patients-field ${className}`}>
       <Search size={18} className="search-patients-field__icon" />
@@ -22,13 +33,13 @@ export const SearchPatientsInput: React.FC<SearchPatientsInputProps> = ({
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={handleChange}
         className="search-patients-field__input"
       />
       {value && (
         <button
           className="search-patients-field__clear"
-          onClick={() => onChange('')}
+          onClick={handleClear}
           aria-label="Clear search"
         >
           <X size={14} />
@@ -36,4 +47,6 @@ export const SearchPatientsInput: React.FC<SearchPatientsInputProps> = ({
       )}
     </div>
   );
-};
+});
+
+SearchPatientsInput.displayName = 'SearchPatientsInput';

@@ -5,7 +5,7 @@ import { Navbar, Footer } from '@/shared/layout';
 import { Button } from '@/shared/ui/button';
 import './NotFoundPage.css';
 
-export const NotFoundPage: React.FC = () => {
+export const NotFoundPage: React.FC = React.memo(() => {
   return (
     <div className="not-found-page">
       <Navbar />
@@ -26,4 +26,7 @@ export const NotFoundPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+NotFoundPage.displayName = 'NotFoundPage';
+

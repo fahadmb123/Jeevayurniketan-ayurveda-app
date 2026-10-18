@@ -15,7 +15,7 @@ export interface ConsultationRequestCardProps {
   isProcessing?: boolean;
 }
 
-export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = ({
+export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = React.memo(({
   request,
   index,
   onAccept,
@@ -23,8 +23,8 @@ export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = (
   onViewDetails,
   isProcessing = false,
 }) => {
-  const getStatusVariant = (status: ConsultationRequest['status']) => {
-    switch (status) {
+  const statusVariant = React.useMemo(() => {
+    switch (request.status) {
       case 'accepted':
         return 'success';
       case 'pending':
@@ -34,9 +34,12 @@ export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = (
       default:
         return 'info';
     }
-  };
+  }, [request.status]);
 
-  const initial = request.patientName.charAt(0).toUpperCase();
+  const initial = React.useMemo(
+    () => request.patientName.charAt(0).toUpperCase(),
+    [request.patientName]
+  );
 
   return (
     <motion.div
@@ -69,7 +72,7 @@ export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = (
         <div className="consult-card__status-wrap">
           <StatusPill
             status={request.status.charAt(0).toUpperCase() + request.status.slice(1)}
-            variant={getStatusVariant(request.status)}
+            variant={statusVariant}
           />
           <span className="consult-card__time">
             <Clock size={12} /> {request.requestedAt}
@@ -165,4 +168,6 @@ export const ConsultationRequestCard: React.FC<ConsultationRequestCardProps> = (
       </div>
     </motion.div>
   );
-};
+});
+
+ConsultationRequestCard.displayName = 'ConsultationRequestCard';

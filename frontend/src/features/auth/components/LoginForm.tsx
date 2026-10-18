@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Mail, Lock, LogIn, ArrowRight } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import type { LoginCredentials } from '../types';
@@ -9,7 +9,7 @@ interface LoginFormProps {
   onSwitchToRegister?: () => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({
+export const LoginForm: React.FC<LoginFormProps> = React.memo(({
   onSubmit,
   isLoading = false,
   onSwitchToRegister,
@@ -18,11 +18,23 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) return;
     onSubmit({ email, password, rememberMe });
-  };
+  }, [email, password, rememberMe, onSubmit]);
+
+  const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, []);
+
+  const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  }, []);
+
+  const handleRememberMeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setRememberMe(e.target.checked);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="auth-form">
@@ -36,7 +48,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             required
             placeholder="doctor@jeevayurniketan.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
         </div>
       </div>
@@ -56,7 +68,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             required
             placeholder="••••••••"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
           />
         </div>
       </div>
@@ -66,7 +78,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <input
             type="checkbox"
             checked={rememberMe}
-            onChange={(e) => setRememberMe(e.target.checked)}
+            onChange={handleRememberMeChange}
           />
           <span>Remember me for 30 days</span>
         </label>
@@ -93,4 +105,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       )}
     </form>
   );
-};
+});
+
+LoginForm.displayName = 'LoginForm';
+

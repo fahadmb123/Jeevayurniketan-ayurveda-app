@@ -20,7 +20,7 @@ const cardItemVariants: Variants = {
   show: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
 };
 
-export const DoctorDashboardPage: React.FC = () => {
+export const DoctorDashboardPage: React.FC = React.memo(() => {
   const context = useOutletContext<DoctorOutletContext>();
   const searchQuery = context?.searchQuery ?? '';
   const { patients } = usePatients();
@@ -57,4 +57,6 @@ export const DoctorDashboardPage: React.FC = () => {
       </motion.div>
     </div>
   );
-};
+});
+
+DoctorDashboardPage.displayName = 'DoctorDashboardPage';

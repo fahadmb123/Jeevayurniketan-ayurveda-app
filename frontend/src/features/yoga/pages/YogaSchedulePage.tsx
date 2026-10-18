@@ -15,7 +15,7 @@ import { YogaClassModal } from '../components/YogaClassModal';
 import { YogaFilterBar } from '../components/YogaFilterBar';
 import './YogaSchedulePage.css';
 
-export const YogaSchedulePage: React.FC = () => {
+export const YogaSchedulePage: React.FC = React.memo(() => {
   const {
     filteredSessions,
     isLoading,
@@ -199,4 +199,7 @@ export const YogaSchedulePage: React.FC = () => {
       </div>
     </main>
   );
-};
+});
+
+YogaSchedulePage.displayName = 'YogaSchedulePage';
+

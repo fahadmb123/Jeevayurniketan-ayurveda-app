@@ -13,16 +13,16 @@ export interface ConsultationFilterTabsProps {
   };
 }
 
-export const ConsultationFilterTabs: React.FC<ConsultationFilterTabsProps> = ({
+const TABS: ConsultationFilterOption[] = ['All', 'Pending', 'Accepted', 'Rejected'];
+
+export const ConsultationFilterTabs: React.FC<ConsultationFilterTabsProps> = React.memo(({
   activeFilter,
   onFilterChange,
   counts,
 }) => {
-  const tabs: ConsultationFilterOption[] = ['All', 'Pending', 'Accepted', 'Rejected'];
-
   return (
     <div className="consult-filter-tabs" role="tablist">
-      {tabs.map((tab) => {
+      {TABS.map((tab) => {
         const isActive = activeFilter === tab;
         const count = counts[tab];
 
@@ -41,4 +41,6 @@ export const ConsultationFilterTabs: React.FC<ConsultationFilterTabsProps> = ({
       })}
     </div>
   );
-};
+});
+
+ConsultationFilterTabs.displayName = 'ConsultationFilterTabs';

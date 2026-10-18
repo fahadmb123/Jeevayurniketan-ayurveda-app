@@ -16,7 +16,7 @@ interface YogaFilterBarProps {
   onResetDefaults?: () => void;
 }
 
-export const YogaFilterBar: React.FC<YogaFilterBarProps> = ({
+export const YogaFilterBar: React.FC<YogaFilterBarProps> = React.memo(({
   searchQuery,
   onSearchChange,
   selectedDay,
@@ -120,4 +120,6 @@ export const YogaFilterBar: React.FC<YogaFilterBarProps> = ({
       </div>
     </div>
   );
-};
+});
+
+YogaFilterBar.displayName = 'YogaFilterBar';

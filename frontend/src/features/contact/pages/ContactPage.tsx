@@ -5,7 +5,7 @@ import { ContactInfo } from '../components/ContactInfo';
 import { ContactForm } from '../components/ContactForm';
 import './ContactPage.css';
 
-export const ContactPage: React.FC = () => {
+export const ContactPage: React.FC = React.memo(() => {
   return (
     <div className="contact-page">
       <Navbar />
@@ -50,4 +50,7 @@ export const ContactPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+ContactPage.displayName = 'ContactPage';
+

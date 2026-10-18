@@ -3,7 +3,7 @@ import { TeamMemberCard } from './TeamMemberCard';
 import { useTeam } from '../hooks/useTeam';
 import './TeamSection.css';
 
-export const TeamSection: React.FC = () => {
+export const TeamSection: React.FC = React.memo(() => {
   const { members } = useTeam();
 
   return (
@@ -23,4 +23,7 @@ export const TeamSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+TeamSection.displayName = 'TeamSection';
+

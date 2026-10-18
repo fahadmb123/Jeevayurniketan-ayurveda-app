@@ -12,7 +12,7 @@ export interface PatientFilterTabsProps {
 
 const FILTER_OPTIONS: PatientFilterOption[] = ['All', 'In treatment', 'Recovered', 'Consultation'];
 
-export const PatientFilterTabs: React.FC<PatientFilterTabsProps> = ({
+export const PatientFilterTabs: React.FC<PatientFilterTabsProps> = React.memo(({
   activeFilter,
   onFilterChange,
   counts,
@@ -38,4 +38,6 @@ export const PatientFilterTabs: React.FC<PatientFilterTabsProps> = ({
       })}
     </div>
   );
-};
+});
+
+PatientFilterTabs.displayName = 'PatientFilterTabs';

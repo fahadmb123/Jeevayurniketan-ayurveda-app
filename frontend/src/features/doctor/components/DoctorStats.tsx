@@ -21,9 +21,9 @@ const cardVariants: Variants = {
   show: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
 };
 
-export const DoctorStats: React.FC<DoctorStatsProps> = ({ stats: propStats }) => {
+export const DoctorStats: React.FC<DoctorStatsProps> = React.memo(({ stats: propStats }) => {
   const { stats: hookStats } = useDoctorStats();
-  const stats = propStats || hookStats;
+  const stats = React.useMemo(() => propStats || hookStats, [propStats, hookStats]);
 
   return (
     <motion.div
@@ -52,4 +52,6 @@ export const DoctorStats: React.FC<DoctorStatsProps> = ({ stats: propStats }) =>
       ))}
     </motion.div>
   );
-};
+});
+
+DoctorStats.displayName = 'DoctorStats';

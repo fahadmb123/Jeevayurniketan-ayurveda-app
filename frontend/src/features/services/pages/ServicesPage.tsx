@@ -7,7 +7,7 @@ import { Card } from '@/shared/ui/card';
 import { useTreatments } from '../hooks/useTreatments';
 import './ServicesPage.css';
 
-export const ServicesPage: React.FC = () => {
+export const ServicesPage: React.FC = React.memo(() => {
   const { faqs } = useTreatments();
 
   return (
@@ -71,4 +71,7 @@ export const ServicesPage: React.FC = () => {
       <Footer />
     </div>
   );
-};
+});
+
+ServicesPage.displayName = 'ServicesPage';
+

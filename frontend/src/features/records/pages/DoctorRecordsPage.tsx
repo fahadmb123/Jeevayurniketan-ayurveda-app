@@ -5,7 +5,7 @@ import { FileText, Download, Calendar, User } from 'lucide-react';
 import { useClinicalRecords } from '../hooks/useClinicalRecords';
 import './DoctorRecordsPage.css';
 
-export const DoctorRecordsPage: React.FC = () => {
+export const DoctorRecordsPage: React.FC = React.memo(() => {
   const { records } = useClinicalRecords();
 
   return (
@@ -65,4 +65,6 @@ export const DoctorRecordsPage: React.FC = () => {
       </Card>
     </div>
   );
-};
+});
+
+DoctorRecordsPage.displayName = 'DoctorRecordsPage';

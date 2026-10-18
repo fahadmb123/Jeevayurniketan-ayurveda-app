@@ -12,7 +12,7 @@ export interface BookAppointmentModalProps {
   onSuccess?: (data: BookingFormData) => void;
 }
 
-export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
+export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = React.memo(({
   isOpen,
   onClose,
   onSuccess,
@@ -28,21 +28,24 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
   const { book, loading } = useBookAppointment();
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.phone) return;
-    try {
-      await book(formData);
-      setSubmitted(true);
-      setTimeout(() => {
-        onSuccess?.(formData);
-        setSubmitted(false);
-        onClose();
-      }, 1400);
-    } catch {
-      // Handled in hook
-    }
-  };
+  const handleSubmit = React.useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!formData.fullName || !formData.phone) return;
+      try {
+        await book(formData);
+        setSubmitted(true);
+        setTimeout(() => {
+          onSuccess?.(formData);
+          setSubmitted(false);
+          onClose();
+        }, 1400);
+      } catch {
+        // Handled in hook
+      }
+    },
+    [formData, book, onSuccess, onClose]
+  );
 
   return (
     <AnimatePresence>
@@ -152,4 +155,6 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
       )}
     </AnimatePresence>
   );
-};
+});
+
+BookAppointmentModal.displayName = 'BookAppointmentModal';
