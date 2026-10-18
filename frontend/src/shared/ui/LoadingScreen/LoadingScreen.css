@@ -1,7 +1,7 @@
 /* ==========================================================================
    LoadingScreen Component Styles
-   Full covered, tranquil light green background, logo static & centered.
-   No animations (no zooming in / zooming out).
+   Full covered, tranquil light green background, logo centered.
+   Clean, simple Amazon/Flipkart-style soft pulse animation (no zooming).
    ========================================================================== */
 
 .loading-screen {
@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Clean, serene Kerala Ayurveda light green background */
+  /* Clean, tranquil Kerala Ayurveda light green background */
   background-color: #ebf7ed;
   margin: 0;
   padding: 0;
@@ -37,13 +37,26 @@
   z-index: 10;
 }
 
-/* Logo SVG Element - completely static, no zooming animation */
+/* Logo with simple, clean Amazon/Flipkart-style pulse (pure opacity, zero zoom) */
 .loading-screen__logo {
   width: 260px;
   height: auto;
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
+  animation: logoPulse 1.6s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    opacity: 0.55;
+    filter: drop-shadow(0 4px 14px rgba(27, 107, 80, 0.08));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 8px 24px rgba(27, 107, 80, 0.2));
+  }
 }
 
 /* Mobile Responsiveness */
