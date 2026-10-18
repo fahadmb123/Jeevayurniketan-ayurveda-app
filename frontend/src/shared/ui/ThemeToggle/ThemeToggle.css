@@ -1,153 +1,71 @@
-.astro-theme-toggle {
+.contrast-theme-toggle {
   position: relative;
   display: inline-flex;
   align-items: center;
-  width: 58px;
-  height: 34px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   padding: 0;
   background: transparent;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   outline: none;
   user-select: none;
   vertical-align: middle;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
-.astro-theme-toggle:focus-visible {
-  outline: 2px solid #00F0FF;
+.contrast-theme-toggle:focus-visible {
+  outline: 2px solid var(--primary-green, #1B6B50);
   outline-offset: 3px;
-  border-radius: 9999px;
+  border-radius: 50%;
 }
 
-/* Hollow Gradient Outline Pill Track */
-.astro-theme-toggle__track {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 6px;
-  bottom: 6px;
-  border-radius: 9999px;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  box-sizing: border-box;
+.contrast-theme-toggle:hover {
+  transform: scale(1.08);
 }
 
-/* Light / Sun State Track (Sunset Orange to Violet Magenta Outline) */
-.astro-theme-toggle--light .astro-theme-toggle__track {
-  border: 2.5px solid transparent;
-  background: 
-    linear-gradient(#0A1124, #0A1124) padding-box, 
-    linear-gradient(90deg, #FF6B35 0%, #FA462A 35%, #E6227B 70%, #8E2DE2 100%) border-box;
-  box-shadow: 0 0 10px rgba(255, 107, 53, 0.25);
+.contrast-theme-toggle:active {
+  transform: scale(0.92);
 }
 
-/* Dark / Moon State Track (Royal Blue to Electric Cyan Outline) */
-.astro-theme-toggle--dark .astro-theme-toggle__track {
-  border: 2.5px solid transparent;
-  background: 
-    linear-gradient(#0A1124, #0A1124) padding-box, 
-    linear-gradient(90deg, #1A3FE2 0%, #2968FF 35%, #00B4D8 75%, #00F0FF 100%) border-box;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-}
-
-/* Gradient Knob (Thumb) with Silhouette Icon */
-.astro-theme-toggle__thumb {
-  position: absolute;
-  top: 1px;
-  left: 0;
-  width: 32px;
-  height: 32px;
+/* Rotating Inner Disc containing the Geometric Contrast Circles */
+.contrast-theme-toggle__disc {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  transition: 
-    transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1),
-    background 0.35s ease,
-    box-shadow 0.35s ease;
+  transition: transform 0.48s cubic-bezier(0.34, 1.25, 0.64, 1), box-shadow 0.35s ease;
+  will-change: transform;
 }
 
-/* Light Mode: Thumb on Left with Sun Gradient */
-.astro-theme-toggle--light .astro-theme-toggle__thumb {
-  transform: translateX(0);
-  background: linear-gradient(135deg, #FFA03A 0%, #FF512F 45%, #B3207E 100%);
-  box-shadow: 
-    0 3px 12px rgba(255, 81, 47, 0.5),
-    0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Dark Mode: Thumb on Right with Cyan-Blue Gradient */
-.astro-theme-toggle--dark .astro-theme-toggle__thumb {
-  transform: translateX(26px);
-  background: linear-gradient(135deg, #00F5FF 0%, #0099FF 50%, #0055FE 100%);
-  box-shadow: 
-    0 3px 14px rgba(0, 153, 255, 0.6),
-    0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Morphing Stage for Smooth Icon Rotation & Scaling */
-.astro-theme-toggle__icons-stage {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.astro-theme-toggle__icon {
-  position: absolute;
-  inset: 0;
+.contrast-theme-toggle__svg {
   width: 100%;
   height: 100%;
-  color: #070D1E;
-  transition: transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1), opacity 0.3s ease;
-  will-change: transform, opacity;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.18));
 }
 
-/* Light Mode: Sun is active, Moon is hidden */
-.astro-theme-toggle--light .astro-theme-toggle__icon--sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
+/* Light Mode: 0deg rotation */
+.contrast-theme-toggle--light .contrast-theme-toggle__disc {
+  transform: rotate(0deg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
-.astro-theme-toggle--light .astro-theme-toggle__icon--moon {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.3);
-  pointer-events: none;
+.contrast-theme-toggle--light:hover .contrast-theme-toggle__disc {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-/* Dark Mode: Moon is active, Sun is hidden */
-.astro-theme-toggle--dark .astro-theme-toggle__icon--sun {
-  opacity: 0;
-  transform: rotate(120deg) scale(0.3);
-  pointer-events: none;
+/* Dark Mode: 180deg rotation matching Image 2 */
+.contrast-theme-toggle--dark .contrast-theme-toggle__disc {
+  transform: rotate(180deg);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.astro-theme-toggle--dark .astro-theme-toggle__icon--moon {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.astro-theme-toggle--light:hover .astro-theme-toggle__thumb {
-  box-shadow: 
-    0 4px 16px rgba(255, 81, 47, 0.7),
-    0 1px 4px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.06);
-}
-
-.astro-theme-toggle--dark:hover .astro-theme-toggle__thumb {
-  box-shadow: 
-    0 4px 18px rgba(0, 245, 255, 0.75),
-    0 1px 4px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.06);
-}
-
-.astro-theme-toggle:active .astro-theme-toggle__thumb {
-  transform: scale(0.94) translateX(var(--astro-pos, 0));
-}
-
-.astro-theme-toggle--dark:active .astro-theme-toggle__thumb {
-  transform: scale(0.94) translateX(27.5px);
+.contrast-theme-toggle--dark:hover .contrast-theme-toggle__disc {
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.38), 0 3px 10px rgba(0, 0, 0, 0.6);
 }
