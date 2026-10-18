@@ -7,8 +7,10 @@ import { NotFoundMiddleware } from './presentation/middlewares/NotFoundMiddlewar
 import { ErrorMiddleware } from './presentation/middlewares/ErrorMiddleware.js';
 import { RootController } from './presentation/controllers/RootController.js';
 import { HealthController } from './presentation/controllers/HealthController.js';
+import { DoctorController } from './presentation/doctor/doctor.controller.js';
 import { RootRoutes } from './presentation/routes/RootRoutes.js';
 import { HealthRoutes } from './presentation/routes/HealthRoutes.js';
+import { DoctorRoutes } from './presentation/doctor/doctor.routes.js';
 import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
 import type { IRoute } from './presentation/routes/IRoute.js';
 import { SystemHealthRepository } from './infrastructure/repositories/SystemHealthRepository.js';
@@ -34,11 +36,13 @@ export class App {
 
     const rootController = new RootController(config);
     const healthController = new HealthController(healthService);
+    const doctorController = new DoctorController();
 
     const rootRoutes = new RootRoutes(rootController);
     const healthRoutes = new HealthRoutes(healthController);
+    const doctorRoutes = new DoctorRoutes(doctorController);
 
-    const apiRoutes = new ApiRoutes(rootController, [healthRoutes]);
+    const apiRoutes = new ApiRoutes(rootController, [healthRoutes, doctorRoutes]);
 
     const errorMiddleware = new ErrorMiddleware(config);
 
