@@ -1,20 +1,23 @@
-import { Router } from 'express';
+import { BaseRoute } from './BaseRoute.js';
 import { RootController } from '../controllers/RootController.js';
-import { HealthRoutes } from './HealthRoutes.js';
+import type { IRoute } from './IRoute.js';
 
-export class ApiRoutes {
-  public readonly router: Router;
+export class ApiRoutes extends BaseRoute {
+  private readonly subRoutes: IRoute[];
 
   constructor(
     private readonly rootController: RootController,
-    private readonly healthRoutes: HealthRoutes
+    subRoutes: IRoute[]
   ) {
-    this.router = Router();
+    super('/api');
+    this.subRoutes = subRoutes;
     this.initializeRoutes();
   }
 
-  private initializeRoutes(): void {
+  protected initializeRoutes(): void {
     this.router.get('/', this.rootController.getApiIndex);
-    this.router.use('/health', this.healthRoutes.router);
+    for (const subRoute of this.subRoutes) {
+      this.router.use(subRoute.path, subRoute.router);
+    }
   }
 }

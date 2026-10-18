@@ -1,15 +1,13 @@
-import { Router } from 'express';
+import { BaseRoute } from './BaseRoute.js';
 import { RootController } from '../controllers/RootController.js';
 
-export class RootRoutes {
-  public readonly router: Router;
-
+export class RootRoutes extends BaseRoute {
   constructor(private readonly rootController: RootController) {
-    this.router = Router();
+    super('/');
     this.initializeRoutes();
   }
 
-  private initializeRoutes(): void {
+  protected initializeRoutes(): void {
     this.router.get('/', this.rootController.getRoot);
   }
 }

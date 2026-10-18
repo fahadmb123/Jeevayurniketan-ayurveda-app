@@ -1,15 +1,13 @@
-import { Router } from 'express';
+import { BaseRoute } from './BaseRoute.js';
 import { HealthController } from '../controllers/HealthController.js';
 
-export class HealthRoutes {
-  public readonly router: Router;
-
+export class HealthRoutes extends BaseRoute {
   constructor(private readonly healthController: HealthController) {
-    this.router = Router();
+    super('/health');
     this.initializeRoutes();
   }
 
-  private initializeRoutes(): void {
+  protected initializeRoutes(): void {
     this.router.get('/', this.healthController.getHealth);
   }
 }
