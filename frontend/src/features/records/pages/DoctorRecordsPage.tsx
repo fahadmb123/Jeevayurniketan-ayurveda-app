@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
+import React from 'react';
+import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { StatusPill } from '@/shared/ui/status-pill';
 import { FileText, Download, Calendar, User } from 'lucide-react';
@@ -7,10 +7,8 @@ import { useClinicalRecords } from '../hooks/useClinicalRecords';
 import './DoctorRecordsPage.css';
 
 export const DoctorRecordsPage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const { records } = useClinicalRecords();
-
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   return (
     <div className="doctor-page-layout">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Sparkles,
@@ -11,7 +11,7 @@ import {
   Inbox,
   RotateCcw,
 } from 'lucide-react';
-import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
+import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
 import {
   useYogaSchedule,
   YogaClassCard,
@@ -21,8 +21,7 @@ import {
 import './DoctorYogaSchedulePage.css';
 
 export const DoctorYogaSchedulePage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
 
   const {
     sessions,

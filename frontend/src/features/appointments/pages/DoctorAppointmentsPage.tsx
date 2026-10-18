@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
+import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { AppointmentListItem } from '../components/AppointmentListItem';
 import { StartConsultationModal } from '@/features/patients';
@@ -8,13 +8,11 @@ import type { Appointment } from '../types';
 import './DoctorAppointmentsPage.css';
 
 export const DoctorAppointmentsPage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [tab, setTab] = useState<'today' | 'upcoming'>('today');
 
   const { appointments: todayAppointments } = useAppointments();
-
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const upcomingAppointments: Appointment[] = [
     { id: 10, time: '09:30', meridian: 'AM', patient: 'Deepak Nambiar', type: 'Smriti Follow-up', status: 'upcoming' },

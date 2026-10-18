@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DoctorSidebar } from '../components/DoctorSidebar';
+import { DoctorSidebar, useDoctorSidebar } from '../components/DoctorSidebar';
 import { DoctorHeader } from '../components/DoctorHeader';
 import { Card } from '@/shared/ui/card';
 import { Button } from '@/shared/ui/button';
@@ -8,7 +8,7 @@ import type { DoctorProfile } from '../types';
 import './DoctorSettingsPage.css';
 
 export const DoctorSettingsPage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [profile, setProfile] = useState<DoctorProfile>({
     name: 'Dr. Sharma',
     specialty: 'Ayurvedic Psychotherapy & Smriti Meditation',
@@ -20,8 +20,6 @@ export const DoctorSettingsPage: React.FC = () => {
   });
 
   const [saved, setSaved] = useState(false);
-
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();

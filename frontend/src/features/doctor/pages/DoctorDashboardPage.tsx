@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { DoctorSidebar } from '../components/DoctorSidebar';
+import { DoctorSidebar, useDoctorSidebar } from '../components/DoctorSidebar';
 import { DoctorHeader } from '../components/DoctorHeader';
 import { DoctorStats } from '../components/DoctorStats';
 import { RecentPatientsWidget, usePatients, type Patient } from '@/features/patients';
@@ -21,11 +21,9 @@ const cardItemVariants: Variants = {
 };
 
 export const DoctorDashboardPage: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [searchQuery, setSearchQuery] = useState('');
   const { patients, addPatient } = usePatients();
-
-  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   const handleAddPatient = (newPatient: Omit<Patient, 'id'>) => {
     addPatient(newPatient);

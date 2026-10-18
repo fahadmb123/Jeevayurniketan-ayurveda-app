@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, ChevronLeft, Activity, Users, Calendar, Sparkles, FileText, Settings } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
@@ -10,6 +9,29 @@ export interface DoctorSidebarProps {
   isOpen: boolean;
   onToggle: () => void;
 }
+
+// Shared persistent state so sidebar state is preserved across route changes without re-animation
+let globalSidebarOpen = true;
+const sidebarListeners = new Set<(open: boolean) => void>();
+
+export const useDoctorSidebar = () => {
+  const [isOpen, setIsOpen] = useState(globalSidebarOpen);
+
+  useEffect(() => {
+    const listener = (open: boolean) => setIsOpen(open);
+    sidebarListeners.add(listener);
+    return () => {
+      sidebarListeners.delete(listener);
+    };
+  }, []);
+
+  const toggle = useCallback(() => {
+    globalSidebarOpen = !globalSidebarOpen;
+    sidebarListeners.forEach((l) => l(globalSidebarOpen));
+  }, []);
+
+  return [isOpen, toggle] as const;
+};
 
 const DOCTOR_NAV_ITEMS: DoctorNavItem[] = [
   { id: 'dashboard', label: 'Dashboard', path: ROUTES.DOCTOR, icon: <Activity size={20} /> },
@@ -24,22 +46,15 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({ isOpen, onToggle }
   const location = useLocation();
 
   return (
-    <motion.aside
-      className="doctor-sidebar"
-      animate={{ width: isOpen ? 260 : 80 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-    >
+    <aside className={`doctor-sidebar ${!isOpen ? 'doctor-sidebar--collapsed' : ''}`}>
       <div className={`doctor-sidebar__logo-container ${!isOpen ? 'doctor-sidebar__logo-container--collapsed' : ''}`}>
         <div className="doctor-sidebar__logo">
-          {isOpen ? (
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              Jeeva<span className="doctor-sidebar__highlight">Ayur</span>
-            </motion.h2>
-          ) : (
-            <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              J<span className="doctor-sidebar__highlight">A</span>
-            </motion.h2>
-          )}
+          <h2 className="doctor-sidebar__logo-full">
+            Jeeva<span className="doctor-sidebar__highlight">Ayur</span>
+          </h2>
+          <h2 className="doctor-sidebar__logo-short">
+            J<span className="doctor-sidebar__highlight">A</span>
+          </h2>
         </div>
         <button
           className="doctor-sidebar__collapse-btn"
@@ -59,21 +74,10 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({ isOpen, onToggle }
               key={item.id}
               to={item.path}
               className={`doctor-sidebar__nav-item ${isActive ? 'doctor-sidebar__nav-item--active' : ''} ${!isOpen ? 'doctor-sidebar__nav-item--collapsed' : ''}`}
+              title={!isOpen ? item.label : undefined}
             >
               <div className="doctor-sidebar__nav-icon">{item.icon}</div>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.span
-                    className="doctor-sidebar__nav-text"
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: 'auto' }}
-                    exit={{ opacity: 0, width: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item.label}
-                  </motion.span>
-                )}
-              </AnimatePresence>
+              <span className="doctor-sidebar__nav-text">{item.label}</span>
             </Link>
           );
         })}
@@ -82,18 +86,12 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({ isOpen, onToggle }
       <div className="doctor-sidebar__footer">
         <div className="doctor-sidebar__profile">
           <div className="doctor-sidebar__profile-avatar">S</div>
-          {isOpen && (
-            <motion.div
-              className="doctor-sidebar__profile-info"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <span className="doctor-sidebar__profile-name">Dr. Sharma</span>
-              <span className="doctor-sidebar__profile-role">Specialist</span>
-            </motion.div>
-          )}
+          <div className="doctor-sidebar__profile-info">
+            <span className="doctor-sidebar__profile-name">Dr. Sharma</span>
+            <span className="doctor-sidebar__profile-role">Specialist</span>
+          </div>
         </div>
       </div>
-    </motion.aside>
+    </aside>
   );
 };
