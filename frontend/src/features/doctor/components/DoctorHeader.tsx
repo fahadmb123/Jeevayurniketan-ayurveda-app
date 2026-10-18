@@ -1,7 +1,10 @@
-import React from 'react';
-import { Menu } from 'lucide-react';
-import { SearchPatientsInput, AddPatientButton, type Patient } from '@/features/patients';
+import React, { useCallback } from 'react';
+import { Menu, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { SearchPatientsInput } from '@/features/patients';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
+import { useAuth } from '@/features/auth';
+import { ROUTES } from '@/shared/config/routes';
 import './DoctorHeader.css';
 
 export interface DoctorHeaderProps {
@@ -9,7 +12,6 @@ export interface DoctorHeaderProps {
   onToggleSidebar: () => void;
   searchQuery?: string;
   onSearchChange?: (query: string) => void;
-  onAddPatient?: (patient: Omit<Patient, 'id'>) => void;
 }
 
 export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
@@ -17,8 +19,18 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
   onToggleSidebar,
   searchQuery = '',
   onSearchChange,
-  onAddPatient,
 }) => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await logout();
+    } finally {
+      navigate(ROUTES.LOGIN);
+    }
+  }, [logout, navigate]);
+
   return (
     <header className="doctor-header">
       <div className="doctor-header__left">
@@ -38,7 +50,16 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
       </div>
       <div className="doctor-header__actions">
         <ThemeToggle />
-        <AddPatientButton onAddPatient={onAddPatient} />
+        <button
+          type="button"
+          className="doctor-header__logout-btn"
+          onClick={handleLogout}
+          title="Log out of doctor portal"
+          aria-label="Log out"
+        >
+          <LogOut size={16} />
+          <span>Logout</span>
+        </button>
       </div>
     </header>
   );
