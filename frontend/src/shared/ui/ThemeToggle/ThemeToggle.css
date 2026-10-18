@@ -1,10 +1,19 @@
-.contrast-theme-toggle {
+/* ==========================================================================
+   Precision Light Bulb Theme Toggle
+   Dual-State Geometric Design matching user reference:
+   - Light Mode: White circular background (#FFFFFF) with black (#000000) illuminated
+     bulb, 5 radiant rays, and looped filament coils.
+   - Dark Mode: Black circular background (#000000) with white (#FFFFFF) unlit
+     bulb outline and base screw threads.
+   ========================================================================== */
+
+.bulb-theme-toggle {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   padding: 0;
   background: transparent;
   border: none;
@@ -16,56 +25,150 @@
   transition: transform 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
-.contrast-theme-toggle:focus-visible {
+.bulb-theme-toggle:focus-visible {
   outline: 2px solid var(--primary-green, #1B6B50);
   outline-offset: 3px;
   border-radius: 50%;
 }
 
-.contrast-theme-toggle:hover {
+.bulb-theme-toggle:hover {
   transform: scale(1.08);
 }
 
-.contrast-theme-toggle:active {
+.bulb-theme-toggle:active {
   transform: scale(0.92);
 }
 
-/* Rotating Inner Disc containing the Geometric Contrast Circles */
-.contrast-theme-toggle__disc {
-  width: 36px;
-  height: 36px;
+/* Circular disc housing the lightbulb SVG */
+.bulb-theme-toggle__disc {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.48s cubic-bezier(0.34, 1.25, 0.64, 1), box-shadow 0.35s ease;
-  will-change: transform;
+  transition: 
+    background-color 0.32s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    transform 0.4s cubic-bezier(0.34, 1.25, 0.64, 1);
+  will-change: background-color, border-color, box-shadow, transform;
 }
 
-.contrast-theme-toggle__svg {
+.bulb-theme-toggle__svg {
   width: 100%;
   height: 100%;
   display: block;
   overflow: visible;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.18));
 }
 
-/* Light Mode: 0deg rotation */
-.contrast-theme-toggle--light .contrast-theme-toggle__disc {
-  transform: rotate(0deg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+/* Common stroke properties for all lines/paths */
+.bulb-theme-toggle__glass,
+.bulb-theme-toggle__base line,
+.bulb-theme-toggle__rays line,
+.bulb-theme-toggle__filament path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: 
+    stroke 0.32s ease,
+    opacity 0.28s ease,
+    transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-.contrast-theme-toggle--light:hover .contrast-theme-toggle__disc {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+.bulb-theme-toggle__glass {
+  stroke-width: 2.8;
 }
 
-/* Dark Mode: 180deg rotation matching Image 2 */
-.contrast-theme-toggle--dark .contrast-theme-toggle__disc {
-  transform: rotate(180deg);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.5);
+.bulb-theme-toggle__base line {
+  stroke-width: 2.8;
 }
 
-.contrast-theme-toggle--dark:hover .contrast-theme-toggle__disc {
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.38), 0 3px 10px rgba(0, 0, 0, 0.6);
+.bulb-theme-toggle__rays line {
+  stroke-width: 2.8;
+}
+
+.bulb-theme-toggle__filament path {
+  stroke-width: 2.4;
+}
+
+/* ==========================================================================
+   Light Mode (Illuminated bulb on white circular disc)
+   ========================================================================== */
+.bulb-theme-toggle--light .bulb-theme-toggle__disc {
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.bulb-theme-toggle--light:hover .bulb-theme-toggle__disc {
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.bulb-theme-toggle--light .bulb-theme-toggle__glass,
+.bulb-theme-toggle--light .bulb-theme-toggle__base line,
+.bulb-theme-toggle--light .bulb-theme-toggle__rays line,
+.bulb-theme-toggle--light .bulb-theme-toggle__filament path {
+  stroke: #000000;
+}
+
+/* Rays burst outward in light mode */
+.bulb-theme-toggle--light .bulb-theme-toggle__rays {
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: 50px 41px;
+  transition: opacity 0.32s ease, transform 0.38s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Filament illuminates in light mode */
+.bulb-theme-toggle--light .bulb-theme-toggle__filament {
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: 50px 58px;
+  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+/* ==========================================================================
+   Dark Mode (Unlit bulb on solid black circular disc)
+   ========================================================================== */
+.bulb-theme-toggle--dark .bulb-theme-toggle__disc {
+  background-color: #000000;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 14px rgba(255, 255, 255, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.bulb-theme-toggle--dark:hover .bulb-theme-toggle__disc {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 0 18px rgba(255, 255, 255, 0.2),
+    0 3px 12px rgba(0, 0, 0, 0.7);
+}
+
+.bulb-theme-toggle--dark .bulb-theme-toggle__glass,
+.bulb-theme-toggle--dark .bulb-theme-toggle__base line {
+  stroke: #FFFFFF;
+}
+
+/* Rays retract and disappear in dark mode */
+.bulb-theme-toggle--dark .bulb-theme-toggle__rays {
+  opacity: 0;
+  transform: scale(0.5);
+  transform-origin: 50px 41px;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+/* Filament dims and collapses down in dark mode */
+.bulb-theme-toggle--dark .bulb-theme-toggle__filament {
+  opacity: 0;
+  transform: scale(0.7) translateY(4px);
+  transform-origin: 50px 58px;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s ease;
 }
