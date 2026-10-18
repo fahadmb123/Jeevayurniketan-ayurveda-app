@@ -34,9 +34,10 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
       <div className="doctor-header__left">
         {!isSidebarOpen && (
           <button
-            className="doctor-header__mobile-menu-btn"
+            className="doctor-header__toggle-btn"
             onClick={onToggleSidebar}
-            aria-label="Toggle Navigation"
+            aria-label="Expand sidebar"
+            title="Expand sidebar"
           >
             <Menu size={20} />
           </button>

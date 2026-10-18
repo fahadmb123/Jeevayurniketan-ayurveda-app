@@ -73,6 +73,11 @@
 }
 
 /* Collapsed state */
+.brand-logo--collapsed {
+  justify-content: center;
+  gap: 0;
+}
+
 .brand-logo--collapsed .brand-logo__text,
 .brand-logo--collapsed.brand-logo--with-divider {
   display: none;

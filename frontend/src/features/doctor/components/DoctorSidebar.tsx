@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Menu, ChevronLeft, Activity, Users, Sparkles, Settings, Inbox } from 'lucide-react';
+import { ChevronLeft, Activity, Users, Sparkles, Settings, Inbox } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
@@ -59,14 +59,30 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
   return (
     <aside className={`doctor-sidebar ${!isOpen ? 'doctor-sidebar--collapsed' : ''}`}>
       <div className={`doctor-sidebar__logo-container ${!isOpen ? 'doctor-sidebar__logo-container--collapsed' : ''}`}>
-        <BrandLogo linkTo={ROUTES.DOCTOR} collapsed={!isOpen} size="md" />
-        <button
-          className="doctor-sidebar__collapse-btn"
-          onClick={onToggle}
-          aria-label={isOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-        >
-          {isOpen ? <ChevronLeft size={20} /> : <Menu size={20} />}
-        </button>
+        {isOpen ? (
+          <>
+            <BrandLogo linkTo={ROUTES.DOCTOR} size="md" />
+            <button
+              type="button"
+              className="doctor-sidebar__collapse-btn"
+              onClick={onToggle}
+              aria-label="Collapse sidebar"
+              title="Collapse sidebar"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          </>
+        ) : (
+          <button
+            type="button"
+            className="doctor-sidebar__expand-btn"
+            onClick={onToggle}
+            aria-label="Expand sidebar"
+            title="Expand sidebar"
+          >
+            <BrandLogo collapsed={true} size="md" />
+          </button>
+        )}
       </div>
 
       <nav className="doctor-sidebar__nav">
