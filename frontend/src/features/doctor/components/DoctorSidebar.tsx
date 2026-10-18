@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { ChevronLeft, Activity, Users, Sparkles, Settings, Inbox } from 'lucide-react';
+import { ChevronLeft, Menu, Activity, Users, Sparkles, Settings, Inbox } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
 import type { DoctorNavItem } from '../types';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
+import feviconSvg from '@/assets/fevicon.svg';
 import './DoctorSidebar.css';
 
 export interface DoctorSidebarProps {
@@ -80,7 +81,16 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
             aria-label="Expand sidebar"
             title="Expand sidebar"
           >
-            <BrandLogo collapsed={true} size="md" />
+            <div className="doctor-sidebar__collapsed-logo-stack">
+              <img
+                src={feviconSvg}
+                alt="Jeevayurniketan Emblem"
+                className="doctor-sidebar__collapsed-emblem"
+              />
+              <div className="doctor-sidebar__collapsed-hover-icon" aria-hidden="true">
+                <Menu size={22} strokeWidth={2.4} />
+              </div>
+            </div>
           </button>
         )}
       </div>
