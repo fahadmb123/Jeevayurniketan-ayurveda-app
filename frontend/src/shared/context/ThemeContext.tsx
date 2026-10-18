@@ -70,38 +70,40 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (event) {
       const rect = (event.currentTarget as HTMLElement)?.getBoundingClientRect?.();
       if (rect) {
-        x = rect.left + rect.width / 2;
-        y = rect.top + rect.height / 2;
-      } else {
-        x = event.clientX;
-        y = event.clientY;
+        x = Math.round(rect.left + rect.width / 2);
+        y = Math.round(rect.top + rect.height / 2);
+      } else if (event.clientX) {
+        x = Math.round(event.clientX);
+        y = Math.round(event.clientY);
       }
     }
 
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
+    const endRadius = Math.ceil(
+      Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      )
     );
+
+    const root = document.documentElement;
+    root.style.setProperty('--theme-x', `${x}px`);
+    root.style.setProperty('--theme-y', `${y}px`);
+    root.style.setProperty('--theme-r', `${endRadius}px`);
+    root.classList.add('theme-transitioning');
 
     const transition = doc.startViewTransition(() => {
       setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
     });
 
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 480,
-          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-          pseudoElement: '::view-transition-new(root)',
-        }
-      );
-    });
+    const cleanup = () => {
+      root.classList.remove('theme-transitioning');
+    };
+
+    if (transition?.finished) {
+      transition.finished.then(cleanup).catch(cleanup);
+    } else {
+      setTimeout(cleanup, 400);
+    }
   };
 
   const setTheme = (newTheme: Theme) => {

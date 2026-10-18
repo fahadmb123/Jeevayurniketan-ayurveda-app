@@ -98,11 +98,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* View Transition API Circular Ripple Expansion */
+/* Zero-jank 60 FPS Theme Transition System */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: none !important;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  display: block;
 }
 
 ::view-transition-old(root) {
@@ -111,6 +119,20 @@ body {
 
 ::view-transition-new(root) {
   z-index: 999999;
+  will-change: clip-path;
+}
+
+@keyframes theme-circular-reveal {
+  0% {
+    clip-path: circle(0px at var(--theme-x, 90vw) var(--theme-y, 35px));
+  }
+  100% {
+    clip-path: circle(var(--theme-r, 150vmax) at var(--theme-x, 90vw) var(--theme-y, 35px));
+  }
+}
+
+.theme-transitioning::view-transition-new(root) {
+  animation: theme-circular-reveal 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 ::selection {
