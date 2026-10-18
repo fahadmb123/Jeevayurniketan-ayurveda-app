@@ -26,45 +26,49 @@
   display: none;
 }
 
+.doctor-header__page-divider {
+  display: none;
+}
+
+.doctor-header__page-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .doctor-header__page-title,
+.dark .doctor-header__page-title {
+  color: var(--text-primary, #F8FAFC);
+}
+
 @media (max-width: 1024px) {
   .doctor-header__brand {
     display: inline-flex;
+    align-items: center;
+  }
+
+  .doctor-header__page-divider {
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background-color: var(--border-color, #E2E8F0);
+  }
+
+  [data-theme='dark'] .doctor-header__page-divider,
+  .dark .doctor-header__page-divider {
+    background-color: var(--border-color, #1F3C30);
   }
 }
 
-.doctor-header__toggle-btn,
-.doctor-header__mobile-menu-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--surface-color, #ffffff);
-  border: 1px solid var(--border-color, #E2E8F0);
-  color: var(--text-secondary, #475569);
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.doctor-header__toggle-btn:hover,
-.doctor-header__mobile-menu-btn:hover {
-  color: var(--primary-green, #059669);
-  border-color: var(--border-color-hover, #CBD5E1);
-  background-color: var(--surface-secondary, #F1F5F9);
-}
-
-[data-theme='dark'] .doctor-header__toggle-btn,
-[data-theme='dark'] .doctor-header__mobile-menu-btn {
-  background: var(--surface-color, #11221B);
-  border-color: var(--border-color, #1F3C30);
-  color: var(--text-secondary, #A6C2B4);
-}
-
-[data-theme='dark'] .doctor-header__toggle-btn:hover,
-[data-theme='dark'] .doctor-header__mobile-menu-btn:hover {
-  background: var(--surface-secondary, #172D24);
-  color: var(--primary-green-light, #41BA91);
-  border-color: var(--primary-green, #2E9D77);
+@media (max-width: 640px) {
+  .doctor-header__brand .brand-logo__text {
+    display: none;
+  }
 }
 
 .doctor-header__actions {
@@ -145,11 +149,21 @@
   .doctor-header__mobile-menu-btn {
     display: none;
   }
+  .doctor-header__page-title {
+    font-size: 1.125rem;
+  }
 }
 
 @media (max-width: 480px) {
   .doctor-header {
     padding: 0 12px;
+  }
+  .doctor-header__page-title {
+    font-size: 1rem;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .doctor-header__logout-btn span {
     display: none;
