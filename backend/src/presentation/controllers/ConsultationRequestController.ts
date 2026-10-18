@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
-import { BaseController } from './BaseController.js';
+import { BaseController } from '../../shared/controllers/BaseController.js';
 import { ConsultationRequestService } from '../../application/services/ConsultationRequestService.js';
 import type { UpdateConsultationStatusDTO } from '../../application/dtos/ConsultationRequestDTO.js';
 
