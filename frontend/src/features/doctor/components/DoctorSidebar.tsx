@@ -29,7 +29,7 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = ({ isOpen, onToggle }
       animate={{ width: isOpen ? 260 : 80 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="doctor-sidebar__logo-container">
+      <div className={`doctor-sidebar__logo-container ${!isOpen ? 'doctor-sidebar__logo-container--collapsed' : ''}`}>
         <div className="doctor-sidebar__logo">
           {isOpen ? (
             <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

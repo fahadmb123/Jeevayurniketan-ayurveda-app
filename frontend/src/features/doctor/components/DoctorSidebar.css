@@ -11,12 +11,21 @@
 }
 
 .doctor-sidebar__logo-container {
-  padding: 24px;
+  height: 68px;
+  box-sizing: border-box;
+  padding: 0 24px;
   border-bottom: 1px solid var(--border-color, #E2E8F0);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.doctor-sidebar__logo-container--collapsed {
+  padding: 0 16px;
+  justify-content: center;
+  gap: 8px;
 }
 
 .doctor-sidebar__logo h2 {
