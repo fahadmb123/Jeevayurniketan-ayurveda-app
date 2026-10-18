@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
 import { LoginForm } from '../components/LoginForm';
 import { useAuth } from '../hooks/useAuth';
 import type { LoginCredentials } from '../types';
-import logoSvg from '@/assets/logo.svg';
+import { BrandLogo } from '@/shared/ui/BrandLogo';
 import './AuthPages.css';
 
 export const LoginPage: React.FC = React.memo(() => {
@@ -40,10 +40,7 @@ export const LoginPage: React.FC = React.memo(() => {
         className="auth-card"
       >
         <div className="auth-header">
-          <Link to={ROUTES.HOME} className="auth-logo">
-            <img src={logoSvg} alt="Jeevayurniketan Logo" />
-            <span>Jeevayurniketan</span>
-          </Link>
+          <BrandLogo linkTo={ROUTES.HOME} size="lg" className="auth-brand-logo" />
           <h1 className="auth-title">Welcome Back</h1>
           <p className="auth-subtitle">Sign in to your practitioner or patient account</p>
         </div>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
-import logoSvg from '@/assets/logo.svg';
+import { BrandLogo } from '@/shared/ui/BrandLogo';
 import './Navbar.css';
 
 export const Navbar: React.FC = React.memo(() => {
@@ -28,10 +28,7 @@ export const Navbar: React.FC = React.memo(() => {
   return (
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <nav className="navbar">
-        <Link to={ROUTES.HOME} className="navbar-logo">
-          <img src={logoSvg} alt="Jeevayurniketan Logo" className="logo-img" />
-          <span className="logo-text">Jeevayurniketan</span>
-        </Link>
+        <BrandLogo linkTo={ROUTES.HOME} showDivider={true} size="md" />
         
         <ul className="navbar-links">
           <li>

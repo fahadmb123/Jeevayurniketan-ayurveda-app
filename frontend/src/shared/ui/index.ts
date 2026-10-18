@@ -3,3 +3,4 @@ export * from './card';
 export * from './status-pill';
 export * from './avatar';
 export * from './DoctorSearchFilterStrip';
+export * from './BrandLogo';

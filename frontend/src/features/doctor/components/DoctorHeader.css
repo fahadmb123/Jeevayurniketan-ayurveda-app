@@ -24,24 +24,6 @@
 
 .doctor-header__brand {
   display: none;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.doctor-header__logo-img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-}
-
-.doctor-header__logo-title {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--primary-green-deep, #14241C);
-  letter-spacing: -0.3px;
 }
 
 @media (max-width: 1024px) {

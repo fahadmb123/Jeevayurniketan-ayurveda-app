@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
-import logoSvg from '@/assets/logo.svg';
+import { BrandLogo } from '@/shared/ui/BrandLogo';
 import './Footer.css';
 
 export const Footer: React.FC = React.memo(() => {
@@ -9,10 +9,7 @@ export const Footer: React.FC = React.memo(() => {
     <footer className="footer" id="contact">
       <div className="footer-container">
         <div className="footer-col">
-          <div className="footer-logo">
-            <img src={logoSvg} alt="Jeevayurniketan Logo" className="footer-logo-img" />
-            <span className="logo-text">Jeevayurniketan</span>
-          </div>
+          <BrandLogo linkTo={ROUTES.HOME} size="md" className="footer-brand-logo" />
           <p className="footer-desc">
             Reach out to society through direct and online clinics to address various illnesses where a psychological component has a definite role in the aetiology and pathogenesis of the illness.
           </p>

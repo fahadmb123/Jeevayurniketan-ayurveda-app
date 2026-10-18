@@ -1,0 +1,68 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.brand-logo--with-divider {
+  padding-right: 20px;
+  border-right: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
+}
+
+.brand-logo:hover .brand-logo__emblem {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.brand-logo__emblem {
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+
+.brand-logo__text {
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Size Variants */
+.brand-logo--sm .brand-logo__emblem {
+  width: 32px;
+  height: 32px;
+}
+.brand-logo--sm .brand-logo__text {
+  height: 24px;
+  width: auto;
+}
+
+.brand-logo--md .brand-logo__emblem {
+  width: 44px;
+  height: 44px;
+}
+.brand-logo--md .brand-logo__text {
+  height: 34px;
+  width: auto;
+}
+
+.brand-logo--lg .brand-logo__emblem {
+  width: 56px;
+  height: 56px;
+}
+.brand-logo--lg .brand-logo__text {
+  height: 42px;
+  width: auto;
+}
+
+/* Collapsed state */
+.brand-logo--collapsed .brand-logo__text,
+.brand-logo--collapsed.brand-logo--with-divider {
+  display: none;
+  border-right: none;
+  padding-right: 0;
+}
