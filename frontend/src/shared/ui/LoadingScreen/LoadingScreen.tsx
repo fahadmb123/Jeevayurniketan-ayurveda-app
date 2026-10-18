@@ -4,18 +4,16 @@ import './LoadingScreen.css';
 
 export interface LoadingScreenProps {
   /**
-   * If true, covers the entire viewport with a fixed overlay.
-   * If false, renders inline within the current layout container.
+   * If true or omitted, covers the entire viewport with a fixed overlay.
    * @default true
    */
   fullScreen?: boolean;
   /**
-   * Optional custom status or loading message.
-   * @default 'Loading experience...'
+   * Optional custom status or loading message (retained for backward compatibility).
    */
   message?: string;
   /**
-   * Whether to display the animated logo.
+   * Whether to display the logo.
    * @default true
    */
   showLogo?: boolean;
@@ -27,13 +25,11 @@ export interface LoadingScreenProps {
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = React.memo(({
   fullScreen = true,
-  message = 'Loading experience...',
-  showLogo = true,
   className = '',
 }) => {
   const containerClasses = [
     'loading-screen',
-    fullScreen ? 'loading-screen--fullscreen' : 'loading-screen--inline',
+    fullScreen ? 'loading-screen--fullscreen' : '',
     className,
   ]
     .filter(Boolean)
@@ -44,38 +40,16 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = React.memo(({
       className={containerClasses}
       role="status"
       aria-live="polite"
-      aria-label={message}
+      aria-label="Loading Jeevayurniketan"
     >
-      <div className="loading-screen__backdrop" />
-
-      <div className="loading-screen__card">
-        {showLogo && (
-          <div className="loading-screen__logo-wrapper">
-            <div className="loading-screen__aura" />
-            <img
-              src={logoSvg}
-              alt="Jeevayurniketan Loading"
-              className="loading-screen__logo"
-              width={180}
-              height={180}
-            />
-          </div>
-        )}
-
-        <div className="loading-screen__indicator-wrap">
-          <div className="loading-screen__progress-track">
-            <div className="loading-screen__progress-bar" />
-          </div>
-
-          <div className="loading-screen__status">
-            <span className="loading-screen__dots">
-              <span className="loading-screen__dot" />
-              <span className="loading-screen__dot" />
-              <span className="loading-screen__dot" />
-            </span>
-            <p className="loading-screen__message">{message}</p>
-          </div>
-        </div>
+      <div className="loading-screen__logo-container">
+        <img
+          src={logoSvg}
+          alt="Jeevayurniketan"
+          className="loading-screen__logo"
+          width={240}
+          height={240}
+        />
       </div>
     </div>
   );

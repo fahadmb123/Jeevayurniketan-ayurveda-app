@@ -48,8 +48,8 @@ export const DoctorLayout: React.FC = React.memo(() => {
           onToggleSidebar={toggleSidebar}
         />
 
-        {/* Dynamic Nested Route Content with In-Layout Suspense */}
-        <Suspense fallback={<LoadingScreen fullScreen={false} message="Loading section..." />}>
+        {/* Dynamic Nested Route Content with Full Screen Suspense */}
+        <Suspense fallback={<LoadingScreen fullScreen message="Loading..." />}>
           <Outlet context={outletContext} />
         </Suspense>
       </main>
