@@ -1,30 +1,28 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { useOutletContext, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Inbox,
   Clock,
   CheckCircle2,
   XCircle,
-  Search,
-  Filter,
   Users,
   Check,
 } from 'lucide-react';
 import { Card } from '@/shared/ui/card';
+import {
+  DoctorSearchFilterStrip,
+  type FilterSelectConfig,
+  type FilterPillConfig,
+} from '@/shared/ui/DoctorSearchFilterStrip';
 import { useRequests } from '../hooks/useRequests';
 import { RequestCard } from '../components/RequestCard';
-import { RequestFilterTabs } from '../components/RequestFilterTabs';
 import { RequestDetailModal } from '../components/RequestDetailModal';
 import { RejectReasonModal } from '../components/RejectReasonModal';
 import type { PatientRequest, RequestFilterOption } from '../types';
-import type { DoctorOutletContext } from '@/shared/layout';
 import { ROUTES } from '@/shared/config/routes';
 import './DoctorRequestsPage.css';
 
 export const DoctorRequestsPage: React.FC = React.memo(() => {
-  const context = useOutletContext<DoctorOutletContext>();
-  const globalSearchQuery = context?.searchQuery ?? '';
-
   const {
     requests,
     loading,
@@ -38,6 +36,7 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
   const [activeFilter, setActiveFilter] = useState<RequestFilterOption>('Pending');
   const [localSearch, setLocalSearch] = useState('');
   const [selectedService, setSelectedService] = useState('All');
+  const [selectedMode, setSelectedMode] = useState<string>('All');
 
   // Modals state
   const [detailRequest, setDetailRequest] = useState<PatientRequest | null>(null);
@@ -103,16 +102,18 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
     setRejectingRequest(null);
   }, []);
 
+  const handleReset = useCallback(() => {
+    setLocalSearch('');
+    setActiveFilter('Pending');
+    setSelectedService('All');
+    setSelectedMode('All');
+  }, []);
+
   const servicesList = useMemo(() => {
     const set = new Set<string>();
     requests.forEach((r) => set.add(r.service));
     return ['All', ...Array.from(set)];
   }, [requests]);
-
-  const effectiveSearch = useMemo(
-    () => localSearch.trim() || globalSearchQuery.trim(),
-    [localSearch, globalSearchQuery]
-  );
 
   const filteredRequests = useMemo(() => {
     return requests.filter((r) => {
@@ -124,19 +125,24 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
       // Service filter
       if (selectedService !== 'All' && r.service !== selectedService) return false;
 
+      // Mode filter
+      if (selectedMode !== 'All' && r.mode !== selectedMode) return false;
+
       // Search filter
-      if (effectiveSearch) {
-        const query = effectiveSearch.toLowerCase();
+      if (localSearch.trim()) {
+        const query = localSearch.toLowerCase().trim();
         const matchesName = r.patientName.toLowerCase().includes(query);
         const matchesPhone = r.phone.toLowerCase().includes(query);
         const matchesConcern = r.primaryConcern.toLowerCase().includes(query);
         const matchesService = r.service.toLowerCase().includes(query);
-        return matchesName || matchesPhone || matchesConcern || matchesService;
+        const matchesCity = r.city ? r.city.toLowerCase().includes(query) : false;
+        const matchesSymptoms = r.symptoms.some((s) => s.toLowerCase().includes(query));
+        return matchesName || matchesPhone || matchesConcern || matchesService || matchesCity || matchesSymptoms;
       }
 
       return true;
     });
-  }, [requests, activeFilter, selectedService, effectiveSearch]);
+  }, [requests, activeFilter, selectedService, selectedMode, localSearch]);
 
   const counts = useMemo(
     () => ({
@@ -147,6 +153,62 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
     }),
     [requests.length, pendingCount, acceptedCount, rejectedCount]
   );
+
+  const selectFilters: FilterSelectConfig[] = useMemo(() => [
+    {
+      id: 'service-filter',
+      value: selectedService,
+      ariaLabel: 'Filter by therapy',
+      onChange: setSelectedService,
+      options: servicesList.map((srv) => ({
+        value: srv,
+        label: srv === 'All' ? 'All Therapies' : srv,
+      })),
+    },
+    {
+      id: 'mode-filter',
+      value: selectedMode,
+      ariaLabel: 'Filter by consultation mode',
+      onChange: setSelectedMode,
+      options: [
+        { value: 'All', label: 'All Modes' },
+        { value: 'In-Person', label: 'In-Person' },
+        { value: 'Video Call', label: 'Video Call' },
+        { value: 'Phone', label: 'Phone' },
+      ],
+    },
+  ], [selectedService, selectedMode, servicesList]);
+
+  const pills: FilterPillConfig[] = useMemo(() => [
+    {
+      id: 'all',
+      label: 'All Requests',
+      count: counts.All,
+      isActive: activeFilter === 'All',
+      onClick: () => setActiveFilter('All'),
+    },
+    {
+      id: 'pending',
+      label: 'Pending Review',
+      count: counts.Pending,
+      isActive: activeFilter === 'Pending',
+      onClick: () => setActiveFilter('Pending'),
+    },
+    {
+      id: 'accepted',
+      label: 'Accepted',
+      count: counts.Accepted,
+      isActive: activeFilter === 'Accepted',
+      onClick: () => setActiveFilter('Accepted'),
+    },
+    {
+      id: 'rejected',
+      label: 'Declined',
+      count: counts.Rejected,
+      isActive: activeFilter === 'Rejected',
+      onClick: () => setActiveFilter('Rejected'),
+    },
+  ], [activeFilter, counts]);
 
   return (
     <div className="doctor-page-content doctor-consult-page">
@@ -221,48 +283,19 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
         </div>
       </div>
 
+      {/* Yoga-style Search & Filter Strip */}
+      <DoctorSearchFilterStrip
+        searchPlaceholder="Search patient by name, phone, symptoms, or service..."
+        searchValue={localSearch}
+        onSearchChange={setLocalSearch}
+        selectFilters={selectFilters}
+        onReset={handleReset}
+        resetTitle="Reset request filters"
+        pills={pills}
+      />
+
       {/* Main Container Card */}
       <Card className="doctor-consult-card">
-        {/* Toolbar */}
-        <div className="doctor-consult-toolbar">
-          <RequestFilterTabs
-            activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
-            counts={counts}
-          />
-
-          <div className="doctor-consult-filters-group">
-            {/* Service selector */}
-            <div className="doctor-consult-service-select-wrap">
-              <Filter size={15} className="doctor-consult-filter-icon" />
-              <select
-                className="doctor-consult-service-select"
-                value={selectedService}
-                onChange={(e) => setSelectedService(e.target.value)}
-                aria-label="Filter by service"
-              >
-                {servicesList.map((srv) => (
-                  <option key={srv} value={srv}>
-                    {srv === 'All' ? 'All Therapies' : srv}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Quick search input */}
-            <div className="doctor-consult-search-wrap">
-              <Search size={15} className="doctor-consult-search-icon" />
-              <input
-                type="text"
-                className="doctor-consult-search-input"
-                placeholder="Search patient, phone, symptoms..."
-                value={localSearch}
-                onChange={(e) => setLocalSearch(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Requests List */}
         <div className="doctor-consult-list">
           {loading ? (
@@ -284,8 +317,8 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
               <Inbox size={42} className="doctor-consult-empty__icon" />
               <h3 className="doctor-consult-empty__title">No requests found</h3>
               <p className="doctor-consult-empty__desc">
-                {effectiveSearch || selectedService !== 'All'
-                  ? 'Try clearing your search or service filters.'
+                {localSearch || selectedService !== 'All' || selectedMode !== 'All'
+                  ? 'Try clearing your search or filter options.'
                   : `There are currently no requests in the "${activeFilter}" tab.`}
               </p>
             </div>
@@ -303,7 +336,7 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
         isProcessing={isProcessing}
       />
 
-      {/* Reject Confirmation Modal */}
+      {/* Reject Reason Confirmation Modal */}
       <RejectReasonModal
         request={rejectingRequest}
         isOpen={Boolean(rejectingRequest)}
@@ -316,4 +349,3 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
 });
 
 DoctorRequestsPage.displayName = 'DoctorRequestsPage';
-export const DoctorConsultationRequestsPage = DoctorRequestsPage;

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { useOutletContext } from 'react-router-dom';
 import { DoctorStats } from '../components/DoctorStats';
 import { RecentPatientsWidget, usePatients } from '@/features/patients';
-import { TodayScheduleWidget } from '@/features/appointments';
-import type { DoctorOutletContext } from '@/shared/layout';
+import { TodayScheduleWidget, useAppointments } from '@/features/appointments';
+import {
+  DoctorSearchFilterStrip,
+  type FilterSelectConfig,
+  type FilterPillConfig,
+} from '@/shared/ui/DoctorSearchFilterStrip';
 import './DoctorDashboardPage.css';
 
 const gridVariants: Variants = {
@@ -20,10 +23,149 @@ const cardItemVariants: Variants = {
   show: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
 };
 
+type DashboardTabFilter = 'all' | 'schedule' | 'patients' | 'in-treatment' | 'consultation';
+
 export const DoctorDashboardPage: React.FC = React.memo(() => {
-  const context = useOutletContext<DoctorOutletContext>();
-  const searchQuery = context?.searchQuery ?? '';
   const { patients } = usePatients();
+  const { appointments } = useAppointments();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState<DashboardTabFilter>('all');
+  const [selectedSection, setSelectedSection] = useState<'All' | 'Patients' | 'Appointments'>('All');
+  const [selectedStatus, setSelectedStatus] = useState<string>('All');
+
+  const handleReset = useCallback(() => {
+    setSearchQuery('');
+    setActiveTab('all');
+    setSelectedSection('All');
+    setSelectedStatus('All');
+  }, []);
+
+  const inTreatmentCount = useMemo(
+    () => patients.filter((p) => p.status === 'In treatment').length,
+    [patients]
+  );
+
+  const consultationCount = useMemo(
+    () => patients.filter((p) => p.status === 'Consultation').length,
+    [patients]
+  );
+
+  // Filtered patients based on search, status dropdown, and tab filter
+  const filteredPatients = useMemo(() => {
+    return patients.filter((patient) => {
+      // Tab filter
+      if (activeTab === 'in-treatment' && patient.status !== 'In treatment') return false;
+      if (activeTab === 'consultation' && patient.status !== 'Consultation') return false;
+
+      // Status dropdown filter
+      if (selectedStatus !== 'All' && patient.status !== selectedStatus) return false;
+
+      // Search query filter
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchesName = patient.name.toLowerCase().includes(q);
+        const matchesCondition = patient.condition ? patient.condition.toLowerCase().includes(q) : false;
+        const matchesPhone = patient.phone ? patient.phone.toLowerCase().includes(q) : false;
+        return matchesName || matchesCondition || matchesPhone;
+      }
+
+      return true;
+    });
+  }, [patients, activeTab, selectedStatus, searchQuery]);
+
+  // Filtered appointments based on search query
+  const filteredAppointments = useMemo(() => {
+    return appointments.filter((apt) => {
+      if (!searchQuery.trim()) return true;
+      const q = searchQuery.toLowerCase().trim();
+      const matchesName = apt.patient.toLowerCase().includes(q);
+      const matchesType = apt.type.toLowerCase().includes(q);
+      return matchesName || matchesType;
+    });
+  }, [appointments, searchQuery]);
+
+  const selectFilters: FilterSelectConfig[] = useMemo(() => [
+    {
+      id: 'section-filter',
+      value: selectedSection,
+      ariaLabel: 'Filter by view section',
+      onChange: (val) => setSelectedSection(val as 'All' | 'Patients' | 'Appointments'),
+      options: [
+        { value: 'All', label: 'All Sections' },
+        { value: 'Patients', label: 'Patients Only' },
+        { value: 'Appointments', label: 'Schedule Only' },
+      ],
+    },
+    {
+      id: 'status-filter',
+      value: selectedStatus,
+      ariaLabel: 'Filter by clinical status',
+      onChange: setSelectedStatus,
+      options: [
+        { value: 'All', label: 'All Statuses' },
+        { value: 'In treatment', label: 'In Treatment' },
+        { value: 'Consultation', label: 'Consultation' },
+        { value: 'Recovered', label: 'Recovered' },
+      ],
+    },
+  ], [selectedSection, selectedStatus]);
+
+  const pills: FilterPillConfig[] = useMemo(() => [
+    {
+      id: 'all',
+      label: 'Overview (All)',
+      count: patients.length + appointments.length,
+      isActive: activeTab === 'all',
+      onClick: () => {
+        setActiveTab('all');
+        setSelectedSection('All');
+      },
+    },
+    {
+      id: 'schedule',
+      label: "Today's Schedule",
+      count: appointments.length,
+      isActive: activeTab === 'schedule' || selectedSection === 'Appointments',
+      onClick: () => {
+        setActiveTab('schedule');
+        setSelectedSection('Appointments');
+      },
+    },
+    {
+      id: 'patients',
+      label: 'Recent Patients',
+      count: patients.length,
+      isActive: activeTab === 'patients' || selectedSection === 'Patients',
+      onClick: () => {
+        setActiveTab('patients');
+        setSelectedSection('Patients');
+      },
+    },
+    {
+      id: 'in-treatment',
+      label: 'In Treatment',
+      count: inTreatmentCount,
+      isActive: activeTab === 'in-treatment',
+      onClick: () => {
+        setActiveTab('in-treatment');
+        setSelectedSection('Patients');
+      },
+    },
+    {
+      id: 'consultation',
+      label: 'Consultation',
+      count: consultationCount,
+      isActive: activeTab === 'consultation',
+      onClick: () => {
+        setActiveTab('consultation');
+        setSelectedSection('Patients');
+      },
+    },
+  ], [activeTab, selectedSection, patients.length, appointments.length, inTreatmentCount, consultationCount]);
+
+  const showPatients = selectedSection === 'All' || selectedSection === 'Patients' || activeTab === 'patients' || activeTab === 'in-treatment' || activeTab === 'consultation';
+  const showSchedule = (selectedSection === 'All' || selectedSection === 'Appointments' || activeTab === 'schedule') && activeTab !== 'in-treatment' && activeTab !== 'consultation';
 
   return (
     <div className="doctor-dashboard-content">
@@ -42,18 +184,39 @@ export const DoctorDashboardPage: React.FC = React.memo(() => {
 
       <DoctorStats />
 
+      {/* Yoga-style Search & Filter Strip */}
+      <DoctorSearchFilterStrip
+        searchPlaceholder="Search today's patients, appointments, or medical conditions..."
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
+        selectFilters={selectFilters}
+        onReset={handleReset}
+        resetTitle="Reset dashboard filters"
+        pills={pills}
+      />
+
       <motion.div
         className="doctor-dashboard-grid"
         variants={gridVariants}
         initial="hidden"
         animate="show"
+        style={{
+          gridTemplateColumns: showPatients && showSchedule ? undefined : '1fr',
+        }}
       >
-        <RecentPatientsWidget
-          patients={patients}
-          searchFilter={searchQuery}
-          variants={cardItemVariants}
-        />
-        <TodayScheduleWidget variants={cardItemVariants} />
+        {showPatients && (
+          <RecentPatientsWidget
+            patients={filteredPatients}
+            searchFilter={searchQuery}
+            variants={cardItemVariants}
+          />
+        )}
+        {showSchedule && (
+          <TodayScheduleWidget
+            appointments={filteredAppointments}
+            variants={cardItemVariants}
+          />
+        )}
       </motion.div>
     </div>
   );

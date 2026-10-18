@@ -45,8 +45,6 @@ export const DoctorLayout: React.FC = React.memo(() => {
         <DoctorHeader
           isSidebarOpen={isSidebarOpen}
           onToggleSidebar={toggleSidebar}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
         />
 
         {/* Dynamic Nested Route Content */}

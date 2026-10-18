@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { Menu, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { SearchPatientsInput } from '@/features/patients';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 import { useAuth } from '@/features/auth';
 import { ROUTES } from '@/shared/config/routes';
@@ -17,8 +16,6 @@ export interface DoctorHeaderProps {
 export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
   isSidebarOpen,
   onToggleSidebar,
-  searchQuery = '',
-  onSearchChange,
 }) => {
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -43,10 +40,6 @@ export const DoctorHeader: React.FC<DoctorHeaderProps> = React.memo(({
             <Menu size={20} />
           </button>
         )}
-        <SearchPatientsInput
-          value={searchQuery}
-          onChange={onSearchChange || (() => {})}
-        />
       </div>
       <div className="doctor-header__actions">
         <ThemeToggle />
