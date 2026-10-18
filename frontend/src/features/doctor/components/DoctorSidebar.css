@@ -229,11 +229,6 @@
 
 @media (max-width: 768px) {
   .doctor-sidebar {
-    position: fixed;
-    left: -100%;
-    transition: left 0.3s;
-  }
-  .doctor-sidebar.open {
-    left: 0;
+    display: none;
   }
 }

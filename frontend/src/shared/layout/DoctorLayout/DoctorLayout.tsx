@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DoctorSidebar, useDoctorSidebar, DoctorHeader } from '@/features/doctor';
+import { DoctorSidebar, useDoctorSidebar, DoctorHeader, DoctorBottomNav } from '@/features/doctor';
 import { usePatients, type Patient } from '@/features/patients';
 import './DoctorLayout.css';
 
@@ -52,6 +52,9 @@ export const DoctorLayout: React.FC = React.memo(() => {
         {/* Dynamic Nested Route Content */}
         <Outlet context={outletContext} />
       </main>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <DoctorBottomNav />
     </div>
   );
 });

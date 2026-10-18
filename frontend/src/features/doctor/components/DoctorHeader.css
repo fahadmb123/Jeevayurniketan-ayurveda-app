@@ -108,6 +108,18 @@
     padding: 0 16px;
   }
   .doctor-header__mobile-menu-btn {
-    display: flex;
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .doctor-header {
+    padding: 0 12px;
+  }
+  .doctor-header__logout-btn span {
+    display: none;
+  }
+  .doctor-header__logout-btn {
+    padding: 8px 10px;
   }
 }

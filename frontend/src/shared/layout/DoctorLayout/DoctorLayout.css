@@ -4,6 +4,7 @@
   background-color: var(--bg-color, #F8FAFC);
   font-family: 'Inter', sans-serif;
   color: var(--text-primary, #0F172A);
+  position: relative;
 }
 
 .doctor-layout__main {
@@ -12,4 +13,10 @@
   flex-direction: column;
   min-width: 0;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .doctor-layout__main {
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+  }
 }
