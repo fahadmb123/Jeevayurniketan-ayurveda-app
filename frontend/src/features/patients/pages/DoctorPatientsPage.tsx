@@ -1,10 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import { DoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { PatientListItem } from '../components/PatientListItem';
 import { PatientFilterTabs, type PatientFilterOption } from '../components/PatientFilterTabs';
-import { useDoctorPatients } from '../hooks/useDoctorPatients';
+import { usePatients } from '../hooks/usePatients';
 import type { Patient } from '../types';
 import './DoctorPatientsPage.css';
 
@@ -13,7 +12,7 @@ export const DoctorPatientsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<PatientFilterOption>('All');
 
-  const { patients, addPatient } = useDoctorPatients();
+  const { patients, addPatient } = usePatients();
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 

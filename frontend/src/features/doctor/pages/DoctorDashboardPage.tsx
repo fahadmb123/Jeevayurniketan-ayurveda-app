@@ -3,10 +3,8 @@ import { motion, type Variants } from 'framer-motion';
 import { DoctorSidebar } from '../components/DoctorSidebar';
 import { DoctorHeader } from '../components/DoctorHeader';
 import { DoctorStats } from '../components/DoctorStats';
-import { RecentPatientsWidget } from '../components/RecentPatientsWidget';
-import { TodayScheduleWidget } from '../components/TodayScheduleWidget';
-import { useDoctorPatients } from '../hooks/useDoctorPatients';
-import type { Patient } from '../types';
+import { RecentPatientsWidget, usePatients, type Patient } from '@/features/patients';
+import { TodayScheduleWidget } from '@/features/appointments';
 import './DoctorDashboardPage.css';
 
 const gridVariants: Variants = {
@@ -25,7 +23,7 @@ const cardItemVariants: Variants = {
 export const DoctorDashboardPage: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const { patients, addPatient } = useDoctorPatients();
+  const { patients, addPatient } = usePatients();
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 

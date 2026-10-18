@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { DoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { AppointmentListItem } from '../components/AppointmentListItem';
-import { StartConsultationModal } from '../components/StartConsultationModal';
-import { useDoctorAppointments } from '../hooks/useDoctorAppointments';
+import { StartConsultationModal } from '@/features/patients';
+import { useAppointments } from '../hooks/useAppointments';
 import type { Appointment } from '../types';
 import './DoctorAppointmentsPage.css';
 
@@ -13,7 +12,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [tab, setTab] = useState<'today' | 'upcoming'>('today');
 
-  const { appointments: todayAppointments } = useDoctorAppointments();
+  const { appointments: todayAppointments } = useAppointments();
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 

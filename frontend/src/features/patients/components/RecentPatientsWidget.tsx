@@ -3,7 +3,7 @@ import { motion, type Variants } from 'framer-motion';
 import { Card } from '@/shared/ui/card';
 import { PatientListItem } from './PatientListItem';
 import { PatientFilterTabs, type PatientFilterOption } from './PatientFilterTabs';
-import { useDoctorPatients } from '../hooks/useDoctorPatients';
+import { usePatients } from '../hooks/usePatients';
 import type { Patient } from '../types';
 import './RecentPatientsWidget.css';
 
@@ -22,7 +22,7 @@ export const RecentPatientsWidget: React.FC<RecentPatientsWidgetProps> = ({
   variants,
   searchFilter = '',
 }) => {
-  const { patients: hookPatients } = useDoctorPatients();
+  const { patients: hookPatients } = usePatients();
   const patients = propPatients || hookPatients;
 
   const [activeFilter, setActiveFilter] = useState<PatientFilterOption>('All');

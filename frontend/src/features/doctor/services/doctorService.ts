@@ -1,55 +1,9 @@
 import React from 'react';
 import { Users, Calendar, FileText } from 'lucide-react';
-import type { Appointment, ClinicalRecord, DoctorStatItem, Patient } from '../types';
-
-export const INITIAL_APPOINTMENTS: Appointment[] = [
-  { id: 1, time: '10:00', meridian: 'AM', patient: 'Meera N', type: 'Consultation', status: 'next' },
-  { id: 2, time: '11:30', meridian: 'AM', patient: 'Karan J', type: 'Follow up', status: 'upcoming' },
-  { id: 3, time: '02:00', meridian: 'PM', patient: 'Priya D', type: 'Video Consult', status: 'upcoming', isVideo: true },
-  { id: 4, time: '04:15', meridian: 'PM', patient: 'Arjun M', type: 'Therapy Session', status: 'upcoming' },
-];
-
-export const INITIAL_PATIENTS: Patient[] = [
-  { id: 1, name: 'Ananya Patel', age: 34, lastVisit: 'Today', status: 'In treatment', phone: '+91 98765 11001', condition: 'Chronic Anxiety' },
-  { id: 2, name: 'Rahul Verma', age: 45, lastVisit: 'Yesterday', status: 'Recovered', phone: '+91 98765 22002', condition: 'Tension Cephalea' },
-  { id: 3, name: 'Sunita Rao', age: 29, lastVisit: '18 Sep', status: 'In treatment', phone: '+91 98765 33003', condition: 'Somatoform Disorder' },
-  { id: 4, name: 'Vikram Singh', age: 52, lastVisit: '15 Sep', status: 'Consultation', phone: '+91 98765 44004', condition: 'Workplace Burnout' },
-];
-
-export const INITIAL_RECORDS: ClinicalRecord[] = [
-  {
-    id: 'REC-2026-001',
-    patientName: 'Ananya Patel',
-    date: '17 Oct 2026',
-    condition: 'Chronic Anxiety & Insomnia',
-    therapy: 'Smriti Meditation Session 3 + Brahmi Rasayana',
-    status: 'Active',
-  },
-  {
-    id: 'REC-2026-002',
-    patientName: 'Rahul Verma',
-    date: '16 Oct 2026',
-    condition: 'Tension Cephalea (Vata-Pitta)',
-    therapy: 'Shirodhara protocol + Herbal decoctions',
-    status: 'Complete',
-  },
-  {
-    id: 'REC-2026-003',
-    patientName: 'Sunita Rao',
-    date: '18 Sep 2026',
-    condition: 'Somatoform Gastrointestinal Distress',
-    therapy: 'Satvavajaya Chikitsa + Takradhara',
-    status: 'Active',
-  },
-  {
-    id: 'REC-2026-004',
-    patientName: 'Vikram Singh',
-    date: '15 Sep 2026',
-    condition: 'Workplace Burnout & Stress',
-    therapy: 'Preliminary Psychosomatic Assessment',
-    status: 'Complete',
-  },
-];
+import type { DoctorStatItem } from '../types';
+import { appointmentService, type Appointment } from '@/features/appointments';
+import { patientService, type Patient } from '@/features/patients';
+import { recordsService, type ClinicalRecord } from '@/features/records';
 
 export const INITIAL_STATS: DoctorStatItem[] = [
   {
@@ -84,22 +38,18 @@ export const doctorService = {
   },
 
   async getAppointments(): Promise<Appointment[]> {
-    return INITIAL_APPOINTMENTS;
+    return appointmentService.getAppointments();
   },
 
   async getPatients(): Promise<Patient[]> {
-    return INITIAL_PATIENTS;
+    return patientService.getPatients();
   },
 
   async getRecords(): Promise<ClinicalRecord[]> {
-    return INITIAL_RECORDS;
+    return recordsService.getRecords();
   },
 
   async addPatient(patient: Omit<Patient, 'id'>): Promise<Patient> {
-    const newPatient: Patient = {
-      ...patient,
-      id: Date.now(),
-    };
-    return newPatient;
+    return patientService.addPatient(patient);
   },
 };

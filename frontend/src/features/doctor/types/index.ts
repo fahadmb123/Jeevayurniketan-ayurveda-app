@@ -1,30 +1,7 @@
 import React from 'react';
-
-export type AppointmentStatus = 'next' | 'upcoming' | 'completed';
-
-export interface Appointment {
-  id: number;
-  time: string;
-  meridian: 'AM' | 'PM';
-  patient: string;
-  type: string;
-  status: AppointmentStatus;
-  isVideo?: boolean;
-}
-
-export type PatientStatus = 'In treatment' | 'Recovered' | 'Consultation';
-
-export interface Patient {
-  id: number;
-  name: string;
-  age: number;
-  lastVisit: string;
-  status: PatientStatus;
-  phone?: string;
-  email?: string;
-  gender?: string;
-  condition?: string;
-}
+export type { Appointment, AppointmentStatus } from '@/features/appointments';
+export type { Patient, PatientStatus } from '@/features/patients';
+export type { ClinicalRecord } from '@/features/records';
 
 export interface DoctorStatItem {
   id: string;
@@ -33,15 +10,6 @@ export interface DoctorStatItem {
   trend: string;
   variant: 'green' | 'blue' | 'orange';
   icon: React.ReactNode;
-}
-
-export interface ClinicalRecord {
-  id: string;
-  patientName: string;
-  date: string;
-  condition: string;
-  therapy: string;
-  status: 'Complete' | 'Active';
 }
 
 export interface DoctorNavItem {

@@ -11,8 +11,7 @@ import {
   Inbox,
   RotateCcw,
 } from 'lucide-react';
-import { DoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
 import {
   useYogaSchedule,
   YogaClassCard,

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
-import { SearchPatientsInput } from './SearchPatientsInput';
-import { AddPatientButton } from './AddPatientButton';
+import { SearchPatientsInput, AddPatientButton, type Patient } from '@/features/patients';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
-import type { Patient } from '../types';
 import './DoctorHeader.css';
 
 export interface DoctorHeaderProps {

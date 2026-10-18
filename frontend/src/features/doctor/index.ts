@@ -1,24 +1,14 @@
 export * from './types';
 export * from './services/doctorService';
-export * from './hooks/useDoctorAppointments';
-export * from './hooks/useDoctorPatients';
 export * from './hooks/useDoctorStats';
-export * from './hooks/useDoctorRecords';
 export * from './components/DoctorHeader';
 export * from './components/DoctorSidebar';
 export * from './components/DoctorStats';
-export * from './components/TodayScheduleWidget';
-export * from './components/RecentPatientsWidget';
-export * from './components/AddPatientModal';
-export * from './components/AddPatientButton';
-export * from './components/StartConsultationModal';
-export * from './components/PatientFilterTabs';
-export * from './components/SearchPatientsInput';
-export * from './components/PatientListItem';
-export * from './components/AppointmentListItem';
 export * from './pages/DoctorDashboardPage';
-export * from './pages/DoctorAppointmentsPage';
-export * from './pages/DoctorPatientsPage';
-export * from './pages/DoctorRecordsPage';
-export * from './pages/DoctorYogaSchedulePage';
 export * from './pages/DoctorSettingsPage';
+
+// Domain feature re-exports for backwards compatibility
+export { DoctorPatientsPage } from '@/features/patients';
+export { DoctorAppointmentsPage } from '@/features/appointments';
+export { DoctorYogaSchedulePage } from '@/features/yoga';
+export { DoctorRecordsPage } from '@/features/records';

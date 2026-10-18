@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { DoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { DoctorSidebar, DoctorHeader } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { StatusPill } from '@/shared/ui/status-pill';
 import { FileText, Download, Calendar, User } from 'lucide-react';
-import { useDoctorRecords } from '../hooks/useDoctorRecords';
+import { useClinicalRecords } from '../hooks/useClinicalRecords';
 import './DoctorRecordsPage.css';
 
 export const DoctorRecordsPage: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const { records } = useDoctorRecords();
+  const { records } = useClinicalRecords();
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 

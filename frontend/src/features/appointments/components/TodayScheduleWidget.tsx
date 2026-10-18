@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Card } from '@/shared/ui/card';
 import { AppointmentListItem } from './AppointmentListItem';
-import { StartConsultationModal } from './StartConsultationModal';
-import { useDoctorAppointments } from '../hooks/useDoctorAppointments';
+import { StartConsultationModal } from '@/features/patients';
+import { useAppointments } from '../hooks/useAppointments';
 import type { Appointment } from '../types';
 import './TodayScheduleWidget.css';
 
@@ -20,7 +20,7 @@ export const TodayScheduleWidget: React.FC<TodayScheduleWidgetProps> = ({
   onStartAppointment,
   variants,
 }) => {
-  const { appointments: hookAppointments } = useDoctorAppointments();
+  const { appointments: hookAppointments } = useAppointments();
   const appointments = propAppointments || hookAppointments;
 
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);

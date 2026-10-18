@@ -6,7 +6,7 @@ import { ROUTES } from '@/shared/config/routes';
 import { HomePage, NotFoundPage } from '@/features/home';
 import { AboutPage } from '@/features/about';
 import { ServicesPage } from '@/features/services';
-import { YogaSchedulePage } from '@/features/yoga';
+import { YogaSchedulePage, DoctorYogaSchedulePage } from '@/features/yoga';
 import { TeamPage } from '@/features/team';
 import { BlogPage } from '@/features/blog';
 import { ContactPage } from '@/features/contact';
@@ -14,15 +14,11 @@ import { ContactPage } from '@/features/contact';
 // Auth Feature Pages
 import { LoginPage, RegisterPage } from '@/features/auth';
 
-// Doctor Portal Feature Pages
-import {
-  DoctorDashboardPage,
-  DoctorPatientsPage,
-  DoctorAppointmentsPage,
-  DoctorYogaSchedulePage,
-  DoctorRecordsPage,
-  DoctorSettingsPage,
-} from '@/features/doctor';
+// Domain-Specific Portal Feature Pages
+import { DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
+import { DoctorPatientsPage } from '@/features/patients';
+import { DoctorAppointmentsPage } from '@/features/appointments';
+import { DoctorRecordsPage } from '@/features/records';
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -40,7 +36,7 @@ export const AppRoutes: React.FC = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
 
-      {/* Doctor Portal Pages */}
+      {/* Doctor Portal Pages (Separated by High-Level Domain Features) */}
       <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
       <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
       <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />

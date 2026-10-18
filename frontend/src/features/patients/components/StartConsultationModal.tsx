@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Video, FileText, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
-import type { Appointment } from '../types';
+import type { Appointment } from '@/features/appointments';
 import './StartConsultationModal.css';
 
 export interface StartConsultationModalProps {
