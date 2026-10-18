@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { DoctorSidebar, useDoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
 import { Card } from '@/shared/ui/card';
 import { Button } from '@/shared/ui/button';
 import { CheckCircle2, User, Bell, Shield, Clock } from 'lucide-react';
@@ -8,7 +6,6 @@ import type { DoctorProfile } from '../types';
 import './DoctorSettingsPage.css';
 
 export const DoctorSettingsPage: React.FC = () => {
-  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [profile, setProfile] = useState<DoctorProfile>({
     name: 'Dr. Sharma',
     specialty: 'Ayurvedic Psychotherapy & Smriti Meditation',
@@ -28,16 +25,7 @@ export const DoctorSettingsPage: React.FC = () => {
   };
 
   return (
-    <div className="doctor-page-layout">
-      <DoctorSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-
-      <main className="doctor-page-main">
-        <DoctorHeader
-          isSidebarOpen={isSidebarOpen}
-          onToggleSidebar={toggleSidebar}
-        />
-
-        <div className="doctor-page-content">
+    <div className="doctor-page-content">
           <div className="doctor-page-heading">
             <h1 className="doctor-page-title">Clinic Settings</h1>
             <p className="doctor-page-sub">Practitioner preferences, consultation durations, and notification channels</p>
@@ -155,7 +143,5 @@ export const DoctorSettingsPage: React.FC = () => {
             </div>
           </form>
         </div>
-      </main>
-    </div>
   );
 };

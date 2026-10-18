@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
 import { Card } from '@/shared/ui/card';
 import { AppointmentListItem } from '../components/AppointmentListItem';
 import { StartConsultationModal } from '@/features/patients';
@@ -8,7 +7,6 @@ import type { Appointment } from '../types';
 import './DoctorAppointmentsPage.css';
 
 export const DoctorAppointmentsPage: React.FC = () => {
-  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [tab, setTab] = useState<'today' | 'upcoming'>('today');
 
@@ -23,49 +21,38 @@ export const DoctorAppointmentsPage: React.FC = () => {
   const currentList = tab === 'today' ? todayAppointments : upcomingAppointments;
 
   return (
-    <div className="doctor-page-layout">
-      <DoctorSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+    <div className="doctor-page-content">
+      <div className="doctor-page-heading">
+        <h1 className="doctor-page-title">Appointment Schedule</h1>
+        <p className="doctor-page-sub">Consultations, follow-ups, and Smriti meditation therapy sessions</p>
+      </div>
 
-      <main className="doctor-page-main">
-        <DoctorHeader
-          isSidebarOpen={isSidebarOpen}
-          onToggleSidebar={toggleSidebar}
-        />
-
-        <div className="doctor-page-content">
-          <div className="doctor-page-heading">
-            <h1 className="doctor-page-title">Appointment Schedule</h1>
-            <p className="doctor-page-sub">Consultations, follow-ups, and Smriti meditation therapy sessions</p>
-          </div>
-
-          <Card className="doctor-appointments-card">
-            <div className="doctor-appointments-tabs">
-              <button
-                className={`doctor-tab ${tab === 'today' ? 'doctor-tab--active' : ''}`}
-                onClick={() => setTab('today')}
-              >
-                Today's Queue ({todayAppointments.length})
-              </button>
-              <button
-                className={`doctor-tab ${tab === 'upcoming' ? 'doctor-tab--active' : ''}`}
-                onClick={() => setTab('upcoming')}
-              >
-                Upcoming Dates ({upcomingAppointments.length})
-              </button>
-            </div>
-
-            <div className="doctor-appointments-list">
-              {currentList.map((apt) => (
-                <AppointmentListItem
-                  key={apt.id}
-                  appointment={apt}
-                  onStart={(item) => setSelectedAppointment(item)}
-                />
-              ))}
-            </div>
-          </Card>
+      <Card className="doctor-appointments-card">
+        <div className="doctor-appointments-tabs">
+          <button
+            className={`doctor-tab ${tab === 'today' ? 'doctor-tab--active' : ''}`}
+            onClick={() => setTab('today')}
+          >
+            Today's Queue ({todayAppointments.length})
+          </button>
+          <button
+            className={`doctor-tab ${tab === 'upcoming' ? 'doctor-tab--active' : ''}`}
+            onClick={() => setTab('upcoming')}
+          >
+            Upcoming Dates ({upcomingAppointments.length})
+          </button>
         </div>
-      </main>
+
+        <div className="doctor-appointments-list">
+          {currentList.map((apt) => (
+            <AppointmentListItem
+              key={apt.id}
+              appointment={apt}
+              onStart={(item) => setSelectedAppointment(item)}
+            />
+          ))}
+        </div>
+      </Card>
 
       <StartConsultationModal
         appointment={selectedAppointment}

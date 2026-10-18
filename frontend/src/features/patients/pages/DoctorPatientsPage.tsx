@@ -1,22 +1,17 @@
 import React, { useState, useMemo } from 'react';
-import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
+import { useOutletContext } from 'react-router-dom';
 import { Card } from '@/shared/ui/card';
 import { PatientListItem } from '../components/PatientListItem';
 import { PatientFilterTabs, type PatientFilterOption } from '../components/PatientFilterTabs';
 import { usePatients } from '../hooks/usePatients';
-import type { Patient } from '../types';
+import type { DoctorOutletContext } from '@/features/doctor';
 import './DoctorPatientsPage.css';
 
 export const DoctorPatientsPage: React.FC = () => {
-  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
-  const [searchQuery, setSearchQuery] = useState('');
+  const context = useOutletContext<DoctorOutletContext>();
+  const searchQuery = context?.searchQuery ?? '';
   const [activeFilter, setActiveFilter] = useState<PatientFilterOption>('All');
-
-  const { patients, addPatient } = usePatients();
-
-  const handleAddPatient = (newPatient: Omit<Patient, 'id'>) => {
-    addPatient(newPatient);
-  };
+  const { patients } = usePatients();
 
   const filteredPatients = useMemo(() => {
     return patients.filter((patient) => {
@@ -36,47 +31,33 @@ export const DoctorPatientsPage: React.FC = () => {
   }, [patients]);
 
   return (
-    <div className="doctor-page-layout">
-      <DoctorSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+    <div className="doctor-page-content">
+      <div className="doctor-page-heading">
+        <h1 className="doctor-page-title">Patient Management</h1>
+        <p className="doctor-page-sub">Comprehensive clinical registry and diagnostic histories</p>
+      </div>
 
-      <main className="doctor-page-main">
-        <DoctorHeader
-          isSidebarOpen={isSidebarOpen}
-          onToggleSidebar={toggleSidebar}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          onAddPatient={handleAddPatient}
-        />
-
-        <div className="doctor-page-content">
-          <div className="doctor-page-heading">
-            <h1 className="doctor-page-title">Patient Management</h1>
-            <p className="doctor-page-sub">Comprehensive clinical registry and diagnostic histories</p>
-          </div>
-
-          <Card className="doctor-patients-card">
-            <div className="doctor-patients-card__toolbar">
-              <PatientFilterTabs
-                activeFilter={activeFilter}
-                onFilterChange={setActiveFilter}
-                counts={counts}
-              />
-            </div>
-
-            <div className="doctor-patients-list">
-              {filteredPatients.length > 0 ? (
-                filteredPatients.map((patient, index) => (
-                  <PatientListItem key={patient.id} patient={patient} index={index} />
-                ))
-              ) : (
-                <div className="doctor-patients-empty">
-                  No patient records match the current filter.
-                </div>
-              )}
-            </div>
-          </Card>
+      <Card className="doctor-patients-card">
+        <div className="doctor-patients-card__toolbar">
+          <PatientFilterTabs
+            activeFilter={activeFilter}
+            onFilterChange={setActiveFilter}
+            counts={counts}
+          />
         </div>
-      </main>
+
+        <div className="doctor-patients-list">
+          {filteredPatients.length > 0 ? (
+            filteredPatients.map((patient, index) => (
+              <PatientListItem key={patient.id} patient={patient} index={index} />
+            ))
+          ) : (
+            <div className="doctor-patients-empty">
+              No patient records match the current filter.
+            </div>
+          )}
+        </div>
+      </Card>
     </div>
   );
 };

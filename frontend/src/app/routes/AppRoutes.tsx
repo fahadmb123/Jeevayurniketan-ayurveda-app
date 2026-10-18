@@ -15,7 +15,7 @@ import { ContactPage } from '@/features/contact';
 import { LoginPage, RegisterPage } from '@/features/auth';
 
 // Domain-Specific Portal Feature Pages
-import { DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
+import { DoctorLayout, DoctorDashboardPage, DoctorSettingsPage } from '@/features/doctor';
 import { DoctorPatientsPage } from '@/features/patients';
 import { DoctorAppointmentsPage } from '@/features/appointments';
 import { DoctorRecordsPage } from '@/features/records';
@@ -36,13 +36,15 @@ export const AppRoutes: React.FC = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
 
-      {/* Doctor Portal Pages (Separated by High-Level Domain Features) */}
-      <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
-      <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
-      <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />
-      <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />
-      <Route path={ROUTES.DOCTOR_RECORDS} element={<DoctorRecordsPage />} />
-      <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
+      {/* Doctor Portal Routes (Structured with persistent DoctorLayout & Outlet) */}
+      <Route element={<DoctorLayout />}>
+        <Route path={ROUTES.DOCTOR} element={<DoctorDashboardPage />} />
+        <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
+        <Route path={ROUTES.DOCTOR_APPOINTMENTS} element={<DoctorAppointmentsPage />} />
+        <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />
+        <Route path={ROUTES.DOCTOR_RECORDS} element={<DoctorRecordsPage />} />
+        <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
+      </Route>
 
       {/* 404 Fallback */}
       <Route path="*" element={<NotFoundPage />} />

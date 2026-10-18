@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { DoctorSidebar, useDoctorSidebar } from '../components/DoctorSidebar';
-import { DoctorHeader } from '../components/DoctorHeader';
+import { useOutletContext } from 'react-router-dom';
 import { DoctorStats } from '../components/DoctorStats';
-import { RecentPatientsWidget, usePatients, type Patient } from '@/features/patients';
+import { RecentPatientsWidget, usePatients } from '@/features/patients';
 import { TodayScheduleWidget } from '@/features/appointments';
+import type { DoctorOutletContext } from '../layouts/DoctorLayout';
 import './DoctorDashboardPage.css';
 
 const gridVariants: Variants = {
@@ -21,58 +21,40 @@ const cardItemVariants: Variants = {
 };
 
 export const DoctorDashboardPage: React.FC = () => {
-  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
-  const [searchQuery, setSearchQuery] = useState('');
-  const { patients, addPatient } = usePatients();
-
-  const handleAddPatient = (newPatient: Omit<Patient, 'id'>) => {
-    addPatient(newPatient);
-  };
+  const context = useOutletContext<DoctorOutletContext>();
+  const searchQuery = context?.searchQuery ?? '';
+  const { patients } = usePatients();
 
   return (
-    <div className="doctor-dashboard-layout">
-      <DoctorSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+    <div className="doctor-dashboard-content">
+      <div className="doctor-greeting-section">
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="doctor-greeting-title"
+        >
+          Good Morning, <span className="doctor-greeting-highlight">Dr. Sharma</span>
+        </motion.h1>
+        <p className="doctor-greeting-sub">
+          Here is what's happening with your clinic today.
+        </p>
+      </div>
 
-      <main className="doctor-dashboard-main">
-        <DoctorHeader
-          isSidebarOpen={isSidebarOpen}
-          onToggleSidebar={toggleSidebar}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          onAddPatient={handleAddPatient}
+      <DoctorStats />
+
+      <motion.div
+        className="doctor-dashboard-grid"
+        variants={gridVariants}
+        initial="hidden"
+        animate="show"
+      >
+        <RecentPatientsWidget
+          patients={patients}
+          searchFilter={searchQuery}
+          variants={cardItemVariants}
         />
-
-        <div className="doctor-dashboard-content">
-          <div className="doctor-greeting-section">
-            <motion.h1
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="doctor-greeting-title"
-            >
-              Good Morning, <span className="doctor-greeting-highlight">Dr. Sharma</span>
-            </motion.h1>
-            <p className="doctor-greeting-sub">
-              Here is what's happening with your clinic today.
-            </p>
-          </div>
-
-          <DoctorStats />
-
-          <motion.div
-            className="doctor-dashboard-grid"
-            variants={gridVariants}
-            initial="hidden"
-            animate="show"
-          >
-            <RecentPatientsWidget
-              patients={patients}
-              searchFilter={searchQuery}
-              variants={cardItemVariants}
-            />
-            <TodayScheduleWidget variants={cardItemVariants} />
-          </motion.div>
-        </div>
-      </main>
+        <TodayScheduleWidget variants={cardItemVariants} />
+      </motion.div>
     </div>
   );
 };

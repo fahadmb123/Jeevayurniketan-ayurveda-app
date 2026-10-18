@@ -11,7 +11,6 @@ import {
   Inbox,
   RotateCcw,
 } from 'lucide-react';
-import { DoctorSidebar, DoctorHeader, useDoctorSidebar } from '@/features/doctor';
 import {
   useYogaSchedule,
   YogaClassCard,
@@ -21,7 +20,6 @@ import {
 import './DoctorYogaSchedulePage.css';
 
 export const DoctorYogaSchedulePage: React.FC = () => {
-  const [isSidebarOpen, toggleSidebar] = useDoctorSidebar();
 
   const {
     sessions,
@@ -53,13 +51,8 @@ export const DoctorYogaSchedulePage: React.FC = () => {
   const onlineCount = sessions.filter((s) => s.format === 'online').length;
 
   return (
-    <div className="doctor-page-layout">
-      <DoctorSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-
-      <main className="doctor-page-main">
-        <DoctorHeader isSidebarOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
-
-        <div className="doctor-page-content">
+    <>
+      <div className="doctor-page-content">
           {/* Header & Quick Action */}
           <div className="doctor-yoga-header">
             <div>
@@ -259,8 +252,6 @@ export const DoctorYogaSchedulePage: React.FC = () => {
             </div>
           )}
         </div>
-      </main>
-
       {/* Add / Edit Yoga Modal */}
       <YogaClassModal
         isOpen={isModalOpen}
@@ -276,6 +267,6 @@ export const DoctorYogaSchedulePage: React.FC = () => {
           <span>{actionSuccessMessage}</span>
         </div>
       )}
-    </div>
+    </>
   );
 };
