@@ -1,38 +1,68 @@
 import http from 'http';
-import { createApp } from './app.js';
-import { env } from './config/environment.js';
+import { App } from './app.js';
+import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
 
-const app = createApp();
-const server = http.createServer(app);
+export class Server {
+  private readonly httpServer: http.Server;
 
-const startServer = (): void => {
-  server.listen(env.port, () => {
-    console.log('\n==================================================');
-    console.log('🌿 JEEVAYURNIKETAN AYURVEDA CLINIC - BACKEND');
-    console.log('==================================================');
-    console.log(`🚀 Server running on port : http://localhost:${env.port}`);
-    console.log(`🩺 Health check endpoint  : http://localhost:${env.port}/health`);
-    console.log(`🌐 Base API endpoint      : http://localhost:${env.port}/api`);
-    console.log(`🔒 Environment            : ${env.nodeEnv}`);
-    console.log(`⚡ Allowed CORS Origin    : ${env.corsOrigin}`);
-    console.log('==================================================\n');
-  });
+  constructor(
+    private readonly appInstance: App,
+    private readonly config: EnvironmentConfig
+  ) {
+    this.httpServer = http.createServer(this.appInstance.app);
+    this.setupProcessSignals();
+  }
 
-  const handleShutdown = (signal: string): void => {
-    console.log(`\n[Server] Received ${signal}. Shutting down gracefully...`);
-    server.close(() => {
-      console.log('[Server] HTTP server closed cleanly.');
-      process.exit(0);
+  public start(): void {
+    this.httpServer.listen(this.config.port, () => {
+      console.log('\n==================================================');
+      console.log('🌿 JEEVAYURNIKETAN AYURVEDA CLINIC - BACKEND');
+      console.log('==================================================');
+      console.log(`🚀 Server running on port : http://localhost:${this.config.port}`);
+      console.log(`🩺 Health check endpoint  : http://localhost:${this.config.port}/health`);
+      console.log(`🌐 Base API endpoint      : http://localhost:${this.config.port}/api`);
+      console.log(`🔒 Environment            : ${this.config.nodeEnv}`);
+      console.log(`⚡ Allowed CORS Origin    : ${this.config.corsOrigin}`);
+      console.log('==================================================\n');
     });
+  }
 
-    setTimeout(() => {
-      console.error('[Server] Forcefully shutting down due to timeout.');
-      process.exit(1);
-    }, 10000);
-  };
+  public async stop(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.httpServer.close((error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve();
+      });
+    });
+  }
 
-  process.on('SIGTERM', () => handleShutdown('SIGTERM'));
-  process.on('SIGINT', () => handleShutdown('SIGINT'));
-};
+  private setupProcessSignals(): void {
+    const handleShutdown = (signal: string): void => {
+      console.log(`\n[Server] Received ${signal}. Shutting down gracefully...`);
+      this.stop()
+        .then(() => {
+          console.log('[Server] HTTP server closed cleanly.');
+          process.exit(0);
+        })
+        .catch((error: Error) => {
+          console.error('[Server] Error while shutting down:', error);
+          process.exit(1);
+        });
 
-startServer();
+      setTimeout(() => {
+        console.error('[Server] Forcefully shutting down due to timeout.');
+        process.exit(1);
+      }, 10000);
+    };
+
+    process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+    process.on('SIGINT', () => handleShutdown('SIGINT'));
+  }
+}
+
+const appInstance = App.create(env);
+const server = new Server(appInstance, env);
+server.start();

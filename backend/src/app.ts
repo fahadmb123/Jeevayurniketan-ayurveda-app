@@ -1,47 +1,73 @@
 import express from 'express';
-import type { Application, Request, Response } from 'express';
+import type { Application } from 'express';
 import cors from 'cors';
-import { env } from './config/environment.js';
-import { requestLogger } from './middlewares/requestLogger.js';
-import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import { errorHandler } from './middlewares/errorHandler.js';
-import { apiRouter } from './routes/apiRouter.js';
-import { healthRouter } from './routes/healthRoutes.js';
+import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
+import { LoggerMiddleware } from './infrastructure/logging/LoggerMiddleware.js';
+import { NotFoundMiddleware } from './presentation/middlewares/NotFoundMiddleware.js';
+import { ErrorMiddleware } from './presentation/middlewares/ErrorMiddleware.js';
+import { RootController } from './presentation/controllers/RootController.js';
+import { HealthController } from './presentation/controllers/HealthController.js';
+import { RootRoutes } from './presentation/routes/RootRoutes.js';
+import { HealthRoutes } from './presentation/routes/HealthRoutes.js';
+import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
+import { SystemHealthRepository } from './infrastructure/repositories/SystemHealthRepository.js';
+import { HealthService } from './application/services/HealthService.js';
 
-export const createApp = (): Application => {
-  const app = express();
+export class App {
+  public readonly app: Application;
 
-  app.use(
-    cors({
-      origin: env.corsOrigin === '*' ? '*' : env.corsOrigin.split(','),
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    })
-  );
+  constructor(
+    private readonly config: EnvironmentConfig,
+    private readonly rootRoutes: RootRoutes,
+    private readonly healthRoutes: HealthRoutes,
+    private readonly apiRoutes: ApiRoutes,
+    private readonly errorMiddleware: ErrorMiddleware
+  ) {
+    this.app = express();
+    this.initializeMiddlewares();
+    this.initializeRoutes();
+    this.initializeErrorHandling();
+  }
 
-  app.use(express.json({ limit: '10mb' }));
-  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+  public static create(config: EnvironmentConfig = env): App {
+    const healthRepository = new SystemHealthRepository(config);
+    const healthService = new HealthService(healthRepository);
 
-  app.use(requestLogger);
+    const rootController = new RootController(config);
+    const healthController = new HealthController(healthService);
 
-  app.use('/health', healthRouter);
+    const rootRoutes = new RootRoutes(rootController);
+    const healthRoutes = new HealthRoutes(healthController);
+    const apiRoutes = new ApiRoutes(rootController, healthRoutes);
 
-  app.get('/', (_req: Request, res: Response) => {
-    res.status(200).json({
-      message: 'Welcome to Jeevayurniketan Ayurveda & Psychotherapy API',
-      status: 'online',
-      port: env.port,
-      apiDocs: '/api',
-      healthCheck: '/health',
-    });
-  });
+    const errorMiddleware = new ErrorMiddleware(config);
 
-  app.use('/api', apiRouter);
+    return new App(config, rootRoutes, healthRoutes, apiRoutes, errorMiddleware);
+  }
 
-  app.use(notFoundHandler);
+  private initializeMiddlewares(): void {
+    this.app.use(
+      cors({
+        origin: this.config.corsOrigin === '*' ? '*' : this.config.corsOrigin.split(','),
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+      })
+    );
 
-  app.use(errorHandler);
+    this.app.use(express.json({ limit: '10mb' }));
+    this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+    this.app.use(LoggerMiddleware.handle);
+  }
 
-  return app;
-};
+  private initializeRoutes(): void {
+    this.app.use('/', this.rootRoutes.router);
+    this.app.use('/health', this.healthRoutes.router);
+    this.app.use('/api', this.apiRoutes.router);
+  }
+
+  private initializeErrorHandling(): void {
+    this.app.use(NotFoundMiddleware.handle);
+    this.app.use(this.errorMiddleware.handle);
+  }
+}
