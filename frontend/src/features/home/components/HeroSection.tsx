@@ -31,15 +31,17 @@ const slideFromRightVariants: Variants = {
 };
 
 const imageSlideFromRightVariants: Variants = {
-  hidden: { opacity: 0, x: 100, scale: 0.98 },
+  hidden: { opacity: 0, x: 200, scale: 1.1 },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.85,
-      delay: 0.25,
-      ease: [0.16, 1, 0.3, 1] as const,
+      type: 'spring' as const,
+      stiffness: 260,
+      damping: 24,
+      mass: 0.85,
+      delay: 0.15,
     },
   },
 };
