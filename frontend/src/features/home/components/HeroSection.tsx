@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
-import resortHeroImg from '@/assets/resort_hero.jpg';
+import yogaResortHeroImg from '@/assets/yoga_resort_hero.jpg';
 import { TornPaperDivider } from './TornPaperDivider';
 import { FloatingLeaves } from './FloatingLeaves';
 import { BookAppointmentButton } from '@/features/appointments';
@@ -33,8 +33,8 @@ export const HeroSection: React.FC = React.memo(() => {
       {/* Background Resort Image Layer */}
       <div className="hero-resort-backdrop">
         <img
-          src={resortHeroImg}
-          alt="Authentic Kerala Traditional Ayurvedic Retreat Sanctuary surrounded by serene lotus waters and tropical nature"
+          src={yogaResortHeroImg}
+          alt="Serene Kerala Ayurvedic Yoga & Meditation Sanctuary with practitioner in Padmasana lotus pose on a wooden pavilion over a lotus pond"
           className="hero-resort-image"
           loading="eager"
           decoding="async"
