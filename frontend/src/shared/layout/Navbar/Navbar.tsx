@@ -19,7 +19,10 @@ export const Navbar: React.FC = React.memo(() => {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 40);
+          setScrolled(prev => {
+            const isScrolled = window.scrollY > 40;
+            return prev !== isScrolled ? isScrolled : prev;
+          });
           ticking = false;
         });
         ticking = true;

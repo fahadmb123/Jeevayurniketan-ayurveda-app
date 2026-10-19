@@ -27,12 +27,19 @@ export const BrandLogo: React.FC<BrandLogoProps> = React.memo(({
         src={feviconSvg}
         alt="Jeevayurniketan Emblem"
         className="brand-logo__emblem"
+        width="44"
+        height="44"
+        decoding="async"
+        loading="eager"
       />
       {!collapsed && (
         <img
           src={logoTextSvg}
           alt={altText}
           className="brand-logo__text"
+          height="42"
+          decoding="async"
+          loading="eager"
         />
       )}
     </>

@@ -65,10 +65,8 @@
   bottom: 22px;
   left: 22px;
   right: 22px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.95);
   border-radius: 18px;
   padding: 16px 22px;
   display: flex;
@@ -113,8 +111,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.96);
   border-radius: 999px;
   border: 1px solid rgba(27, 107, 80, 0.18);
   font-size: 0.82rem;
