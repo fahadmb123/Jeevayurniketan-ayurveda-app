@@ -12,32 +12,33 @@ const textContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.14,
       delayChildren: 0.08,
     },
   },
 };
 
-const slideUpVariants: Variants = {
-  hidden: { opacity: 0, y: 26 },
+const slideFromRightVariants: Variants = {
+  hidden: { opacity: 0, x: 100 },
   visible: {
     opacity: 1,
-    y: 0,
+    x: 0,
     transition: {
-      duration: 0.65,
+      duration: 0.75,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
 
-const imageFadeVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.98 },
+const imageSlideFromRightVariants: Variants = {
+  hidden: { opacity: 0, x: 100, scale: 0.98 },
   visible: {
     opacity: 1,
+    x: 0,
     scale: 1,
     transition: {
       duration: 0.85,
-      delay: 0.2,
+      delay: 0.25,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
@@ -59,23 +60,23 @@ export const HeroSection: React.FC = React.memo(() => {
               variants={textContainerVariants}
             >
               {/* Welcome Pill */}
-              <m.div className="hero-exact-pill" variants={slideUpVariants}>
+              <m.div className="hero-exact-pill" variants={slideFromRightVariants}>
                 <span>WELCOME TO AYUVA</span>
               </m.div>
 
               {/* Headline */}
-              <m.h1 className="hero-exact-title" variants={slideUpVariants}>
+              <m.h1 className="hero-exact-title" variants={slideFromRightVariants}>
                 Natural wellness for<br />
                 everyday balance
               </m.h1>
 
               {/* Subtitle */}
-              <m.p className="hero-exact-desc" variants={slideUpVariants}>
+              <m.p className="hero-exact-desc" variants={slideFromRightVariants}>
                 Discover herbal products and mindful treatments designed to support a calmer, more balanced lifestyle.
               </m.p>
 
               {/* Buttons Row */}
-              <m.div className="hero-exact-actions" variants={slideUpVariants}>
+              <m.div className="hero-exact-actions" variants={slideFromRightVariants}>
                 <Link to={ROUTES.SERVICES} className="hero-exact-btn-shop">
                   <ShoppingBag size={16} className="btn-icon" />
                   <span>SHOP PRODUCT</span>
@@ -89,14 +90,14 @@ export const HeroSection: React.FC = React.memo(() => {
             </m.div>
           </div>
 
-          {/* Right Column: Flat-Lay Card with fade in */}
+          {/* Right Column: Flat-Lay Card sliding in from the right */}
           <div className="hero-exact-right">
             <m.div
               className="hero-exact-card"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              variants={imageFadeVariants}
+              variants={imageSlideFromRightVariants}
             >
               <img
                 src={heroFlatlayExact}
