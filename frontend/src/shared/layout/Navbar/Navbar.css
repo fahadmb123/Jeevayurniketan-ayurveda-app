@@ -49,6 +49,8 @@
 .navbar-brand-section {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  margin-right: clamp(18px, 2.8vw, 40px);
 }
 
 /* Nav Links - Plain Editorial Typography with subtle underline */
@@ -56,9 +58,10 @@
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 26px;
+  gap: clamp(12px, 1.6vw, 22px);
   margin: 0;
   padding: 0;
+  flex-shrink: 1;
 }
 
 .navbar-links li a {

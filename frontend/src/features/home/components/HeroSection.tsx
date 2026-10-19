@@ -1,6 +1,5 @@
 import React from 'react';
 import heroFlatlayExact from '@/assets/hero_flatlay_exact.png';
-import botanicalSketchExact from '@/assets/botanical_sketch_exact.png';
 import { ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
@@ -11,16 +10,8 @@ export const HeroSection: React.FC = React.memo(() => {
     <section id="home" className="hero-exact-section" aria-label="Ayuva Ayurvedic Sanctuary">
       <div className="hero-exact-layout">
         
-        {/* Left Column: Ivory Background with Botanical Sketch & Editorial Text */}
+        {/* Left Column: Ivory Background with Editorial Text */}
         <div className="hero-exact-left">
-          {/* Exact Botanical Pencil Lotus Illustration in bottom left */}
-          <img
-            src={botanicalSketchExact}
-            alt=""
-            className="hero-exact-botanical-art"
-            aria-hidden="true"
-          />
-
           <div className="hero-exact-content">
             {/* Exact Welcome Pill */}
             <div className="hero-exact-pill">

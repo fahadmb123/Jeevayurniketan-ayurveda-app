@@ -179,15 +179,18 @@
   width: 100%;
   display: flex;
   align-items: stretch;
+  padding-top: 36px;
+  padding-bottom: 24px;
 }
 
 .hero-exact-card {
   width: 100%;
   height: 100%;
-  border-top-left-radius: 28px;
+  border-top-left-radius: 36px;
   overflow: hidden;
   position: relative;
   background-color: #3B5646;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .hero-exact-card-img {
@@ -204,8 +207,8 @@
 .hero-exact-wave {
   position: relative;
   width: 100%;
-  height: 65px;
-  margin-top: -15px;
+  height: 85px;
+  margin-top: -65px;
   z-index: 10;
   pointer-events: none;
   line-height: 0;
@@ -233,11 +236,6 @@
   background-color: #0E1A14;
 }
 
-[data-theme='dark'] .hero-exact-botanical-art {
-  filter: invert(0.85) sepia(0.2) brightness(1.2);
-  opacity: 0.35;
-}
-
 [data-theme='dark'] .hero-exact-title {
   color: #EDF7F2;
 }
@@ -261,11 +259,13 @@
 }
 
 [data-theme='dark'] .hero-exact-wave {
-  color: #0E1A14;
+  color: #14281E;
 }
 
 [data-theme='dark'] .hero-wave-svg path {
-  fill: #0E1A14;
+  fill: #14281E;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1.5;
 }
 
 /* --------------------------------------------------------------------------
