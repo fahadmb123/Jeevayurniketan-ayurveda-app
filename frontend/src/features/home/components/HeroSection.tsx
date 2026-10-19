@@ -18,13 +18,13 @@ const textContainerVariants: Variants = {
   },
 };
 
-const slideFromRightVariants: Variants = {
-  hidden: { opacity: 0, x: 100 },
+const slideFromTopVariants: Variants = {
+  hidden: { opacity: 0, y: -36 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      duration: 0.75,
+      duration: 0.65,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
@@ -60,23 +60,23 @@ export const HeroSection: React.FC = React.memo(() => {
               variants={textContainerVariants}
             >
               {/* Welcome Pill */}
-              <m.div className="hero-exact-pill" variants={slideFromRightVariants}>
+              <m.div className="hero-exact-pill" variants={slideFromTopVariants}>
                 <span>WELCOME TO AYUVA</span>
               </m.div>
 
               {/* Headline */}
-              <m.h1 className="hero-exact-title" variants={slideFromRightVariants}>
+              <m.h1 className="hero-exact-title" variants={slideFromTopVariants}>
                 Natural wellness for<br />
                 everyday balance
               </m.h1>
 
               {/* Subtitle */}
-              <m.p className="hero-exact-desc" variants={slideFromRightVariants}>
+              <m.p className="hero-exact-desc" variants={slideFromTopVariants}>
                 Discover herbal products and mindful treatments designed to support a calmer, more balanced lifestyle.
               </m.p>
 
               {/* Buttons Row */}
-              <m.div className="hero-exact-actions" variants={slideFromRightVariants}>
+              <m.div className="hero-exact-actions" variants={slideFromTopVariants}>
                 <Link to={ROUTES.SERVICES} className="hero-exact-btn-shop">
                   <ShoppingBag size={16} className="btn-icon" />
                   <span>SHOP PRODUCT</span>
