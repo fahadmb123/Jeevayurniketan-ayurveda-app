@@ -31,12 +31,12 @@ const slideFromTopVariants: Variants = {
 };
 
 const imageSlideFromRightVariants: Variants = {
-  hidden: { opacity: 0, x: 100 },
+  hidden: { opacity: 0, x: 300 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.2,
+      duration: 1.5,
       ease: 'easeOut',
       delay: 0.2,
     },
