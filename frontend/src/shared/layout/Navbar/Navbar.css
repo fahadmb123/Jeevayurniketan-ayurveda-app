@@ -51,6 +51,28 @@
   align-items: center;
 }
 
+.ayuva-brand-header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #172820;
+}
+
+.ayuva-brand-svg-icon {
+  width: 24px;
+  height: 24px;
+  color: #4A6B5D;
+}
+
+.ayuva-brand-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.62rem;
+  font-weight: 600;
+  color: #1E2B24;
+  letter-spacing: -0.015em;
+}
+
 /* Nav Links - Plain Editorial Typography with subtle underline */
 .navbar-links {
   display: flex;
@@ -71,7 +93,18 @@
   text-decoration: none;
   padding: 6px 2px;
   transition: color 0.2s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown-caret {
+  color: #6B7C73;
+  transition: transform 0.2s ease;
+}
+
+.navbar-links li a:hover .dropdown-caret {
+  transform: translateY(1px);
 }
 
 .navbar-links li a::after {
@@ -142,6 +175,27 @@
 
 .search-trigger-mobile {
   display: none;
+}
+
+.cart-trigger {
+  position: relative;
+}
+
+.cart-badge-count {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #465E50;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .navbar-icon-btn {

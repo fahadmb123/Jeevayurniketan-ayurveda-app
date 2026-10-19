@@ -1,91 +1,65 @@
 import React from 'react';
-import { motion, type Variants } from 'framer-motion';
-import heroFlatlayImg from '@/assets/ayurveda_hero_flatlay.jpg';
-import { BotanicalLotusArt } from './BotanicalLotusArt';
-import { OrganicWaveDivider } from './OrganicWaveDivider';
-import { BookAppointmentButton } from '@/features/appointments';
-import { ArrowRight } from 'lucide-react';
-import { ROUTES } from '@/shared/config/routes';
+import heroFlatlayExact from '@/assets/hero_flatlay_exact.png';
+import botanicalSketchExact from '@/assets/botanical_sketch_exact.png';
+import { ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
 import './HeroSection.css';
-
-const fadeVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-};
 
 export const HeroSection: React.FC = React.memo(() => {
   return (
-    <section id="home" className="ayuva-hero-section" aria-label="Jeevayurniketan Ayurvedic Sanctuary">
-      <div className="hero-split-wrapper">
+    <section id="home" className="hero-exact-section" aria-label="Ayuva Ayurvedic Sanctuary">
+      <div className="hero-exact-layout">
         
-        {/* Left Column: Ivory Editorial Content & Delicate Botanical Line Art */}
-        <div className="hero-split-left">
-          {/* Subtle Botanical Lotus Watermark */}
-          <BotanicalLotusArt className="hero-botanical-watermark" />
+        {/* Left Column: Ivory Background with Botanical Sketch & Editorial Text */}
+        <div className="hero-exact-left">
+          {/* Exact Botanical Pencil Lotus Illustration in bottom left */}
+          <img
+            src={botanicalSketchExact}
+            alt=""
+            className="hero-exact-botanical-art"
+            aria-hidden="true"
+          />
 
-          <motion.div
-            className="hero-split-content"
-            variants={fadeVariants}
-            initial="hidden"
-            animate="show"
-          >
-            {/* Pill Kicker Badge */}
-            <motion.div variants={itemVariants} className="hero-welcome-badge">
-              <span>WELCOME TO JEEVAYURNIKETAN</span>
-            </motion.div>
+          <div className="hero-exact-content">
+            {/* Exact Welcome Pill */}
+            <div className="hero-exact-pill">
+              <span>WELCOME TO AYUVA</span>
+            </div>
 
-            {/* Editorial Serif Headline */}
-            <motion.h1 variants={itemVariants} className="hero-headline">
+            {/* Exact Serif Headline */}
+            <h1 className="hero-exact-title">
               Natural wellness for<br />
               everyday balance
-            </motion.h1>
+            </h1>
 
-            {/* Supportive Subtitle */}
-            <motion.p variants={itemVariants} className="hero-description">
-              Discover authentic herbal formulations, Satvavajaya psychotherapy, and 
-              mindful treatments designed to support a calmer, more balanced lifestyle.
-            </motion.p>
+            {/* Exact Subtitle */}
+            <p className="hero-exact-desc">
+              Discover herbal products and mindful treatments designed to support a calmer, more balanced lifestyle.
+            </p>
 
-            {/* Action Buttons Row */}
-            <motion.div variants={itemVariants} className="hero-actions-row">
-              <div className="hero-primary-cta">
-                <BookAppointmentButton
-                  label="EXPLORE THERAPIES"
-                  size="lg"
-                  variant="primary"
-                />
-              </div>
-
-              <Link to={ROUTES.ABOUT} className="hero-secondary-cta">
-                <span>EXPLORE WELLNESS</span>
-                <ArrowRight size={16} />
+            {/* Exact Buttons Row */}
+            <div className="hero-exact-actions">
+              <Link to={ROUTES.SERVICES} className="hero-exact-btn-shop">
+                <ShoppingBag size={16} className="btn-icon" />
+                <span>SHOP PRODUCT</span>
               </Link>
-            </motion.div>
-          </motion.div>
+
+              <a href="#about" className="hero-exact-btn-explore">
+                <span>EXPLORE WELLNESS</span>
+                <span className="btn-arrow">→</span>
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: High-Res Ayurvedic Flat-Lay Apothecary Visual */}
-        <div className="hero-split-right">
-          <div className="hero-visual-card">
+        {/* Right Column: Exact Flat-Lay Card */}
+        <div className="hero-exact-right">
+          <div className="hero-exact-card">
             <img
-              src={heroFlatlayImg}
-              alt="Flat-lay of Ayurvedic herbal wellness apothecary: cold-pressed oils, dried lavender, rosebuds, and fresh mint on deep forest green linen"
-              className="hero-flatlay-img"
+              src={heroFlatlayExact}
+              alt="Ayurvedic herbal wellness flat lay: essential oils, dried lavender, rosebuds, and fresh mint on deep forest green linen"
+              className="hero-exact-card-img"
               loading="eager"
               decoding="async"
             />
@@ -94,8 +68,15 @@ export const HeroSection: React.FC = React.memo(() => {
 
       </div>
 
-      {/* Smooth Organic Wave Divider Transition into Next Section */}
-      <OrganicWaveDivider className="hero-bottom-wave" />
+      {/* Exact Organic Wave Divider Transition into Category Circles */}
+      <div className="hero-exact-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 85" fill="none" preserveAspectRatio="none" className="hero-wave-svg">
+          <path
+            d="M0,32 C260,65 520,70 780,38 C1040,6 1260,16 1440,32 L1440,85 L0,85 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
     </section>
   );
 });

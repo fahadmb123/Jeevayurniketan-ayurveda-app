@@ -1,216 +1,217 @@
 /* ==========================================================================
-   Ayuva Split Hero Section Styles (Clean Editorial Layout Matching Reference)
-   Pure CSS Layout, Ultra-Optimized (Zero JS Lag, Constant 60/120 FPS)
+   Hero Section Styles (Exact Match to Reference Screenshot)
    ========================================================================== */
 
-.ayuva-hero-section {
+.hero-exact-section {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 76px);
-  background: linear-gradient(135deg, #FAF7F2 0%, #F5EFE6 100%);
+  background-color: #F8F6F0;
   overflow: hidden;
-  padding-top: 86px;
+  padding-top: 76px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
-.hero-split-wrapper {
+.hero-exact-layout {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 30px 4% 80px;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  align-items: center;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 480px;
   position: relative;
   z-index: 5;
-  flex: 1;
 }
 
 /* --------------------------------------------------------------------------
-   Left Column: Editorial Typography & Botanical Watermark
+   Left Column: Ivory Background with Botanical Art & Editorial Text
    -------------------------------------------------------------------------- */
-.hero-split-left {
+.hero-exact-left {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 20px 20px 10px;
+  padding: 40px 5% 50px 8%;
+  background-color: #F8F6F0;
 }
 
-/* Botanical Lotus Line Art Watermark */
-.hero-botanical-watermark {
+/* Botanical Pencil Sketch in bottom left corner */
+.hero-exact-botanical-art {
   position: absolute;
-  bottom: -40px;
-  left: -20px;
-  width: 290px;
-  height: 350px;
-  color: #8CA899;
-  opacity: 0.32;
+  bottom: 0;
+  left: 0;
+  width: 195px;
+  height: auto;
   pointer-events: none;
   z-index: 1;
+  opacity: 0.95;
 }
 
-.hero-split-content {
+.hero-exact-content {
   position: relative;
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 600px;
+  max-width: 530px;
 }
 
-/* Welcome Badge Kicker */
-.hero-welcome-badge {
+/* Welcome Pill Badge */
+.hero-exact-pill {
   display: inline-flex;
   align-items: center;
-  padding: 6px 18px;
+  padding: 5px 16px;
   border-radius: 999px;
-  border: 1px solid #D8CFC0;
-  background: rgba(255, 255, 255, 0.65);
-  margin-bottom: 24px;
+  border: 1px solid #D8CFC2;
+  background: transparent;
+  margin-bottom: 22px;
 }
 
-.hero-welcome-badge span {
+.hero-exact-pill span {
   font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.69rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #7A897E;
+  color: #7D786F;
 }
 
-/* Headline matching reference serif font */
-.hero-headline {
-  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(2.6rem, 4.4vw, 3.85rem);
-  font-weight: 500;
-  color: #172820;
-  line-height: 1.16;
+/* Headline */
+.hero-exact-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+  font-weight: 400;
+  color: #1F2823;
+  line-height: 1.18;
   letter-spacing: -0.015em;
-  margin: 0 0 20px 0;
+  margin: 0 0 18px 0;
 }
 
 /* Subtitle description */
-.hero-description {
+.hero-exact-desc {
   font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: 1.05rem;
-  line-height: 1.62;
-  color: #4A5E53;
-  margin: 0 0 32px 0;
-  max-width: 500px;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: #4C5952;
+  margin: 0 0 28px 0;
+  max-width: 460px;
 }
 
-/* Action Buttons Row */
-.hero-actions-row {
+/* Buttons Row */
+.hero-exact-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.hero-primary-cta .app-btn {
-  border-radius: 999px !important;
-  background: #183B2B !important;
-  color: #ffffff !important;
-  padding: 13px 28px !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
-  box-shadow: 0 8px 24px rgba(24, 59, 43, 0.25) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  transition: all 0.22s ease !important;
-}
-
-.hero-primary-cta .app-btn:hover {
-  background: #112B1F !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 12px 28px rgba(24, 59, 43, 0.35) !important;
-}
-
-.hero-secondary-cta {
+/* Primary Dark Green Button: SHOP PRODUCT */
+.hero-exact-btn-shop {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 26px;
+  gap: 8px;
+  background-color: #465E50;
+  color: #ffffff;
+  padding: 11px 24px;
   border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid #D8CFC0;
-  color: #172820;
-  font-size: 0.82rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 14px rgba(70, 94, 80, 0.25);
+  transition: all 0.22s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-exact-btn-shop:hover {
+  background-color: #384C40;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(70, 94, 80, 0.35);
+  color: #ffffff;
+}
+
+.hero-exact-btn-shop .btn-icon {
+  color: #ffffff;
+}
+
+/* Secondary White Button: EXPLORE WELLNESS */
+.hero-exact-btn-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #2D3933;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 1px solid #DFD8CE;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
   transition: all 0.22s ease;
 }
 
-.hero-secondary-cta:hover {
-  background: #F5EFE6;
-  border-color: #183B2B;
-  color: #183B2B;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+.hero-exact-btn-explore:hover {
+  background-color: #F8F6F0;
+  border-color: #465E50;
+  color: #465E50;
+  transform: translateY(-1px);
+}
+
+.hero-exact-btn-explore .btn-arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.hero-exact-btn-explore:hover .btn-arrow {
+  transform: translateX(3px);
 }
 
 /* --------------------------------------------------------------------------
-   Right Column: High-Res Flat-Lay Apothecary Visual Card
+   Right Column: Exact Flat-Lay Card
    -------------------------------------------------------------------------- */
-.hero-split-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.hero-visual-card {
-  width: 100%;
-  max-width: 620px;
-  aspect-ratio: 4 / 3;
-  border-radius: 36px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(18, 48, 34, 0.16), 0 4px 16px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+.hero-exact-right {
   position: relative;
-  background-color: #163628;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
 }
 
-.hero-flatlay-img {
+.hero-exact-card {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  background-color: #3B5646;
+}
+
+.hero-exact-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-visual-card:hover .hero-flatlay-img {
-  transform: scale(1.03);
 }
 
 /* --------------------------------------------------------------------------
    Bottom Organic Wave Transition
    -------------------------------------------------------------------------- */
-.hero-bottom-wave {
+.hero-exact-wave {
   position: relative;
   width: 100%;
-  height: 60px;
-  margin-top: auto;
-  pointer-events: none;
+  height: 65px;
+  margin-top: -15px;
   z-index: 10;
+  pointer-events: none;
   line-height: 0;
 }
 
-.organic-wave-divider {
-  width: 100%;
-  height: 100%;
-}
-
-.organic-wave-svg {
+.hero-wave-svg {
   width: 100%;
   height: 100%;
   display: block;
@@ -219,93 +220,67 @@
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations
    -------------------------------------------------------------------------- */
-[data-theme='dark'] .ayuva-hero-section {
-  background: linear-gradient(135deg, #0E1A14 0%, #08110D 100%);
+[data-theme='dark'] .hero-exact-section {
+  background-color: #0E1A14;
 }
 
-[data-theme='dark'] .hero-headline {
+[data-theme='dark'] .hero-exact-left {
+  background-color: #0E1A14;
+}
+
+[data-theme='dark'] .hero-exact-title {
   color: #EDF7F2;
 }
 
-[data-theme='dark'] .hero-description {
+[data-theme='dark'] .hero-exact-desc {
   color: #A3BDB0;
 }
 
-[data-theme='dark'] .hero-welcome-badge {
-  background: rgba(24, 49, 38, 0.6);
+[data-theme='dark'] .hero-exact-pill {
   border-color: rgba(46, 157, 119, 0.3);
 }
 
-[data-theme='dark'] .hero-welcome-badge span {
+[data-theme='dark'] .hero-exact-pill span {
   color: #79D1AF;
 }
 
-[data-theme='dark'] .hero-secondary-cta {
+[data-theme='dark'] .hero-exact-btn-explore {
   background: #172C21;
   border-color: rgba(46, 157, 119, 0.3);
   color: #EDF7F2;
 }
 
-[data-theme='dark'] .hero-secondary-cta:hover {
-  background: #1F3B2D;
-  border-color: #41BA91;
-}
-
-[data-theme='dark'] .hero-botanical-watermark {
-  color: #2E5C47;
-  opacity: 0.22;
-}
-
-[data-theme='dark'] .hero-bottom-wave svg path {
+[data-theme='dark'] .hero-wave-svg path {
   fill: #0E1A14;
 }
 
 /* --------------------------------------------------------------------------
    Responsive Layout
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .hero-split-wrapper {
+@media (max-width: 960px) {
+  .hero-exact-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-top: 20px;
-    padding-bottom: 60px;
   }
-  .hero-split-content {
-    max-width: 100%;
+  .hero-exact-left {
+    padding: 30px 6% 40px;
     align-items: center;
     text-align: center;
   }
-  .hero-description {
-    max-width: 580px;
+  .hero-exact-content {
+    align-items: center;
   }
-  .hero-actions-row {
+  .hero-exact-actions {
     justify-content: center;
   }
-  .hero-botanical-watermark {
+  .hero-exact-botanical-art {
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.18;
+    opacity: 0.15;
   }
-  .hero-visual-card {
-    max-width: 540px;
+  .hero-exact-right {
+    min-height: 340px;
   }
-}
-
-@media (max-width: 640px) {
-  .ayuva-hero-section {
-    padding-top: 76px;
-  }
-  .hero-split-wrapper {
-    padding: 16px 5% 50px;
-  }
-  .hero-headline {
-    font-size: 2.2rem;
-  }
-  .hero-description {
-    font-size: 0.95rem;
-  }
-  .hero-visual-card {
-    border-radius: 24px;
-    aspect-ratio: 1 / 1;
+  .hero-exact-card {
+    border-top-left-radius: 0;
   }
 }
