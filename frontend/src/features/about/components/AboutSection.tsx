@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import cupImg from '@/assets/cup.jpg';
 import { Leaf, Brain, Sparkles, UserCheck, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -79,6 +79,32 @@ const QUICK_PILLS: QuickPill[] = [
 ];
 
 export const AboutSection: React.FC = React.memo(() => {
+  const cupRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    let ticking = false;
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (cupRef.current) {
+            // Spin fast as user scrolls without any re-render overhead
+            cupRef.current.style.transform = `rotate(${lastScrollY * 0.85}deg)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section id="about" className="ayurveda-pure-banner-section" aria-label="About Jeevayurniketan Heritage">
       <div className="pure-banner-outer-wrap">
@@ -89,6 +115,7 @@ export const AboutSection: React.FC = React.memo(() => {
           {/* Overlapping Top-Down Herbal Bowl (Pure Graphic Design) */}
           <div className="pure-banner-bowl-anchor">
             <img 
+              ref={cupRef}
               src={cupImg} 
               alt="Top-down view of fresh Ayurvedic medicinal Tulsi and Brahmi herbs in a porcelain bowl" 
               className="pure-banner-bowl-img"
