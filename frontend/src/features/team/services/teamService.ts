@@ -1,4 +1,5 @@
 import type { TeamMember } from '../types';
+import drAhalyaImg from '@/assets/dr_ahalya.jpg';
 
 export const MOCK_TEAM_MEMBERS: TeamMember[] = [
   {
@@ -10,11 +11,19 @@ export const MOCK_TEAM_MEMBERS: TeamMember[] = [
     description: 'Focusing on Ayurvedic psychotherapy for over two decades. Founder of Clinical Research Institute of Yoga and Ayurveda.',
   },
   {
+    id: 'dr-ahalya',
+    name: 'Dr. Ahalya T.S.',
+    role: 'Ayurvedic Physician | Yoga & Holistic Wellness',
+    qualifications: 'BAMS (Alva’s), FCCAP (Kottakkal), YIC (S-VYASA)',
+    image: drAhalyaImg,
+    description: 'Rooted in timeless Ayurveda and enriched by yoga and meditation. Supporting your journey towards sustainable, personalized health and mind-body balance.',
+  },
+  {
     id: 'dr-safeer',
     name: 'Dr. Muhammed Safeer P I',
     role: 'Smriti Meditation Practitioner & Trainer',
     qualifications: 'MD (Ayu PSM & Yoga)',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop',
     description: 'Ten years of clinical experience in lifestyle disease and wellness therapy, expert in clinical yoga.',
   },
   {
@@ -22,7 +31,7 @@ export const MOCK_TEAM_MEMBERS: TeamMember[] = [
     name: 'Dr. Shamna K K',
     role: 'Dedicated Practitioner',
     qualifications: 'BAMS, MD(Ay), CSM',
-    image: 'https://images.unsplash.com/photo-1594824432258-2900742194d7?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop',
     description: 'Guiding individuals toward inner balance with 6+ years of work releasing stress and overcoming inner conflicts.',
   },
 ];

@@ -1,0 +1,581 @@
+/* ==========================================================================
+   Dr. Ahalya T.S. Spotlight Section Styles
+   ========================================================================== */
+
+.ahalya-spotlight-section {
+  padding: 100px 5% 90px;
+  background-color: var(--surface-color, #FFFFFF);
+  position: relative;
+  overflow: hidden;
+}
+
+.ahalya-spotlight-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.ahalya-spotlight-top {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spotlight-main-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  margin: 14px 0 10px;
+  line-height: 1.2;
+}
+
+.spotlight-tagline {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--primary-green, #1B6B50);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Doctor Hero Card
+   -------------------------------------------------------------------------- */
+.ahalya-hero-card {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 50px;
+  align-items: center;
+  background: linear-gradient(135deg, #FAFBF8 0%, #EFF5F0 100%);
+  border-radius: 28px;
+  padding: 48px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: 0 18px 45px rgba(10, 46, 32, 0.06);
+}
+
+.ahalya-portrait-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(10, 46, 32, 0.16);
+  border: 4px solid #ffffff;
+}
+
+.ahalya-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.ahalya-frame-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-green, #1B6B50);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.ahalya-hero-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ahalya-details-name {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.ahalya-details-role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary-green, #1B6B50);
+  margin: 0;
+}
+
+.ahalya-intro-quote-card {
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: #ffffff;
+  border-left: 4px solid var(--primary-green, #1B6B50);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  margin: 4px 0 8px;
+}
+
+.quote-intro-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0 0 6px;
+}
+
+.quote-intro-body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+.ahalya-bio-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ahalya-bio-p {
+  font-size: 0.95rem;
+  line-height: 1.68;
+  color: #475569;
+  margin: 0;
+}
+
+.ahalya-pillars-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.ahalya-pillar-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid var(--border-color, #E2E8DE);
+}
+
+.pillar-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ahalya-pillar-item h5 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0 0 4px;
+}
+
+.ahalya-pillar-item p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #64748B;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Areas of Interest Section
+   -------------------------------------------------------------------------- */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.interest-card {
+  padding: 24px 20px;
+  border-radius: 18px;
+  background: var(--surface-secondary, #F9FAF7);
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(27, 107, 80, 0.1);
+  border-color: rgba(27, 107, 80, 0.28);
+}
+
+.interest-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interest-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0;
+}
+
+.interest-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   10-Step Treatment Approach Section
+   -------------------------------------------------------------------------- */
+.treatment-approach-section {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.treatment-header {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.treatment-subtitle {
+  font-size: 1.02rem;
+  color: var(--text-secondary, #475569);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.phase-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.phase-btn {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  background: #ffffff;
+  color: #64748B;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.phase-btn:hover {
+  color: var(--primary-green, #1B6B50);
+  border-color: var(--primary-green, #1B6B50);
+}
+
+.phase-btn.active {
+  background: var(--primary-green, #1B6B50);
+  color: #ffffff;
+  border-color: var(--primary-green, #1B6B50);
+  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.25);
+}
+
+.steps-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+.step-matrix-card {
+  padding: 24px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.step-matrix-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(27, 107, 80, 0.09);
+  border-color: rgba(27, 107, 80, 0.3);
+}
+
+.step-matrix-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-matrix-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-green, #1B6B50);
+  font-family: var(--font-display, sans-serif);
+}
+
+.step-matrix-cat {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--primary-green-tint, #EDF6F1);
+  color: var(--primary-green, #1B6B50);
+}
+
+.step-matrix-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.step-matrix-focus {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94A3B8;
+  display: block;
+}
+
+.step-matrix-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+  flex: 1;
+}
+
+.step-matrix-principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.step-principle-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #475569;
+  background: #F8FAFC;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.step-principle-tag svg {
+  color: var(--primary-green, #1B6B50);
+}
+
+/* --------------------------------------------------------------------------
+   Education Section
+   -------------------------------------------------------------------------- */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.education-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.education-badge-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-green, #1B6B50);
+  background: var(--primary-green-tint, #EDF6F1);
+  padding: 3px 9px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+
+.education-card h4 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #14241C;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.education-card p {
+  font-size: 0.82rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   CTA Banner
+   -------------------------------------------------------------------------- */
+.spotlight-cta-banner {
+  padding: 40px 48px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #164935 0%, #113A2A 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  box-shadow: 0 20px 50px rgba(10, 46, 32, 0.18);
+}
+
+.spotlight-cta-text h3 {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.spotlight-cta-text p {
+  font-size: 0.95rem;
+  color: #D3E5DC;
+  margin: 0;
+  max-width: 640px;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   Dark Mode Accommodations
+   -------------------------------------------------------------------------- */
+[data-theme='dark'] .ahalya-spotlight-section {
+  background-color: #0A140F;
+}
+
+[data-theme='dark'] .spotlight-main-title,
+[data-theme='dark'] .ahalya-details-name,
+[data-theme='dark'] .quote-intro-title,
+[data-theme='dark'] .interest-card h4,
+[data-theme='dark'] .step-matrix-title,
+[data-theme='dark'] .education-card h4 {
+  color: #EDF7F2;
+}
+
+[data-theme='dark'] .ahalya-hero-card {
+  background: linear-gradient(135deg, #132B20 0%, #0E2018 100%);
+  border-color: #1F3C30;
+}
+
+[data-theme='dark'] .ahalya-frame-badge {
+  background: rgba(14, 28, 22, 0.94);
+  color: #41BA91;
+}
+
+[data-theme='dark'] .ahalya-intro-quote-card,
+[data-theme='dark'] .ahalya-pillar-item,
+[data-theme='dark'] .interest-card,
+[data-theme='dark'] .step-matrix-card,
+[data-theme='dark'] .education-card {
+  background: #11221B;
+  border-color: #1F3C30;
+}
+
+[data-theme='dark'] .quote-intro-body,
+[data-theme='dark'] .ahalya-bio-p,
+[data-theme='dark'] .interest-card p,
+[data-theme='dark'] .step-matrix-desc,
+[data-theme='dark'] .education-card p {
+  color: #B5CCC0;
+}
+
+[data-theme='dark'] .phase-btn {
+  background: #11221B;
+  border-color: #1F3C30;
+  color: #B5CCC0;
+}
+
+[data-theme='dark'] .step-principle-tag {
+  background: #183327;
+  color: #D1E5DB;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .ahalya-hero-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 32px;
+  }
+  .ahalya-portrait-frame {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .ahalya-pillars-duo {
+    grid-template-columns: 1fr;
+  }
+  .steps-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-cta-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+  .spotlight-cta-text p {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .ahalya-spotlight-section {
+    padding: 70px 16px 60px;
+  }
+  .ahalya-spotlight-container {
+    gap: 50px;
+  }
+  .spotlight-main-title {
+    font-size: 1.85rem;
+  }
+  .ahalya-hero-card {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+  .step-matrix-card {
+    padding: 18px 16px;
+  }
+}

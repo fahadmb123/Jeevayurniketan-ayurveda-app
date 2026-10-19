@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar, Footer } from '@/shared/layout';
 import { TeamSection } from '../components/TeamSection';
+import { DrAhalyaSpotlightSection } from '../components/DrAhalyaSpotlightSection';
 import { Card } from '@/shared/ui/card';
 import './TeamPage.css';
 
@@ -39,6 +40,8 @@ export const TeamPage: React.FC = React.memo(() => {
       </header>
 
       <TeamSection />
+
+      <DrAhalyaSpotlightSection />
 
       <section className="advisory-section">
         <div className="advisory-container">
