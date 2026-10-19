@@ -4,7 +4,7 @@
   overflow: hidden;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color, #E2E8DE);
-  transition: var(--transition-smooth, all 0.28s ease);
+  transition: border-color 0.28s ease, box-shadow 0.28s ease;
   display: flex;
   flex-direction: column;
 }
@@ -12,7 +12,6 @@
 .team-card:hover {
   border-color: var(--border-color-hover, #CCD6C6);
   box-shadow: var(--card-shadow-hover);
-  transform: translateY(-4px);
 }
 
 .team-card__image-wrapper {

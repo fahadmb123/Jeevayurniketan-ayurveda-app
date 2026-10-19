@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { TeamMemberCard } from './TeamMemberCard';
 import { useTeam } from '../hooks/useTeam';
 import './TeamSection.css';
@@ -18,11 +19,16 @@ export const TeamSection: React.FC = React.memo(() => {
         </p>
       </div>
 
-      <div className="team-grid">
+      <motion.div
+        className="team-grid"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {expertMembers.map((member, index) => (
           <TeamMemberCard key={member.id} member={member} index={index} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });

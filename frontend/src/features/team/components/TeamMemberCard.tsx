@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import type { TeamMember } from '../types';
 import './TeamMemberCard.css';
 
@@ -8,19 +8,27 @@ export interface TeamMemberCardProps {
   index: number;
 }
 
-export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ member, index }) => {
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -220,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.1,
+      ease: 'easeOut',
+    },
+  },
+};
+
+export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ member }) => {
   return (
     <motion.div
       className="team-card"
-      initial={{ opacity: 0, x: -300 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      variants={cardVariants}
       whileHover={{ y: -6, scale: 1.015 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 1.2,
-        delay: index * 0.3,
-        ease: 'easeOut',
-      }}
     >
       <div className="team-card__image-wrapper">
         <img src={member.image} alt={member.name} className="team-card__image" />
