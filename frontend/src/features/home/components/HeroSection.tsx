@@ -1,125 +1,101 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
-import yogaResortHeroImg from '@/assets/yoga_resort_hero.jpg';
-import { TornPaperDivider } from './TornPaperDivider';
+import heroFlatlayImg from '@/assets/ayurveda_hero_flatlay.jpg';
+import { BotanicalLotusArt } from './BotanicalLotusArt';
+import { OrganicWaveDivider } from './OrganicWaveDivider';
 import { BookAppointmentButton } from '@/features/appointments';
-import { Sparkles, ArrowRight, ShieldCheck, Award, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { ROUTES } from '@/shared/config/routes';
+import { Link } from 'react-router-dom';
 import './HeroSection.css';
 
-const titleVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
+const fadeVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
-      stiffness: 280,
-      damping: 24,
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
     },
   },
 };
 
-const wordVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export const HeroSection: React.FC = React.memo(() => {
   return (
-    <section id="home" className="ayurveda-resort-hero" aria-label="Jeevayurniketan Ayurvedic Sanctuary">
-      {/* Background Resort Image Layer */}
-      <div className="hero-resort-backdrop">
-        <img
-          src={yogaResortHeroImg}
-          alt="Serene Kerala Ayurvedic Yoga & Meditation Sanctuary with practitioner in Padmasana lotus pose on a wooden pavilion over a lotus pond"
-          className="hero-resort-image"
-          loading="eager"
-          decoding="async"
-        />
-        {/* Soft atmospheric gradient overlays for optimal text legibility and light diffusion */}
-        <div className="hero-sky-softener" />
-        <div className="hero-ambient-vignette" />
-      </div>
+    <section id="home" className="ayuva-hero-section" aria-label="Jeevayurniketan Ayurvedic Sanctuary">
+      <div className="hero-split-wrapper">
+        
+        {/* Left Column: Ivory Editorial Content & Delicate Botanical Line Art */}
+        <div className="hero-split-left">
+          {/* Subtle Botanical Lotus Watermark */}
+          <BotanicalLotusArt className="hero-botanical-watermark" />
 
-      {/* Hero Central Content: Exactly matches reference typography and placement */}
-      <div className="hero-editorial-container">
-        <motion.div
-          className="hero-editorial-centerpiece"
-          variants={titleVariants}
-          initial="hidden"
-          animate="show"
-        >
-          {/* Subtle Heritage Monogram / Badge */}
-          <motion.div variants={wordVariants} className="hero-zen-pill">
-            <span className="zen-dot" />
-            <span>Pioneers in Ayurvedic Psychotherapy & Smriti Meditation</span>
+          <motion.div
+            className="hero-split-content"
+            variants={fadeVariants}
+            initial="hidden"
+            animate="show"
+          >
+            {/* Pill Kicker Badge */}
+            <motion.div variants={itemVariants} className="hero-welcome-badge">
+              <span>WELCOME TO JEEVAYURNIKETAN</span>
+            </motion.div>
+
+            {/* Editorial Serif Headline */}
+            <motion.h1 variants={itemVariants} className="hero-headline">
+              Natural wellness for<br />
+              everyday balance
+            </motion.h1>
+
+            {/* Supportive Subtitle */}
+            <motion.p variants={itemVariants} className="hero-description">
+              Discover authentic herbal formulations, Satvavajaya psychotherapy, and 
+              mindful treatments designed to support a calmer, more balanced lifestyle.
+            </motion.p>
+
+            {/* Action Buttons Row */}
+            <motion.div variants={itemVariants} className="hero-actions-row">
+              <div className="hero-primary-cta">
+                <BookAppointmentButton
+                  label="EXPLORE THERAPIES"
+                  size="lg"
+                  variant="primary"
+                />
+              </div>
+
+              <Link to={ROUTES.ABOUT} className="hero-secondary-cta">
+                <span>EXPLORE WELLNESS</span>
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
           </motion.div>
+        </div>
 
-          {/* Majestic Headline - Identical to Reference Design */}
-          <motion.h1 variants={wordVariants} className="hero-editorial-title">
-            <span className="title-line-1">Overall wellness</span>
-            <span className="title-line-2">
-              <span className="title-word-through">through </span>
-              <span className="title-word-ayurvedha">Ayurvedha</span>
-            </span>
-          </motion.h1>
-
-          {/* Harmonious Subtext */}
-          <motion.p variants={wordVariants} className="hero-editorial-subtitle">
-            Authentic Kerala Caraka Samhita healing, psychosomatic trauma recovery, 
-            and restorative rejuvenation in harmony with nature.
-          </motion.p>
-
-          {/* Quick Actions */}
-          <motion.div variants={wordVariants} className="hero-editorial-actions">
-            <BookAppointmentButton
-              label="Book Consultation"
-              size="lg"
-              variant="primary"
+        {/* Right Column: High-Res Ayurvedic Flat-Lay Apothecary Visual */}
+        <div className="hero-split-right">
+          <div className="hero-visual-card">
+            <img
+              src={heroFlatlayImg}
+              alt="Flat-lay of Ayurvedic herbal wellness apothecary: cold-pressed oils, dried lavender, rosebuds, and fresh mint on deep forest green linen"
+              className="hero-flatlay-img"
+              loading="eager"
+              decoding="async"
             />
-            <a href="#about" className="hero-explore-btn">
-              <span>Explore Sanctuary</span>
-              <ArrowRight size={17} />
-            </a>
-          </motion.div>
+          </div>
+        </div>
 
-          {/* Trust Indicators */}
-          <motion.div variants={wordVariants} className="hero-purity-badges">
-            <div className="hero-purity-item">
-              <ShieldCheck size={16} className="purity-icon" />
-              <span>Govt. Approved Clinic</span>
-            </div>
-            <div className="hero-purity-divider">•</div>
-            <div className="hero-purity-item">
-              <Award size={16} className="purity-icon gold" />
-              <span>20+ Years Clinical Heritage</span>
-            </div>
-            <div className="hero-purity-divider">•</div>
-            <div className="hero-purity-item">
-              <Sparkles size={16} className="purity-icon green" />
-              <span>100% Classical Protocols</span>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator Prompt */}
-        <motion.a
-          href="#about"
-          className="hero-scroll-cue"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          aria-label="Scroll down to explore about section"
-        >
-          <span className="scroll-cue-text">Scroll to explore</span>
-          <ChevronDown size={18} className="scroll-cue-icon" />
-        </motion.a>
       </div>
 
-      {/* Bottom Torn Paper Edge Transition (Exact match to reference design) */}
-      <TornPaperDivider className="hero-torn-bottom" />
+      {/* Smooth Organic Wave Divider Transition into Next Section */}
+      <OrganicWaveDivider className="hero-bottom-wave" />
     </section>
   );
 });

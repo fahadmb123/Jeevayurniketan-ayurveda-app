@@ -5,7 +5,7 @@ import { BookAppointmentButton } from '@/features/appointments';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
 import { SearchModal } from './SearchModal';
-import { Search, Sparkles, Menu, X } from 'lucide-react';
+import { Search, Menu, X, User } from 'lucide-react';
 import './Navbar.css';
 
 export const Navbar: React.FC = React.memo(() => {
@@ -118,14 +118,26 @@ export const Navbar: React.FC = React.memo(() => {
 
           {/* Right Icon Actions matching the reference design */}
           <div className="navbar-actions">
+            {/* Desktop Search Pill matching reference */}
             <button
               type="button"
-              className="navbar-icon-btn search-trigger"
+              className="navbar-search-pill"
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Search products, therapies, blog"
+            >
+              <Search size={15} className="search-pill-icon" />
+              <span className="search-pill-text">Search therapies, doctors...</span>
+            </button>
+
+            {/* Mobile Icon Button */}
+            <button
+              type="button"
+              className="navbar-icon-btn search-trigger-mobile"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search therapies and treatments"
               title="Search therapies and treatments"
             >
-              <Search size={19} />
+              <Search size={18} />
             </button>
 
             <Link
@@ -134,9 +146,7 @@ export const Navbar: React.FC = React.memo(() => {
               aria-label="Doctor and Patient Sanctuary"
               title="Doctor and Patient Sanctuary"
             >
-              <span className="profile-leaf-badge">
-                <Sparkles size={14} />
-              </span>
+              <User size={19} />
             </Link>
 
             <ThemeToggle />

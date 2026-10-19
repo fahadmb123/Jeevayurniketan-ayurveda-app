@@ -1,418 +1,311 @@
 /* ==========================================================================
-   Hero Section Styles (Authentic Kerala Resort & Editorial Typography)
-   Optimized for Locked 60/120 FPS Scrolling & Zero GPU Lag
+   Ayuva Split Hero Section Styles (Clean Editorial Layout Matching Reference)
+   Pure CSS Layout, Ultra-Optimized (Zero JS Lag, Constant 60/120 FPS)
    ========================================================================== */
 
-.ayurveda-resort-hero {
+.ayuva-hero-section {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 76px);
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EFE6 100%);
+  overflow: hidden;
+  padding-top: 86px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 130px;
-  background-color: #e5f0ea;
-  clip-path: inset(0 0 0 0);
-  -webkit-clip-path: inset(0 0 0 0);
+  justify-content: space-between;
 }
 
-/* --------------------------------------------------------------------------
-   Backdrop Image & Atmospheric Lighting (Fixed Position on Scroll)
-   -------------------------------------------------------------------------- */
-.hero-resort-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
+.hero-split-wrapper {
   width: 100%;
-  height: 100vh;
-  z-index: 1;
-  pointer-events: none;
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-.hero-resort-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 42%;
-  display: block;
-}
-
-/* Lightweight gradient overlay without blur filters */
-.hero-sky-softener {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 55%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.28) 45%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  pointer-events: none;
-}
-
-.hero-ambient-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center 30%,
-    transparent 50%,
-    rgba(14, 46, 32, 0.06) 100%
-  );
-  pointer-events: none;
-}
-
-/* --------------------------------------------------------------------------
-   Centerpiece Typography & Content Container
-   -------------------------------------------------------------------------- */
-.hero-editorial-container {
-  position: relative;
-  z-index: 10;
-  width: 90%;
-  max-width: 1100px;
+  max-width: 1440px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  padding: 30px 4% 80px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
   align-items: center;
-  text-align: center;
+  gap: 40px;
+  position: relative;
+  z-index: 5;
+  flex: 1;
 }
 
-.hero-editorial-centerpiece {
+/* --------------------------------------------------------------------------
+   Left Column: Editorial Typography & Botanical Watermark
+   -------------------------------------------------------------------------- */
+.hero-split-left {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 860px;
+  justify-content: center;
+  padding: 20px 20px 20px 10px;
 }
 
-/* Zen Capsule Badge (Crisp solid translucent instead of GPU blur) */
-.hero-zen-pill {
+/* Botanical Lotus Line Art Watermark */
+.hero-botanical-watermark {
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  width: 290px;
+  height: 350px;
+  color: #8CA899;
+  opacity: 0.32;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-split-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+}
+
+/* Welcome Badge Kicker */
+.hero-welcome-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(27, 107, 80, 0.22);
+  padding: 6px 18px;
   border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--primary-green, #1B6B50);
-  margin-bottom: 20px;
-  letter-spacing: 0.02em;
-  box-shadow: 0 4px 12px rgba(18, 76, 56, 0.08);
-}
-
-.zen-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #5eb135;
-  box-shadow: 0 0 0 3px rgba(94, 177, 53, 0.25);
-  animation: pulseZen 2.5s infinite ease-in-out;
-}
-
-@keyframes pulseZen {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-/* Editorial Title */
-.hero-editorial-title {
-  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(2.9rem, 5.8vw, 4.8rem);
-  font-weight: 700;
-  line-height: 1.14;
-  letter-spacing: -0.015em;
-  margin: 0 0 16px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.title-line-1 {
-  display: block;
-  color: #173629;
-  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
-}
-
-.title-line-2 {
-  display: inline-flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.28em;
-  flex-wrap: wrap;
-}
-
-.title-word-through {
-  color: #173629;
-  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
-}
-
-/* Vibrant Leaf Green "Ayurvedha" with organic gradient */
-.title-word-ayurvedha {
-  color: #5eb135;
-  background: linear-gradient(135deg, #64c237 0%, #4da523 50%, #3f8e1c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  font-weight: 800;
-}
-
-/* Subtitle */
-.hero-editorial-subtitle {
-  font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: clamp(1rem, 1.4vw, 1.16rem);
-  line-height: 1.68;
-  color: #244133;
-  max-width: 680px;
-  margin: 0 0 26px;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-}
-
-/* Actions Row */
-.hero-editorial-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  border: 1px solid #D8CFC0;
+  background: rgba(255, 255, 255, 0.65);
   margin-bottom: 24px;
 }
 
-.hero-explore-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 999px;
+.hero-welcome-badge span {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.74rem;
   font-weight: 600;
-  font-size: 0.92rem;
-  color: #173629;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(27, 107, 80, 0.25);
-  text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-  box-shadow: 0 4px 12px rgba(18, 76, 56, 0.08);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7A897E;
 }
 
-.hero-explore-btn:hover {
-  background: #ffffff;
-  color: var(--primary-green, #1B6B50);
-  border-color: var(--primary-green, #1B6B50);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(18, 76, 56, 0.12);
+/* Headline matching reference serif font */
+.hero-headline {
+  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.6rem, 4.4vw, 3.85rem);
+  font-weight: 500;
+  color: #172820;
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  margin: 0 0 20px 0;
 }
 
-/* Trust indicators */
-.hero-purity-badges {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 8px 20px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 14px rgba(18, 76, 56, 0.06);
-  flex-wrap: wrap;
-  justify-content: center;
+/* Subtitle description */
+.hero-description {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1.05rem;
+  line-height: 1.62;
+  color: #4A5E53;
+  margin: 0 0 32px 0;
+  max-width: 500px;
 }
 
-.hero-purity-item {
+/* Action Buttons Row */
+.hero-actions-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-primary-cta .app-btn {
+  border-radius: 999px !important;
+  background: #183B2B !important;
+  color: #ffffff !important;
+  padding: 13px 28px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 8px 24px rgba(24, 59, 43, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  transition: all 0.22s ease !important;
+}
+
+.hero-primary-cta .app-btn:hover {
+  background: #112B1F !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(24, 59, 43, 0.35) !important;
+}
+
+.hero-secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #D8CFC0;
+  color: #172820;
   font-size: 0.82rem;
   font-weight: 600;
-  color: #244133;
-}
-
-.hero-purity-divider {
-  color: rgba(27, 107, 80, 0.35);
-  font-size: 0.75rem;
-}
-
-.purity-icon {
-  color: var(--primary-green, #1B6B50);
-}
-
-.purity-icon.gold {
-  color: var(--accent-gold, #C98D3B);
-}
-
-.purity-icon.green {
-  color: #5eb135;
-}
-
-/* Scroll prompt */
-.hero-scroll-cue {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin-top: 22px;
-  color: #173629;
-  text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.hero-scroll-cue:hover {
-  opacity: 1;
-  color: #5eb135;
-  transform: translateY(2px);
-}
-
-.scroll-cue-text {
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.22s ease;
 }
 
-.scroll-cue-icon {
-  animation: bounceDown 2s infinite ease-in-out;
-}
-
-@keyframes bounceDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+.hero-secondary-cta:hover {
+  background: #F5EFE6;
+  border-color: #183B2B;
+  color: #183B2B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* --------------------------------------------------------------------------
-   Torn Paper Bottom Edge Transition
+   Right Column: High-Res Flat-Lay Apothecary Visual Card
    -------------------------------------------------------------------------- */
-.torn-paper-divider-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.hero-split-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 70px;
-  z-index: 15;
-  pointer-events: none;
-  overflow: hidden;
 }
 
-.torn-paper-svg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.hero-visual-card {
   width: 100%;
-  height: 70px;
+  max-width: 620px;
+  aspect-ratio: 4 / 3;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(18, 48, 34, 0.16), 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  background-color: #163628;
+}
+
+.hero-flatlay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-visual-card:hover .hero-flatlay-img {
+  transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   Bottom Organic Wave Transition
+   -------------------------------------------------------------------------- */
+.hero-bottom-wave {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin-top: auto;
+  pointer-events: none;
+  z-index: 10;
+  line-height: 0;
+}
+
+.organic-wave-divider {
+  width: 100%;
+  height: 100%;
+}
+
+.organic-wave-svg {
+  width: 100%;
+  height: 100%;
   display: block;
 }
-
 
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations
    -------------------------------------------------------------------------- */
-[data-theme='dark'] .ayurveda-resort-hero {
-  background-color: #0A140F;
+[data-theme='dark'] .ayuva-hero-section {
+  background: linear-gradient(135deg, #0E1A14 0%, #08110D 100%);
 }
 
-[data-theme='dark'] .hero-resort-image {
-  filter: brightness(0.85) contrast(1.05);
-}
-
-[data-theme='dark'] .hero-sky-softener {
-  background: linear-gradient(
-    180deg,
-    rgba(10, 20, 15, 0.72) 0%,
-    rgba(10, 20, 15, 0.45) 50%,
-    rgba(10, 20, 15, 0) 100%
-  );
-}
-
-[data-theme='dark'] .title-line-1,
-[data-theme='dark'] .title-word-through {
-  color: #F2F7F4;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
-}
-
-[data-theme='dark'] .hero-editorial-subtitle {
-  color: #C8E0D4;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-}
-
-[data-theme='dark'] .hero-zen-pill {
-  background: rgba(17, 34, 27, 0.95);
-  border-color: rgba(46, 157, 119, 0.35);
-  color: #41BA91;
-}
-
-[data-theme='dark'] .hero-explore-btn {
-  background: rgba(17, 34, 27, 0.95);
+[data-theme='dark'] .hero-headline {
   color: #EDF7F2;
-  border-color: rgba(46, 157, 119, 0.35);
 }
 
-[data-theme='dark'] .hero-explore-btn:hover {
-  background: rgba(24, 49, 38, 0.95);
+[data-theme='dark'] .hero-description {
+  color: #A3BDB0;
+}
+
+[data-theme='dark'] .hero-welcome-badge {
+  background: rgba(24, 49, 38, 0.6);
+  border-color: rgba(46, 157, 119, 0.3);
+}
+
+[data-theme='dark'] .hero-welcome-badge span {
+  color: #79D1AF;
+}
+
+[data-theme='dark'] .hero-secondary-cta {
+  background: #172C21;
+  border-color: rgba(46, 157, 119, 0.3);
+  color: #EDF7F2;
+}
+
+[data-theme='dark'] .hero-secondary-cta:hover {
+  background: #1F3B2D;
   border-color: #41BA91;
-  color: #41BA91;
 }
 
-[data-theme='dark'] .hero-purity-badges {
-  background: rgba(17, 34, 27, 0.92);
-  border-color: rgba(46, 157, 119, 0.25);
+[data-theme='dark'] .hero-botanical-watermark {
+  color: #2E5C47;
+  opacity: 0.22;
 }
 
-[data-theme='dark'] .hero-purity-item {
-  color: #D3E5DC;
-}
-
-[data-theme='dark'] .hero-scroll-cue {
-  color: #c5dcd0;
+[data-theme='dark'] .hero-bottom-wave svg path {
+  fill: #0E1A14;
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Media Queries
+   Responsive Layout
    -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .ayurveda-resort-hero {
-    padding-top: 110px;
-    min-height: 90vh;
+@media (max-width: 1024px) {
+  .hero-split-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 20px;
+    padding-bottom: 60px;
   }
-  .hero-resort-image {
-    object-position: center 30%;
+  .hero-split-content {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
   }
-  .hero-purity-badges {
-    display: none;
+  .hero-description {
+    max-width: 580px;
+  }
+  .hero-actions-row {
+    justify-content: center;
+  }
+  .hero-botanical-watermark {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.18;
+  }
+  .hero-visual-card {
+    max-width: 540px;
   }
 }
 
-@media (max-width: 600px) {
-  .ayurveda-resort-hero {
-    padding-top: 95px;
-    min-height: 85vh;
+@media (max-width: 640px) {
+  .ayuva-hero-section {
+    padding-top: 76px;
   }
-  .hero-editorial-title {
-    font-size: 2.5rem;
+  .hero-split-wrapper {
+    padding: 16px 5% 50px;
   }
-  .hero-editorial-subtitle {
+  .hero-headline {
+    font-size: 2.2rem;
+  }
+  .hero-description {
     font-size: 0.95rem;
-    margin-bottom: 20px;
   }
-  .hero-zen-pill {
-    font-size: 0.74rem;
-    padding: 5px 12px;
-  }
-  .hero-editorial-actions {
-    flex-direction: column;
-    width: 100%;
-    gap: 12px;
-  }
-  .hero-editorial-actions > * {
-    width: 100%;
-  }
-  .hero-explore-btn {
-    justify-content: center;
+  .hero-visual-card {
+    border-radius: 24px;
+    aspect-ratio: 1 / 1;
   }
 }
