@@ -1,5 +1,5 @@
 import React from 'react';
-import herbsBowlImg from '@/assets/ayurvedic_herbs_bowl.png';
+import cupImg from '@/assets/cup.png';
 import { Leaf, Brain, Sparkles, UserCheck, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
@@ -89,7 +89,7 @@ export const AboutSection: React.FC = React.memo(() => {
           {/* Overlapping Top-Down Herbal Bowl (Pure Graphic Design) */}
           <div className="pure-banner-bowl-anchor">
             <img 
-              src={herbsBowlImg} 
+              src={cupImg} 
               alt="Top-down view of fresh Ayurvedic medicinal Tulsi and Brahmi herbs in a porcelain bowl" 
               className="pure-banner-bowl-img"
               loading="lazy"
