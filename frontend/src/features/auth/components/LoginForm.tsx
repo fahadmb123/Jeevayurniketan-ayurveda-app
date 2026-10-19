@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Mail, Lock, LogIn, ArrowRight } from 'lucide-react';
+import { Mail, Lock, LogIn, ArrowRight, Eye, EyeOff, Sparkles } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import type { LoginCredentials } from '../types';
 
@@ -17,6 +17,7 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -36,8 +37,42 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({
     setRememberMe(e.target.checked);
   }, []);
 
+  const fillDoctorDemo = useCallback(() => {
+    setEmail('doctor@jeevayurniketan.com');
+    setPassword('doctor123');
+  }, []);
+
+  const fillPatientDemo = useCallback(() => {
+    setEmail('patient@jeevayurniketan.com');
+    setPassword('patient123');
+  }, []);
+
   return (
     <form onSubmit={handleSubmit} className="auth-form">
+      {/* Quick Fill Demo Options */}
+      <div className="auth-demo-pills">
+        <span className="auth-demo-label">
+          <Sparkles size={13} />
+          <span>Quick Demo:</span>
+        </span>
+        <button
+          type="button"
+          className="auth-demo-btn doctor"
+          onClick={fillDoctorDemo}
+          title="Autofill Doctor credentials"
+        >
+          Doctor Access
+        </button>
+        <button
+          type="button"
+          className="auth-demo-btn patient"
+          onClick={fillPatientDemo}
+          title="Autofill Patient credentials"
+        >
+          Patient Access
+        </button>
+      </div>
+
       <div className="auth-form__group">
         <label htmlFor="loginEmail">Email Address</label>
         <div className="auth-form__input-wrap">
@@ -46,6 +81,7 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({
             id="loginEmail"
             type="email"
             required
+            autoComplete="email"
             placeholder="doctor@jeevayurniketan.com"
             value={email}
             onChange={handleEmailChange}
@@ -64,12 +100,21 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({
           <Lock size={18} className="auth-form__icon" />
           <input
             id="loginPassword"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             required
+            autoComplete="current-password"
             placeholder="••••••••"
             value={password}
             onChange={handlePasswordChange}
           />
+          <button
+            type="button"
+            className="auth-form__eye-btn"
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+          </button>
         </div>
       </div>
 
@@ -90,7 +135,7 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({
         ) : (
           <>
             <LogIn size={18} />
-            <span>Sign In</span>
+            <span>Sign In to Sanctuary</span>
           </>
         )}
       </Button>
