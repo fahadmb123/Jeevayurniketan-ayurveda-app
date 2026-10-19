@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ReactLenis } from '@studio-freight/react-lenis';
+import { ReactLenis } from 'lenis/react';
 import { ThemeProvider } from '@/shared/context/ThemeContext';
 import { AppRoutes } from './routes';
 
