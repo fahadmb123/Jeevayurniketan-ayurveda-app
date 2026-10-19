@@ -11,14 +11,18 @@ export interface TeamMemberCardProps {
 const cardVariants: Variants = {
   hidden: {
     opacity: 0,
-    x: -220,
+    x: -380,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.1,
-      ease: 'easeOut',
+      duration: 1.35,
+      ease: [0.22, 1, 0.36, 1],
+      opacity: {
+        duration: 1.25,
+        ease: 'easeOut',
+      },
     },
   },
 };

@@ -23,7 +23,7 @@ export const TeamSection: React.FC = React.memo(() => {
         className="team-grid"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
       >
         {expertMembers.map((member, index) => (
           <TeamMemberCard key={member.id} member={member} index={index} />
