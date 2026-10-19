@@ -1,48 +1,7 @@
-.doctor-dashboard-layout,
-.doctor-page-layout {
-  display: flex;
-  min-height: 100vh;
-  background-color: var(--bg-color, #F8FAFC);
-  font-family: 'Inter', sans-serif;
-  color: var(--text-primary, #0F172A);
-}
-
-.doctor-dashboard-main,
-.doctor-page-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.doctor-dashboard-content,
-.doctor-page-content {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.doctor-greeting-title,
-.doctor-page-title {
-  font-size: 1.85rem;
-  font-weight: 700;
-  margin: 0 0 6px;
-  color: var(--text-primary, #0F172A);
-  letter-spacing: -0.02em;
-}
-
-.doctor-greeting-highlight {
-  color: var(--primary-green, #059669);
-  font-weight: 700;
-}
-
-.doctor-greeting-sub,
-.doctor-page-sub {
-  color: var(--text-secondary, #475569);
-  font-size: 0.95rem;
-  margin: 0;
-}
+/* ==========================================================================
+   DOCTOR DASHBOARD PAGE SPECIFIC STYLES
+   (Shared layout, content container, and titles are provided in DoctorLayout.css)
+   ========================================================================== */
 
 .doctor-dashboard-grid {
   display: grid;
@@ -53,12 +12,5 @@
 @media (max-width: 1024px) {
   .doctor-dashboard-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .doctor-dashboard-content,
-  .doctor-page-content {
-    padding: 20px 16px;
   }
 }

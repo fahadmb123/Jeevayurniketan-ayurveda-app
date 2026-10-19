@@ -1,13 +1,23 @@
-.doctor-layout {
+/* ==========================================================================
+   DOCTOR PORTAL SHARED LAYOUT & FOUNDATION STYLES
+   Ensures consistent typography, spacing, and layout across all portal routes
+   regardless of navigation order or direct page reloads.
+   ========================================================================== */
+
+.doctor-layout,
+.doctor-dashboard-layout,
+.doctor-page-layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--bg-color, #F8FAFC);
-  font-family: 'Inter', sans-serif;
-  color: var(--text-primary, #0F172A);
+  background-color: var(--bg-color, #FBFBF9);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-primary, #14241C);
   position: relative;
 }
 
-.doctor-layout__main {
+.doctor-layout__main,
+.doctor-dashboard-main,
+.doctor-page-main {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -16,7 +26,9 @@
 }
 
 @media (max-width: 768px) {
-  .doctor-layout__main {
+  .doctor-layout__main,
+  .doctor-dashboard-main,
+  .doctor-page-main {
     padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
   }
 }
@@ -27,4 +39,80 @@
   align-items: center;
   justify-content: center;
   min-height: 400px;
+}
+
+/* --------------------------------------------------------------------------
+   Shared Portal Page Content Wrapper
+   -------------------------------------------------------------------------- */
+.doctor-dashboard-content,
+.doctor-page-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Shared Portal Page Typography & Headings
+   -------------------------------------------------------------------------- */
+.doctor-page-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.doctor-greeting-title,
+.doctor-page-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--primary-green-deep, #0B3326);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .doctor-greeting-title,
+[data-theme="dark"] .doctor-page-title,
+.dark .doctor-greeting-title,
+.dark .doctor-page-title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.doctor-greeting-highlight {
+  color: var(--primary-green, #1B6B50);
+  font-weight: 700;
+}
+
+.doctor-greeting-sub,
+.doctor-page-sub {
+  color: var(--text-secondary, #485E53);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .doctor-greeting-sub,
+[data-theme="dark"] .doctor-page-sub,
+.dark .doctor-greeting-sub,
+.dark .doctor-page-sub {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .doctor-dashboard-content,
+  .doctor-page-content {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .doctor-greeting-title,
+  .doctor-page-title {
+    font-size: 1.5rem;
+  }
 }
