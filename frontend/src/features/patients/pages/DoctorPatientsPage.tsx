@@ -106,11 +106,6 @@ export const DoctorPatientsPage: React.FC = React.memo(() => {
 
   return (
     <div className="doctor-page-content">
-      <div className="doctor-page-heading">
-        <h1 className="doctor-page-title">Patient Management</h1>
-        <p className="doctor-page-sub">Comprehensive clinical registry and diagnostic histories</p>
-      </div>
-
       {/* Yoga-style Search & Filter Strip */}
       <DoctorSearchFilterStrip
         searchPlaceholder="Search patients by name, condition, or contact..."

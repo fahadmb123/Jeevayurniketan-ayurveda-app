@@ -62,13 +62,15 @@
   color: #FFFFFF;
 }
 
-/* Heading row */
-.doctor-consult-heading-row {
+/* Actions bar */
+.doctor-consult-heading-row,
+.doctor-consult-actions-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 16px;
+  margin-bottom: 4px;
 }
 
 .doctor-consult-patients-btn {

@@ -86,15 +86,8 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
 
   return (
     <div className="doctor-page-content doctor-gallery-page">
-      {/* Page Header */}
+      {/* Page Actions */}
       <div className="doctor-gallery-header">
-        <div>
-          <h1 className="doctor-page-title">Gallery Management</h1>
-          <p className="doctor-page-sub">
-            Curate and manage high-resolution photo showcases for Yoga practices and Ayurvedic clinical treatments
-          </p>
-        </div>
-
         <div className="doctor-gallery-header__actions">
           <button
             type="button"

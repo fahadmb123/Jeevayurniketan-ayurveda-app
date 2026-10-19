@@ -56,15 +56,8 @@ export const DoctorYogaSchedulePage: React.FC = React.memo(() => {
   return (
     <>
       <div className="doctor-page-content">
-          {/* Header & Quick Action */}
-          <div className="doctor-yoga-header">
-            <div>
-              <h1 className="doctor-page-title">Yoga Schedule Management</h1>
-              <p className="doctor-page-sub">
-                Configure Asana, Pranayama, and Mind-Body clinical yoga programs for patients
-              </p>
-            </div>
-
+          {/* Quick Action */}
+          <div className="doctor-yoga-actions-bar">
             <button
               type="button"
               className="doctor-yoga-btn-add"

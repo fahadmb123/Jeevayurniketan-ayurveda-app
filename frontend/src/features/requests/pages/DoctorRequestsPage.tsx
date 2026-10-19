@@ -223,21 +223,12 @@ export const DoctorRequestsPage: React.FC = React.memo(() => {
         </div>
       )}
 
-      {/* Page Heading */}
-      <div className="doctor-page-heading">
-        <div className="doctor-consult-heading-row">
-          <div>
-            <h1 className="doctor-page-title">Patient Requests</h1>
-            <p className="doctor-page-sub">
-              Review incoming consultation requests, assess clinical concerns, and accept or decline
-            </p>
-          </div>
-
-          <Link to={ROUTES.DOCTOR_PATIENTS} className="doctor-consult-patients-btn">
-            <Users size={16} />
-            <span>View Registered Patients</span>
-          </Link>
-        </div>
+      {/* Action Bar */}
+      <div className="doctor-consult-actions-bar">
+        <Link to={ROUTES.DOCTOR_PATIENTS} className="doctor-consult-patients-btn">
+          <Users size={16} />
+          <span>View Registered Patients</span>
+        </Link>
       </div>
 
       {/* Stats Summary Banner */}

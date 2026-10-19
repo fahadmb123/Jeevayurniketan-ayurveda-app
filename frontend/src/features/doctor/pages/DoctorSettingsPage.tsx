@@ -26,12 +26,7 @@ export const DoctorSettingsPage: React.FC = React.memo(() => {
 
   return (
     <div className="doctor-page-content">
-          <div className="doctor-page-heading">
-            <h1 className="doctor-page-title">Clinic Settings</h1>
-            <p className="doctor-page-sub">Practitioner preferences, consultation durations, and notification channels</p>
-          </div>
-
-          <form onSubmit={handleSave} className="doctor-settings-grid">
+      <form onSubmit={handleSave} className="doctor-settings-grid">
             <Card className="settings-section-card">
               <div className="settings-section-header">
                 <User size={20} className="settings-icon" />
