@@ -73,7 +73,7 @@ export const HeroSection: React.FC = React.memo(() => {
         <svg viewBox="0 0 1440 85" fill="none" preserveAspectRatio="none" className="hero-wave-svg">
           <path
             d="M0,32 C260,65 520,70 780,38 C1040,6 1260,16 1440,32 L1440,85 L0,85 Z"
-            fill="#ffffff"
+            fill="currentColor"
           />
         </svg>
       </div>

@@ -51,28 +51,6 @@
   align-items: center;
 }
 
-.ayuva-brand-header-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #172820;
-}
-
-.ayuva-brand-svg-icon {
-  width: 24px;
-  height: 24px;
-  color: #4A6B5D;
-}
-
-.ayuva-brand-title {
-  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
-  font-size: 1.62rem;
-  font-weight: 600;
-  color: #1E2B24;
-  letter-spacing: -0.015em;
-}
-
 /* Nav Links - Plain Editorial Typography with subtle underline */
 .navbar-links {
   display: flex;
@@ -93,18 +71,7 @@
   text-decoration: none;
   padding: 6px 2px;
   transition: color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.dropdown-caret {
-  color: #6B7C73;
-  transition: transform 0.2s ease;
-}
-
-.navbar-links li a:hover .dropdown-caret {
-  transform: translateY(1px);
+  display: inline-block;
 }
 
 .navbar-links li a::after {
@@ -135,67 +102,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-/* Inline Search Pill matching reference design */
-.navbar-search-pill {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 18px 7px 14px;
-  background: #ffffff;
-  border: 1px solid #DCE3DC;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-}
-
-.navbar-search-pill:hover {
-  border-color: var(--primary-green, #1B6B50);
-  box-shadow: 0 4px 12px rgba(27, 107, 80, 0.12);
-  background: #FAFBF9;
-}
-
-.search-pill-icon {
-  color: #7E9387;
-  transition: color 0.2s ease;
-}
-
-.navbar-search-pill:hover .search-pill-icon {
-  color: var(--primary-green, #1B6B50);
-}
-
-.search-pill-text {
-  font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: 0.84rem;
-  color: #7A897E;
-  white-space: nowrap;
-}
-
-.search-trigger-mobile {
-  display: none;
-}
-
-.cart-trigger {
-  position: relative;
-}
-
-.cart-badge-count {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #465E50;
-  color: #ffffff;
-  font-size: 0.62rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
 }
 
 .navbar-icon-btn {
@@ -538,36 +444,9 @@
   color: #EDF7F2;
 }
 
-[data-theme='dark'] .navbar-search-pill {
-  background: #172B20;
-  border-color: rgba(46, 157, 119, 0.28);
-}
-
-[data-theme='dark'] .navbar-search-pill:hover {
-  border-color: #41BA91;
-  background: #1E3729;
-}
-
-[data-theme='dark'] .search-pill-text {
-  color: #92B0A1;
-}
-
-[data-theme='dark'] .search-pill-icon {
-  color: #92B0A1;
-}
-
 /* --------------------------------------------------------------------------
    Responsive Breakpoints
    -------------------------------------------------------------------------- */
-@media (max-width: 1100px) {
-  .navbar-search-pill {
-    display: none;
-  }
-  .search-trigger-mobile {
-    display: flex;
-  }
-}
-
 @media (max-width: 980px) {
   .navbar-links {
     display: none;
