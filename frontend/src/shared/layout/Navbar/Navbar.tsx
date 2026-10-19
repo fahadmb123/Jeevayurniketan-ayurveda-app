@@ -108,6 +108,14 @@ export const Navbar: React.FC = React.memo(() => {
             </li>
             <li>
               <Link
+                to={ROUTES.LOGIN}
+                className={location.pathname === ROUTES.LOGIN ? 'active-link' : ''}
+              >
+                Sign In
+              </Link>
+            </li>
+            <li>
+              <Link
                 to={ROUTES.DOCTOR}
                 className={location.pathname.startsWith('/doctor') ? 'active-link' : ''}
               >
@@ -129,10 +137,10 @@ export const Navbar: React.FC = React.memo(() => {
             </button>
 
             <Link
-              to={ROUTES.DOCTOR}
+              to={ROUTES.LOGIN}
               className="navbar-icon-btn profile-trigger"
-              aria-label="Doctor and Patient Sanctuary"
-              title="Doctor and Patient Sanctuary"
+              aria-label="Patient & Doctor Sign In"
+              title="Patient & Doctor Sign In"
             >
               <span className="profile-leaf-badge">
                 <Sparkles size={14} />
@@ -188,6 +196,7 @@ export const Navbar: React.FC = React.memo(() => {
               </a>
               <Link to={ROUTES.ABOUT} onClick={() => setIsMobileMenuOpen(false)}>About Our Heritage</Link>
               <Link to={ROUTES.GALLERY} onClick={() => setIsMobileMenuOpen(false)}>Photo Gallery</Link>
+              <Link to={ROUTES.LOGIN} onClick={() => setIsMobileMenuOpen(false)}>Sign In / Login</Link>
               <Link to={ROUTES.DOCTOR} onClick={() => setIsMobileMenuOpen(false)}>Doctor Portal</Link>
             </div>
 
