@@ -1,5 +1,5 @@
 import React from 'react';
-import cupImg from '@/assets/cup.png';
+import cupImg from '@/assets/cup.jpg';
 import { Leaf, Brain, Sparkles, UserCheck, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
