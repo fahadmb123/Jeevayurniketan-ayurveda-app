@@ -109,7 +109,7 @@ export const FAQSection: React.FC = React.memo(() => {
             <p>Our Ayurvedic doctors are available to assist you with free initial guidance.</p>
           </div>
           <a
-            href="https://wa.me/+919544260145"
+            href="https://wa.me/918590807138?text=Hello,%20I%20am%20interested%20in%20your%20Ayurveda%20and%20Yoga%20treatments.%20Could%20you%20please%20share%20more%20details"
             target="_blank"
             rel="noopener noreferrer"
             className="faq-whatsapp-btn"
