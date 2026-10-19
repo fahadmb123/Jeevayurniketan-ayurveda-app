@@ -53,8 +53,14 @@ const DoctorPatientsPage = lazy(() =>
 const DoctorYogaSchedulePage = lazy(() =>
   import('@/features/yoga/pages/DoctorYogaSchedulePage').then((m) => ({ default: m.DoctorYogaSchedulePage }))
 );
+const DoctorGalleryPage = lazy(() =>
+  import('@/features/gallery/pages/DoctorGalleryPage').then((m) => ({ default: m.DoctorGalleryPage }))
+);
 const DoctorSettingsPage = lazy(() =>
   import('@/features/doctor/pages/DoctorSettingsPage').then((m) => ({ default: m.DoctorSettingsPage }))
+);
+const GalleryPage = lazy(() =>
+  import('@/features/gallery/pages/GalleryPage').then((m) => ({ default: m.GalleryPage }))
 );
 
 export const AppRoutes: React.FC = React.memo(() => {
@@ -69,6 +75,7 @@ export const AppRoutes: React.FC = React.memo(() => {
         <Route path={ROUTES.TEAM} element={<TeamPage />} />
         <Route path={ROUTES.BLOG} element={<BlogPage />} />
         <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+        <Route path={ROUTES.GALLERY} element={<GalleryPage />} />
 
         {/* Auth Pages */}
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
@@ -80,6 +87,7 @@ export const AppRoutes: React.FC = React.memo(() => {
           <Route path={ROUTES.DOCTOR_REQUESTS} element={<DoctorRequestsPage />} />
           <Route path={ROUTES.DOCTOR_PATIENTS} element={<DoctorPatientsPage />} />
           <Route path={ROUTES.DOCTOR_YOGA} element={<DoctorYogaSchedulePage />} />
+          <Route path={ROUTES.DOCTOR_GALLERY} element={<DoctorGalleryPage />} />
           <Route path={ROUTES.DOCTOR_SETTINGS} element={<DoctorSettingsPage />} />
         </Route>
 

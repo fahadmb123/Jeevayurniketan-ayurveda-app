@@ -57,6 +57,11 @@ export const Navbar: React.FC = React.memo(() => {
             </Link>
           </li>
           <li>
+            <Link to={ROUTES.GALLERY} className={location.pathname === ROUTES.GALLERY ? 'active-link' : ''}>
+              Gallery
+            </Link>
+          </li>
+          <li>
             <Link to={ROUTES.CONTACT} className={location.pathname === ROUTES.CONTACT ? 'active-link' : ''}>
               Contact
             </Link>

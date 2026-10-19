@@ -6,6 +6,7 @@ export const ROUTES = {
   TEAM: '/team',
   BLOG: '/blog',
   CONTACT: '/contact',
+  GALLERY: '/gallery',
   
   // Auth
   LOGIN: '/login',
@@ -17,6 +18,7 @@ export const ROUTES = {
   DOCTOR_CONSULTATION_REQUESTS: '/doctor/requests',
   DOCTOR_PATIENTS: '/doctor/patients',
   DOCTOR_YOGA: '/doctor/yoga',
+  DOCTOR_GALLERY: '/doctor/gallery',
   DOCTOR_SETTINGS: '/doctor/settings',
 } as const;
 

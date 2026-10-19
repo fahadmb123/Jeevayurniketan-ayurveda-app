@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Activity, Inbox, Users, Sparkles, Settings } from 'lucide-react';
+import { Activity, Inbox, Users, Sparkles, Settings, Image as ImageIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
@@ -43,6 +43,12 @@ export const DoctorBottomNav: React.FC = React.memo(() => {
         label: 'Yoga',
         path: ROUTES.DOCTOR_YOGA,
         icon: <Sparkles size={20} />,
+      },
+      {
+        id: 'gallery',
+        label: 'Gallery',
+        path: ROUTES.DOCTOR_GALLERY,
+        icon: <ImageIcon size={20} />,
       },
       {
         id: 'settings',
