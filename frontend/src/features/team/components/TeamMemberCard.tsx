@@ -12,11 +12,15 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ membe
   return (
     <motion.div
       className="team-card"
-      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+      initial={{ opacity: 0, x: -100 }}
       whileInView={{ opacity: 1, x: 0 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
+      whileHover={{ y: -6, scale: 1.015 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.75,
+        delay: index * 0.18,
+        ease: [0.16, 1, 0.3, 1],
+      }}
     >
       <div className="team-card__image-wrapper">
         <img src={member.image} alt={member.name} className="team-card__image" />

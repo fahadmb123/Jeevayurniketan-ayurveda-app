@@ -5,6 +5,8 @@ import './TeamSection.css';
 
 export const TeamSection: React.FC = React.memo(() => {
   const { members } = useTeam();
+  // Display only the 2 primary expert cards as requested
+  const expertMembers = members.slice(0, 2);
 
   return (
     <section id="team" className="team-section">
@@ -17,7 +19,7 @@ export const TeamSection: React.FC = React.memo(() => {
       </div>
 
       <div className="team-grid">
-        {members.map((member, index) => (
+        {expertMembers.map((member, index) => (
           <TeamMemberCard key={member.id} member={member} index={index} />
         ))}
       </div>
