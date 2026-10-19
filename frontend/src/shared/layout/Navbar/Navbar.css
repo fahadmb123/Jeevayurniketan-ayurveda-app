@@ -461,3 +461,49 @@
     display: flex;
   }
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+  .navbar-wrapper.scrolled .navbar {
+    padding: 10px 18px;
+  }
+  .navbar-brand-section {
+    margin-right: 10px;
+    max-width: 175px;
+  }
+  .navbar-actions {
+    gap: 8px;
+  }
+  .navbar-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar {
+    padding: 10px 14px;
+  }
+  .navbar-wrapper.scrolled .navbar {
+    padding: 8px 14px;
+  }
+  .navbar-brand-section {
+    max-width: 155px;
+  }
+  .navbar-actions {
+    gap: 6px;
+  }
+  /* On small mobile screens, Doctor portal is accessible inside the mobile drawer menu */
+  .profile-trigger {
+    display: none;
+  }
+  .navbar-icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+  .navbar-mobile-toggle {
+    padding: 4px;
+  }
+}

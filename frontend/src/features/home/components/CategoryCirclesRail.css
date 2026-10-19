@@ -69,12 +69,32 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .exact-circles-section {
+    padding: 0 16px 30px;
+  }
   .exact-circles-row {
     justify-content: flex-start;
-    gap: 16px;
+    gap: 14px;
+    padding: 6px 4px 12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 16px;
   }
   .exact-circle-item {
-    width: 88px;
-    height: 88px;
+    width: 80px;
+    height: 80px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .exact-circles-section {
+    padding: 0 12px 24px;
+  }
+  .exact-circles-row {
+    gap: 12px;
+  }
+  .exact-circle-item {
+    width: 76px;
+    height: 76px;
   }
 }

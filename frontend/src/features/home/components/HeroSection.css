@@ -180,7 +180,7 @@
   display: flex;
   align-items: stretch;
   padding-top: 36px;
-  padding-bottom: 24px;
+  padding-bottom: 0;
 }
 
 .hero-exact-card {
@@ -271,30 +271,77 @@
 /* --------------------------------------------------------------------------
    Responsive Layout
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
   .hero-exact-layout {
     grid-template-columns: 1fr;
   }
   .hero-exact-left {
-    padding: 30px 6% 40px;
+    padding: 30px 6% 36px;
     align-items: center;
     text-align: center;
+  }
+  .hero-exact-title {
+    font-size: clamp(2rem, 5.8vw, 2.7rem);
+    margin-bottom: 14px;
+  }
+  .hero-exact-desc {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 22px;
   }
   .hero-exact-content {
     align-items: center;
   }
   .hero-exact-actions {
     justify-content: center;
+    gap: 10px;
   }
   .hero-exact-botanical-art {
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.15;
+    opacity: 0.12;
   }
   .hero-exact-right {
-    min-height: 340px;
+    padding: 0;
+    min-height: 280px;
   }
   .hero-exact-card {
     border-top-left-radius: 0;
+    box-shadow: none;
+  }
+  .hero-exact-wave {
+    margin-top: -65px;
   }
 }
+
+@media (max-width: 480px) {
+  .hero-exact-section {
+    padding-top: 68px;
+  }
+  .hero-exact-left {
+    padding: 24px 16px 28px;
+  }
+  .hero-exact-title {
+    font-size: 1.85rem;
+    line-height: 1.2;
+  }
+  .hero-exact-pill {
+    padding: 4px 12px;
+    margin-bottom: 16px;
+  }
+  .hero-exact-pill span {
+    font-size: 0.65rem;
+  }
+  .hero-exact-btn-shop,
+  .hero-exact-btn-explore {
+    padding: 9px 18px;
+    font-size: 0.74rem;
+  }
+  .hero-exact-right {
+    min-height: 240px;
+  }
+}
+
