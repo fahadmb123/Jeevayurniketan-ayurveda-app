@@ -40,8 +40,9 @@
 .pure-banner-bowl-anchor {
   position: absolute;
   top: -140px;
-  left: 48%;
-  transform: translateX(-40%);
+  right: 210px;
+  left: auto;
+  transform: none;
   width: 340px;
   height: 340px;
   pointer-events: none;
@@ -61,7 +62,7 @@
    -------------------------------------------------------------------------- */
 .pure-banner-content-col {
   flex: 1;
-  max-width: 680px;
+  max-width: 580px;
   position: relative;
   z-index: 5;
 }
