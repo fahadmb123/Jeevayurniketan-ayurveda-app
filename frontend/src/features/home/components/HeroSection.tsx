@@ -4,7 +4,7 @@ import resortHeroImg from '@/assets/resort_hero.jpg';
 import { TornPaperDivider } from './TornPaperDivider';
 import { FloatingLeaves } from './FloatingLeaves';
 import { BookAppointmentButton } from '@/features/appointments';
-import { Sparkles, ArrowRight, ShieldCheck, Award } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Award, ChevronDown } from 'lucide-react';
 import './HeroSection.css';
 
 const titleVariants: Variants = {
@@ -104,6 +104,19 @@ export const HeroSection: React.FC = React.memo(() => {
             </div>
           </motion.div>
         </motion.div>
+
+        {/* Scroll Indicator Prompt */}
+        <motion.a
+          href="#about"
+          className="hero-scroll-cue"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          aria-label="Scroll down to explore about section"
+        >
+          <span className="scroll-cue-text">Scroll to explore</span>
+          <ChevronDown size={18} className="scroll-cue-icon" />
+        </motion.a>
       </div>
 
       {/* Bottom Torn Paper Edge Transition (Exact match to reference design) */}

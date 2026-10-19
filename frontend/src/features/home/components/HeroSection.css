@@ -251,6 +251,47 @@
   color: #5eb135;
 }
 
+/* Scroll prompt */
+.hero-scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 26px;
+  color: #173629;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.hero-scroll-cue:hover {
+  opacity: 1;
+  color: #5eb135;
+  transform: translateY(2px);
+}
+
+.scroll-cue-text {
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.scroll-cue-icon {
+  animation: bounceDown 2s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+[data-theme='dark'] .hero-scroll-cue {
+  color: #c5dcd0;
+}
+
 /* --------------------------------------------------------------------------
    Torn Paper Bottom Edge Transition (Exact Match to Reference)
    -------------------------------------------------------------------------- */
