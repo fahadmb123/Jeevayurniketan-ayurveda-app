@@ -35,14 +35,8 @@ export const LoginPage: React.FC = React.memo(() => {
 
   return (
     <div className="auth-page-split">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="auth-split-card"
-      >
-        {/* Left Side: Visual Sanctuary & Heritage Panel */}
-        <div className="auth-split-left">
+      {/* Left Side: Visual Sanctuary & Heritage Panel */}
+      <div className="auth-split-left">
           <img
             src={loginSanctuaryImg}
             alt="Jeevayurniketan serene Ayurvedic healing sanctuary with Uruli flower bowl and teakwood meditation room"
@@ -132,7 +126,6 @@ export const LoginPage: React.FC = React.memo(() => {
 
           </div>
         </div>
-      </motion.div>
     </div>
   );
 });

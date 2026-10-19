@@ -4,14 +4,14 @@
 
 .auth-page-split {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 10% 20%, rgba(27, 107, 80, 0.08) 0%, transparent 45%),
-              radial-gradient(circle at 90% 85%, rgba(201, 141, 59, 0.09) 0%, transparent 45%),
-              var(--bg-color, #FBFBF9);
-  padding: 40px 24px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: var(--bg-color, #FBFBF9);
+  padding: 0;
+  margin: 0;
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Also support regular auth-page for register or single cards if needed */
@@ -38,23 +38,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Split-Card Container (Image on Left, Fields on Right)
-   -------------------------------------------------------------------------- */
-.auth-split-card {
-  width: 100%;
-  max-width: 1060px;
-  min-height: 640px;
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  background: var(--surface-color, #ffffff);
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid var(--border-color, #E2E8DE);
-  box-shadow: 0 24px 60px -15px rgba(10, 46, 32, 0.18), 0 8px 24px -6px rgba(0, 0, 0, 0.04);
-}
-
-/* --------------------------------------------------------------------------
-   Left Side: Visual Sanctuary & Quote
+   Left Side: Visual Sanctuary & Quote (Edge-to-Edge)
    -------------------------------------------------------------------------- */
 .auth-split-left {
   position: relative;
@@ -62,8 +46,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 36px 36px 40px;
+  padding: 48px 48px 52px;
   background-color: #112A1E;
+  min-height: 100vh;
 }
 
 .auth-split-bg-img {
@@ -76,7 +61,7 @@
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.auth-split-card:hover .auth-split-bg-img {
+.auth-split-left:hover .auth-split-bg-img {
   transform: scale(1.02);
 }
 
@@ -222,8 +207,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 44px 44px;
-  background: var(--surface-color, #ffffff);
+  padding: 48px 48px;
+  background: var(--bg-color, #FBFBF9);
+  min-height: 100vh;
 }
 
 .auth-split-right-inner {
@@ -547,15 +533,14 @@
    Responsive Layout (Mobile & Tablet)
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
-  .auth-split-card {
+  .auth-page-split {
     grid-template-columns: 1fr;
-    max-width: 500px;
-    min-height: auto;
+    min-height: 100vh;
   }
 
   .auth-split-left {
-    min-height: 240px;
-    padding: 24px;
+    min-height: 280px;
+    padding: 28px 20px;
   }
 
   .auth-quote-card,
@@ -568,21 +553,14 @@
   }
 
   .auth-split-right {
-    padding: 32px 24px;
+    min-height: auto;
+    padding: 36px 20px 48px;
   }
 }
 
 @media (max-width: 520px) {
-  .auth-page-split {
-    padding: 16px 12px;
-  }
-
-  .auth-split-card {
-    border-radius: 20px;
-  }
-
   .auth-split-left {
-    min-height: 180px;
+    min-height: 200px;
     padding: 20px 16px;
   }
 
@@ -591,7 +569,7 @@
   }
 
   .auth-split-right {
-    padding: 24px 18px;
+    padding: 24px 16px 36px;
   }
 
   .auth-split-title {
