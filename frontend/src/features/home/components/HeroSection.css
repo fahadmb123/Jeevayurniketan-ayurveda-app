@@ -307,61 +307,6 @@
   display: block;
 }
 
-/* --------------------------------------------------------------------------
-   Hardware-Accelerated CSS Keyframe Floating Leaves (60 FPS on GPU)
-   -------------------------------------------------------------------------- */
-.floating-leaves-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 160px;
-  z-index: 20;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.floating-leaf-item {
-  position: absolute;
-  will-change: transform;
-}
-
-@keyframes floatLeaf1 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(35deg); }
-  50% { transform: translate3d(14px, 12px, 0) rotate(48deg); }
-}
-
-@keyframes floatLeaf2 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-25deg); }
-  50% { transform: translate3d(-12px, 15px, 0) rotate(-12deg); }
-}
-
-@keyframes floatLeaf3 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(55deg); }
-  50% { transform: translate3d(16px, -10px, 0) rotate(70deg); }
-}
-
-@keyframes floatLeaf4 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-40deg); }
-  50% { transform: translate3d(-15px, 14px, 0) rotate(-26deg); }
-}
-
-@keyframes floatLeaf5 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(20deg); }
-  50% { transform: translate3d(12px, -8px, 0) rotate(32deg); }
-}
-
-@keyframes floatLeaf6 {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-30deg); }
-  50% { transform: translate3d(-14px, 12px, 0) rotate(-16deg); }
-}
-
-.leaf-anim-1 { animation: floatLeaf1 6s infinite ease-in-out; }
-.leaf-anim-2 { animation: floatLeaf2 7.5s infinite ease-in-out; }
-.leaf-anim-3 { animation: floatLeaf3 8s infinite ease-in-out; }
-.leaf-anim-4 { animation: floatLeaf4 6.8s infinite ease-in-out; }
-.leaf-anim-5 { animation: floatLeaf5 7.2s infinite ease-in-out; }
-.leaf-anim-6 { animation: floatLeaf6 6.5s infinite ease-in-out; }
 
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations

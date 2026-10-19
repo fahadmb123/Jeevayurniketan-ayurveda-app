@@ -2,7 +2,6 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import yogaResortHeroImg from '@/assets/yoga_resort_hero.jpg';
 import { TornPaperDivider } from './TornPaperDivider';
-import { FloatingLeaves } from './FloatingLeaves';
 import { BookAppointmentButton } from '@/features/appointments';
 import { Sparkles, ArrowRight, ShieldCheck, Award, ChevronDown } from 'lucide-react';
 import './HeroSection.css';
@@ -121,9 +120,6 @@ export const HeroSection: React.FC = React.memo(() => {
 
       {/* Bottom Torn Paper Edge Transition (Exact match to reference design) */}
       <TornPaperDivider className="hero-torn-bottom" />
-
-      {/* Floating Leaves drifting over torn transition */}
-      <FloatingLeaves />
     </section>
   );
 });
