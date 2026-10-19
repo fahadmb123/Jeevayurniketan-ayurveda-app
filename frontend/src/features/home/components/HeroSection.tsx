@@ -1,152 +1,116 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
-import heroImg from '@/assets/ayurveda_hero.jpg';
+import resortHeroImg from '@/assets/resort_hero.jpg';
+import { TornPaperDivider } from './TornPaperDivider';
+import { FloatingLeaves } from './FloatingLeaves';
 import { BookAppointmentButton } from '@/features/appointments';
-import { useHome } from '../hooks/useHome';
-import { Sparkles, CheckCircle2, ShieldCheck, ArrowRight, MessageCircle, Star } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Award } from 'lucide-react';
 import './HeroSection.css';
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+const titleVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 280,
+      damping: 24,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
   },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 320, damping: 26 } },
+const wordVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export const HeroSection: React.FC = React.memo(() => {
-  const { heroData } = useHome();
-
   return (
-    <section id="home" className="hero-section">
-      <div className="hero-background-circle orb-1" />
-      <div className="hero-background-circle orb-2" />
-      <div className="hero-background-circle orb-3" />
-      
-      <motion.div 
-        className="hero-content"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-50px' }}
-      >
-        <motion.div variants={itemVariants} className="hero-badge">
-          <span className="hero-badge__dot" />
-          <span className="hero-badge__text">
-            {heroData?.badge || 'Pioneers in Ayurvedic Psychotherapy & Smriti Meditation'}
-          </span>
-        </motion.div>
-        
-        <motion.h1 variants={itemVariants} className="hero-title">
-          Heal The Mind, <br />
-          <span className="hero-title__highlight">
-            Restore Inner Harmony.
-          </span>
-        </motion.h1>
-        
-        <motion.p variants={itemVariants} className="hero-subtitle">
-          Experience the sacred synergy of authentic Caraka Samhita Ayurveda, pioneer-led Smriti Meditation, and compassionate psychotherapy. Resolving anxiety, depression, and psychosomatic illness at their deep emotional root.
-        </motion.p>
-        
-        <motion.div variants={itemVariants} className="hero-actions">
-          <BookAppointmentButton
-            label="Book Consultation"
-            size="lg"
-            variant="primary"
-          />
-          <motion.a
-            href="#services"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="hero-btn-secondary"
-          >
-            <span>Explore Therapies</span>
-            <ArrowRight size={18} />
-          </motion.a>
-          <motion.a
-            href="https://wa.me/+919544260145"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            className="hero-btn-whatsapp"
-            aria-label="Chat directly with our Ayurvedic Doctors on WhatsApp"
-            title="Chat directly on WhatsApp"
-          >
-            <MessageCircle size={18} className="hero-whatsapp-icon" />
-            <span className="hero-whatsapp-text">Ask Doctor</span>
-          </motion.a>
-        </motion.div>
+    <section id="home" className="ayurveda-resort-hero" aria-label="Jeevayurniketan Ayurvedic Sanctuary">
+      {/* Background Resort Image Layer */}
+      <div className="hero-resort-backdrop">
+        <img
+          src={resortHeroImg}
+          alt="Authentic Kerala Traditional Ayurvedic Retreat Sanctuary surrounded by serene lotus waters and tropical nature"
+          className="hero-resort-image"
+          loading="eager"
+          decoding="async"
+        />
+        {/* Soft atmospheric gradient overlays for optimal text legibility and light diffusion */}
+        <div className="hero-sky-softener" />
+        <div className="hero-ambient-vignette" />
+      </div>
 
-        <motion.div variants={itemVariants} className="hero-trust-chips">
-          <div className="hero-trust-chip">
-            <ShieldCheck size={16} className="hero-chip-icon" />
-            <span>Govt. Approved Clinic</span>
-          </div>
-          <div className="hero-trust-chip">
-            <Star size={16} className="hero-chip-icon star" fill="currentColor" />
-            <span>4.9/5 Rating (1,200+ Healed)</span>
-          </div>
-          <div className="hero-trust-chip">
-            <CheckCircle2 size={16} className="hero-chip-icon" />
-            <span>No Synthetic Drugs</span>
-          </div>
-        </motion.div>
-      </motion.div>
-      
-      <motion.div 
-        className="hero-visual-wrapper"
-        initial={{ opacity: 0, scale: 0.92, y: 30 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ type: 'spring', duration: 1.2, bounce: 0.25, delay: 0.25 }}
-      >
-        <div className="hero-image-frame">
-          <img 
-            src={heroImg} 
-            alt="Authentic Kerala Ayurvedic Sanctuary with Brass Urli, lotus blossoms and herbal oils" 
-            className="hero-main-img" 
-            loading="eager"
-          />
-          <div className="hero-image-overlay" />
-          
-          {/* Floating Glassmorphic Badges */}
-          <motion.div 
-            className="hero-floating-badge badge-top-right"
-            initial={{ opacity: 0, x: 20, y: -10 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <div className="hero-floating-badge__icon gold">
-              <Sparkles size={18} />
-            </div>
-            <div className="hero-floating-badge__text">
-              <span className="badge-title">Smriti Meditation</span>
-              <span className="badge-sub">Guided Subconscious Healing</span>
-            </div>
+      {/* Hero Central Content: Exactly matches reference typography and placement */}
+      <div className="hero-editorial-container">
+        <motion.div
+          className="hero-editorial-centerpiece"
+          variants={titleVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {/* Subtle Heritage Monogram / Badge */}
+          <motion.div variants={wordVariants} className="hero-zen-pill">
+            <span className="zen-dot" />
+            <span>Pioneers in Ayurvedic Psychotherapy & Smriti Meditation</span>
           </motion.div>
 
-          <motion.div 
-            className="hero-floating-badge badge-bottom-left"
-            initial={{ opacity: 0, x: -20, y: 15 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-          >
-            <div className="hero-floating-badge__icon green">
-              <CheckCircle2 size={18} />
+          {/* Majestic Headline - Identical to Reference Design */}
+          <motion.h1 variants={wordVariants} className="hero-editorial-title">
+            <span className="title-line-1">Overall wellness</span>
+            <span className="title-line-2">
+              <span className="title-word-through">through </span>
+              <span className="title-word-ayurvedha">Ayurvedha</span>
+            </span>
+          </motion.h1>
+
+          {/* Harmonious Subtext */}
+          <motion.p variants={wordVariants} className="hero-editorial-subtitle">
+            Authentic Kerala Caraka Samhita healing, psychosomatic trauma recovery, 
+            and restorative rejuvenation in harmony with nature.
+          </motion.p>
+
+          {/* Quick Actions */}
+          <motion.div variants={wordVariants} className="hero-editorial-actions">
+            <BookAppointmentButton
+              label="Book Consultation"
+              size="lg"
+              variant="primary"
+            />
+            <a href="#about" className="hero-explore-btn">
+              <span>Explore Sanctuary</span>
+              <ArrowRight size={17} />
+            </a>
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div variants={wordVariants} className="hero-purity-badges">
+            <div className="hero-purity-item">
+              <ShieldCheck size={16} className="purity-icon" />
+              <span>Govt. Approved Clinic</span>
             </div>
-            <div className="hero-floating-badge__text">
-              <span className="badge-title">98.4% Relief Rate</span>
-              <span className="badge-sub">Verified Clinical Outcomes</span>
+            <div className="hero-purity-divider">•</div>
+            <div className="hero-purity-item">
+              <Award size={16} className="purity-icon gold" />
+              <span>20+ Years Clinical Heritage</span>
+            </div>
+            <div className="hero-purity-divider">•</div>
+            <div className="hero-purity-item">
+              <Sparkles size={16} className="purity-icon green" />
+              <span>100% Classical Protocols</span>
             </div>
           </motion.div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Bottom Torn Paper Edge Transition (Exact match to reference design) */}
+      <TornPaperDivider className="hero-torn-bottom" />
+
+      {/* Floating Leaves drifting over torn transition */}
+      <FloatingLeaves />
     </section>
   );
 });

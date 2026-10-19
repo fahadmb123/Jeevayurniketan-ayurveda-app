@@ -1,465 +1,406 @@
-.hero-section {
+/* ==========================================================================
+   Hero Section Styles (Authentic Kerala Resort & Editorial Typography)
+   ========================================================================== */
+
+.ayurveda-resort-hero {
   position: relative;
-  min-height: calc(100vh - 80px);
+  width: 100%;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
-  padding: 130px 5% 70px;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 48px;
-  overflow: visible;
+  overflow: hidden;
+  padding-top: 130px;
+  background-color: #e5f0ea;
 }
 
-/* Ambient Background Glow Orbs */
-.hero-background-circle {
+/* --------------------------------------------------------------------------
+   Backdrop Image & Atmospheric Lighting
+   -------------------------------------------------------------------------- */
+.hero-resort-backdrop {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   pointer-events: none;
-  animation: floatOrb 12s infinite alternate ease-in-out;
 }
 
-.hero-background-circle.orb-1 {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, rgba(251, 251, 249, 0) 70%);
-  top: -80px;
-  left: -200px;
+.hero-resort-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
 }
 
-.hero-background-circle.orb-2 {
-  width: 580px;
-  height: 580px;
-  background: radial-gradient(circle, rgba(201, 141, 59, 0.12) 0%, rgba(251, 251, 249, 0) 70%);
-  bottom: 0px;
-  right: -120px;
-  animation-delay: -6s;
+/* Soft sky diffuser ensures the headline has supreme contrast & legibility */
+.hero-sky-softener {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.28) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
 }
 
-.hero-background-circle.orb-3 {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, rgba(251, 251, 249, 0) 70%);
-  top: 40%;
-  left: 35%;
-  animation-delay: -3s;
+/* Subtle ambient vignette around outer frame */
+.hero-ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center 30%,
+    transparent 50%,
+    rgba(14, 46, 32, 0.08) 100%
+  );
+  pointer-events: none;
 }
 
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(25px, 40px) scale(1.08); }
-  100% { transform: translate(-20px, 25px) scale(0.96); }
+/* --------------------------------------------------------------------------
+   Centerpiece Typography & Content Container
+   -------------------------------------------------------------------------- */
+.hero-editorial-container {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* Content Column */
-.hero-content {
-  flex: 1.1;
-  max-width: 650px;
-  z-index: 2;
+.hero-editorial-centerpiece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 860px;
 }
 
-.hero-badge {
+/* Zen Capsule Badge */
+.hero-zen-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 18px;
-  background: linear-gradient(135deg, rgba(27, 107, 80, 0.08) 0%, rgba(201, 141, 59, 0.1) 100%);
-  color: var(--primary-green, #1B6B50);
-  border: 1px solid rgba(27, 107, 80, 0.22);
-  border-radius: 999px;
-  font-size: 0.84rem;
-  font-weight: 600;
-  margin-bottom: 22px;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.06);
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(27, 107, 80, 0.2);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary-green, #1B6B50);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(18, 76, 56, 0.08);
 }
 
-.hero-badge__dot {
-  width: 8px;
-  height: 8px;
+.zen-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background-color: var(--primary-green, #1B6B50);
-  box-shadow: 0 0 0 3px rgba(27, 107, 80, 0.2);
-  animation: pulseDot 2s infinite ease-in-out;
+  background: #5eb135;
+  box-shadow: 0 0 0 3px rgba(94, 177, 53, 0.25);
+  animation: pulseZen 2.2s infinite ease-in-out;
 }
 
-@keyframes pulseDot {
+@keyframes pulseZen {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 0.75; }
 }
 
-.hero-title {
-  font-size: 3.6rem;
-  font-weight: 800;
+/* Editorial Title: Exactly replicating the reference design */
+.hero-editorial-title {
+  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.9rem, 5.8vw, 4.8rem);
+  font-weight: 700;
   line-height: 1.14;
-  letter-spacing: -0.025em;
-  color: var(--text-primary, #14241C);
-  margin-bottom: 22px;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-title__highlight {
-  background: linear-gradient(135deg, var(--primary-green, #1B6B50) 0%, #2A8566 50%, var(--accent-gold, #C98D3B) 100%);
+.title-line-1 {
+  display: block;
+  color: #173629;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.8), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.title-line-2 {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28em;
+  flex-wrap: wrap;
+}
+
+.title-word-through {
+  color: #173629;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.8), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Vibrant Leaf Green "Ayurvedha" with organic gradient */
+.title-word-ayurvedha {
+  color: #5eb135;
+  background: linear-gradient(135deg, #64c237 0%, #4da523 50%, #3f8e1c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  font-weight: 800;
+  filter: drop-shadow(0 2px 12px rgba(94, 177, 53, 0.3));
 }
 
-.hero-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.78;
-  color: var(--text-secondary, #485E53);
-  margin-bottom: 34px;
-  max-width: 95%;
+/* Subtitle */
+.hero-editorial-subtitle {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.68;
+  color: #244133;
+  max-width: 680px;
+  margin: 0 0 26px;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 /* Actions Row */
-.hero-actions {
+.hero-editorial-actions {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
-  margin-bottom: 34px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
 }
 
-.hero-btn-secondary {
+.hero-explore-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  padding: 14px 26px;
-  border-radius: 12px;
+  padding: 12px 24px;
+  border-radius: 999px;
   font-weight: 600;
-  font-size: 0.98rem;
-  color: var(--text-primary, #14241C);
-  background: var(--surface-color, #ffffff);
-  border: 1px solid var(--border-color, rgba(27, 107, 80, 0.25));
+  font-size: 0.92rem;
+  color: #173629;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(27, 107, 80, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 14px rgba(18, 76, 56, 0.08);
 }
 
-.hero-btn-secondary:hover {
-  background: var(--primary-green-tint, rgba(27, 107, 80, 0.08));
-  border-color: var(--primary-green, #1B6B50);
+.hero-explore-btn:hover {
+  background: #ffffff;
   color: var(--primary-green, #1B6B50);
-  box-shadow: 0 6px 16px rgba(27, 107, 80, 0.12);
+  border-color: var(--primary-green, #1B6B50);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(18, 76, 56, 0.14);
 }
 
-.hero-btn-whatsapp {
+/* Trust indicators */
+.hero-purity-badges {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 22px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #0e6443;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.hero-btn-whatsapp:hover {
-  background: #25d366;
-  color: #ffffff;
-  border-color: #25d366;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-}
-
-.hero-btn-whatsapp:hover .hero-whatsapp-icon {
-  color: #ffffff;
-}
-
-/* Trust Chips */
-.hero-trust-chips {
-  display: flex;
-  align-items: center;
+  gap: 14px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 16px rgba(18, 76, 56, 0.06);
   flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-color, rgba(27, 107, 80, 0.15));
+  justify-content: center;
 }
 
-.hero-trust-chip {
+.hero-purity-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
+  gap: 6px;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text-secondary, #485E53);
+  color: #244133;
 }
 
-.hero-chip-icon {
+.hero-purity-divider {
+  color: rgba(27, 107, 80, 0.35);
+  font-size: 0.75rem;
+}
+
+.purity-icon {
   color: var(--primary-green, #1B6B50);
 }
 
-.hero-chip-icon.star {
-  color: #EAB308;
-}
-
-/* Visual Column / Image Frame */
-.hero-visual-wrapper {
-  flex: 0.95;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.hero-image-frame {
-  position: relative;
-  width: 100%;
-  max-width: 540px;
-  border-radius: 28px;
-  overflow: visible;
-  padding: 10px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(27, 107, 80, 0.15) 100%);
-  box-shadow: 0 24px 60px rgba(10, 46, 32, 0.16), 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(16px);
-}
-
-.hero-main-img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  border-radius: 22px;
-  display: block;
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2);
-}
-
-.hero-image-overlay {
-  position: absolute;
-  inset: 10px;
-  border-radius: 22px;
-  background: linear-gradient(180deg, rgba(10, 46, 32, 0) 60%, rgba(10, 46, 32, 0.35) 100%);
-  pointer-events: none;
-}
-
-/* Floating Glassmorphic Badges */
-.hero-floating-badge {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 14px 34px rgba(10, 46, 32, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  z-index: 5;
-  transition: transform 0.3s ease;
-}
-
-.hero-floating-badge:hover {
-  transform: translateY(-4px);
-}
-
-.badge-top-right {
-  top: 30px;
-  right: -24px;
-}
-
-.badge-bottom-left {
-  bottom: 30px;
-  left: -24px;
-}
-
-.hero-floating-badge__icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-floating-badge__icon.gold {
-  background: linear-gradient(135deg, rgba(201, 141, 59, 0.15) 0%, rgba(201, 141, 59, 0.3) 100%);
+.purity-icon.gold {
   color: var(--accent-gold, #C98D3B);
-  border: 1px solid rgba(201, 141, 59, 0.3);
 }
 
-.hero-floating-badge__icon.green {
-  background: linear-gradient(135deg, rgba(27, 107, 80, 0.15) 0%, rgba(27, 107, 80, 0.3) 100%);
-  color: var(--primary-green, #1B6B50);
-  border: 1px solid rgba(27, 107, 80, 0.3);
+.purity-icon.green {
+  color: #5eb135;
 }
 
-.hero-floating-badge__text {
-  display: flex;
-  flex-direction: column;
+/* --------------------------------------------------------------------------
+   Torn Paper Bottom Edge Transition (Exact Match to Reference)
+   -------------------------------------------------------------------------- */
+.torn-paper-divider-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 15;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.badge-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #14241C;
-  line-height: 1.2;
+.torn-paper-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: block;
 }
 
-.badge-sub {
-  font-size: 0.74rem;
-  color: #556B5F;
-  margin-top: 2px;
+.torn-paper-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: block;
 }
 
-/* Dark Theme Overrides */
-[data-theme='dark'] .hero-section {
-  color: #f1f5f3;
+/* --------------------------------------------------------------------------
+   Floating Leaves Drifting Over the Transition
+   -------------------------------------------------------------------------- */
+.floating-leaves-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  z-index: 20;
+  pointer-events: none;
+  overflow: visible;
 }
 
-[data-theme='dark'] .hero-badge {
-  background: rgba(65, 186, 145, 0.12);
+.floating-leaf-item {
+  position: absolute;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Dark Mode Accommodations
+   -------------------------------------------------------------------------- */
+[data-theme='dark'] .ayurveda-resort-hero {
+  background-color: #0A140F;
+}
+
+[data-theme='dark'] .hero-resort-image {
+  filter: brightness(0.85) contrast(1.05);
+}
+
+[data-theme='dark'] .hero-sky-softener {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 20, 15, 0.72) 0%,
+    rgba(10, 20, 15, 0.45) 50%,
+    rgba(10, 20, 15, 0) 100%
+  );
+}
+
+[data-theme='dark'] .title-line-1,
+[data-theme='dark'] .title-word-through {
+  color: #F2F7F4;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .hero-editorial-subtitle {
+  color: #C8E0D4;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+[data-theme='dark'] .hero-zen-pill {
+  background: rgba(17, 34, 27, 0.88);
+  border-color: rgba(46, 157, 119, 0.35);
   color: #41BA91;
-  border-color: rgba(65, 186, 145, 0.3);
 }
 
-[data-theme='dark'] .hero-badge__dot {
-  background-color: #41BA91;
+[data-theme='dark'] .hero-explore-btn {
+  background: rgba(17, 34, 27, 0.88);
+  color: #EDF7F2;
+  border-color: rgba(46, 157, 119, 0.35);
 }
 
-[data-theme='dark'] .hero-title {
-  color: #ffffff;
-}
-
-[data-theme='dark'] .hero-title__highlight {
-  background: linear-gradient(135deg, #41BA91 0%, #6ee7b7 50%, #F59E0B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-[data-theme='dark'] .hero-subtitle {
-  color: #b5c7bd;
-}
-
-[data-theme='dark'] .hero-btn-secondary {
-  background: rgba(24, 49, 38, 0.8);
-  border-color: rgba(65, 186, 145, 0.35);
-  color: #e2e8e4;
-}
-
-[data-theme='dark'] .hero-btn-secondary:hover {
-  background: rgba(65, 186, 145, 0.16);
-  color: #41BA91;
+[data-theme='dark'] .hero-explore-btn:hover {
+  background: rgba(24, 49, 38, 0.95);
   border-color: #41BA91;
+  color: #41BA91;
 }
 
-[data-theme='dark'] .hero-trust-chips {
-  border-color: rgba(65, 186, 145, 0.18);
+[data-theme='dark'] .hero-purity-badges {
+  background: rgba(17, 34, 27, 0.85);
+  border-color: rgba(46, 157, 119, 0.25);
 }
 
-[data-theme='dark'] .hero-trust-chip {
-  color: #a3b9ad;
+[data-theme='dark'] .hero-purity-item {
+  color: #D3E5DC;
 }
 
-[data-theme='dark'] .hero-image-frame {
-  background: linear-gradient(135deg, rgba(24, 49, 38, 0.7) 0%, rgba(65, 186, 145, 0.15) 100%);
-  border-color: rgba(65, 186, 145, 0.25);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-}
-
-[data-theme='dark'] .hero-floating-badge {
-  background: rgba(18, 38, 29, 0.92);
-  border-color: rgba(65, 186, 145, 0.32);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
-}
-
-[data-theme='dark'] .badge-title {
-  color: #f1f5f3;
-}
-
-[data-theme='dark'] .badge-sub {
-  color: #9cb1a6;
-}
-
-/* Responsive Media Queries */
-@media (max-width: 1100px) {
-  .hero-section {
-    flex-direction: column;
-    padding: 110px 5% 50px;
-    text-align: center;
-    gap: 40px;
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .ayurveda-resort-hero {
+    padding-top: 110px;
+    min-height: 90vh;
   }
-  .hero-content {
-    max-width: 750px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .hero-resort-image {
+    object-position: center 30%;
   }
-  .hero-title {
-    font-size: 3rem;
-  }
-  .hero-subtitle {
-    max-width: 90%;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .hero-trust-chips {
-    justify-content: center;
-  }
-  .hero-image-frame {
-    max-width: 500px;
-  }
-  .badge-top-right {
-    right: 0px;
-    top: 15px;
-  }
-  .badge-bottom-left {
-    left: 0px;
-    bottom: 15px;
+  .hero-purity-badges {
+    display: none;
   }
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 95px 16px 40px;
-    gap: 32px;
+@media (max-width: 600px) {
+  .ayurveda-resort-hero {
+    padding-top: 95px;
+    min-height: 85vh;
   }
-  .hero-title {
-    font-size: 2.3rem;
+  .hero-editorial-title {
+    font-size: 2.5rem;
   }
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 24px;
+  .hero-editorial-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
-  .hero-actions {
+  .hero-zen-pill {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+  }
+  .hero-editorial-actions {
     flex-direction: column;
     width: 100%;
     gap: 12px;
   }
-  .hero-actions > * {
+  .hero-editorial-actions > * {
     width: 100%;
   }
-  .hero-btn-secondary, .hero-btn-whatsapp {
-    width: 100%;
-  }
-  .hero-trust-chips {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-  .hero-main-img {
-    height: 340px;
-  }
-  .hero-floating-badge {
-    padding: 8px 12px;
-  }
-  .hero-floating-badge__icon {
-    width: 30px;
-    height: 30px;
-  }
-  .badge-title {
-    font-size: 0.8rem;
-  }
-  .badge-sub {
-    font-size: 0.68rem;
+  .hero-explore-btn {
+    justify-content: center;
   }
 }

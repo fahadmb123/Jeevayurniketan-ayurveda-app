@@ -50,7 +50,7 @@ const STEPS: JourneyStep[] = [
 
 export const HealingJourneySection: React.FC = React.memo(() => {
   return (
-    <section className="healing-journey-section" id="journey">
+    <section className="healing-journey-section" id="healing">
       <div className="healing-journey-container">
         <div className="healing-journey-header text-center">
           <div className="section-pill">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Footer } from '@/shared/layout';
 import { HeroSection } from '../components/HeroSection';
+import { TrustStatsBar } from '../components/TrustStatsBar';
 import { AboutSection } from '@/features/about';
 import { HealingJourneySection } from '../components/HealingJourneySection';
 import { ServicesSection } from '@/features/services';
@@ -14,6 +15,7 @@ export const HomePage: React.FC = React.memo(() => {
     <main className="home-page">
       <Navbar />
       <HeroSection />
+      <TrustStatsBar />
       <AboutSection />
       <HealingJourneySection />
       <ServicesSection />
