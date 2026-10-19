@@ -1,481 +1,273 @@
 /* ==========================================================================
-   Clean Editorial About Section Styles (Luxury Authentic Ayurveda)
+   Ayurvedic Pure Editorial Banner Section Styles
+   Replicating the Overlapping Herb Bowl Reference Layout (Zero JS Lag, Pure CSS)
    ========================================================================== */
 
-.clean-about-section {
+.ayurveda-pure-banner-section {
   position: relative;
-  padding: 90px 5% 100px;
-  background-color: var(--surface-color, #ffffff);
-  overflow: hidden;
-  border-top: 1px solid var(--border-color, #E2E8DE);
-}
-
-.clean-about-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-
-/* --------------------------------------------------------------------------
-   Left Column: Visual Showcase
-   -------------------------------------------------------------------------- */
-.clean-about-visual-side {
-  flex: 1;
-  position: relative;
-}
-
-.clean-about-image-frame {
-  position: relative;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(18, 76, 56, 0.12), 0 4px 16px rgba(0, 0, 0, 0.04);
-  border: 1px solid var(--border-color, rgba(27, 107, 80, 0.18));
-  background: #f0f5f2;
-}
-
-.clean-about-img {
   width: 100%;
-  height: 560px;
-  object-fit: cover;
-  object-position: center 25%;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 110px 4% 90px;
+  background-color: var(--bg-color, #FBFBF9);
+  overflow: visible;
 }
 
-.clean-about-image-frame:hover .clean-about-img {
-  transform: scale(1.03);
-}
-
-.clean-about-img-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(14, 46, 32, 0) 60%,
-    rgba(14, 46, 32, 0.45) 100%
-  );
-  pointer-events: none;
-}
-
-/* Heritage Glass Badge */
-.clean-about-heritage-badge {
-  position: absolute;
-  bottom: 22px;
-  left: 22px;
-  right: 22px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  border-radius: 18px;
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  box-shadow: 0 16px 36px rgba(10, 46, 32, 0.12);
-}
-
-.heritage-badge-num {
-  font-family: var(--font-serif, 'Playfair Display', serif);
-  font-size: 2.3rem;
-  font-weight: 800;
-  color: var(--primary-green, #1B6B50);
-  line-height: 1;
-  border-right: 2px solid rgba(27, 107, 80, 0.2);
-  padding-right: 18px;
-}
-
-.heritage-badge-meta {
-  display: flex;
-  flex-direction: column;
-}
-
-.heritage-badge-meta strong {
-  font-size: 0.96rem;
-  color: var(--text-primary, #14241C);
-  font-weight: 700;
-}
-
-.heritage-badge-meta span {
-  font-size: 0.8rem;
-  color: var(--text-secondary, #485E53);
-  margin-top: 2px;
-}
-
-/* Floating Tag on top-right */
-.clean-about-floating-tag {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 999px;
-  border: 1px solid rgba(27, 107, 80, 0.18);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-primary, #14241C);
-  box-shadow: 0 6px 18px rgba(10, 46, 32, 0.1);
-}
-
-.text-leaf {
-  color: #5eb135;
+.pure-banner-outer-wrap {
+  max-width: 1340px;
+  margin: 0 auto;
+  position: relative;
 }
 
 /* --------------------------------------------------------------------------
-   Right Column: Content & Philosophy
+   The Main Rich Colored Banner Card
    -------------------------------------------------------------------------- */
-.clean-about-content-side {
-  flex: 1.15;
+.pure-banner-card {
+  position: relative;
+  background: linear-gradient(135deg, #1C5B42 0%, #164935 60%, #113A2A 100%);
+  border-radius: 28px;
+  padding: 60px 48px 55px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  box-shadow: 0 24px 60px rgba(10, 46, 32, 0.16), 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: visible;
 }
 
-/* Kicker Capsule */
-.clean-about-kicker {
+/* --------------------------------------------------------------------------
+   Overlapping Fresh Herb Bowl (Top-Down Flat Lay with Soft Shadow)
+   -------------------------------------------------------------------------- */
+.pure-banner-bowl-anchor {
+  position: absolute;
+  top: -140px;
+  left: 48%;
+  transform: translateX(-40%);
+  width: 340px;
+  height: 340px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pure-banner-bowl-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 32px rgba(10, 36, 24, 0.45));
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: 4 Editorial Principles
+   -------------------------------------------------------------------------- */
+.pure-banner-content-col {
+  flex: 1;
+  max-width: 680px;
+  position: relative;
+  z-index: 5;
+}
+
+.pure-banner-principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pure-principle-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pure-principle-title {
+  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #FAFBF9;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pure-principle-desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.94rem;
+  line-height: 1.68;
+  color: #D3E5DC;
+  margin: 0;
+  max-width: 95%;
+}
+
+.pure-banner-action-row {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.pure-banner-cta-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  background: var(--primary-green-tint, #EDF6F1);
-  border: 1px solid rgba(27, 107, 80, 0.18);
-  border-radius: 999px;
-  font-size: 0.8rem;
+  gap: 10px;
+  font-size: 0.94rem;
   font-weight: 600;
-  color: var(--primary-green, #1B6B50);
-  margin-bottom: 16px;
-  align-self: flex-start;
+  color: #FAFBF9;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-.kicker-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #5eb135;
-}
-
-/* Title */
-.clean-about-title {
-  font-family: var(--font-serif, 'Playfair Display', 'Cormorant Garamond', Georgia, serif);
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  font-weight: 700;
-  color: #173629;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  margin: 0 0 16px;
-}
-
-.clean-about-title-highlight {
-  color: #5eb135;
-  background: linear-gradient(135deg, #5eb135 0%, #2A8566 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-.clean-about-lead {
-  font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-secondary, #485E53);
-  margin: 0 0 22px;
-}
-
-/* Founder Quote Box */
-.clean-about-quote-card {
-  display: flex;
-  gap: 16px;
-  padding: 18px 22px;
-  background: var(--surface-secondary, #F3F6F1);
-  border-left: 4px solid #5eb135;
-  border-radius: 0 16px 16px 0;
-  margin-bottom: 26px;
-  align-items: flex-start;
-}
-
-.quote-icon {
-  color: #5eb135;
-  opacity: 0.75;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.quote-text-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.quote-text {
-  font-family: var(--font-serif, 'Playfair Display', serif);
-  font-style: italic;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: #173629;
-  margin: 0;
-}
-
-.quote-author {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  font-size: 0.82rem;
-}
-
-.quote-author strong {
-  color: var(--primary-green, #1B6B50);
-}
-
-.quote-author span {
-  color: var(--text-light, #7E9387);
-}
-
-/* Three Pillars Stack */
-.clean-about-pillars {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-bottom: 30px;
-}
-
-.clean-pillar-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 14px 18px;
-  background: var(--surface-color, #ffffff);
-  border: 1px solid var(--border-color, #E2E8DE);
-  border-radius: 16px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.clean-pillar-item:hover {
-  border-color: var(--primary-green, #1B6B50);
-  background: var(--surface-secondary, #F3F6F1);
+.pure-banner-cta-link:hover {
+  background: #ffffff;
+  color: #164935;
   transform: translateX(4px);
-  box-shadow: 0 8px 24px rgba(18, 76, 56, 0.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-.clean-pillar-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--primary-green-tint, #EDF6F1);
-  color: var(--primary-green, #1B6B50);
+/* --------------------------------------------------------------------------
+   Right Column: Circular Icon Navigation Rail
+   -------------------------------------------------------------------------- */
+.pure-banner-rail-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  padding-top: 10px;
+}
+
+.pure-banner-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: center;
+}
+
+.pure-rail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.pure-rail-item:hover {
+  transform: translateY(-3px);
+}
+
+.pure-rail-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  color: #FAFBF9;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   transition: all 0.25s ease;
 }
 
-.clean-pillar-item:hover .clean-pillar-icon-wrap {
-  background: #5eb135;
-  color: #ffffff;
+.pure-rail-item:hover .pure-rail-circle {
+  background: #ffffff;
+  color: #164935;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-.clean-pillar-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.clean-pillar-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.clean-pillar-title {
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--text-primary, #14241C);
-  margin: 0;
-}
-
-.clean-pillar-tag {
-  font-size: 0.72rem;
+.pure-rail-label {
+  font-size: 0.76rem;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--primary-green-tint, #EDF6F1);
-  color: var(--primary-green, #1B6B50);
-}
-
-.clean-pillar-sanskrit {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: #5eb135;
-  margin-top: 1px;
-}
-
-.clean-pillar-desc {
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: var(--text-secondary, #485E53);
-  margin: 4px 0 0;
-}
-
-/* Actions Row */
-.clean-about-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.clean-about-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: var(--primary-green, #1B6B50);
-  color: #ffffff;
-  border-radius: 999px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.25);
-}
-
-.clean-about-btn-primary:hover {
-  background: var(--primary-green-light, #2A8566);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(27, 107, 80, 0.35);
-}
-
-.clean-about-verification {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--text-secondary, #485E53);
+  color: #D3E5DC;
+  letter-spacing: 0.02em;
+  max-width: 90px;
+  line-height: 1.25;
 }
 
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations
    -------------------------------------------------------------------------- */
-[data-theme='dark'] .clean-about-section {
-  background-color: #0d1a14;
-  border-top-color: rgba(46, 157, 119, 0.2);
+[data-theme='dark'] .ayurveda-pure-banner-section {
+  background-color: #0A140F;
 }
 
-[data-theme='dark'] .clean-about-title {
-  color: #F2F7F4;
-}
-
-[data-theme='dark'] .clean-about-lead {
-  color: #B2CCC0;
-}
-
-[data-theme='dark'] .clean-about-quote-card {
-  background: rgba(18, 38, 29, 0.85);
-  border-left-color: #41BA91;
-}
-
-[data-theme='dark'] .quote-text {
-  color: #E2EFE8;
-}
-
-[data-theme='dark'] .quote-author strong {
-  color: #41BA91;
-}
-
-[data-theme='dark'] .clean-pillar-item {
-  background: rgba(18, 38, 29, 0.7);
-  border-color: rgba(46, 157, 119, 0.2);
-}
-
-[data-theme='dark'] .clean-pillar-item:hover {
-  background: rgba(24, 49, 38, 0.9);
-  border-color: #41BA91;
-}
-
-[data-theme='dark'] .clean-pillar-title {
-  color: #F2F7F4;
-}
-
-[data-theme='dark'] .clean-pillar-desc {
-  color: #A3BFB1;
-}
-
-[data-theme='dark'] .clean-about-heritage-badge {
-  background: rgba(17, 34, 27, 0.94);
-  border-color: rgba(46, 157, 119, 0.3);
-}
-
-[data-theme='dark'] .heritage-badge-num {
-  color: #41BA91;
-  border-right-color: rgba(46, 157, 119, 0.3);
-}
-
-[data-theme='dark'] .heritage-badge-meta strong {
-  color: #F2F7F4;
-}
-
-[data-theme='dark'] .heritage-badge-meta span {
-  color: #9DB4A7;
-}
-
-[data-theme='dark'] .clean-about-floating-tag {
-  background: rgba(17, 34, 27, 0.94);
-  border-color: rgba(46, 157, 119, 0.3);
-  color: #F2F7F4;
-}
-
-[data-theme='dark'] .clean-about-verification {
-  color: #A3BFB1;
+[data-theme='dark'] .pure-banner-card {
+  background: linear-gradient(135deg, #133D2D 0%, #0D2B20 100%);
+  border-color: rgba(46, 157, 119, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* --------------------------------------------------------------------------
    Responsive Media Queries
    -------------------------------------------------------------------------- */
-@media (max-width: 1040px) {
-  .clean-about-container {
+@media (max-width: 1100px) {
+  .pure-banner-bowl-anchor {
+    top: -110px;
+    left: auto;
+    right: 80px;
+    transform: none;
+    width: 270px;
+    height: 270px;
+  }
+}
+
+@media (max-width: 900px) {
+  .pure-banner-card {
     flex-direction: column;
-    gap: 48px;
+    padding: 130px 28px 40px;
+    gap: 36px;
   }
-  .clean-about-visual-side {
-    width: 100%;
-    max-width: 600px;
+
+  .pure-banner-bowl-anchor {
+    top: -100px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 240px;
   }
-  .clean-about-img {
-    height: 440px;
+
+  .pure-banner-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
-  .clean-about-content-side {
-    width: 100%;
+
+  .pure-banner-content-col {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .clean-about-section {
-    padding: 60px 16px 70px;
+  .ayurveda-pure-banner-section {
+    padding: 80px 16px 50px;
   }
-  .clean-about-img {
-    height: 350px;
+
+  .pure-banner-card {
+    padding: 110px 20px 32px;
+    border-radius: 20px;
   }
-  .clean-about-title {
-    font-size: 1.85rem;
+
+  .pure-banner-bowl-anchor {
+    top: -80px;
+    width: 190px;
+    height: 190px;
   }
-  .clean-about-heritage-badge {
-    padding: 12px 16px;
-    gap: 12px;
+
+  .pure-principle-title {
+    font-size: 1.3rem;
   }
-  .heritage-badge-num {
-    font-size: 1.8rem;
-    padding-right: 12px;
+
+  .pure-principle-desc {
+    font-size: 0.88rem;
   }
-  .clean-about-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .clean-about-btn-primary {
+
+  .pure-banner-cta-link {
     width: 100%;
     justify-content: center;
   }
