@@ -20,3 +20,11 @@
     padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+.doctor-layout__loading-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}

@@ -3,6 +3,7 @@ import { Users, Calendar, Activity, Inbox } from 'lucide-react';
 import type { DoctorStatItem } from '../types';
 import { appointmentService, type Appointment } from '@/features/appointments';
 import { patientService, type Patient } from '@/features/patients';
+import { ROUTES } from '@/shared/config/routes';
 
 export const INITIAL_STATS: DoctorStatItem[] = [
   {
@@ -12,6 +13,7 @@ export const INITIAL_STATS: DoctorStatItem[] = [
     trend: 'Pending review',
     variant: 'orange',
     icon: React.createElement(Inbox, { size: 22 }),
+    link: ROUTES.DOCTOR_REQUESTS,
   },
   {
     id: 'total-patients',
@@ -20,6 +22,7 @@ export const INITIAL_STATS: DoctorStatItem[] = [
     trend: '+12% this month',
     variant: 'green',
     icon: React.createElement(Users, { size: 22 }),
+    link: ROUTES.DOCTOR_PATIENTS,
   },
   {
     id: 'today-appointments',

@@ -9,6 +9,7 @@ export interface DoctorStatItem {
   trend: string;
   variant: 'green' | 'blue' | 'orange';
   icon: React.ReactNode;
+  link?: string;
 }
 
 export interface DoctorNavItem {

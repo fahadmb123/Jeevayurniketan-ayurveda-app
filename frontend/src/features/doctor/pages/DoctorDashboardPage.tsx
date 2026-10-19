@@ -1,8 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
 import { DoctorStats } from '../components/DoctorStats';
 import { RecentPatientsWidget, usePatients } from '@/features/patients';
 import { TodayScheduleWidget, useAppointments } from '@/features/appointments';
+import { ROUTES } from '@/shared/config/routes';
 import {
   DoctorSearchFilterStrip,
   type FilterSelectConfig,
@@ -26,6 +28,7 @@ const cardItemVariants: Variants = {
 type DashboardTabFilter = 'all' | 'schedule' | 'patients' | 'in-treatment' | 'consultation';
 
 export const DoctorDashboardPage: React.FC = React.memo(() => {
+  const navigate = useNavigate();
   const { patients } = usePatients();
   const { appointments } = useAppointments();
 
@@ -209,6 +212,7 @@ export const DoctorDashboardPage: React.FC = React.memo(() => {
             patients={filteredPatients}
             searchFilter={searchQuery}
             variants={cardItemVariants}
+            onViewAll={() => navigate(ROUTES.DOCTOR_PATIENTS)}
           />
         )}
         {showSchedule && (
