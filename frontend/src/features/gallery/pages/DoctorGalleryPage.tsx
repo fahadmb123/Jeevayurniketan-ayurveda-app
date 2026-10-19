@@ -34,6 +34,9 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.25 } },
 };
 
+const DEFAULT_FALLBACK_IMAGE =
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23112a20"/><stop offset="100%" stop-color="%231b6b50"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/><circle cx="400" cy="220" r="70" fill="%232e9d77" opacity="0.35"/><path d="M400,160 C420,200 450,220 450,250 C450,277 427,300 400,300 C373,300 350,277 350,250 C350,220 380,200 400,160 Z" fill="%23c98d3b" opacity="0.85"/><text x="400" y="360" font-family="sans-serif" font-size="20" font-weight="600" fill="%23ffffff" text-anchor="middle" opacity="0.9">Jeevayurniketan Wellness Gallery</text></svg>';
+
 export const DoctorGalleryPage: React.FC = React.memo(() => {
   const {
     filteredItems,
@@ -82,24 +85,20 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
   );
 
   return (
-    <div className="doctor-gallery-page">
+    <div className="doctor-page-content doctor-gallery-page">
       {/* Page Header */}
-      <div className="doctor-gallery-page__header">
-        <div className="doctor-gallery-page__header-text">
-          <div className="doctor-gallery-page__badge-tag">
-            <ImageIcon size={14} />
-            <span>Visual Showcases</span>
-          </div>
-          <h1 className="doctor-gallery-page__title">Gallery Management</h1>
-          <p className="doctor-gallery-page__subtitle">
-            Upload and manage photo galleries for Yoga practices and Ayurvedic clinical treatments.
+      <div className="doctor-gallery-header">
+        <div>
+          <h1 className="doctor-page-title">Gallery Management</h1>
+          <p className="doctor-page-sub">
+            Curate and manage high-resolution photo showcases for Yoga practices and Ayurvedic clinical treatments
           </p>
         </div>
 
-        <div className="doctor-gallery-page__header-actions">
+        <div className="doctor-gallery-header__actions">
           <button
             type="button"
-            className="doctor-gallery-page__reset-btn"
+            className="doctor-gallery-btn-reset"
             onClick={handleResetDefaults}
             title="Reset gallery to default clinic imagery"
           >
@@ -108,7 +107,7 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
           </button>
           <button
             type="button"
-            className="doctor-gallery-page__add-btn"
+            className="doctor-gallery-btn-add"
             onClick={() => setIsModalOpen(true)}
           >
             <Plus size={18} />
@@ -125,38 +124,38 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
         </div>
       )}
 
-      {/* Metrics Row */}
-      <div className="doctor-gallery-page__metrics">
-        <div className="doctor-gallery-metric-card doctor-gallery-metric-card--total">
-          <div className="doctor-gallery-metric-card__content">
-            <span className="doctor-gallery-metric-card__label">Total Photos</span>
-            <span className="doctor-gallery-metric-card__value">{totalCount}</span>
-            <span className="doctor-gallery-metric-card__subtext">Live in public gallery</span>
-          </div>
-          <div className="doctor-gallery-metric-card__icon-wrap">
+      {/* KPI Metrics Row */}
+      <div className="doctor-gallery-kpis">
+        <div className="doctor-gallery-kpi">
+          <div className="doctor-gallery-kpi__icon doctor-gallery-kpi__icon--total">
             <ImageIcon size={22} />
           </div>
+          <div className="doctor-gallery-kpi__info">
+            <span className="doctor-gallery-kpi__value">{totalCount}</span>
+            <span className="doctor-gallery-kpi__label">Total Photos</span>
+            <span className="doctor-gallery-kpi__sub">Live in public gallery</span>
+          </div>
         </div>
 
-        <div className="doctor-gallery-metric-card doctor-gallery-metric-card--yoga">
-          <div className="doctor-gallery-metric-card__content">
-            <span className="doctor-gallery-metric-card__label">Yoga Photos</span>
-            <span className="doctor-gallery-metric-card__value">{yogaCount}</span>
-            <span className="doctor-gallery-metric-card__subtext">Asanas & Shala sessions</span>
-          </div>
-          <div className="doctor-gallery-metric-card__icon-wrap">
+        <div className="doctor-gallery-kpi">
+          <div className="doctor-gallery-kpi__icon doctor-gallery-kpi__icon--yoga">
             <Sparkles size={22} />
           </div>
+          <div className="doctor-gallery-kpi__info">
+            <span className="doctor-gallery-kpi__value">{yogaCount}</span>
+            <span className="doctor-gallery-kpi__label">Yoga Photos</span>
+            <span className="doctor-gallery-kpi__sub">Asanas & shala sessions</span>
+          </div>
         </div>
 
-        <div className="doctor-gallery-metric-card doctor-gallery-metric-card--treatment">
-          <div className="doctor-gallery-metric-card__content">
-            <span className="doctor-gallery-metric-card__label">Treatment Photos</span>
-            <span className="doctor-gallery-metric-card__value">{treatmentCount}</span>
-            <span className="doctor-gallery-metric-card__subtext">Clinical therapies & herbs</span>
-          </div>
-          <div className="doctor-gallery-metric-card__icon-wrap">
+        <div className="doctor-gallery-kpi">
+          <div className="doctor-gallery-kpi__icon doctor-gallery-kpi__icon--treatment">
             <Activity size={22} />
+          </div>
+          <div className="doctor-gallery-kpi__info">
+            <span className="doctor-gallery-kpi__value">{treatmentCount}</span>
+            <span className="doctor-gallery-kpi__label">Treatment Photos</span>
+            <span className="doctor-gallery-kpi__sub">Clinical therapies & herbs</span>
           </div>
         </div>
       </div>
@@ -201,6 +200,12 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
                   alt={item.title}
                   className="doctor-gallery-card__img"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== DEFAULT_FALLBACK_IMAGE) {
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }
+                  }}
                 />
 
                 {/* Category Pill Tag */}
@@ -210,12 +215,12 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
                   >
                     {item.category === 'yoga' ? (
                       <>
-                        <Sparkles size={12} />
+                        <Sparkles size={13} />
                         <span>Yoga</span>
                       </>
                     ) : (
                       <>
-                        <Activity size={12} />
+                        <Activity size={13} />
                         <span>Treatment</span>
                       </>
                     )}
@@ -225,7 +230,7 @@ export const DoctorGalleryPage: React.FC = React.memo(() => {
                 {/* Hover Action Overlay */}
                 <div className="doctor-gallery-card__hover-overlay">
                   <div className="doctor-gallery-card__zoom-action">
-                    <Maximize2 size={18} />
+                    <Maximize2 size={16} />
                     <span>View Photo</span>
                   </div>
                 </div>

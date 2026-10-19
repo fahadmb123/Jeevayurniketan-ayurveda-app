@@ -28,6 +28,9 @@ const getPageTitle = (pathname: string): string => {
   if (pathname.startsWith(ROUTES.DOCTOR_YOGA)) {
     return 'Yoga Therapy';
   }
+  if (pathname.startsWith(ROUTES.DOCTOR_GALLERY)) {
+    return 'Gallery Management';
+  }
   if (pathname.startsWith(ROUTES.DOCTOR_SETTINGS)) {
     return 'Settings';
   }

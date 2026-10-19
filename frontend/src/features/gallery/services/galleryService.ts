@@ -61,7 +61,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     id: 'treatment-1',
     title: 'Shirodhara Medicated Oil Pouring',
     category: 'treatment',
-    imageUrl: 'https://images.unsplash.com/photo-1608248597359-5484852c038c?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80',
     description: 'Continuous rhythmic stream of warm herbal oil over the forehead chakra to relieve anxiety and insomnia.',
     createdAt: '2026-10-08',
     author: 'Dr. Radhika Sen',
@@ -81,7 +81,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     id: 'treatment-3',
     title: 'Botanical Herbarium & Fresh Decoctions',
     category: 'treatment',
-    imageUrl: 'https://images.unsplash.com/photo-1512290900672-1f55b9e59d43?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80',
     description: 'Hand-ground Ayurvedic roots, Ashwagandha, and therapeutic botanical formulations.',
     createdAt: '2026-10-13',
     author: 'Dr. Radhika Sen',
@@ -116,7 +116,29 @@ export const galleryService = {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          let hasMigration = false;
+          const sanitized = parsed.map((item: GalleryItem) => {
+            if (item.imageUrl && item.imageUrl.includes('photo-1608248597359-5484852c038c')) {
+              hasMigration = true;
+              return {
+                ...item,
+                imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80',
+              };
+            }
+            if (item.imageUrl && item.imageUrl.includes('photo-1512290900672-1f55b9e59d43')) {
+              hasMigration = true;
+              return {
+                ...item,
+                imageUrl: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80',
+              };
+            }
+            return item;
+          });
+
+          if (hasMigration) {
+            localStorage.setItem(GALLERY_STORAGE_KEY, JSON.stringify(sanitized));
+          }
+          return sanitized;
         }
       }
     } catch {

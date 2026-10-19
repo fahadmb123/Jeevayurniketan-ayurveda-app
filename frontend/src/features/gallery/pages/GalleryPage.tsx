@@ -102,6 +102,14 @@ export const GalleryPage: React.FC = () => {
                     alt={item.title}
                     className="gallery-item-card__img"
                     loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const fallback =
+                        'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23112a20"/><stop offset="100%" stop-color="%231b6b50"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/><circle cx="400" cy="220" r="70" fill="%232e9d77" opacity="0.35"/><path d="M400,160 C420,200 450,220 450,250 C450,277 427,300 400,300 C373,300 350,277 350,250 C350,220 380,200 400,160 Z" fill="%23c98d3b" opacity="0.85"/><text x="400" y="360" font-family="sans-serif" font-size="20" font-weight="600" fill="%23ffffff" text-anchor="middle" opacity="0.9">Jeevayurniketan Wellness Gallery</text></svg>';
+                      if (target.src !== fallback) {
+                        target.src = fallback;
+                      }
+                    }}
                   />
                   <div className="gallery-item-card__badge-wrap">
                     <span
