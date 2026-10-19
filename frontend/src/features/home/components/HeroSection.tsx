@@ -31,15 +31,15 @@ const slideFromTopVariants: Variants = {
 };
 
 const imageSlideFromRightVariants: Variants = {
-  hidden: { x: 200 },
+  hidden: { x: 600 },
   visible: {
     x: 0,
     transition: {
       type: 'spring' as const,
-      stiffness: 260,
+      stiffness: 180,
       damping: 24,
-      mass: 0.85,
-      delay: 0.1,
+      mass: 0.9,
+      delay: 0.08,
     },
   },
 };
