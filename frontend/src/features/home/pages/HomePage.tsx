@@ -2,8 +2,10 @@ import React from 'react';
 import { Navbar, Footer } from '@/shared/layout';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '@/features/about';
+import { HealingJourneySection } from '../components/HealingJourneySection';
 import { ServicesSection } from '@/features/services';
 import { TeamSection } from '@/features/team';
+import { FAQSection } from '../components/FAQSection';
 import { BlogSection } from '@/features/blog';
 import './HomePage.css';
 
@@ -13,8 +15,10 @@ export const HomePage: React.FC = React.memo(() => {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <HealingJourneySection />
       <ServicesSection />
       <TeamSection />
+      <FAQSection />
       <BlogSection />
       <Footer />
     </main>

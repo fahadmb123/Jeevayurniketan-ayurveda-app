@@ -2,5 +2,8 @@ export * from './types';
 export * from './services/homeService';
 export * from './hooks/useHome';
 export * from './components/HeroSection';
+export * from './components/TrustStatsBar';
+export * from './components/HealingJourneySection';
+export * from './components/FAQSection';
 export * from './pages/HomePage';
 export * from './pages/NotFoundPage';
