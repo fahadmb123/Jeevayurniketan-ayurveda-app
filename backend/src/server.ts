@@ -1,7 +1,7 @@
 import http from 'http';
 import { App } from './app.js';
 import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
-import { verifyDatabaseConnection, prisma } from './infrastructure/database/prisma.js';
+import { verifyDatabaseConnection, prisma } from './db.js';
 
 export class Server {
   private readonly httpServer: http.Server;
