@@ -9,9 +9,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "db:generate": "prisma generate",
-    "db:create-migration": "cmd /c \"set DATABASE_URL=file:./dev.db && npx prisma migrate dev\"",
-    "db:migrate": "tsx scripts/migrate.ts"
+    "db:sync": "cross-env DATABASE_URL=file:./dev.db prisma db push && prisma generate"
   },
   "keywords": [
     "ayurveda",
@@ -34,6 +32,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.5",
+    "cross-env": "^10.1.0",
     "prisma": "^6.19.3",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
