@@ -69,3 +69,11 @@ next-env.d.ts
 .parcel-cache/
 .eslintcache
 .turbo/
+
+# SQLite local artifacts
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+**/dev.db*
+

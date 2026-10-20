@@ -8,7 +8,10 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:create-migration": "cmd /c \"set DATABASE_URL=file:./dev.db && npx prisma migrate dev\"",
+    "db:migrate": "tsx scripts/migrate.ts"
   },
   "keywords": [
     "ayurveda",
