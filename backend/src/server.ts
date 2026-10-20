@@ -1,6 +1,7 @@
 import http from 'http';
 import { App } from './app.js';
 import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
+import { verifyDatabaseConnection, prisma } from './infrastructure/database/prisma.js';
 
 export class Server {
   private readonly httpServer: http.Server;
@@ -13,7 +14,9 @@ export class Server {
     this.setupProcessSignals();
   }
 
-  public start(): void {
+  public async start(): Promise<void> {
+    await verifyDatabaseConnection();
+
     this.httpServer.listen(this.config.port, () => {
       console.log('\n==================================================');
       console.log('🌿 JEEVAYURNIKETAN AYURVEDA CLINIC - BACKEND');
@@ -28,6 +31,12 @@ export class Server {
   }
 
   public async stop(): Promise<void> {
+    try {
+      await prisma.$disconnect();
+    } catch {
+      // Disconnect cleanly
+    }
+
     return new Promise((resolve, reject) => {
       this.httpServer.close((error) => {
         if (error) {
