@@ -1,11 +1,4 @@
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
-}
+// use prisma-8
 
 model User {
   id        Int      @id @default(autoincrement())
