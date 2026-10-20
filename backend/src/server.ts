@@ -1,7 +1,7 @@
 import http from 'http';
 import { App } from './app.js';
 import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
-import { verifyDatabaseConnection, prisma } from './db.js';
+import prisma from './db.js';
 
 export class Server {
   private readonly httpServer: http.Server;
@@ -15,7 +15,6 @@ export class Server {
   }
 
   public async start(): Promise<void> {
-    await verifyDatabaseConnection();
 
     this.httpServer.listen(this.config.port, () => {
       console.log('\n==================================================');
