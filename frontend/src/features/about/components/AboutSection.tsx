@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import cupImg from '@/assets/cup.jpg';
 import { Leaf, Brain, Sparkles, UserCheck, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { LazyMotion, domAnimation, m, type Variants } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
 import './AboutSection.css';
 
@@ -78,10 +79,40 @@ const QUICK_PILLS: QuickPill[] = [
   },
 ];
 
+const sectionVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.7, ease: 'easeOut', staggerChildren: 0.12 },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const contentVariants: Variants = {
+  hidden: { opacity: 0, x: -28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const railVariants: Variants = {
+  hidden: { opacity: 0, x: 24 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.65, delay: 0.14, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const principleVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 export const AboutSection: React.FC = React.memo(() => {
   const cupRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     let ticking = false;
     let lastScrollY = window.scrollY;
 
@@ -90,7 +121,6 @@ export const AboutSection: React.FC = React.memo(() => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           if (cupRef.current) {
-            // Spin fast as user scrolls without any re-render overhead
             cupRef.current.style.transform = `rotate(${lastScrollY * 0.85}deg)`;
           }
           ticking = false;
@@ -106,13 +136,18 @@ export const AboutSection: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <section id="about" className="ayurveda-pure-banner-section" aria-label="About Jeevayurniketan Heritage">
-      <div className="pure-banner-outer-wrap">
-        
-        {/* Main Banner Block */}
-        <div className="pure-banner-card">
-          
-          {/* Overlapping Top-Down Herbal Bowl (Pure Graphic Design) */}
+    <LazyMotion features={domAnimation}>
+      <m.section
+        id="about"
+        className="ayurveda-pure-banner-section"
+        aria-label="About Jeevayurniketan Heritage"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.16 }}
+        variants={sectionVariants}
+      >
+        <div className="pure-banner-outer-wrap">
+          <m.div className="pure-banner-card" variants={cardVariants}>
           <div className="pure-banner-bowl-anchor">
             <img 
               ref={cupRef}
@@ -124,16 +159,15 @@ export const AboutSection: React.FC = React.memo(() => {
             />
           </div>
 
-          {/* Left Column: 4 Editorial Principles */}
-          <div className="pure-banner-content-col">
-            <div className="pure-banner-principles-list">
+          <m.div className="pure-banner-content-col" variants={contentVariants}>
+            <m.div className="pure-banner-principles-list" variants={sectionVariants}>
               {PRINCIPLES.map((item) => (
-                <div key={item.id} className="pure-principle-block">
+                <m.div key={item.id} className="pure-principle-block" variants={principleVariants}>
                   <h3 className="pure-principle-title">{item.title}</h3>
                   <p className="pure-principle-desc">{item.description}</p>
-                </div>
+                </m.div>
               ))}
-            </div>
+            </m.div>
 
             <div className="pure-banner-action-row">
               <Link to={ROUTES.ABOUT} className="pure-banner-cta-link">
@@ -141,10 +175,9 @@ export const AboutSection: React.FC = React.memo(() => {
                 <ArrowRight size={17} />
               </Link>
             </div>
-          </div>
+          </m.div>
 
-          {/* Right Column: Circular Feature Navigation Pills */}
-          <div className="pure-banner-rail-col">
+          <m.div className="pure-banner-rail-col" variants={railVariants}>
             <div className="pure-banner-rail">
               {QUICK_PILLS.map((pill) => (
                 <div key={pill.id} className="pure-rail-item" title={pill.sub}>
@@ -155,11 +188,12 @@ export const AboutSection: React.FC = React.memo(() => {
                 </div>
               ))}
             </div>
-          </div>
+          </m.div>
 
+          </m.div>
         </div>
-      </div>
-    </section>
+      </m.section>
+    </LazyMotion>
   );
 });
 

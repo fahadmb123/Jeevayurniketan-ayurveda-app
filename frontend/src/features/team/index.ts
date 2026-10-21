@@ -5,5 +5,6 @@ export * from './components/TeamMemberCard';
 export * from './components/TeamSection';
 export * from './components/DrAhalyaModal';
 export * from './components/DrAhalyaSpotlightSection';
+export * from './components/DoctorIntroSection';
 export * from './data/drAhalyaData';
 export * from './pages/TeamPage';
