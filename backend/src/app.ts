@@ -15,6 +15,10 @@ import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
 import type { IRoute } from './presentation/routes/IRoute.js';
 import { SystemHealthRepository } from './infrastructure/database/repositories/SystemHealthRepository.js';
 import { HealthService } from './application/services/health.service.js';
+import { LoginUseCase } from './application/use-cases/auth/LoginUseCase.js';
+import { PrismaUserRepository } from './infrastructure/database/repositories/PrismaUserRepository.js';
+import { ScryptPasswordService } from './infrastructure/services/ScryptPasswordService.js';
+import { TemporaryTokenService } from './infrastructure/services/TemporaryTokenService.js';
 
 export class App {
   public readonly app: Application;
@@ -36,7 +40,12 @@ export class App {
 
     const rootController = new RootController(config);
     const healthController = new HealthController(healthService);
-    const doctorController = new DoctorController();
+    const loginUseCase = new LoginUseCase(
+      new PrismaUserRepository(),
+      new ScryptPasswordService(),
+      new TemporaryTokenService(config.tokenSecret),
+    );
+    const doctorController = new DoctorController(loginUseCase);
 
     const rootRoutes = new RootRoutes(rootController);
     const healthRoutes = new HealthRoutes(healthController);

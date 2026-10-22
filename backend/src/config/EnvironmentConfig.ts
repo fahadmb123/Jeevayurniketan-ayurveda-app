@@ -8,11 +8,13 @@ export class EnvironmentConfig {
   public readonly port: number;
   public readonly nodeEnv: NodeEnvironment;
   public readonly corsOrigin: string;
+  public readonly tokenSecret: string;
 
   constructor() {
     this.port = this.extractPort(process.env.PORT, 7000);
     this.nodeEnv = this.extractNodeEnv(process.env.NODE_ENV);
-    this.corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173';
+    this.corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:5170';
+    this.tokenSecret = process.env.AUTH_TOKEN_SECRET || 'development-secret';
   }
 
   private extractPort(value: string | undefined, defaultPort: number): number {

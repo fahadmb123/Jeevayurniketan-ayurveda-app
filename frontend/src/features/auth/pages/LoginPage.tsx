@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Sparkles, ShieldCheck, Heart } from 'lucide-react';
 import { ROUTES } from '@/shared/config/routes';
 import { LoginForm } from '../components/LoginForm';
-import { useAuth } from '../hooks/useAuth';
+import { useAuthMutation } from '../hooks/useAuthMutation';
 import type { LoginCredentials } from '../types';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
 import loginSanctuaryImg from '@/assets/login_sanctuary.jpg';
@@ -12,14 +12,14 @@ import './AuthPages.css';
 
 export const LoginPage: React.FC = React.memo(() => {
   const navigate = useNavigate();
-  const { login, loading, error: authError } = useAuth();
+  const { mutateAsync: login, isPending: loading, error: authError } = useAuthMutation();
   const [localError, setLocalError] = useState<string | null>(null);
 
   const handleLogin = useCallback(async (credentials: LoginCredentials) => {
     try {
       setLocalError(null);
       const user = await login(credentials);
-      if (user.role === 'doctor') {
+       if (user.user.role === 'doctor') {
         navigate(ROUTES.DOCTOR);
       } else {
         navigate(ROUTES.HOME);
@@ -35,7 +35,6 @@ export const LoginPage: React.FC = React.memo(() => {
 
   return (
     <div className="auth-page-split">
-      {/* Left Side: Visual Sanctuary & Heritage Panel */}
       <div className="auth-split-left">
           <img
             src={loginSanctuaryImg}
@@ -44,7 +43,6 @@ export const LoginPage: React.FC = React.memo(() => {
           />
           <div className="auth-split-overlay" />
 
-          {/* Top Header inside Image */}
           <div className="auth-split-left-top">
             <Link to={ROUTES.HOME} className="auth-back-link">
               <ArrowLeft size={16} />
@@ -57,7 +55,6 @@ export const LoginPage: React.FC = React.memo(() => {
             </div>
           </div>
 
-          {/* Bottom Quotation & Trust Highlights inside Image */}
           <div className="auth-split-left-bottom">
             <div className="auth-quote-card">
               <div className="auth-quote-stars">★★★★★</div>
@@ -81,11 +78,9 @@ export const LoginPage: React.FC = React.memo(() => {
           </div>
         </div>
 
-        {/* Right Side: Login Form Fields */}
         <div className="auth-split-right">
           <div className="auth-split-right-inner">
             
-            {/* Brand Header */}
             <div className="auth-split-header">
               <div className="auth-brand-row">
                 <BrandLogo linkTo={ROUTES.HOME} size="md" className="auth-brand-logo" />
@@ -100,25 +95,22 @@ export const LoginPage: React.FC = React.memo(() => {
               </p>
             </div>
 
-            {/* Error Message */}
             {(localError || authError) && (
               <motion.div
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="auth-alert-error"
               >
-                {localError || authError}
+                {localError || authError?.message}
               </motion.div>
             )}
 
-            {/* Form Fields */}
             <LoginForm
               onSubmit={handleLogin}
               isLoading={loading}
               onSwitchToRegister={handleSwitchToRegister}
             />
 
-            {/* Security Assurance */}
             <div className="auth-security-note">
               <ShieldCheck size={14} className="text-primary-green" />
               <span>Protected with 256-bit clinical encryption & confidentiality</span>
@@ -131,4 +123,3 @@ export const LoginPage: React.FC = React.memo(() => {
 });
 
 LoginPage.displayName = 'LoginPage';
-

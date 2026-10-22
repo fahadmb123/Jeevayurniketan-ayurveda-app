@@ -1,61 +1,18 @@
-import { useState, useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { authService } from '../services/authService';
-import type { LoginCredentials, RegisterData, User } from '../types';
+import { AUTH_QUERY_KEY } from './useAuthMutation';
+import type { RegisterData } from '../types';
 
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(() => authService.getCurrentUser());
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const login = useCallback(async (credentials: LoginCredentials) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await authService.login(credentials);
-      setUser(response.user);
-      return response.user;
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Login failed';
-      setError(msg);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const register = useCallback(async (data: RegisterData) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await authService.register(data);
-      setUser(response.user);
-      return response.user;
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Registration failed';
-      setError(msg);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const logout = useCallback(async () => {
-    setLoading(true);
-    try {
-      await authService.logout();
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const queryClient = useQueryClient();
+  const { data: user } = useQuery({ queryKey: AUTH_QUERY_KEY, queryFn: async () => authService.getCurrentUser() });
 
   return {
     user,
     isAuthenticated: !!user,
-    loading,
-    error,
-    login,
-    register,
-    logout,
+    loading: false,
+    error: null,
+    register: async (data: RegisterData) => (await authService.register(data)).user,
+    logout: async () => { await authService.logout(); queryClient.removeQueries({ queryKey: AUTH_QUERY_KEY }); },
   };
 };

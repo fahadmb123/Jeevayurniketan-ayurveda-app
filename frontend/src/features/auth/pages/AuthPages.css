@@ -325,6 +325,12 @@
   gap: 6px;
 }
 
+.auth-form__field-error {
+  color: #dc2626;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
 .auth-form__group label {
   font-size: 0.79rem;
   font-weight: 600;
