@@ -39,6 +39,12 @@ const LoginPage = lazy(() =>
 const RegisterPage = lazy(() =>
   import('@/features/auth/pages/RegisterPage').then((m) => ({ default: m.RegisterPage }))
 );
+const ForgotPasswordPage = lazy(() =>
+  import('@/features/auth/pages/ForgotPasswordPage').then((m) => ({ default: m.ForgotPasswordPage }))
+);
+const ResetPasswordPage = lazy(() =>
+  import('@/features/auth/pages/ResetPasswordPage').then((m) => ({ default: m.ResetPasswordPage }))
+);
 
 // Domain-Specific Portal Feature Pages (Code-split with React.lazy)
 const DoctorDashboardPage = lazy(() =>
@@ -80,6 +86,8 @@ export const AppRoutes: React.FC = React.memo(() => {
         {/* Auth Pages */}
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+        <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPasswordPage />} />
+        <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordPage />} />
 
         {/* Doctor Portal Routes (Structured with persistent DoctorLayout & Outlet) */}
         <Route element={<DoctorLayout />}>

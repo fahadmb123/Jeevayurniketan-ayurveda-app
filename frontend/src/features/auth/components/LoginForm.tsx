@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Mail, Lock, LogIn, ArrowRight, Eye, EyeOff, Sparkles } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
+import { ROUTES } from '@/shared/config/routes';
 import { loginSchema, type LoginFormValues } from '../validation/loginSchema';
 
 interface LoginFormProps {
@@ -45,7 +47,7 @@ export const LoginForm: React.FC<LoginFormProps> = React.memo(({ onSubmit, isLoa
       <div className="auth-form__group">
         <div className="auth-form__label-row">
           <label htmlFor="loginPassword">Password</label>
-          <a href="#forgot" className="auth-form__link" onClick={(event) => event.preventDefault()}>Forgot password?</a>
+          <Link to={ROUTES.FORGOT_PASSWORD} className="auth-form__link">Forgot password?</Link>
         </div>
         <div className={`auth-form__input-wrap ${errors.password ? 'has-error' : ''}`}>
           <Lock size={18} className="auth-form__icon" />

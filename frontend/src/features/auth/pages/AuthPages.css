@@ -37,6 +37,42 @@
   box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.15);
 }
 
+.auth-recovery-card {
+  max-width: 500px;
+}
+
+.auth-recovery-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 24px;
+  color: var(--primary-green, #1B6B50);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.auth-recovery-form {
+  margin-top: 26px;
+}
+
+.auth-recovery-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  padding: 24px;
+  border: 1px solid var(--border-color, #E2E8DE);
+  border-radius: 16px;
+  background: var(--surface-secondary, #F3F6F1);
+  color: var(--text-secondary, #485E53);
+  text-align: center;
+}
+
+.auth-recovery-success svg { color: var(--primary-green, #1B6B50); }
+.auth-recovery-success strong { color: var(--text-primary, #14241C); font-size: 1rem; }
+.auth-recovery-success span { font-size: 0.86rem; line-height: 1.55; }
+
 /* --------------------------------------------------------------------------
    Left Side: Visual Sanctuary & Quote (Edge-to-Edge)
    -------------------------------------------------------------------------- */
