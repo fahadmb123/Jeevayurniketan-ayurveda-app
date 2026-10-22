@@ -5,14 +5,14 @@ import type { RegisterData } from '../types';
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
-  const { data: user } = useQuery({ queryKey: AUTH_QUERY_KEY, queryFn: async () => authService.getCurrentUser() });
+  const { data: user, isPending, error } = useQuery({ queryKey: AUTH_QUERY_KEY, queryFn: authService.getCurrentUser, retry: false });
 
   return {
     user,
     isAuthenticated: !!user,
-    loading: false,
-    error: null,
-    register: async (data: RegisterData) => (await authService.register(data)).user,
+    loading: isPending,
+    error,
+    register: async (data: RegisterData) => authService.register(data),
     logout: async () => { await authService.logout(); queryClient.removeQueries({ queryKey: AUTH_QUERY_KEY }); },
   };
 };

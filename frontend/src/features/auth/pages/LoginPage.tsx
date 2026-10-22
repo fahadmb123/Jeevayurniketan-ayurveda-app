@@ -19,7 +19,7 @@ export const LoginPage: React.FC = React.memo(() => {
     try {
       setLocalError(null);
       const user = await login(credentials);
-       if (user.user.role === 'doctor') {
+       if (user.role === 'doctor') {
         navigate(ROUTES.DOCTOR);
       } else {
         navigate(ROUTES.HOME);

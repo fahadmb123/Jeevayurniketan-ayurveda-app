@@ -20,7 +20,6 @@ export interface RegisterData {
   role?: 'patient' | 'doctor';
 }
 
-export interface AuthResponse {
+export interface LoginResponse {
   user: User;
-  token: string;
 }

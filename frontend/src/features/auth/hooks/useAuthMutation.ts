@@ -8,6 +8,6 @@ export const useAuthMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (credentials: LoginCredentials) => authService.login(credentials),
-    onSuccess: (session) => queryClient.setQueryData(AUTH_QUERY_KEY, session.user),
+    onSuccess: (user) => queryClient.setQueryData(AUTH_QUERY_KEY, user),
   });
 };

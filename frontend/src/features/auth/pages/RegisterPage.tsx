@@ -46,7 +46,7 @@ export const RegisterPage: React.FC = React.memo(() => {
         </div>
 
         {(localError || authError) && (
-          <div className="auth-alert-error">{localError || authError}</div>
+           <div className="auth-alert-error">{localError || authError?.message}</div>
         )}
 
         <RegisterForm
@@ -60,4 +60,3 @@ export const RegisterPage: React.FC = React.memo(() => {
 });
 
 RegisterPage.displayName = 'RegisterPage';
-

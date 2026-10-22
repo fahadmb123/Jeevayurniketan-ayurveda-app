@@ -1,23 +1,28 @@
-import type { AuthResponse, LoginCredentials, RegisterData, User } from '../types';
+import type { LoginResponse, LoginCredentials, RegisterData, User } from '../types';
 import { apiClient } from '@/shared/lib/api/apiClient';
-import { authStorage } from './authStorage';
+import { ApiError } from '@/shared/lib/api/ApiError';
 
 export const authService = {
-  async login(credentials: LoginCredentials): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse, LoginCredentials>('/api/doctor/login', credentials);
-    authStorage.save(response);
-    return response;
+  async login(credentials: LoginCredentials): Promise<User> {
+    const response = await apiClient.post<LoginResponse, LoginCredentials>('/api/auth/login', credentials);
+    return response.user;
   },
 
-  async register(data: RegisterData): Promise<AuthResponse> {
+  async register(data: RegisterData): Promise<User> {
     throw new Error(`Registration is not available for ${data.email}`);
   },
 
   async logout(): Promise<void> {
-    authStorage.clear();
+    await apiClient.post('/api/auth/logout', {});
   },
 
-  getCurrentUser(): User | null {
-    return authStorage.user();
+  async getCurrentUser(): Promise<User | null> {
+    try {
+      const response = await apiClient.get<{ user: User }>('/api/auth/me');
+      return response.user;
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) return null;
+      throw error;
+    }
   },
 };

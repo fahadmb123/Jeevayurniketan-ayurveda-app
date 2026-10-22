@@ -26,6 +26,7 @@ export class ErrorMiddleware {
         message,
         statusCode,
         timestamp: new Date().toISOString(),
+        ...(err instanceof AppError && err.details ? { details: err.details } : {}),
         ...(this.config.nodeEnv === 'development' && { stack: err.stack }),
       },
     });

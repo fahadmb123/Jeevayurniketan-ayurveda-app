@@ -1,9 +1,10 @@
 import { AppError } from '../../../shared/errors/AppError.js';
-import type { AuthResponseDTO } from '../../dtos/auth/AuthResponseDTO.js';
+import type { LoginResultDTO } from '../../dtos/auth/LoginResultDTO.js';
 import type { LoginRequestDTO } from '../../dtos/auth/LoginRequestDTO.js';
 import type { IUserRepository } from '../../interfaces/repositories/IUserRepository.js';
 import type { IPasswordService } from '../../interfaces/services/IPasswordService.js';
 import type { ITokenService } from '../../interfaces/services/ITokenService.js';
+import { UserMapper } from '../../mappers/auth/UserMapper.js';
 
 export class LoginUseCase {
   constructor(
@@ -12,7 +13,7 @@ export class LoginUseCase {
     private readonly tokens: ITokenService,
   ) {}
 
-  public async execute(input: LoginRequestDTO): Promise<AuthResponseDTO> {
+  public async execute(input: LoginRequestDTO & { rememberMe?: boolean }): Promise<LoginResultDTO> {
     const email = input.email.trim().toLowerCase();
     const user = await this.users.findByEmail(email);
 
@@ -21,8 +22,9 @@ export class LoginUseCase {
     }
 
     return {
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
-      token: await this.tokens.sign({ sub: user.id, role: user.role }),
+      user: UserMapper.toAuthenticatedUser(user),
+      accessToken: await this.tokens.sign({ sub: user.id, role: user.role }),
+      rememberMe: input.rememberMe ?? false,
     };
   }
 }
