@@ -1,4 +1,4 @@
-import { HealthStatus } from '../../core/domain/entities/HealthStatus.js';
+import type { HealthStatus } from '../../../domain/entities/HealthStatus.js';
 
 export class HealthResponseDTO {
   public readonly status: string;

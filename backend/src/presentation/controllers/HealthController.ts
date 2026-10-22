@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
-import { BaseController } from '../../shared/controllers/BaseController.js';
-import { HealthService } from '../../application/services/HealthService.js';
+import { BaseController } from './BaseController.js';
+import { HealthService } from '../../application/services/health.service.js';
 
 export class HealthController extends BaseController {
   constructor(private readonly healthService: HealthService) {

@@ -2,19 +2,19 @@ import express from 'express';
 import type { Application } from 'express';
 import cors from 'cors';
 import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
-import { LoggerMiddleware } from './infrastructure/logging/LoggerMiddleware.js';
+import { LoggerMiddleware } from './shared/logging/LoggerMiddleware.js';
 import { NotFoundMiddleware } from './presentation/middlewares/NotFoundMiddleware.js';
 import { ErrorMiddleware } from './presentation/middlewares/ErrorMiddleware.js';
 import { RootController } from './presentation/controllers/RootController.js';
 import { HealthController } from './presentation/controllers/HealthController.js';
-import { DoctorController } from './presentation/doctor/controllers/doctor.controller.js';
+import { DoctorController } from './presentation/controllers/doctor/doctor.controller.js';
 import { RootRoutes } from './presentation/routes/RootRoutes.js';
 import { HealthRoutes } from './presentation/routes/HealthRoutes.js';
-import { DoctorRoutes } from './presentation/doctor/routes/doctor.routes.js';
+import { DoctorRoutes } from './presentation/routes/doctor/doctor.routes.js';
 import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
 import type { IRoute } from './presentation/routes/IRoute.js';
-import { SystemHealthRepository } from './infrastructure/repositories/SystemHealthRepository.js';
-import { HealthService } from './application/services/HealthService.js';
+import { SystemHealthRepository } from './infrastructure/database/repositories/SystemHealthRepository.js';
+import { HealthService } from './application/services/health.service.js';
 
 export class App {
   public readonly app: Application;

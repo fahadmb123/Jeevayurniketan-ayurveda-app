@@ -1,22 +1,16 @@
 import type { Response } from 'express';
+import { sendCreated, sendError, sendOk } from '../../shared/http/response.js';
 
 export abstract class BaseController {
   protected sendOk<T>(res: Response, data: T): void {
-    res.status(200).json(data);
+    sendOk(res, data);
   }
 
   protected sendCreated<T>(res: Response, data: T): void {
-    res.status(201).json(data);
+    sendCreated(res, data);
   }
 
   protected sendError(res: Response, message: string, statusCode = 500): void {
-    res.status(statusCode).json({
-      success: false,
-      error: {
-        message,
-        statusCode,
-        timestamp: new Date().toISOString(),
-      },
-    });
+    sendError(res, message, statusCode);
   }
 }

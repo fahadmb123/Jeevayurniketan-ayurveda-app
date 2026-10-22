@@ -1,6 +1,6 @@
-import type { IHealthRepository } from '../../core/repositories/IHealthRepository.js';
-import { HealthStatus } from '../../core/domain/entities/HealthStatus.js';
-import { EnvironmentConfig } from '../../config/EnvironmentConfig.js';
+import type { EnvironmentConfig } from '../../../config/EnvironmentConfig.js';
+import type { IHealthRepository } from '../../../application/interfaces/repositories/IHealthRepository.js';
+import { HealthStatus } from '../../../domain/entities/HealthStatus.js';
 
 export class SystemHealthRepository implements IHealthRepository {
   constructor(private readonly config: EnvironmentConfig) {}

@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { BaseController } from '../../shared/controllers/BaseController.js';
+import { BaseController } from './BaseController.js';
 import { EnvironmentConfig } from '../../config/EnvironmentConfig.js';
 
 export class RootController extends BaseController {

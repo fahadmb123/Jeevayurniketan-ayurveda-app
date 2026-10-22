@@ -1,5 +1,5 @@
-import type { IHealthRepository } from '../../core/repositories/IHealthRepository.js';
-import { HealthResponseDTO } from '../dtos/HealthResponseDTO.js';
+import type { IHealthRepository } from '../interfaces/repositories/IHealthRepository.js';
+import { HealthResponseDTO } from '../dtos/health/HealthResponseDTO.js';
 
 export class HealthService {
   constructor(private readonly healthRepository: IHealthRepository) {}

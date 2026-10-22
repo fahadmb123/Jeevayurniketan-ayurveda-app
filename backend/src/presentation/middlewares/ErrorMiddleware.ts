@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
-import { AppError } from '../../application/errors/AppError.js';
+import { AppError } from '../../shared/errors/AppError.js';
 import { EnvironmentConfig } from '../../config/EnvironmentConfig.js';
+import { Logger } from '../../shared/logging/Logger.js';
 
 export class ErrorMiddleware {
   constructor(private readonly config: EnvironmentConfig) {}
@@ -14,9 +15,9 @@ export class ErrorMiddleware {
     const statusCode = err instanceof AppError ? err.statusCode : 500;
     const message = err.message || 'Internal Server Error';
 
-    console.error(`[Error] ${statusCode} - ${message}`);
+    Logger.error(`[Error] ${statusCode} - ${message}`);
     if (statusCode === 500 && err.stack) {
-      console.error(err.stack);
+      Logger.error(err.stack);
     }
 
     res.status(statusCode).json({

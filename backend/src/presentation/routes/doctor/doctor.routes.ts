@@ -1,5 +1,5 @@
-import { BaseRoute } from '../../routes/BaseRoute.js';
-import { DoctorController } from '../controllers/doctor.controller.js';
+import { BaseRoute } from '../BaseRoute.js';
+import type { DoctorController } from '../../controllers/doctor/doctor.controller.js';
 
 export class DoctorRoutes extends BaseRoute {
   constructor(private readonly doctorController: DoctorController) {

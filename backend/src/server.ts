@@ -1,7 +1,8 @@
 import http from 'http';
 import { App } from './app.js';
 import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
-import prisma from './db.js';
+import prisma from './infrastructure/database/prisma.js';
+import { Logger } from './shared/logging/Logger.js';
 
 export class Server {
   private readonly httpServer: http.Server;
@@ -17,15 +18,11 @@ export class Server {
   public async start(): Promise<void> {
 
     this.httpServer.listen(this.config.port, () => {
-      console.log('\n==================================================');
-      console.log('🌿 JEEVAYURNIKETAN AYURVEDA CLINIC - BACKEND');
-      console.log('==================================================');
-      console.log(`🚀 Server running on port : http://localhost:${this.config.port}`);
-      console.log(`🩺 Health check endpoint  : http://localhost:${this.config.port}/health`);
-      console.log(`🌐 Base API endpoint      : http://localhost:${this.config.port}/api`);
-      console.log(`🔒 Environment            : ${this.config.nodeEnv}`);
-      console.log(`⚡ Allowed CORS Origin    : ${this.config.corsOrigin}`);
-      console.log('==================================================\n');
+      Logger.info(`Jeevayurniketan backend running on http://localhost:${this.config.port}`);
+      Logger.info(`Health endpoint: http://localhost:${this.config.port}/health`);
+      Logger.info(`API endpoint: http://localhost:${this.config.port}/api`);
+      Logger.info(`Environment: ${this.config.nodeEnv}`);
+      Logger.info(`CORS origin: ${this.config.corsOrigin}`);
     });
   }
 
@@ -33,7 +30,6 @@ export class Server {
     try {
       await prisma.$disconnect();
     } catch {
-      // Disconnect cleanly
     }
 
     return new Promise((resolve, reject) => {
@@ -49,19 +45,19 @@ export class Server {
 
   private setupProcessSignals(): void {
     const handleShutdown = (signal: string): void => {
-      console.log(`\n[Server] Received ${signal}. Shutting down gracefully...`);
+      Logger.info(`[Server] Received ${signal}. Shutting down gracefully...`);
       this.stop()
         .then(() => {
-          console.log('[Server] HTTP server closed cleanly.');
+          Logger.info('[Server] HTTP server closed cleanly.');
           process.exit(0);
         })
         .catch((error: Error) => {
-          console.error('[Server] Error while shutting down:', error);
+          Logger.error('[Server] Error while shutting down:', error);
           process.exit(1);
         });
 
       setTimeout(() => {
-        console.error('[Server] Forcefully shutting down due to timeout.');
+        Logger.error('[Server] Forcefully shutting down due to timeout.');
         process.exit(1);
       }, 10000);
     };
