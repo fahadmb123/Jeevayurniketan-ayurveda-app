@@ -22,3 +22,25 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .blog-section {
+    padding: var(--section-space) var(--page-gutter);
+  }
+
+  .blog-header {
+    margin-bottom: 28px;
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--card-gap);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

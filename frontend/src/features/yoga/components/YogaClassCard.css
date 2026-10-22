@@ -110,6 +110,29 @@
   flex: 1;
 }
 
+@media (max-width: 768px) {
+  .yoga-card {
+    border-radius: 14px;
+  }
+
+  .yoga-card__image-container {
+    height: 150px;
+  }
+
+  .yoga-card__image-overlay {
+    padding: 10px;
+  }
+
+  .yoga-card__body {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .yoga-card__title {
+    font-size: 1rem;
+  }
+}
+
 .yoga-card__header {
   display: flex;
   flex-direction: column;

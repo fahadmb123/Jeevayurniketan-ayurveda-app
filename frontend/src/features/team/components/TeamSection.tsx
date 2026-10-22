@@ -6,8 +6,7 @@ import './TeamSection.css';
 
 export const TeamSection: React.FC = React.memo(() => {
   const { members } = useTeam();
-  // Display only the 2 primary expert cards as requested
-  const expertMembers = members.slice(0, 2);
+  const expertMembers = members;
 
   return (
     <section id="team" className="team-section">
@@ -34,4 +33,3 @@ export const TeamSection: React.FC = React.memo(() => {
 });
 
 TeamSection.displayName = 'TeamSection';
-

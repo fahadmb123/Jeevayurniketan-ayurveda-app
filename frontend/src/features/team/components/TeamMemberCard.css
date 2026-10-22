@@ -106,3 +106,57 @@
 .team-card__bio-link:hover .bio-arrow {
   transform: translateX(4px);
 }
+
+@media (max-width: 768px) {
+  .team-card {
+    min-width: 0;
+    border-radius: 12px;
+  }
+
+  .team-card__image-wrapper {
+    height: 112px;
+  }
+
+  .team-card__info {
+    min-width: 0;
+    padding: 10px;
+    gap: 3px;
+  }
+
+  .team-card__name {
+    overflow: hidden;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .team-card__role,
+  .team-card__qualifications,
+  .team-card__desc {
+    overflow: hidden;
+    font-size: 0.64rem;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+  }
+
+  .team-card__role,
+  .team-card__qualifications {
+    white-space: nowrap;
+  }
+
+  .team-card__desc {
+    display: -webkit-box;
+    margin-top: 3px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .team-card__bio-link {
+    min-height: 32px;
+    margin-top: 5px;
+    padding: 5px 7px;
+    border-radius: 7px;
+    font-size: 0.62rem;
+  }
+}

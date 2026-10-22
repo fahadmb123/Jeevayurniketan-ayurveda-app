@@ -24,3 +24,19 @@
   max-width: 860px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .team-section {
+    padding: 64px 12px;
+  }
+
+  .team-header {
+    margin-bottom: 28px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+}

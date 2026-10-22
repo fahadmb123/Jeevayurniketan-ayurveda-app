@@ -74,6 +74,23 @@
   border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+  .app-btn--sm {
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+
+  .app-btn--md {
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+
+  .app-btn--icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 .app-btn--icon:hover {
   background-color: var(--surface-secondary, #F3F6F1);
   border-color: var(--border-color-hover, #CCD6C6);

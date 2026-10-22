@@ -95,6 +95,40 @@
   transition: transform 0.2s ease;
 }
 
+@media (max-width: 768px) {
+  .blog-card {
+    border-radius: 14px;
+  }
+
+  .blog-card__image-wrapper {
+    height: 150px;
+  }
+
+  .blog-card__content {
+    padding: 14px;
+    gap: 6px;
+  }
+
+  .blog-card__title {
+    font-size: 0.98rem;
+    line-height: 1.3;
+  }
+
+  .blog-card__excerpt {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .blog-card__btn {
+    min-height: 44px;
+    font-size: 0.78rem;
+  }
+}
+
 .blog-card:hover .blog-card__btn {
   transform: translateX(4px);
 }

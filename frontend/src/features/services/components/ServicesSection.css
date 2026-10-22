@@ -26,3 +26,29 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: var(--section-space) var(--page-gutter);
+  }
+
+  .services-header {
+    margin-bottom: 28px;
+  }
+
+  .services-subtitle {
+    font-size: 0.92rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--card-gap);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
