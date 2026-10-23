@@ -6,17 +6,14 @@ import { EnvironmentConfig, env } from './config/EnvironmentConfig.js';
 import { LoggerMiddleware } from './shared/middlewares/LoggerMiddleware.js';
 import { NotFoundMiddleware } from './shared/middlewares/NotFoundMiddleware.js';
 import { ErrorMiddleware } from './shared/middlewares/ErrorMiddleware.js';
-import { RootController } from './presentation/controllers/RootController.js';
 import { HealthController } from './presentation/controllers/HealthController.js';
 import { AuthController } from './presentation/controllers/auth/AuthController.js';
-import { RootRoutes } from './presentation/routes/RootRoutes.js';
+import { DoctorController } from './presentation/controllers/doctor/DoctorController.js';
 import { HealthRoutes } from './presentation/routes/HealthRoutes.js';
-import { DoctorRoutes } from './presentation/routes/doctor/doctor.routes.js';
+import { DoctorRoutes } from './presentation/routes/doctor/DoctorRoutes.js';
 import { AuthRoutes } from './presentation/routes/auth/AuthRoutes.js';
 import { ApiRoutes } from './presentation/routes/ApiRoutes.js';
 import type { IRoute } from './shared/routes/IRoute.js';
-import { SystemHealthRepository } from './infrastructure/database/repositories/SystemHealthRepository.js';
-import { HealthService } from './application/services/health.service.js';
 import { LoginUseCase } from './application/use-cases/auth/LoginUseCase.js';
 import { PrismaUserRepository } from './infrastructure/database/repositories/PrismaUserRepository.js';
 import { ScryptPasswordService } from './infrastructure/services/ScryptPasswordService.js';
@@ -38,28 +35,27 @@ export class App {
   }
 
   public static create(config: EnvironmentConfig = env): App {
-    const healthRepository = new SystemHealthRepository(config);
-    const healthService = new HealthService(healthRepository);
-
-    const rootController = new RootController(config);
-    const healthController = new HealthController(healthService);
+    const healthController = new HealthController();
     const loginUseCase = new LoginUseCase(
       new PrismaUserRepository(),
       new ScryptPasswordService(),
       new JwtTokenService(config.tokenSecret),
     );
     const tokenService = new JwtTokenService(config.tokenSecret);
-    const authController = new AuthController(loginUseCase, new ExpressCookieService(config));
+    const cookieService = new ExpressCookieService(config);
 
-    const rootRoutes = new RootRoutes(rootController);
+    const authController = new AuthController(loginUseCase, cookieService);
+    const doctorController = new DoctorController(loginUseCase);
+
     const healthRoutes = new HealthRoutes(healthController);
     const authRoutes = new AuthRoutes(authController, tokenService, config);
+    const doctorRoutes = new DoctorRoutes(doctorController);
 
-    const apiRoutes = new ApiRoutes(rootController, [healthRoutes, authRoutes]);
+    const apiRoutes = new ApiRoutes([authRoutes, doctorRoutes, healthRoutes]);
 
     const errorMiddleware = new ErrorMiddleware(config);
 
-    return new App(config, [rootRoutes, healthRoutes, apiRoutes], errorMiddleware);
+    return new App(config, [healthRoutes, apiRoutes], errorMiddleware);
   }
 
   private initializeMiddlewares(): void {
