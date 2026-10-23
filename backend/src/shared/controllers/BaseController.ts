@@ -1,5 +1,5 @@
 import type { Response } from 'express';
-import { sendCreated, sendError, sendOk } from '../../shared/http/response.js';
+import { sendCreated, sendError, sendOk } from '../http/response.js';
 
 export abstract class BaseController {
   protected sendOk<T>(res: Response, data: T): void {

@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { BaseController } from '../BaseController.js';
+import { BaseController } from '../../../shared/controllers/BaseController.js';
 import type { LoginUseCase } from '../../../application/use-cases/auth/LoginUseCase.js';
 
 export class DoctorController extends BaseController {

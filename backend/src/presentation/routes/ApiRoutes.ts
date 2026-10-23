@@ -1,6 +1,6 @@
-import { BaseRoute } from './BaseRoute.js';
+import { BaseRoute } from '../../shared/routes/BaseRoute.js';
 import { RootController } from '../controllers/RootController.js';
-import type { IRoute } from './IRoute.js';
+import type { IRoute } from '../../shared/routes/IRoute.js';
 
 export class ApiRoutes extends BaseRoute {
   private readonly subRoutes: IRoute[];

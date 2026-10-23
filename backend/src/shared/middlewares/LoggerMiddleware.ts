@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { Logger } from './Logger.js';
+import { Logger } from '../logging/Logger.js';
 
 export class LoggerMiddleware {
   public static handle(req: Request, res: Response, next: NextFunction): void {

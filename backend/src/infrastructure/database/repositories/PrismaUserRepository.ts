@@ -1,5 +1,5 @@
 import type { IUserRepository } from '../../../application/interfaces/repositories/IUserRepository.js';
-import { BaseRepository } from './BaseRepository.js';
+import { BaseRepository } from '../../../shared/repositories/BaseRepository.js';
 import type { User } from '../../../domain/entities/User.js';
 import prisma from '../prisma.js';
 import { PrismaUserMapper } from '../mappers/PrismaUserMapper.js';

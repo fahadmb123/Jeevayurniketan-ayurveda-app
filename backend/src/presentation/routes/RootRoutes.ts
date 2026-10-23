@@ -1,4 +1,4 @@
-import { BaseRoute } from './BaseRoute.js';
+import { BaseRoute } from '../../shared/routes/BaseRoute.js';
 import { RootController } from '../controllers/RootController.js';
 
 export class RootRoutes extends BaseRoute {

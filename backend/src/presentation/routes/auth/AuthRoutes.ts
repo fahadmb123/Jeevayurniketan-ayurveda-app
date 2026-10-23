@@ -1,8 +1,8 @@
-import { BaseRoute } from '../BaseRoute.js';
+import { BaseRoute } from '../../../shared/routes/BaseRoute.js';
 import type { AuthController } from '../../controllers/auth/AuthController.js';
-import { validateBody } from '../../validators/ValidationMiddleware.js';
+import { validateBody } from '../../../shared/middlewares/ValidationMiddleware.js';
 import { loginSchema } from '../../validators/auth/login.schema.js';
-import { createAuthMiddleware } from '../../middlewares/AuthMiddleware.js';
+import { createAuthMiddleware } from '../../../shared/middlewares/AuthMiddleware.js';
 import type { JwtTokenService } from '../../../infrastructure/services/JwtTokenService.js';
 import type { EnvironmentConfig } from '../../../config/EnvironmentConfig.js';
 

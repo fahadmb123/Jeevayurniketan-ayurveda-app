@@ -1,4 +1,4 @@
-import { BaseRoute } from './BaseRoute.js';
+import { BaseRoute } from '../../shared/routes/BaseRoute.js';
 import { HealthController } from '../controllers/HealthController.js';
 
 export class HealthRoutes extends BaseRoute {

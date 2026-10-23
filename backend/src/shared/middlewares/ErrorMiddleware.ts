@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
-import { AppError } from '../../shared/errors/AppError.js';
-import { EnvironmentConfig } from '../../config/EnvironmentConfig.js';
-import { Logger } from '../../shared/logging/Logger.js';
+import { AppError } from '../errors/AppError.js';
+import type { EnvironmentConfig } from '../../config/EnvironmentConfig.js';
+import { Logger } from '../logging/Logger.js';
 
 export class ErrorMiddleware {
   constructor(private readonly config: EnvironmentConfig) {}

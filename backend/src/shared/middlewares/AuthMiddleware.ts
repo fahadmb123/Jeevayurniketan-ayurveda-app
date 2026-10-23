@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { AppError } from '../../shared/errors/AppError.js';
+import { AppError } from '../errors/AppError.js';
 import type { JwtTokenService } from '../../infrastructure/services/JwtTokenService.js';
 
 export const createAuthMiddleware = (tokens: JwtTokenService, cookieName: string) => (req: Request, _res: Response, next: NextFunction): void => {
