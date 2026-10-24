@@ -83,33 +83,33 @@ const sectionVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.12 },
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.14 },
   },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 80 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const contentVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], staggerChildren: 0.1 } },
+  hidden: { opacity: 0, y: 65 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.12 } },
 };
 
 const railVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, delayChildren: 0.1, staggerChildren: 0.08, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 65 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, delayChildren: 0.1, staggerChildren: 0.1, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const principleVariants: Variants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const pillVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export const AboutSection: React.FC = React.memo(() => {

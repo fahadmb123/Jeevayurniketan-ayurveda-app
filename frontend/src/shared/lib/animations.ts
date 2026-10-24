@@ -11,36 +11,37 @@ export const staggerContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.05,
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
     },
   },
 };
 
 /**
  * Standard Framer Motion Fade-Up Item Variant
- * Transitions elements from opacity 0, y: 50 to opacity 1, y: 0 using a premium cubic bezier ease.
+ * Longer travel distance (y: 75) and extended duration (0.95s) for a slow, 
+ * elegant gliding effect where elements smoothly come up and join their resting position.
  */
 export const fadeUpVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 50,
+    y: 75,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.65,
-      ease: [0.22, 1, 0.36, 1], // Smooth luxury deceleration curve
+      duration: 0.95,
+      ease: [0.16, 1, 0.3, 1], // Silky smooth luxury deceleration glide
     },
   },
 };
 
 /**
  * Common Viewport Trigger Configuration
- * Triggers once when 20% of the element is visible in the viewport.
+ * Triggers once when 15% of the element is visible in the viewport to allow full travel length.
  */
 export const standardViewport = {
   once: true,
-  amount: 0.2,
+  amount: 0.15,
 } as const;
