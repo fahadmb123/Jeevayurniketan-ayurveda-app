@@ -1,17 +1,23 @@
+/* ==========================================================================
+   Our Treatments Section - Continuous Image Stream Marquee
+   Pure visual showcase with square rounded image cards and zero hover reaction
+   ========================================================================== */
+
 .healing-journey-section {
-  padding: 100px 5%;
-  background: linear-gradient(180deg, var(--bg-color, #FBFBF9) 0%, rgba(27, 107, 80, 0.04) 50%, var(--surface-color, #ffffff) 100%);
+  padding: 100px 5% 96px;
+  background: #FFFFFF;
   position: relative;
+  overflow: hidden;
 }
 
 .healing-journey-container {
-  max-width: 1320px;
+  max-width: 1380px;
   margin: 0 auto;
 }
 
 .healing-journey-header {
-  max-width: 760px;
-  margin: 0 auto 60px;
+  max-width: 840px;
+  margin: 0 auto 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,175 +25,244 @@
 }
 
 .journey-title {
-  font-size: 2.6rem;
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: var(--text-primary, #14241C);
-  line-height: 1.22;
-  margin: 14px 0 16px;
-  letter-spacing: -0.02em;
+  color: #14241C;
+  line-height: 1.18;
+  margin: 16px 0 16px;
+  letter-spacing: -0.025em;
 }
 
 .journey-subtitle {
-  font-size: 1.05rem;
-  color: var(--text-secondary, #485E53);
+  font-size: 1.08rem;
+  color: #485E53;
   line-height: 1.7;
+  max-width: 720px;
+  margin: 0;
 }
 
-/* Grid & Cards */
-.healing-journey-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 50px;
-  position: relative;
+/* Continuous Care Stream Live Pill */
+.journey-stream-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 7px 16px;
+  background: rgba(27, 107, 80, 0.07);
+  border: 1px solid rgba(27, 107, 80, 0.16);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #245E47;
+  letter-spacing: 0.02em;
 }
+
+.stream-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27AE60;
+  box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.65);
+  animation: streamPulse 2s infinite ease-out;
+}
+
+@keyframes streamPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.65);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(39, 174, 96, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
+  }
+}
+
+/* ==========================================================================
+   Infinite Marquee Stream Viewport & Track
+   ========================================================================== */
+
+.journey-stream-viewport {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  padding: 34px 0 54px;
+  /* Soft gradient fade on left and right screen edges */
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.journey-stream-track {
+  display: flex;
+  gap: clamp(24px, 2.4vw, 36px);
+  width: max-content;
+  animation: journeyScrollLeft 16s linear infinite;
+  will-change: transform;
+}
+
+/* Continuously runs without stopping on hover */
+.journey-stream-track:hover {
+  animation-play-state: running;
+}
+
+@keyframes journeyScrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 16px));
+  }
+}
+
+/* ==========================================================================
+   Image-Only Card Component (Square, Rounded 40px, Zero Hover Effect)
+   ========================================================================== */
 
 .journey-card {
-  background: var(--surface-color, #ffffff);
-  border: 1px solid var(--border-color, rgba(27, 107, 80, 0.16));
-  border-radius: 20px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 24px rgba(10, 46, 32, 0.04);
+  width: clamp(480px, 35vw, 560px);
+  min-width: clamp(480px, 35vw, 560px);
+  height: clamp(480px, 35vw, 560px);
+  min-height: clamp(480px, 35vw, 560px);
+  aspect-ratio: 1 / 1;
+  border-radius: 40px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  /* Pure static stability: no hover transform or cursor change */
+  cursor: default;
+  user-select: none;
+  transform: none !important;
 }
 
+/* Explicitly disable any hover state changes */
 .journey-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--primary-green, #1B6B50);
-  box-shadow: 0 20px 40px rgba(27, 107, 80, 0.12);
+  transform: none !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
-.journey-card__header {
+.journey-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 40px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ==========================================================================
+   Action Bar: View Our Treatments Button
+   ========================================================================== */
+
+.journey-actions-bar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.journey-card__step-num {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: rgba(27, 107, 80, 0.22);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-family: inherit;
-  transition: color 0.3s ease;
-}
-
-.journey-card:hover .journey-card__step-num {
-  color: var(--primary-green, #1B6B50);
-}
-
-.journey-card__icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(27, 107, 80, 0.1) 0%, rgba(201, 141, 59, 0.12) 100%);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  color: var(--primary-green, #1B6B50);
-  border: 1px solid rgba(27, 107, 80, 0.18);
-  transition: all 0.3s ease;
+  align-items: center;
+  margin: 8px 0 46px;
 }
 
-.journey-card:hover .journey-card__icon-box {
+.journey-view-treatments-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
   background: var(--primary-green, #1B6B50);
   color: #ffffff;
-  transform: scale(1.08);
-}
-
-.journey-card__sub {
-  display: inline-block;
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 700;
-  color: var(--accent-gold, #C98D3B);
-  margin-bottom: 6px;
-}
-
-.journey-card__title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-primary, #14241C);
-  line-height: 1.35;
-  margin-bottom: 12px;
-}
-
-.journey-card__desc {
-  font-size: 0.88rem;
-  color: var(--text-secondary, #485E53);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.journey-card__footer {
-  margin-top: auto;
-}
-
-.journey-card__badge {
-  display: inline-block;
-  padding: 4px 12px;
-  background: rgba(27, 107, 80, 0.08);
-  color: var(--primary-green, #1B6B50);
   border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 600;
-  border: 1px solid rgba(27, 107, 80, 0.14);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(27, 107, 80, 0.28), 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Connector Arrow */
-.journey-card__connector {
-  position: absolute;
-  right: -17px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--surface-color, #ffffff);
-  border: 1px solid var(--border-color, rgba(27, 107, 80, 0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-green, #1B6B50);
-  z-index: 2;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+.journey-view-treatments-btn:hover {
+  background: #14553E;
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(27, 107, 80, 0.38), 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Bottom CTA Box */
+.journey-view-treatments-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.journey-view-treatments-btn:hover svg {
+  transform: translateX(5px);
+}
+
+[data-theme='dark'] .journey-view-treatments-btn {
+  background: #258362;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(37, 131, 98, 0.4);
+}
+
+[data-theme='dark'] .journey-view-treatments-btn:hover {
+  background: #2EA279;
+}
+
+/* ==========================================================================
+   Section Divider Between Streams
+   ========================================================================== */
+
+.journey-stream-divider {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(27, 107, 80, 0.18) 50%, transparent 100%);
+  margin: 28px auto 80px;
+}
+
+[data-theme='dark'] .journey-stream-divider {
+  background: linear-gradient(90deg, transparent 0%, rgba(65, 186, 145, 0.25) 50%, transparent 100%);
+}
+
+/* ==========================================================================
+   Bottom CTA Box
+   ========================================================================== */
+
 .journey-cta-box {
-  background: linear-gradient(135deg, rgba(27, 107, 80, 0.08) 0%, rgba(201, 141, 59, 0.09) 100%);
-  border: 1px solid rgba(27, 107, 80, 0.2);
-  border-radius: 20px;
-  padding: 30px 40px;
+  background: #F7FAF8;
+  border: 1px solid rgba(27, 107, 80, 0.16);
+  border-radius: 24px;
+  padding: 34px 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 28px;
+  margin-top: 10px;
+  box-shadow: 0 16px 40px rgba(10, 46, 32, 0.05);
 }
 
 .journey-cta-content h3 {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-primary, #14241C);
+  color: #14241C;
   margin-bottom: 6px;
 }
 
 .journey-cta-content p {
-  font-size: 0.94rem;
-  color: var(--text-secondary, #485E53);
+  font-size: 0.96rem;
+  color: #485E53;
   margin: 0;
 }
 
-/* Dark Theme Overrides */
+/* ==========================================================================
+   Dark Theme Overrides
+   ========================================================================== */
+
 [data-theme='dark'] .healing-journey-section {
-  background: linear-gradient(180deg, #0e1e17 0%, #12281e 50%, #0e1e17 100%);
+  background: #0A1410;
 }
 
 [data-theme='dark'] .journey-title {
@@ -198,54 +273,20 @@
   color: #a3b9ad;
 }
 
+[data-theme='dark'] .journey-stream-badge {
+  background: rgba(65, 186, 145, 0.12);
+  border-color: rgba(65, 186, 145, 0.25);
+  color: #41BA91;
+}
+
 [data-theme='dark'] .journey-card {
-  background: rgba(24, 49, 38, 0.6);
-  border-color: rgba(65, 186, 145, 0.2);
-}
-
-[data-theme='dark'] .journey-card:hover {
-  background: rgba(24, 49, 38, 0.95);
-  border-color: #41BA91;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-[data-theme='dark'] .journey-card__step-num {
-  color: rgba(65, 186, 145, 0.25);
-}
-
-[data-theme='dark'] .journey-card:hover .journey-card__step-num {
-  color: #41BA91;
-}
-
-[data-theme='dark'] .journey-card__icon-box {
-  background: rgba(65, 186, 145, 0.12);
-  color: #41BA91;
-  border-color: rgba(65, 186, 145, 0.25);
-}
-
-[data-theme='dark'] .journey-card__title {
-  color: #ffffff;
-}
-
-[data-theme='dark'] .journey-card__desc {
-  color: #9cb1a6;
-}
-
-[data-theme='dark'] .journey-card__badge {
-  background: rgba(65, 186, 145, 0.12);
-  color: #41BA91;
-  border-color: rgba(65, 186, 145, 0.25);
-}
-
-[data-theme='dark'] .journey-card__connector {
-  background: #183126;
-  border-color: rgba(65, 186, 145, 0.3);
-  color: #41BA91;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme='dark'] .journey-cta-box {
-  background: rgba(24, 49, 38, 0.85);
-  border-color: rgba(65, 186, 145, 0.28);
+  background: rgba(20, 36, 29, 0.95);
+  border-color: rgba(65, 186, 145, 0.26);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme='dark'] .journey-cta-content h3 {
@@ -256,29 +297,59 @@
   color: #9cb1a6;
 }
 
-/* Responsive */
-@media (max-width: 1100px) {
-  .healing-journey-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .journey-card__connector {
-    display: none;
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .journey-card {
+    width: clamp(400px, 44vw, 480px);
+    min-width: clamp(400px, 44vw, 480px);
+    height: clamp(400px, 44vw, 480px);
+    min-height: clamp(400px, 44vw, 480px);
   }
 }
 
 @media (max-width: 768px) {
   .healing-journey-section {
-    padding: 70px 16px;
+    padding: 70px 16px 60px;
   }
-  .healing-journey-grid {
-    grid-template-columns: 1fr;
-  }
+
   .journey-title {
     font-size: 2rem;
   }
+
+  .journey-stream-track {
+    gap: 18px;
+    animation-duration: 12s;
+  }
+
+  .journey-card {
+    width: min(340px, 86vw);
+    min-width: min(340px, 86vw);
+    height: min(340px, 86vw);
+    min-height: min(340px, 86vw);
+    border-radius: 28px;
+  }
+
+  .journey-card__img {
+    border-radius: 28px;
+  }
+
+  .journey-actions-bar {
+    margin: 4px 0 32px;
+  }
+
+  .journey-view-treatments-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 24px;
+    font-size: 0.98rem;
+  }
+
   .journey-cta-box {
     flex-direction: column;
-    padding: 24px;
+    padding: 26px 22px;
     text-align: center;
   }
 }

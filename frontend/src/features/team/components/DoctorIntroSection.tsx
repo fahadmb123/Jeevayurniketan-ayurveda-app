@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, type Variants } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BookAppointmentButton } from '@/features/appointments';
@@ -12,31 +12,59 @@ const revealVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
-const imageVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.94, x: -24 },
-  visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
-};
-
 export const DoctorIntroSection: React.FC = React.memo(() => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Smooth scroll-driven parallax movement strictly on the image inside the card
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 26,
+    restDelta: 0.001,
+  });
+
+  // Glides smoothly inside the overflow-hidden wrapper as user scrolls
+  const imageY = useTransform(smoothProgress, [0, 1], [-26, 26]);
+
   return (
     <section className="doctor-intro-section" aria-label={`${DR_AHALYA_DATA.name} introduction`}>
       <div className="doctor-intro-section__glow" />
       <div className="doctor-intro-section__container">
-        <motion.div
-          className="doctor-intro-section__media"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={imageVariants}
-        >
+        {/* Outer media container stays steady with no border/card displacement */}
+        <div className="doctor-intro-section__media" ref={cardRef}>
           <div className="doctor-intro-section__portrait-wrap">
-            <img
-              src={DR_AHALYA_DATA.image}
-              alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
-              className="doctor-intro-section__portrait"
-              loading="lazy"
-              decoding="async"
+            {/* Smooth animated image container */}
+            <motion.div
+              className="doctor-intro-section__portrait-motion"
+              style={{ y: imageY }}
+            >
+              <motion.img
+                src={DR_AHALYA_DATA.image}
+                alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
+                className="doctor-intro-section__portrait"
+                initial={{ scale: 1.14, opacity: 0.9 }}
+                whileInView={{ scale: 1.04, opacity: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.div>
+
+            {/* Speedy bottom-to-top animated border */}
+            <motion.div
+              className="doctor-intro-section__border-sweep"
+              aria-hidden="true"
+              initial={{ clipPath: 'inset(100% 0% 0% 0% round 32px)', y: 28, opacity: 0 }}
+              whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
             />
+
             <div className="doctor-intro-section__credential">
               <CheckCircle2 size={15} />
               <span>{DR_AHALYA_DATA.degrees}</span>
@@ -46,7 +74,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
             <Leaf size={18} />
             <span>Personalized<br />Ayurvedic Care</span>
           </div>
-        </motion.div>
+        </div>
 
         <motion.div
           className="doctor-intro-section__content"
