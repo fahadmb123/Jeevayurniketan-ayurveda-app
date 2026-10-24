@@ -5,11 +5,11 @@ import { ThemeProvider } from '@/shared/context/ThemeContext';
 import { AppRoutes } from './routes';
 
 const lenisOptions = {
-  lerp: 0.1,
-  duration: 1.2,
+  lerp: 0.05,
+  duration: 1.5,
   smoothWheel: true,
-  wheelMultiplier: 1,
-  touchMultiplier: 1.5,
+  wheelMultiplier: 0.7,
+  touchMultiplier: 1.2,
 };
 
 export const App: React.FC = React.memo(() => {
