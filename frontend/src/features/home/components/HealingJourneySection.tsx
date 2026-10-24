@@ -81,18 +81,18 @@ export const HealingJourneySection: React.FC = React.memo(() => {
   // Track scroll progress through the entire treatments & yoga section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end end'],
+    offset: ['start 92px', 'end 92px'],
   });
 
   // Smooth scroll-driven horizontal trajectory:
-  // 0.00 - 0.06: Centered in Treatments (0)
-  // 0.06 - 0.22: Smoothly glides across to Left (-leftShift)
+  // 0.00 - 0.05: Centered in Treatments (0)
+  // 0.05 - 0.22: Smoothly glides across to Left (-leftShift)
   // 0.22 - 0.46: Stays pinned on Left (-leftShift)
-  // 0.46 - 0.60: Smoothly glides from Left to Center (0) into Yoga
-  // 0.60 - 0.92: Stays Centered in Yoga (0)
+  // 0.46 - 0.62: Smoothly glides from Left to Center (0) into Yoga
+  // 0.62 - 0.92: Stays Centered in Yoga (0)
   const rawX = useTransform(
     scrollYProgress,
-    [0, 0.06, 0.22, 0.46, 0.6, 0.92, 1],
+    [0, 0.05, 0.22, 0.46, 0.62, 0.92, 1],
     [0, 0, -leftShift, -leftShift, 0, 0, 0]
   );
 
@@ -103,16 +103,23 @@ export const HealingJourneySection: React.FC = React.memo(() => {
     mass: 0.25,
   });
 
-  // Fade out gently only at the very end of the section
+  // Fixed heading opacity: hidden before the section, fully visible throughout, hidden after
   const rawOpacity = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.94, 0.99],
-    [1, 1, 1, 0]
+    [-0.05, 0, 0.03, 0.94, 0.98],
+    [0, 0, 1, 1, 0]
+  );
+
+  // Static in-flow title in Treatments: fades out as the fixed title activates
+  const staticTitleOpacity = useTransform(
+    scrollYProgress,
+    [-0.05, 0, 0.03],
+    [1, 1, 0]
   );
 
   // Morph title text between Treatments and Yoga at the midpoint transition
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (latest >= 0.52) {
+    if (latest >= 0.54) {
       setCurrentWord('Yoga');
     } else {
       setCurrentWord('Treatments');
@@ -127,16 +134,19 @@ export const HealingJourneySection: React.FC = React.memo(() => {
       aria-label="Our Treatments and Yoga"
     >
       {/* ==================================================================
-          STICKY TRAVELING HEADING (Text Only - Smooth Momentum Gliding)
+          FIXED TRAVELING HEADING (Guaranteed 100% Fixed On Screen)
           Directly driven by scroll momentum with tactile feel
           ================================================================== */}
-      <div className="journey-sticky-header-container">
+      <motion.div
+        className="journey-fixed-header-container"
+        style={{ opacity: rawOpacity }}
+      >
         <motion.div
           ref={headingRef}
-          style={{ x: smoothX, opacity: rawOpacity }}
-          className="journey-sticky-heading"
+          style={{ x: smoothX }}
+          className="journey-fixed-heading"
         >
-          <h2 className="journey-title journey-title--sticky">
+          <h2 className="journey-title journey-title--fixed">
             <span>Our </span>
             <span className="journey-morph-wrap">
               <AnimatePresence mode="wait" initial={false}>
@@ -154,7 +164,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
             </span>
           </h2>
         </motion.div>
-      </div>
+      </motion.div>
 
       <div className="healing-journey-container">
         {/* ==================================================================
@@ -165,8 +175,13 @@ export const HealingJourneySection: React.FC = React.memo(() => {
             <Compass size={14} />
             <span>Therapeutic Modalities</span>
           </div>
-          {/* Spacer reserving exact title slot */}
-          <div className="journey-title-spacer" aria-hidden="true" />
+          {/* Static Title: visible when at the very top, fades as fixed heading glides to the left */}
+          <motion.h2
+            className="journey-title journey-title--treatments-static"
+            style={{ opacity: staticTitleOpacity }}
+          >
+            Our <span className="text-primary-green">Treatments</span>
+          </motion.h2>
           <p className="journey-subtitle">
             From classical Ayurvedic psychotherapy to personalized herbal rasayanas, discover our specialized treatments designed for complete mind-body equilibrium.
           </p>

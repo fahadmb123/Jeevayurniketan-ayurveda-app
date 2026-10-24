@@ -17,23 +17,23 @@
 }
 
 /* ==========================================================================
-   Sticky Traveling Heading
-   Smoothly glides from Treatments Center -> Left -> Yoga Center on scroll
+   Fixed Traveling Heading
+   Guaranteed 100% Fixed on Screen, Immune to Parent Overflow
    ========================================================================== */
 
-.journey-sticky-header-container {
-  position: sticky;
-  top: 86px;
-  z-index: 120;
+.journey-fixed-header-container {
+  position: fixed;
+  top: 92px;
+  left: 0;
+  width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 0;
-  overflow: visible;
+  align-items: baseline;
+  z-index: 990;
   pointer-events: none;
 }
 
-.journey-sticky-heading {
+.journey-fixed-heading {
   display: inline-flex;
   align-items: baseline;
   pointer-events: auto;
@@ -42,7 +42,7 @@
   will-change: transform;
 }
 
-.journey-title--sticky {
+.journey-title--fixed {
   margin: 0;
   font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -53,6 +53,7 @@
   display: inline-flex;
   align-items: baseline;
   gap: 0 0.28em;
+  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .journey-title-spacer {
@@ -377,8 +378,9 @@
   color: #ffffff;
 }
 
-[data-theme='dark'] .journey-title--sticky {
+[data-theme='dark'] .journey-title--fixed {
   color: #ffffff;
+  text-shadow: 0 2px 24px rgba(10, 20, 16, 0.95), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme='dark'] .journey-subtitle {
