@@ -5,11 +5,12 @@ import { ThemeProvider } from '@/shared/context/ThemeContext';
 import { AppRoutes } from './routes';
 
 const lenisOptions = {
-  lerp: 0.05,
-  duration: 1.5,
+  // Omit duration so Lenis uses pure physics frame-rate independent damping (damp())
+  lerp: 0.04,
   smoothWheel: true,
-  wheelMultiplier: 0.7,
-  touchMultiplier: 1.2,
+  wheelMultiplier: 1.0,
+  touchMultiplier: 1.4,
+  infinite: false,
 };
 
 export const App: React.FC = React.memo(() => {
