@@ -8,11 +8,123 @@
   background: #FFFFFF;
   position: relative;
   overflow: hidden;
+  --fixed-left: clamp(20px, 4.5vw, 60px);
 }
 
 .healing-journey-container {
   max-width: 1380px;
   margin: 0 auto;
+}
+
+/* ==========================================================================
+   Traveling Heading Styles
+   Glides from Treatments Center -> Fixed Top-Left -> Yoga Center
+   ========================================================================== */
+
+.journey-traveling-header {
+  position: fixed;
+  left: var(--fixed-left, 48px);
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  will-change: transform, opacity;
+  pointer-events: auto;
+}
+
+/* 1. Fixed Top-Left Mode */
+.journey-traveling-header--fixed-left {
+  align-items: flex-start;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px 22px 10px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(27, 107, 80, 0.16);
+  box-shadow: 0 12px 36px rgba(10, 46, 32, 0.09), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.journey-traveling-header--fixed-left .journey-traveling-title {
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  margin: 2px 0 0;
+  line-height: 1.15;
+}
+
+/* 2. Centered in Yoga Mode */
+.journey-traveling-header--yoga-center {
+  align-items: center;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  border-radius: 0;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.journey-traveling-header--yoga-center .journey-traveling-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin: 4px 0 0;
+  line-height: 1.18;
+}
+
+.journey-traveling-header--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.journey-traveling-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+}
+
+.journey-traveling-tag-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1B6B50;
+}
+
+.journey-traveling-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-weight: 800;
+  color: #14241C;
+  letter-spacing: -0.025em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0 0.28em;
+  transition: font-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Target Slot in Yoga Section Header */
+.journey-yoga-title-slot {
+  height: clamp(52px, 5.5vw, 76px);
+  margin: 12px 0 14px;
+}
+
+/* Subtle fade transitions in Yoga and Treatments headers */
+.healing-journey-header--covered .journey-title,
+.healing-journey-header--covered .section-pill {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.journey-yoga-fade {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.healing-journey-header--yoga-active .journey-yoga-fade {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .healing-journey-header {
@@ -317,6 +429,20 @@
 }
 
 [data-theme='dark'] .journey-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .journey-traveling-header--fixed-left {
+  background: rgba(14, 28, 22, 0.94);
+  border-color: rgba(65, 186, 145, 0.22);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .journey-traveling-tag-inner {
+  color: #41BA91;
+}
+
+[data-theme='dark'] .journey-traveling-title {
   color: #ffffff;
 }
 
