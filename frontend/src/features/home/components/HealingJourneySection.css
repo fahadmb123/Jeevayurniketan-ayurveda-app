@@ -21,86 +21,28 @@
    Glides from Treatments Center -> Fixed Top-Left -> Yoga Center
    ========================================================================== */
 
-.journey-traveling-header {
+.journey-traveling-heading {
   position: fixed;
   left: var(--fixed-left, 48px);
   z-index: 990;
-  display: flex;
-  flex-direction: column;
-  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
-  will-change: transform, opacity;
-  pointer-events: auto;
-}
-
-/* 1. Fixed Top-Left Mode */
-.journey-traveling-header--fixed-left {
-  align-items: flex-start;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 8px 22px 10px 20px;
-  border-radius: 22px;
-  border: 1px solid rgba(27, 107, 80, 0.16);
-  box-shadow: 0 12px 36px rgba(10, 46, 32, 0.09), 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.journey-traveling-header--fixed-left .journey-traveling-title {
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-  margin: 2px 0 0;
-  line-height: 1.15;
-}
-
-/* 2. Centered in Yoga Mode */
-.journey-traveling-header--yoga-center {
-  align-items: center;
-  text-align: center;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 0;
-  border-radius: 0;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
-
-.journey-traveling-header--yoga-center .journey-traveling-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  margin: 4px 0 0;
-  line-height: 1.18;
-}
-
-.journey-traveling-header--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.journey-traveling-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  height: 20px;
-}
-
-.journey-traveling-tag-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #1B6B50;
-}
-
-.journey-traveling-title {
-  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
-  font-weight: 800;
-  color: #14241C;
-  letter-spacing: -0.025em;
   display: inline-flex;
   align-items: baseline;
-  gap: 0 0.28em;
-  transition: font-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  will-change: transform, opacity;
+}
+
+.journey-title--traveling {
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Target Slot in Yoga Section Header */
@@ -432,17 +374,7 @@
   color: #ffffff;
 }
 
-[data-theme='dark'] .journey-traveling-header--fixed-left {
-  background: rgba(14, 28, 22, 0.94);
-  border-color: rgba(65, 186, 145, 0.22);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
-}
-
-[data-theme='dark'] .journey-traveling-tag-inner {
-  color: #41BA91;
-}
-
-[data-theme='dark'] .journey-traveling-title {
+[data-theme='dark'] .journey-title--traveling {
   color: #ffffff;
 }
 

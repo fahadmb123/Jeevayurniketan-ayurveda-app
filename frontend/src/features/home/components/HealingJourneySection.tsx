@@ -118,74 +118,36 @@ export const HealingJourneySection: React.FC = React.memo(() => {
       aria-label="Our Treatments and Yoga"
     >
       {/* ==================================================================
-          TRAVELING HEADING:
-          Smoothly glides from Treatments Center -> Fixed Left -> Yoga Center
+          TRAVELING HEADING (Text Only - No Card)
+          Smoothly glides from Treatments Center -> Left -> Yoga Center
           ================================================================== */}
       <motion.div
-        className={`journey-traveling-header ${
-          phase === 'fixed-left'
-            ? 'journey-traveling-header--fixed-left'
-            : phase === 'yoga-center'
-            ? 'journey-traveling-header--yoga-center'
-            : 'journey-traveling-header--hidden'
-        }`}
+        className="journey-traveling-heading"
         style={{
           top: phase === 'yoga-center' ? yogaSlotTop : 92,
         }}
         initial={false}
         animate={{
-          x: phase === 'yoga-center' ? 'calc(50vw - 50% - var(--fixed-left, 48px))' : 0,
+          x: phase === 'fixed-left' ? 0 : 'calc(50vw - 50% - var(--fixed-left, 48px))',
           opacity: isTravelingActive ? 1 : 0,
           pointerEvents: isTravelingActive ? 'auto' : 'none',
         }}
         transition={{
-          duration: 0.65,
-          ease: [0.16, 1, 0.3, 1],
+          duration: 0.48,
+          ease: [0.22, 1, 0.36, 1],
         }}
         aria-hidden={!isTravelingActive}
       >
-        {/* Eyebrow Tag */}
-        <div className="journey-traveling-eyebrow">
-          <AnimatePresence mode="wait" initial={false}>
-            {isYogaMode ? (
-              <motion.span
-                key="yoga-tag"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.28 }}
-                className="journey-traveling-tag-inner"
-              >
-                <Sparkles size={13} />
-                <span>Mindful Disciplines</span>
-              </motion.span>
-            ) : (
-              <motion.span
-                key="treatments-tag"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.28 }}
-                className="journey-traveling-tag-inner"
-              >
-                <Compass size={13} />
-                <span>Therapeutic Modalities</span>
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Morphing Traveling Title */}
-        <h2 className="journey-traveling-title">
+        <h2 className="journey-title journey-title--traveling">
           <span>Our </span>
           <span className="journey-morph-wrap">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={isYogaMode ? 'yoga' : 'treatments'}
-                initial={{ y: 22, opacity: 0, filter: 'blur(4px)' }}
+                initial={{ y: 20, opacity: 0, filter: 'blur(3px)' }}
                 animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                exit={{ y: -22, opacity: 0, filter: 'blur(4px)' }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ y: -20, opacity: 0, filter: 'blur(3px)' }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="text-primary-green journey-morph-word"
               >
                 {isYogaMode ? 'Yoga' : 'Treatments'}
