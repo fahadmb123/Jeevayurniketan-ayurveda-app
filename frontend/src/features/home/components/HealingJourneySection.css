@@ -16,63 +16,6 @@
   margin: 0 auto;
 }
 
-/* ==========================================================================
-   Fixed Traveling Heading
-   Guaranteed 100% Fixed on Screen, Immune to Parent Overflow
-   ========================================================================== */
-
-.journey-fixed-header-container {
-  position: fixed;
-  top: 92px;
-  left: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  z-index: 990;
-  pointer-events: none;
-}
-
-.journey-fixed-heading {
-  display: inline-flex;
-  align-items: baseline;
-  pointer-events: auto;
-  user-select: none;
-  white-space: nowrap;
-  will-change: transform;
-}
-
-.journey-title--fixed {
-  margin: 0;
-  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  color: #14241C;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0 0.28em;
-  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-.journey-title-spacer {
-  height: clamp(52px, 5vw, 68px);
-  margin: 16px 0;
-  pointer-events: none;
-}
-
-.journey-yoga-fade {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.healing-journey-header--yoga-active .journey-yoga-fade {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .healing-journey-header {
   max-width: 840px;
   margin: 0 auto 36px;
@@ -90,43 +33,6 @@
   line-height: 1.18;
   margin: 16px 0 16px;
   letter-spacing: -0.025em;
-}
-
-.journey-title--morph {
-  display: inline-flex;
-  align-items: baseline;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0 0.28em;
-}
-
-.journey-morph-wrap {
-  display: inline-flex;
-  position: relative;
-  overflow: hidden;
-  vertical-align: baseline;
-  padding: 0 4px 6px 4px;
-  margin-bottom: -6px;
-  min-height: 1.25em;
-  align-items: baseline;
-}
-
-.journey-morph-word {
-  display: inline-block;
-  will-change: transform, opacity, filter;
-}
-
-.journey-pill-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.journey-subtitle-wrap {
-  min-height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .journey-subtitle {
@@ -376,11 +282,6 @@
 
 [data-theme='dark'] .journey-title {
   color: #ffffff;
-}
-
-[data-theme='dark'] .journey-title--fixed {
-  color: #ffffff;
-  text-shadow: 0 2px 24px rgba(10, 20, 16, 0.95), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme='dark'] .journey-subtitle {
