@@ -1,52 +1,115 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Award, Sparkles, Compass, Leaf } from 'lucide-react';
 import type { TeamMember } from '../types';
 import { DrAhalyaModal } from './DrAhalyaModal';
+import { DoctorBioModal } from './DoctorBioModal';
 import { fadeUpVariants } from '@/shared/lib/animations';
 import './TeamMemberCard.css';
 
 export interface TeamMemberCardProps {
   member: TeamMember;
-  index: number;
+  index?: number;
 }
+
+interface DoctorStyleConfig {
+  bgColor: string;
+  category: string;
+  icon: React.ReactNode;
+}
+
+const DOCTOR_STYLES: Record<string, DoctorStyleConfig> = {
+  'dr-dilipkumar': {
+    bgColor: '#3B1C54', // Royal purple / indigo like card 1
+    category: 'CHIEF PATRON & PSYCHOTHERAPY',
+    icon: <Award size={20} color="#FFFFFF" strokeWidth={2.2} />,
+  },
+  'dr-ahalya': {
+    bgColor: '#124C38', // Deep Ayurvedic forest emerald
+    category: 'HOLISTIC WELLNESS & YOGA',
+    icon: <Sparkles size={20} color="#FFFFFF" strokeWidth={2.2} />,
+  },
+  'dr-safeer': {
+    bgColor: '#0F2C59', // Deep navy cobalt like card 2
+    category: 'SMRITI MEDITATION & YOGA',
+    icon: <Compass size={20} color="#FFFFFF" strokeWidth={2.2} />,
+  },
+  'dr-shamna': {
+    bgColor: '#4A1228', // Dark plum/berry like card 3
+    category: 'EMOTIONAL HEALING & THERAPY',
+    icon: <Leaf size={20} color="#FFFFFF" strokeWidth={2.2} />,
+  },
+};
 
 export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ member }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const styleConfig: DoctorStyleConfig = DOCTOR_STYLES[member.id] || {
+    bgColor: '#1B6B50',
+    category: 'AYURVEDIC PHYSICIAN',
+    icon: <Sparkles size={20} color="#FFFFFF" strokeWidth={2.2} />,
+  };
+
   return (
     <>
-      <motion.div
+      <motion.article
         className="team-card"
         variants={fadeUpVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        whileHover={{ y: -6, scale: 1.015 }}
+        viewport={{ once: true, amount: 0.18 }}
+        whileHover={{ y: -6 }}
+        onClick={() => setIsModalOpen(true)}
+        role="button"
+        tabIndex={0}
+        aria-label={`Explore profile of ${member.name}`}
       >
-        <div className="team-card__image-wrapper">
-          <img src={member.image} alt={member.name} className="team-card__image" />
-        </div>
-        <div className="team-card__info">
-          <h3 className="team-card__name">{member.name}</h3>
-          <h4 className="team-card__role">{member.role}</h4>
-          <p className="team-card__qualifications">{member.qualifications}</p>
-          <p className="team-card__desc">{member.description}</p>
+        {/* Top Hero Image Frame */}
+        <div className="team-card__image-box">
+          <img
+            src={member.image}
+            alt={member.name}
+            className="team-card__img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="team-card__image-overlay" />
           
-          {member.id === 'dr-ahalya' && (
-            <button
-              type="button"
-              className="team-card__bio-link"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <span>Explore Bio & 10-Step Approach</span>
-              <span className="bio-arrow">→</span>
-            </button>
-          )}
+          {/* Subtle qualifications floating tag */}
+          <div className="team-card__floating-chip">
+            <span>{member.qualifications}</span>
+          </div>
         </div>
-      </motion.div>
 
-      {member.id === 'dr-ahalya' && (
+        {/* Bottom Editorial Meta Bar (Matches User's Reference Layout) */}
+        <div className="team-card__meta-bar">
+          {/* Left Circular Monogram / Emblem */}
+          <div
+            className="team-card__avatar-badge"
+            style={{ backgroundColor: styleConfig.bgColor }}
+            aria-hidden="true"
+          >
+            {styleConfig.icon}
+          </div>
+
+          {/* Center Name & Orange Category Text */}
+          <div className="team-card__text-group">
+            <h3 className="team-card__name">{member.name}</h3>
+            <span className="team-card__category">{styleConfig.category}</span>
+          </div>
+
+          {/* Right Vibrant Orange Arrow Button */}
+          <div className="team-card__action-btn" aria-hidden="true">
+            <ArrowUpRight size={20} strokeWidth={2.6} />
+          </div>
+        </div>
+      </motion.article>
+
+      {/* Modal Dialog for Dr. Ahalya (Structured 10-Step Approach) or General Modal */}
+      {member.id === 'dr-ahalya' ? (
         <DrAhalyaModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      ) : (
+        <DoctorBioModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} member={member} />
       )}
     </>
   );

@@ -1,12 +1,12 @@
 .team-section {
   padding: 100px 5%;
-  background-color: var(--surface-color, #FFFFFF);
+  background-color: var(--bg-sanctuary, #FAF7F2);
   position: relative;
   overflow: hidden;
 }
 
 .team-header {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto 60px;
 }
 
@@ -14,29 +14,46 @@
   color: var(--text-secondary, #475569);
   font-size: 1.05rem;
   margin-top: 16px;
+  line-height: 1.6;
 }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 390px));
-  justify-content: center;
-  gap: 36px;
-  max-width: 860px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1360px;
   margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 800px;
+  }
 }
 
 @media (max-width: 768px) {
   .team-section {
-    padding: 64px 12px;
+    padding: 64px 20px;
   }
 
   .team-header {
-    margin-bottom: 28px;
+    margin-bottom: 36px;
   }
 
   .team-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 420px;
   }
 }
+
+@media (min-width: 540px) and (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 680px;
+  }
+}
+
