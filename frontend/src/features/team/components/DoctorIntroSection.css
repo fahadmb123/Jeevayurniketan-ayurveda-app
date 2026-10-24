@@ -75,71 +75,43 @@
   border-radius: 30px;
   border: none;
   transform-origin: center center;
-  will-change: transform, opacity;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.doctor-intro-section__portrait--primary {
-  position: relative;
-  opacity: 0;
-  transform: scale(1.02);
-}
-
-.doctor-intro-section__portrait--primary.is-active {
-  opacity: 1;
-  transform: scale(1.04);
-}
-
-.doctor-intro-section__portrait--secondary {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transform: scale(1.08);
-  pointer-events: none;
-}
-
-.doctor-intro-section__portrait--secondary.is-active {
-  opacity: 1;
-  transform: scale(1.04);
-}
-
-/* Organic Liquid Wave Overlay matching user's frame-by-frame animation */
-.doctor-liquid-wipe-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 700px;
-  height: 1200px;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  pointer-events: none;
-  z-index: 6;
-  overflow: visible;
-}
-
-.doctor-liquid-wipe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.doctor-liquid-wipe__svg {
+.doctor-intro-section__portrait--base {
+  position: relative;
+  transform: scale(1.03);
+}
+
+.doctor-intro-section__overlay-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  pointer-events: none;
+  border-radius: 30px;
+  overflow: hidden;
+  will-change: clip-path;
+  z-index: 2;
 }
 
-.doctor-liquid-wipe__emblem {
-  transform-origin: 350px 600px;
-  filter: drop-shadow(0 8px 18px rgba(11, 43, 32, 0.35));
+.doctor-intro-section__portrait--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.05);
+}
+
+.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--base {
+  transform: scale(1.06);
+}
+
+.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--overlay {
+  transform: scale(1.03);
 }
 
 .doctor-intro-section__credential {
