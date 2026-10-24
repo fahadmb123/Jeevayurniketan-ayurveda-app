@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ServiceCard } from './ServiceCard';
 import { useTreatments } from '../hooks/useTreatments';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './ServicesSection.css';
 
 export const ServicesSection: React.FC = React.memo(() => {
@@ -8,19 +10,35 @@ export const ServicesSection: React.FC = React.memo(() => {
 
   return (
     <section id="services" className="services-section">
-      <div className="services-header text-center">
-        <h4 className="section-subtitle">Our Services</h4>
-        <h2 className="section-title">Healing Through Ancient Wisdom</h2>
-        <p className="services-subtitle">
+      <motion.div
+        className="services-header text-center"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
+        <motion.h4 className="section-subtitle" variants={fadeUpVariants}>
+          Our Services
+        </motion.h4>
+        <motion.h2 className="section-title" variants={fadeUpVariants}>
+          Healing Through Ancient Wisdom
+        </motion.h2>
+        <motion.p className="services-subtitle" variants={fadeUpVariants}>
           We offer specialized programs to restore harmony to your mind, body, and soul.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="services-grid">
-        {services.map((service, index) => (
-          <ServiceCard key={service.id} service={service} index={index} />
+      <motion.div
+        className="services-grid"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
+        {services.map((service) => (
+          <ServiceCard key={service.id} service={service} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });

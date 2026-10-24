@@ -1,22 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { AyurvedaService } from '../types';
+import { fadeUpVariants } from '@/shared/lib/animations';
 import './ServiceCard.css';
 
 export interface ServiceCardProps {
   service: AyurvedaService;
-  index: number;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service, index }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service }) => {
   return (
     <motion.div
       className="service-card"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={fadeUpVariants}
       whileHover={{ y: -8, scale: 1.02 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="service-card__icon">{service.icon}</div>
       <h3 className="service-card__title">{service.title}</h3>
