@@ -119,6 +119,20 @@
   }
 }
 
+/* Reverse Animation: Left to Right */
+.journey-stream-track--reverse {
+  animation-name: journeyScrollRight;
+}
+
+@keyframes journeyScrollRight {
+  0% {
+    transform: translateX(calc(-50% - 16px));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* ==========================================================================
    Image-Only Card Component (Square, Rounded 40px, Zero Hover Effect)
    ========================================================================== */

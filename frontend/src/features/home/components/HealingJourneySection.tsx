@@ -129,9 +129,9 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           </div>
         </div>
 
-        {/* Yoga Live Stream Marquee */}
+        {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
         <div className="journey-stream-viewport">
-          <div className="journey-stream-track">
+          <div className="journey-stream-track journey-stream-track--reverse">
             {[
               ...YOGA_IMAGES,
               ...YOGA_IMAGES,
