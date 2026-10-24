@@ -6,7 +6,9 @@ import catCircle4 from '@/assets/cat_circle_4.png';
 import catCircle5 from '@/assets/cat_circle_5.png';
 import catCircle6 from '@/assets/cat_circle_6.png';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './CategoryCirclesRail.css';
 
 interface CategoryItem {
@@ -29,19 +31,27 @@ export const CategoryCirclesRail: React.FC = React.memo(() => {
   return (
     <section className="exact-circles-section" aria-label="Product Categories">
       <div className="exact-circles-container">
-        <div className="exact-circles-row">
+        <motion.div
+          className="exact-circles-row"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           {CATEGORIES.map((cat) => (
-            <Link key={cat.id} to={cat.link} className="exact-circle-item">
-              <img
-                src={cat.img}
-                alt={cat.alt}
-                className="exact-circle-img"
-                loading="lazy"
-                decoding="async"
-              />
-            </Link>
+            <motion.div key={cat.id} variants={fadeUpVariants}>
+              <Link to={cat.link} className="exact-circle-item">
+                <img
+                  src={cat.img}
+                  alt={cat.alt}
+                  className="exact-circle-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

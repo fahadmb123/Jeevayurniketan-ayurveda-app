@@ -1,21 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './Footer.css';
 
 export const Footer: React.FC = React.memo(() => {
   return (
     <footer className="footer" id="contact">
-      <div className="footer-container">
-        <div className="footer-col">
+      <motion.div
+        className="footer-container"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
+        <motion.div className="footer-col" variants={fadeUpVariants}>
           <BrandLogo linkTo={ROUTES.HOME} size="md" className="footer-brand-logo" />
           <p className="footer-desc">
             Reach out to society through direct and online clinics to address various illnesses where a psychological component has a definite role in the aetiology and pathogenesis of the illness.
           </p>
-        </div>
+        </motion.div>
         
-        <div className="footer-col">
+        <motion.div className="footer-col" variants={fadeUpVariants}>
           <h3>Quick Links</h3>
           <ul className="footer-links">
             <li><Link to={ROUTES.HOME}>Home</Link></li>
@@ -26,9 +34,9 @@ export const Footer: React.FC = React.memo(() => {
             <li><Link to={ROUTES.GALLERY}>Gallery</Link></li>
             <li><Link to={ROUTES.CONTACT}>Contact Us</Link></li>
           </ul>
-        </div>
+        </motion.div>
         
-        <div className="footer-col">
+        <motion.div className="footer-col" variants={fadeUpVariants}>
           <h3>Contact Us</h3>
           <ul className="footer-contact">
             <li>
@@ -44,8 +52,8 @@ export const Footer: React.FC = React.memo(() => {
               <a href="mailto:info@jeevayurniketan.com">info@jeevayurniketan.com</a>
             </li>
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Jeevayurniketan Ayurveda. All Rights Reserved.</p>

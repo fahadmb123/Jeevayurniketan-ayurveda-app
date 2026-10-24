@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, Compass, Sparkles } from 'lucide-react';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './HealingJourneySection.css';
 
 interface GalleryCardItem {
@@ -58,26 +60,38 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         {/* ==================================================================
             1. OUR TREATMENTS
             ================================================================== */}
-        <div className="healing-journey-header text-center">
-          <div className="section-pill">
+        <motion.div
+          className="healing-journey-header text-center"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
+          <motion.div className="section-pill" variants={fadeUpVariants}>
             <Compass size={14} />
             <span>Therapeutic Modalities</span>
-          </div>
-          <h2 className="journey-title">
+          </motion.div>
+          <motion.h2 className="journey-title" variants={fadeUpVariants}>
             Our <span className="text-primary-green">Treatments</span>
-          </h2>
-          <p className="journey-subtitle">
+          </motion.h2>
+          <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             From classical Ayurvedic psychotherapy to personalized herbal rasayanas, discover our specialized treatments designed for complete mind-body equilibrium.
-          </p>
+          </motion.p>
 
-          <div className="journey-stream-badge">
+          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
             <span className="stream-pulse-dot" aria-hidden="true" />
             <span>Continuous Care Stream</span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Treatments Live Stream Marquee */}
-        <div className="journey-stream-viewport">
+        <motion.div
+          className="journey-stream-viewport"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <div className="journey-stream-track">
             {[
               ...TREATMENT_IMAGES,
@@ -99,15 +113,21 @@ export const HealingJourneySection: React.FC = React.memo(() => {
               </article>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Action Button: View Our Treatments */}
-        <div className="journey-actions-bar">
+        <motion.div
+          className="journey-actions-bar"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <Link to={ROUTES.SERVICES} className="journey-view-treatments-btn">
             <span>View Our Treatments</span>
             <ArrowRight size={18} />
           </Link>
-        </div>
+        </motion.div>
 
         {/* Section Divider */}
         <div className="journey-stream-divider" aria-hidden="true" />
@@ -115,26 +135,39 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         {/* ==================================================================
             2. OUR YOGA
             ================================================================== */}
-        <div className="healing-journey-header text-center" id="yoga">
-          <div className="section-pill">
+        <motion.div
+          className="healing-journey-header text-center"
+          id="yoga"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
+          <motion.div className="section-pill" variants={fadeUpVariants}>
             <Sparkles size={14} />
             <span>Mindful Disciplines</span>
-          </div>
-          <h2 className="journey-title">
+          </motion.div>
+          <motion.h2 className="journey-title" variants={fadeUpVariants}>
             Our <span className="text-primary-green">Yoga</span>
-          </h2>
-          <p className="journey-subtitle">
+          </motion.h2>
+          <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             Cultivate somatic vitality, respiratory harmony, and inner peace through doctor-guided restorative asanas, classical pranayama, and mindful meditation.
-          </p>
+          </motion.p>
 
-          <div className="journey-stream-badge">
+          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
             <span className="stream-pulse-dot" aria-hidden="true" />
             <span>Continuous Yoga Stream</span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
-        <div className="journey-stream-viewport">
+        <motion.div
+          className="journey-stream-viewport"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <div className="journey-stream-track journey-stream-track--reverse">
             {[
               ...YOGA_IMAGES,
@@ -156,20 +189,32 @@ export const HealingJourneySection: React.FC = React.memo(() => {
               </article>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Action Button: View Our Yoga */}
-        <div className="journey-actions-bar">
+        <motion.div
+          className="journey-actions-bar"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <Link to={ROUTES.YOGA} className="journey-view-treatments-btn">
             <span>View Our Yoga</span>
             <ArrowRight size={18} />
           </Link>
-        </div>
+        </motion.div>
 
         {/* ==================================================================
             3. BOTTOM CTA BOX
             ================================================================== */}
-        <div className="journey-cta-box">
+        <motion.div
+          className="journey-cta-box"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <div className="journey-cta-content">
             <h3>Begin Your Personal Healing Journey Today</h3>
             <p>Schedule your confidential consultation with our Ayurvedic medical specialists.</p>
@@ -179,7 +224,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
             size="lg"
             variant="primary"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

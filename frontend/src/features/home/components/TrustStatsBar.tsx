@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Award, Users, HeartHandshake, ShieldCheck, Sparkles } from 'lucide-react';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './TrustStatsBar.css';
 
 interface StatItem {
@@ -117,15 +118,18 @@ export const TrustStatsBar: React.FC = React.memo(() => {
       </div>
 
       {/* Trust Stats Cards Grid */}
-      <div className="trust-stats-container">
-        {STATS.map((stat, index) => (
+      <motion.div
+        className="trust-stats-container"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
+        {STATS.map((stat) => (
           <motion.div
             key={stat.label}
             className="trust-stat-card"
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            variants={fadeUpVariants}
           >
             <div className="trust-stat-card__icon-wrap">
               {stat.icon}
@@ -137,7 +141,7 @@ export const TrustStatsBar: React.FC = React.memo(() => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });

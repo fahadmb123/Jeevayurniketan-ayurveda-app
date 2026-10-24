@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { TeamMember } from '../types';
 import { DrAhalyaModal } from './DrAhalyaModal';
+import { fadeUpVariants } from '@/shared/lib/animations';
 import './TeamMemberCard.css';
 
 export interface TeamMemberCardProps {
   member: TeamMember;
   index: number;
 }
-
-const cardVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -380,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 1.35,
-      ease: [0.22, 1, 0.36, 1],
-      opacity: {
-        duration: 1.25,
-        ease: 'easeOut',
-      },
-    },
-  },
-};
 
 export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ member }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +17,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ membe
     <>
       <motion.div
         className="team-card"
-        variants={cardVariants}
+        variants={fadeUpVariants}
         whileHover={{ y: -6, scale: 1.015 }}
       >
         <div className="team-card__image-wrapper">

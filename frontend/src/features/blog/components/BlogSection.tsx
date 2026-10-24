@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { BlogPostCard } from './BlogPostCard';
 import { useBlogPosts } from '../hooks/useBlogPosts';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './BlogSection.css';
 
 export const BlogSection: React.FC = React.memo(() => {
@@ -8,19 +10,31 @@ export const BlogSection: React.FC = React.memo(() => {
 
   return (
     <section id="blog" className="blog-section">
-      <div className="blog-header text-center">
-        <h4 className="section-subtitle">Our Blog</h4>
-        <h2 className="section-title">Insights & Articles</h2>
-        <p className="blog-subtitle">
+      <motion.div
+        className="blog-header text-center"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
+        <motion.h4 className="section-subtitle" variants={fadeUpVariants}>Our Blog</motion.h4>
+        <motion.h2 className="section-title" variants={fadeUpVariants}>Insights & Articles</motion.h2>
+        <motion.p className="blog-subtitle" variants={fadeUpVariants}>
           Read about the latest research and thoughts in Ayurvedic Psychotherapy.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="blog-grid">
+      <motion.div
+        className="blog-grid"
+        variants={staggerContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={standardViewport}
+      >
         {posts.map((post, index) => (
           <BlogPostCard key={post.id} post={post} index={index} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });

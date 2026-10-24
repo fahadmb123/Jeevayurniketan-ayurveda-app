@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-react';
+import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './FAQSection.css';
 
 interface FAQItem {
@@ -53,26 +54,39 @@ export const FAQSection: React.FC = React.memo(() => {
   return (
     <section className="faq-section" id="faq">
       <div className="faq-container">
-        <div className="faq-header text-center">
-          <div className="section-pill">
+        <motion.div
+          className="faq-header text-center"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
+          <motion.div className="section-pill" variants={fadeUpVariants}>
             <HelpCircle size={14} />
             <span>Frequently Asked Questions</span>
-          </div>
-          <h2 className="faq-title">
+          </motion.div>
+          <motion.h2 className="faq-title" variants={fadeUpVariants}>
             Answers To Help You <span className="text-primary-green">Choose With Confidence</span>
-          </h2>
-          <p className="faq-subtitle">
+          </motion.h2>
+          <motion.p className="faq-subtitle" variants={fadeUpVariants}>
             Have questions about Ayurvedic psychotherapy, Smriti Meditation, or consultations? Here are clear answers from our clinical team.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="faq-list">
+        <motion.div
+          className="faq-list"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           {FAQS.map(faq => {
             const isOpen = openId === faq.id;
             return (
-              <div 
+              <motion.div 
                 key={faq.id} 
                 className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
+                variants={fadeUpVariants}
               >
                 <button
                   type="button"
@@ -98,12 +112,18 @@ export const FAQSection: React.FC = React.memo(() => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="faq-support-strip">
+        <motion.div
+          className="faq-support-strip"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={standardViewport}
+        >
           <div className="faq-support-text">
             <h4>Have a specific medical query or condition?</h4>
             <p>Our Ayurvedic doctors are available to assist you with free initial guidance.</p>
@@ -117,7 +137,7 @@ export const FAQSection: React.FC = React.memo(() => {
             <MessageCircle size={18} />
             <span>Chat on WhatsApp</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
