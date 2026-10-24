@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
 import './HealingJourneySection.css';
@@ -48,6 +49,29 @@ const YOGA_IMAGES: GalleryCardItem[] = [
 ];
 
 export const HealingJourneySection: React.FC = React.memo(() => {
+  const yogaHeaderRef = useRef<HTMLDivElement>(null);
+  const isYogaInView = useInView(yogaHeaderRef, {
+    amount: 0.3,
+    once: false,
+  });
+
+  // Controls the morph from 'Treatments' -> 'Yoga'
+  const [isYogaActive, setIsYogaActive] = useState(false);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (isYogaInView) {
+      // Arrives initially showing 'Our Treatments', then smoothly transforms to 'Our Yoga'
+      timer = setTimeout(() => {
+        setIsYogaActive(true);
+      }, 420);
+    } else {
+      // Reset when scrolled out of view so scrolling down replays the smooth transition
+      setIsYogaActive(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isYogaInView]);
+
   return (
     <section className="healing-journey-section" id="treatments" aria-label="Our Treatments and Yoga">
       <div className="healing-journey-container">
@@ -109,25 +133,107 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         <div className="journey-stream-divider" aria-hidden="true" />
 
         {/* ==================================================================
-            2. OUR YOGA
+            2. OUR YOGA (Smoothly descends from Treatments & morphs title to Yoga)
             ================================================================== */}
-        <div className="healing-journey-header text-center" id="yoga">
+        <motion.div
+          ref={yogaHeaderRef}
+          initial={{ opacity: 0, y: -48 }}
+          animate={
+            isYogaInView
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0.15, y: -48 }
+          }
+          transition={{
+            duration: 0.75,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="healing-journey-header text-center"
+          id="yoga"
+        >
+          {/* Morphing Pill */}
           <div className="section-pill">
-            <Sparkles size={14} />
-            <span>Mindful Disciplines</span>
+            <AnimatePresence mode="wait" initial={false}>
+              {isYogaActive ? (
+                <motion.span
+                  key="yoga-pill"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                  className="journey-pill-inner"
+                >
+                  <Sparkles size={14} />
+                  <span>Mindful Disciplines</span>
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="treatments-pill"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35 }}
+                  className="journey-pill-inner"
+                >
+                  <Compass size={14} />
+                  <span>Therapeutic Modalities</span>
+                </motion.span>
+              )}
+            </AnimatePresence>
           </div>
-          <h2 className="journey-title">
-            Our <span className="text-primary-green">Yoga</span>
-          </h2>
-          <p className="journey-subtitle">
-            Cultivate somatic vitality, respiratory harmony, and inner peace through doctor-guided restorative asanas, classical pranayama, and mindful meditation.
-          </p>
 
+          {/* Morphing Title: "Our Treatments" -> smoothly transitions to "Our Yoga" */}
+          <h2 className="journey-title journey-title--morph">
+            <span>Our </span>
+            <span className="journey-morph-wrap">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={isYogaActive ? 'yoga-word' : 'treatments-word'}
+                  initial={{ y: 32, opacity: 0, filter: 'blur(5px)' }}
+                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ y: -32, opacity: 0, filter: 'blur(5px)' }}
+                  transition={{ duration: 0.52, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-primary-green journey-morph-word"
+                >
+                  {isYogaActive ? 'Yoga' : 'Treatments'}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </h2>
+
+          {/* Morphing Subtitle */}
+          <div className="journey-subtitle-wrap">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p
+                key={isYogaActive ? 'yoga-sub' : 'treatments-sub'}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="journey-subtitle"
+              >
+                {isYogaActive
+                  ? 'Cultivate somatic vitality, respiratory harmony, and inner peace through doctor-guided restorative asanas, classical pranayama, and mindful meditation.'
+                  : 'From classical Ayurvedic psychotherapy to personalized herbal rasayanas, discover our specialized treatments designed for complete mind-body equilibrium.'}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+
+          {/* Morphing Stream Badge */}
           <div className="journey-stream-badge">
             <span className="stream-pulse-dot" aria-hidden="true" />
-            <span>Continuous Yoga Stream</span>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isYogaActive ? 'yoga-badge' : 'treatments-badge'}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isYogaActive ? 'Continuous Yoga Stream' : 'Continuous Care Stream'}
+              </motion.span>
+            </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
 
         {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
         <div className="journey-stream-viewport">
