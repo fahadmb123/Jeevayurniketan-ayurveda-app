@@ -52,10 +52,12 @@
   border-radius: 32px;
   overflow: hidden;
   transform: translateZ(0);
+  cursor: pointer;
   /* Hardware accelerate & force border-radius clipping */
 }
 
 .doctor-intro-section__portrait-motion {
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -74,12 +76,42 @@
   border: none;
   transform-origin: center center;
   will-change: transform, opacity;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.doctor-intro-section__portrait--primary {
+  position: relative;
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.doctor-intro-section__portrait--secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+/* Hover: Smooth crossfade and scale */
+.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--primary {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--secondary {
+  opacity: 1;
+  transform: scale(1.04);
 }
 
 .doctor-intro-section__credential {
   position: absolute;
   right: 24px;
   bottom: 24px;
+  z-index: 3;
   display: flex;
   align-items: center;
   gap: 7px;

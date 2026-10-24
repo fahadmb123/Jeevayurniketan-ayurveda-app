@@ -4,6 +4,7 @@ import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-r
 import { Link } from 'react-router-dom';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
+import consultationImg from '@/assets/ayurveda_consultation.jpg';
 import { DR_AHALYA_DATA } from '../data/drAhalyaData';
 import './DoctorIntroSection.css';
 
@@ -46,19 +47,22 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
               onAnimationComplete={() => setIsRevealed(true)}
               style={isRevealed ? { clipPath: 'none' } : undefined}
             >
-              {/* Smooth animated image container */}
+              {/* Smooth animated image container with hover image swap */}
               <motion.div
                 className="doctor-intro-section__portrait-motion"
                 style={{ y: imageY }}
               >
-                <motion.img
+                <img
                   src={DR_AHALYA_DATA.image}
                   alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
-                  className="doctor-intro-section__portrait"
-                  initial={{ scale: 1.14, opacity: 0.9 }}
-                  whileInView={{ scale: 1.04, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="doctor-intro-section__portrait doctor-intro-section__portrait--primary"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src={consultationImg}
+                  alt={`${DR_AHALYA_DATA.name} — Personalized Consultations`}
+                  className="doctor-intro-section__portrait doctor-intro-section__portrait--secondary"
                   loading="lazy"
                   decoding="async"
                 />
