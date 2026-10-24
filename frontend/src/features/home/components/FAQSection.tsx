@@ -1,8 +1,34 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-react';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './FAQSection.css';
+
+const faqListVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.22, // Deliberate step-by-step cadence between questions
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const faqItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 70,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.95,
+      ease: [0.16, 1, 0.3, 1], // Slow, elegant glide into place
+    },
+  },
+};
 
 interface FAQItem {
   id: string;
@@ -75,10 +101,10 @@ export const FAQSection: React.FC = React.memo(() => {
 
         <motion.div
           className="faq-list"
-          variants={staggerContainerVariants}
+          variants={faqListVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={standardViewport}
+          viewport={{ once: true, amount: 0.12 }}
         >
           {FAQS.map(faq => {
             const isOpen = openId === faq.id;
@@ -86,7 +112,7 @@ export const FAQSection: React.FC = React.memo(() => {
               <motion.div 
                 key={faq.id} 
                 className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
-                variants={fadeUpVariants}
+                variants={faqItemVariants}
               >
                 <button
                   type="button"
