@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, type Variants } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -14,21 +14,21 @@ const revealVariants: Variants = {
 
 export const DoctorIntroSection: React.FC = React.memo(() => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isRevealed, setIsRevealed] = useState(false);
 
-  // Smooth scroll-driven parallax movement strictly on the image inside the card
+  // Parallax subtle glide inside the frame
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ['start end', 'end start'],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 26,
+    stiffness: 90,
+    damping: 24,
     restDelta: 0.001,
   });
 
-  // Glides smoothly inside the overflow-hidden wrapper as user scrolls
-  const imageY = useTransform(smoothProgress, [0, 1], [-26, 26]);
+  const imageY = useTransform(smoothProgress, [0, 1], [-20, 20]);
 
   return (
     <section className="doctor-intro-section" aria-label={`${DR_AHALYA_DATA.name} introduction`}>
@@ -36,39 +36,39 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
       <div className="doctor-intro-section__container">
         {/* Outer media container stays steady with no border/card displacement */}
         <div className="doctor-intro-section__media" ref={cardRef}>
-          <div className="doctor-intro-section__portrait-wrap">
-            {/* Smooth animated image container */}
+          <div className="doctor-intro-section__shadow-carrier">
             <motion.div
-              className="doctor-intro-section__portrait-motion"
-              style={{ y: imageY }}
-            >
-              <motion.img
-                src={DR_AHALYA_DATA.image}
-                alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
-                className="doctor-intro-section__portrait"
-                initial={{ scale: 1.14, opacity: 0.9 }}
-                whileInView={{ scale: 1.04, opacity: 1 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                loading="lazy"
-                decoding="async"
-              />
-            </motion.div>
-
-            {/* Speedy bottom-to-top animated border */}
-            <motion.div
-              className="doctor-intro-section__border-sweep"
-              aria-hidden="true"
-              initial={{ clipPath: 'inset(100% 0% 0% 0% round 32px)', y: 28, opacity: 0 }}
-              whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', y: 0, opacity: 1 }}
+              className="doctor-intro-section__portrait-wrap"
+              initial={{ clipPath: 'inset(25% 0% 0% 0% round 32px)', opacity: 0.9 }}
+              whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
-            />
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              onAnimationComplete={() => setIsRevealed(true)}
+              style={isRevealed ? { clipPath: 'none' } : undefined}
+            >
+              {/* Smooth animated image container */}
+              <motion.div
+                className="doctor-intro-section__portrait-motion"
+                style={{ y: imageY }}
+              >
+                <motion.img
+                  src={DR_AHALYA_DATA.image}
+                  alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
+                  className="doctor-intro-section__portrait"
+                  initial={{ scale: 1.14, opacity: 0.9 }}
+                  whileInView={{ scale: 1.04, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </motion.div>
 
-            <div className="doctor-intro-section__credential">
-              <CheckCircle2 size={15} />
-              <span>{DR_AHALYA_DATA.degrees}</span>
-            </div>
+              <div className="doctor-intro-section__credential">
+                <CheckCircle2 size={15} />
+                <span>{DR_AHALYA_DATA.degrees}</span>
+              </div>
+            </motion.div>
           </div>
           <div className="doctor-intro-section__stamp" aria-hidden="true">
             <Leaf size={18} />
