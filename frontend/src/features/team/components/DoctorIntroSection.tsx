@@ -12,26 +12,30 @@ import './DoctorIntroSection.css';
 // Format: [y0, x1, y1, x2, y2, y3, x4, y4, x5, y5, y6]
 // M 0 y0 C x1 y1, x2 y2, 50 y3 C x4 y4, x5 y5, 100 y6 L 100 100 L 0 100 Z
 
-// Frame 0 & 5: Completely collapsed at bottom (invisible, height = 0)
+// Frame 0 & 5: Completely collapsed at bottom (invisible, height = 100)
 const COORDS_START = [100, 25, 100, 25, 100, 100, 75, 100, 75, 100, 100];
 
-// Frame 1: Wave rising with curved crest from bottom-right corner
-const COORDS_IN_1 = [96, 25, 96, 40, 88, 78, 68, 68, 85, 48, 38];
+// Frame 1: Fluid brushstroke contact & diagonal swell from bottom-right
+const COORDS_IN_1 = [100, 30, 98, 48, 84, 68, 66, 54, 84, 36, 26];
 
-// Frame 2: Organic liquid wave surges upwards across ~80% of card
-const COORDS_IN_2 = [42, 15, 55, 35, 36, 22, 72, 10, 88, 4, 1];
+// Frame 2: Broad calligraphic paint sweep arching across the center towards top-left
+const COORDS_IN_2 = [36, 18, 52, 36, 32, 16, 68, 8, 86, 2, -2];
 
-// Frame 3: Completely covers card in solid color (100% blank) with slight negative margin for full bleed
-const COORDS_FULL = [-2, 25, -2, 25, -2, -2, 75, -2, 75, -2, -2];
+// Frame 3: Completely covers card in solid color (100% blank)
+const COORDS_FULL = [-3, 25, -3, 25, -3, -3, 75, -3, 75, -3, -3];
 
-// Frame 4: Wave drops downwards diagonally, revealing top/center of new image
-const COORDS_OUT_1 = [28, 22, 42, 38, 58, 68, 76, 76, 90, 84, 90];
+// Frame 4: Smooth brush wipe-out diagonally downwards
+const COORDS_OUT_1 = [24, 20, 38, 36, 56, 68, 76, 76, 90, 84, 92];
 
-// Format coordinates to SVG path string
+// Format closed fill path string
 const formatPath = (c: number[]) =>
   `M 0 ${c[0].toFixed(2)} C ${c[1].toFixed(2)} ${c[2].toFixed(2)}, ${c[3].toFixed(2)} ${c[4].toFixed(2)}, 50 ${c[5].toFixed(2)} C ${c[6].toFixed(2)} ${c[7].toFixed(2)}, ${c[8].toFixed(2)} ${c[9].toFixed(2)}, 100 ${c[10].toFixed(2)} L 100 100 L 0 100 Z`;
 
-// Smooth cubic ease-in-out
+// Format open drawing stroke line along the leading wave crest
+const formatStrokePath = (c: number[]) =>
+  `M 0 ${c[0].toFixed(2)} C ${c[1].toFixed(2)} ${c[2].toFixed(2)}, ${c[3].toFixed(2)} ${c[4].toFixed(2)}, 50 ${c[5].toFixed(2)} C ${c[6].toFixed(2)} ${c[7].toFixed(2)}, ${c[8].toFixed(2)} ${c[9].toFixed(2)}, 100 ${c[10].toFixed(2)}`;
+
+// Smooth cubic ease-in-out with natural drawing acceleration
 const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -40,9 +44,10 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const interpolateCoords = (from: number[], to: number[], t: number) =>
   from.map((val, i) => lerp(val, to[i], t));
 
-// Frame-by-frame rAF path animator
+// Frame-by-frame rAF path animator with dual fill + drawing stroke
 const animateSvgPath = (
   pathEl: SVGPathElement,
+  strokeEl: SVGPathElement | null,
   from: number[],
   to: number[],
   durationMs: number
@@ -55,6 +60,9 @@ const animateSvgPath = (
       const eased = easeInOutCubic(progress);
       const current = interpolateCoords(from, to, eased);
       pathEl.setAttribute('d', formatPath(current));
+      if (strokeEl) {
+        strokeEl.setAttribute('d', formatStrokePath(current));
+      }
 
       if (progress < 1) {
         requestAnimationFrame(step);
@@ -74,6 +82,7 @@ const revealVariants: Variants = {
 export const DoctorIntroSection: React.FC = React.memo(() => {
   const cardRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
+  const strokeRef = useRef<SVGPathElement>(null);
   const primaryImgRef = useRef<HTMLImageElement>(null);
   const secondaryImgRef = useRef<HTMLImageElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -83,11 +92,15 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
   const desiredModeRef = useRef<'primary' | 'secondary'>('primary');
   const isAnimatingRef = useRef(false);
 
-  // Initialize SVG path once on mount
+  // Initialize SVG paths on mount
   useEffect(() => {
     if (pathRef.current) {
       pathRef.current.setAttribute('d', formatPath(COORDS_START));
       pathRef.current.style.opacity = '0';
+    }
+    if (strokeRef.current) {
+      strokeRef.current.setAttribute('d', formatStrokePath(COORDS_START));
+      strokeRef.current.style.opacity = '0';
     }
   }, []);
 
@@ -105,10 +118,11 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
 
   const imageY = useTransform(smoothProgress, [0, 1], [-20, 20]);
 
-  // Liquid Wave Cycle: Wipe in (Frames 1-3) -> Swap Image -> Wipe out (Frames 4-5)
+  // Liquid Wave Cycle: Wipe in (Drawing sweep) -> Swap Image -> Wipe out
   const startWipeCycle = useCallback(async () => {
     if (isAnimatingRef.current) return;
     const pathEl = pathRef.current;
+    const strokeEl = strokeRef.current;
     const primaryImg = primaryImgRef.current;
     const secondaryImg = secondaryImgRef.current;
     if (!pathEl || !primaryImg || !secondaryImg) return;
@@ -117,11 +131,14 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
 
     while (currentModeRef.current !== desiredModeRef.current) {
       pathEl.style.opacity = '1';
+      if (strokeEl) strokeEl.style.opacity = '1';
 
-      // Phase 1: Draw wave in from bottom-right (Frame 1 -> Frame 2 -> Frame 3 100% blank)
-      await animateSvgPath(pathEl, COORDS_START, COORDS_IN_1, 110);
-      await animateSvgPath(pathEl, COORDS_IN_1, COORDS_IN_2, 110);
-      await animateSvgPath(pathEl, COORDS_IN_2, COORDS_FULL, 100);
+      // Phase 1: Hand-drawn paint stroke sweeps across (Frames 1 -> 2 -> 3 100% blank)
+      await animateSvgPath(pathEl, strokeEl, COORDS_START, COORDS_IN_1, 130);
+      await animateSvgPath(pathEl, strokeEl, COORDS_IN_1, COORDS_IN_2, 130);
+      await animateSvgPath(pathEl, strokeEl, COORDS_IN_2, COORDS_FULL, 110);
+
+      if (strokeEl) strokeEl.style.opacity = '0';
 
       // Phase 2: Instant swap while fully covered in solid green
       const targetMode = desiredModeRef.current;
@@ -135,14 +152,20 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
       currentModeRef.current = targetMode;
 
       // Brief hold at peak coverage (Frame 3 "solid blank")
-      await new Promise((r) => setTimeout(r, 35));
+      await new Promise((r) => setTimeout(r, 40));
 
-      // Phase 3: Liquid wave wipes away downwards, revealing new image (Frame 4 -> Frame 5)
-      await animateSvgPath(pathEl, COORDS_FULL, COORDS_OUT_1, 120);
-      await animateSvgPath(pathEl, COORDS_OUT_1, COORDS_START, 120);
+      if (strokeEl) strokeEl.style.opacity = '1';
+
+      // Phase 3: Drawing stroke lifts and wipes away downwards, revealing new image (Frame 4 -> Frame 5)
+      await animateSvgPath(pathEl, strokeEl, COORDS_FULL, COORDS_OUT_1, 130);
+      await animateSvgPath(pathEl, strokeEl, COORDS_OUT_1, COORDS_START, 130);
 
       pathEl.setAttribute('d', formatPath(COORDS_START));
       pathEl.style.opacity = '0';
+      if (strokeEl) {
+        strokeEl.setAttribute('d', formatStrokePath(COORDS_START));
+        strokeEl.style.opacity = '0';
+      }
     }
 
     isAnimatingRef.current = false;
@@ -209,7 +232,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
                 />
               </motion.div>
 
-              {/* Organic Liquid Wave Wipe Curtain Overlay */}
+              {/* Organic Liquid Wave Wipe Curtain Overlay with Hand-Drawn Stroke Rim */}
               <svg
                 className="doctor-intro-section__liquid-wipe-svg"
                 viewBox="0 0 100 100"
@@ -220,6 +243,14 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
                   id="doctor-liquid-path"
                   ref={pathRef}
                   fill="var(--primary-green, #1B6B50)"
+                />
+                <path
+                  id="doctor-drawing-stroke"
+                  ref={strokeRef}
+                  fill="none"
+                  stroke="rgba(235, 195, 125, 0.95)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
                 />
               </svg>
 

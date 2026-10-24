@@ -114,6 +114,11 @@
   filter: drop-shadow(0 -8px 16px rgba(18, 76, 56, 0.45));
 }
 
+#doctor-drawing-stroke {
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 8px rgba(235, 195, 125, 0.5));
+}
+
 .doctor-intro-section__credential {
   position: absolute;
   right: 24px;
