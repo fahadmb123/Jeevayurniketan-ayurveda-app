@@ -13,8 +13,11 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = React.memo(({ post }) =
   return (
     <motion.article
       className="blog-card"
-      whileHover={{ y: -8, scale: 1.015 }}
       variants={fadeUpVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      whileHover={{ y: -8, scale: 1.015 }}
     >
       <div className="blog-card__image-wrapper">
         <img src={post.image} alt={post.title} className="blog-card__image" />

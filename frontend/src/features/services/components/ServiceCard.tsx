@@ -13,8 +13,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service }) 
     <motion.div
       className="service-card"
       variants={fadeUpVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.3 }}
     >
       <div className="service-card__icon">{service.icon}</div>
       <h3 className="service-card__title">{service.title}</h3>

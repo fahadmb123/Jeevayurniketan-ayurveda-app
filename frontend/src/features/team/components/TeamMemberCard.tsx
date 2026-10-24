@@ -18,6 +18,9 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ membe
       <motion.div
         className="team-card"
         variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
         whileHover={{ y: -6, scale: 1.015 }}
       >
         <div className="team-card__image-wrapper">

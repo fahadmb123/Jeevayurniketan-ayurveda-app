@@ -130,6 +130,9 @@ export const TrustStatsBar: React.FC = React.memo(() => {
             key={stat.label}
             className="trust-stat-card"
             variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="trust-stat-card__icon-wrap">
               {stat.icon}
