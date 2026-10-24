@@ -17,45 +17,48 @@
 }
 
 /* ==========================================================================
-   Traveling Heading Styles
-   Glides from Treatments Center -> Fixed Top-Left -> Yoga Center
+   Sticky Traveling Heading
+   Smoothly glides from Treatments Center -> Left -> Yoga Center on scroll
    ========================================================================== */
 
-.journey-traveling-heading {
-  position: fixed;
-  left: var(--fixed-left, 48px);
-  z-index: 990;
-  display: inline-flex;
-  align-items: baseline;
+.journey-sticky-header-container {
+  position: sticky;
+  top: 86px;
+  z-index: 120;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+  overflow: visible;
   pointer-events: none;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  will-change: transform, opacity;
 }
 
-.journey-title--traveling {
-  margin: 0;
+.journey-sticky-heading {
   display: inline-flex;
   align-items: baseline;
-  white-space: nowrap;
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
+  white-space: nowrap;
+  will-change: transform;
 }
 
-/* Target Slot in Yoga Section Header */
-.journey-yoga-title-slot {
-  height: clamp(52px, 5.5vw, 76px);
-  margin: 12px 0 14px;
+.journey-title--sticky {
+  margin: 0;
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: #14241C;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0 0.28em;
 }
 
-/* Subtle fade transitions in Yoga and Treatments headers */
-.healing-journey-header--covered .journey-title,
-.healing-journey-header--covered .section-pill {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.journey-title-spacer {
+  height: clamp(52px, 5vw, 68px);
+  margin: 16px 0;
+  pointer-events: none;
 }
 
 .journey-yoga-fade {
@@ -374,7 +377,7 @@
   color: #ffffff;
 }
 
-[data-theme='dark'] .journey-title--traveling {
+[data-theme='dark'] .journey-title--sticky {
   color: #ffffff;
 }
 

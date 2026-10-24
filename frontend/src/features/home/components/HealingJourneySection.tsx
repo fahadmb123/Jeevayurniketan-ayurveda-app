@@ -1,7 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+} from 'framer-motion';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
 import './HealingJourneySection.css';
@@ -50,65 +57,67 @@ const YOGA_IMAGES: GalleryCardItem[] = [
 
 export const HealingJourneySection: React.FC = React.memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
-  const treatmentsHeaderRef = useRef<HTMLDivElement>(null);
-  const yogaHeaderRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
 
-  type Phase = 'inactive' | 'treatments-initial' | 'fixed-left' | 'yoga-center';
-  const [phase, setPhase] = useState<Phase>('treatments-initial');
-  const [yogaSlotTop, setYogaSlotTop] = useState(96);
+  const [leftShift, setLeftShift] = useState(380);
+  const [currentWord, setCurrentWord] = useState<'Treatments' | 'Yoga'>('Treatments');
 
+  // Compute exact pixel shift from screen center to the left margin
   useEffect(() => {
-    let rafId: number;
-
-    const handleScroll = () => {
-      if (!sectionRef.current || !treatmentsHeaderRef.current || !yogaHeaderRef.current) return;
-
-      const sectionRect = sectionRef.current.getBoundingClientRect();
-      const treatmentsRect = treatmentsHeaderRef.current.getBoundingClientRect();
-      const yogaRect = yogaHeaderRef.current.getBoundingClientRect();
-
-      const NAVBAR_HEIGHT = 80;
-
-      // 1. If outside the Healing Journey section, hide traveling header
-      if (sectionRect.top > window.innerHeight || sectionRect.bottom < NAVBAR_HEIGHT + 60) {
-        setPhase('inactive');
-        return;
-      }
-
-      // 2. If Treatments heading hasn't reached navbar, show static heading
-      if (treatmentsRect.top > NAVBAR_HEIGHT) {
-        setPhase('treatments-initial');
-        return;
-      }
-
-      // 3. When Yoga section reaches view (~260px threshold), move to center
-      if (yogaRect.top <= 260) {
-        setPhase('yoga-center');
-        setYogaSlotTop(Math.max(96, yogaRect.top + 36));
-      } else {
-        // 4. Otherwise, stay fixed on the left displaying "Our Treatments"
-        setPhase('fixed-left');
-      }
+    const calcShift = () => {
+      const headingEl = headingRef.current;
+      const headingW = headingEl ? headingEl.offsetWidth : 320;
+      const leftMargin = Math.min(60, Math.max(20, window.innerWidth * 0.045));
+      const shift = window.innerWidth / 2 - headingW / 2 - leftMargin;
+      setLeftShift(Math.max(0, shift));
     };
 
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(handleScroll);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
+    calcShift();
+    window.addEventListener('resize', calcShift);
+    document.fonts?.ready?.then(calcShift);
+    return () => window.removeEventListener('resize', calcShift);
   }, []);
 
-  const isYogaMode = phase === 'yoga-center';
-  const isTravelingActive = phase === 'fixed-left' || phase === 'yoga-center';
+  // Track scroll progress through the entire treatments & yoga section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Smooth scroll-driven horizontal trajectory:
+  // 0.00 - 0.06: Centered in Treatments (0)
+  // 0.06 - 0.22: Smoothly glides across to Left (-leftShift)
+  // 0.22 - 0.46: Stays pinned on Left (-leftShift)
+  // 0.46 - 0.60: Smoothly glides from Left to Center (0) into Yoga
+  // 0.60 - 0.92: Stays Centered in Yoga (0)
+  const rawX = useTransform(
+    scrollYProgress,
+    [0, 0.06, 0.22, 0.46, 0.6, 0.92, 1],
+    [0, 0, -leftShift, -leftShift, 0, 0, 0]
+  );
+
+  // Silky smooth spring momentum that you can physically FEEL when scrolling
+  const smoothX = useSpring(rawX, {
+    stiffness: 90,
+    damping: 20,
+    mass: 0.25,
+  });
+
+  // Fade out gently only at the very end of the section
+  const rawOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.01, 0.94, 0.99],
+    [1, 1, 1, 0]
+  );
+
+  // Morph title text between Treatments and Yoga at the midpoint transition
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (latest >= 0.52) {
+      setCurrentWord('Yoga');
+    } else {
+      setCurrentWord('Treatments');
+    }
+  });
 
   return (
     <section
@@ -118,64 +127,46 @@ export const HealingJourneySection: React.FC = React.memo(() => {
       aria-label="Our Treatments and Yoga"
     >
       {/* ==================================================================
-          TRAVELING HEADING (Text Only - No Card)
-          Smoothly glides from Treatments Center -> Left -> Yoga Center
+          STICKY TRAVELING HEADING (Text Only - Smooth Momentum Gliding)
+          Directly driven by scroll momentum with tactile feel
           ================================================================== */}
-      <motion.div
-        className="journey-traveling-heading"
-        style={{
-          top: phase === 'yoga-center' ? yogaSlotTop : 92,
-        }}
-        initial={false}
-        animate={{
-          x: phase === 'fixed-left' ? 0 : 'calc(50vw - 50% - var(--fixed-left, 48px))',
-          opacity: isTravelingActive ? 1 : 0,
-          pointerEvents: isTravelingActive ? 'auto' : 'none',
-        }}
-        transition={{
-          duration: 0.48,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        aria-hidden={!isTravelingActive}
-      >
-        <h2 className="journey-title journey-title--traveling">
-          <span>Our </span>
-          <span className="journey-morph-wrap">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={isYogaMode ? 'yoga' : 'treatments'}
-                initial={{ y: 20, opacity: 0, filter: 'blur(3px)' }}
-                animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                exit={{ y: -20, opacity: 0, filter: 'blur(3px)' }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="text-primary-green journey-morph-word"
-              >
-                {isYogaMode ? 'Yoga' : 'Treatments'}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-        </h2>
-      </motion.div>
+      <div className="journey-sticky-header-container">
+        <motion.div
+          ref={headingRef}
+          style={{ x: smoothX, opacity: rawOpacity }}
+          className="journey-sticky-heading"
+        >
+          <h2 className="journey-title journey-title--sticky">
+            <span>Our </span>
+            <span className="journey-morph-wrap">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={currentWord}
+                  initial={{ y: 20, opacity: 0, filter: 'blur(3px)' }}
+                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ y: -20, opacity: 0, filter: 'blur(3px)' }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-primary-green journey-morph-word"
+                >
+                  {currentWord}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </h2>
+        </motion.div>
+      </div>
 
       <div className="healing-journey-container">
         {/* ==================================================================
-            1. OUR TREATMENTS (Initial Static Header)
+            1. OUR TREATMENTS
             ================================================================== */}
-        <div
-          ref={treatmentsHeaderRef}
-          className={`healing-journey-header text-center ${
-            phase !== 'treatments-initial' && phase !== 'inactive'
-              ? 'healing-journey-header--covered'
-              : ''
-          }`}
-        >
+        <div className="healing-journey-header text-center">
           <div className="section-pill">
             <Compass size={14} />
             <span>Therapeutic Modalities</span>
           </div>
-          <h2 className="journey-title">
-            Our <span className="text-primary-green">Treatments</span>
-          </h2>
+          {/* Spacer reserving exact title slot */}
+          <div className="journey-title-spacer" aria-hidden="true" />
           <p className="journey-subtitle">
             From classical Ayurvedic psychotherapy to personalized herbal rasayanas, discover our specialized treatments designed for complete mind-body equilibrium.
           </p>
@@ -225,29 +216,23 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         {/* ==================================================================
             2. OUR YOGA (Target dock for the traveling header)
             ================================================================== */}
-        <div
-          ref={yogaHeaderRef}
-          className={`healing-journey-header text-center healing-journey-header--yoga-target ${
-            isYogaMode ? 'healing-journey-header--yoga-active' : ''
-          }`}
-          id="yoga"
-        >
-          {/* Section Pill (revealed when Yoga section arrives) */}
-          <div className="section-pill journey-yoga-fade">
+        {/* ==================================================================
+            2. OUR YOGA
+            ================================================================== */}
+        <div className="healing-journey-header text-center" id="yoga">
+          <div className="section-pill">
             <Sparkles size={14} />
             <span>Mindful Disciplines</span>
           </div>
 
           {/* Reserved Title Dock Slot for the Traveling Heading */}
-          <div className="journey-yoga-title-slot" aria-hidden="true" />
+          <div className="journey-title-spacer" aria-hidden="true" />
 
-          {/* Subtitle (revealed when Yoga section arrives) */}
-          <p className="journey-subtitle journey-yoga-fade">
+          <p className="journey-subtitle">
             Cultivate somatic vitality, respiratory harmony, and inner peace through doctor-guided restorative asanas, classical pranayama, and mindful meditation.
           </p>
 
-          {/* Continuous Yoga Stream Live Pill */}
-          <div className="journey-stream-badge journey-yoga-fade">
+          <div className="journey-stream-badge">
             <span className="stream-pulse-dot" aria-hidden="true" />
             <span>Continuous Yoga Stream</span>
           </div>
