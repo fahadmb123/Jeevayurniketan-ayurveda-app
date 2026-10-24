@@ -76,11 +76,16 @@
   border: none;
   transform-origin: center center;
   will-change: transform, opacity;
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .doctor-intro-section__portrait--primary {
   position: relative;
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+.doctor-intro-section__portrait--primary.is-active {
   opacity: 1;
   transform: scale(1.04);
 }
@@ -92,26 +97,56 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  transform: scale(1.1);
+  transform: scale(1.08);
   pointer-events: none;
 }
 
-/* Hover: Smooth crossfade and scale */
-.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--primary {
-  opacity: 0;
-  transform: scale(1.1);
-}
-
-.doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait--secondary {
+.doctor-intro-section__portrait--secondary.is-active {
   opacity: 1;
   transform: scale(1.04);
+}
+
+/* Organic Liquid Wave Overlay matching user's frame-by-frame animation */
+.doctor-liquid-wipe-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1400px;
+  height: 2200px;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  pointer-events: none;
+  z-index: 6;
+  overflow: visible;
+}
+
+.doctor-liquid-wipe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.doctor-liquid-wipe__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.doctor-liquid-wipe__emblem {
+  transform-origin: 450px 915px;
+  filter: drop-shadow(0 8px 18px rgba(11, 43, 32, 0.35));
 }
 
 .doctor-intro-section__credential {
   position: absolute;
   right: 24px;
   bottom: 24px;
-  z-index: 3;
+  z-index: 10;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -125,6 +160,7 @@
   font-weight: 700;
   line-height: 1.25;
   backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .doctor-intro-section__stamp {
