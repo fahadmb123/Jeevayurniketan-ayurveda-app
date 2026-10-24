@@ -38,10 +38,10 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
   const handleMouseEnter = () => {
     setIsHovered(true);
     if (swapTimerRef.current) clearTimeout(swapTimerRef.current);
-    // Swap image at exact midpoint when the wave curtain 100% covers the card
+    // Swap image at exact midpoint (675ms of 1.35s) when the wave curtain 100% covers the card
     swapTimerRef.current = window.setTimeout(() => {
       setActiveImage('secondary');
-    }, 360);
+    }, 675);
   };
 
   const handleMouseLeave = () => {
@@ -50,7 +50,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
     // Swap back at midpoint of the return wave sweep
     swapTimerRef.current = window.setTimeout(() => {
       setActiveImage('primary');
-    }, 360);
+    }, 675);
   };
 
   const handleToggle = () => {
@@ -112,58 +112,58 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
               <div className="doctor-liquid-wipe-wrap" aria-hidden="true">
                 <motion.div
                   className="doctor-liquid-wipe"
-                  initial={{ y: '120%' }}
-                  animate={{ y: isHovered ? '-120%' : '120%' }}
+                  initial={{ y: 560 }}
+                  animate={{ y: isHovered ? -560 : 560 }}
                   transition={{
-                    duration: 0.82,
-                    ease: [0.38, 0, 0.22, 1],
+                    duration: 1.35,
+                    ease: [0.32, 0, 0.24, 1],
                   }}
                 >
                   <svg
-                    viewBox="0 0 900 1800"
+                    viewBox="0 0 700 1200"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="doctor-liquid-wipe__svg"
                     preserveAspectRatio="none"
                   >
                     <defs>
-                      <linearGradient id="ayurLiquidWipeGrad" x1="0" y1="1800" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                      <linearGradient id="ayurLiquidWipeGrad" x1="0" y1="1200" x2="0" y2="0" gradientUnits="userSpaceOnUse">
                         <stop offset="0%" stopColor="#0B2B20" />
                         <stop offset="35%" stopColor="#1B6B50" />
                         <stop offset="70%" stopColor="#248263" />
                         <stop offset="100%" stopColor="#1B6B50" />
                       </linearGradient>
-                      <linearGradient id="ayurWaveAccentGrad" x1="0" y1="1800" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#C98D3B" stopOpacity="0.45" />
-                        <stop offset="50%" stopColor="#3EB489" stopOpacity="0.55" />
-                        <stop offset="100%" stopColor="#C98D3B" stopOpacity="0.45" />
+                      <linearGradient id="ayurWaveAccentGrad" x1="0" y1="1200" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#C98D3B" stopOpacity="0.5" />
+                        <stop offset="50%" stopColor="#3EB489" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#C98D3B" stopOpacity="0.5" />
                       </linearGradient>
                       <filter id="ayurWipeGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="8" stdDeviation="16" floodColor="#0B2B20" floodOpacity="0.45" />
+                        <feDropShadow dx="0" dy="10" stdDeviation="18" floodColor="#071E16" floodOpacity="0.5" />
                       </filter>
                     </defs>
 
                     {/* Translucent accent wave leading edge */}
                     <path
-                      d="M -50 420 C 180 260, 360 560, 560 350 C 740 180, 850 450, 950 320 L 950 460 C 850 490, 740 220, 560 390 C 360 600, 180 300, -50 460 Z"
+                      d="M -30 220 C 140 120, 270 300, 430 160 C 550 60, 620 230, 730 140 L 730 240 C 620 330, 550 160, 430 260 C 270 400, 140 220, -30 320 Z"
                       fill="url(#ayurWaveAccentGrad)"
                     />
 
                     {/* Main solid organic wave curtain */}
                     <path
-                      d="M -50 480 C 180 320, 360 620, 560 410 C 740 240, 850 510, 950 380 L 950 1350 C 850 1480, 700 1220, 500 1420 C 320 1590, 160 1300, -50 1450 Z"
+                      d="M -30 280 C 140 180, 270 360, 430 220 C 550 120, 620 290, 730 200 L 730 960 C 620 1060, 500 890, 360 1030 C 220 1150, 100 950, -30 1050 Z"
                       fill="url(#ayurLiquidWipeGrad)"
                       filter="url(#ayurWipeGlow)"
                     />
 
                     {/* Translucent accent wave trailing edge */}
                     <path
-                      d="M -50 1450 C 160 1300, 320 1590, 500 1420 C 700 1220, 850 1480, 950 1350 L 950 1480 C 850 1610, 700 1350, 500 1550 C 320 1720, 160 1430, -50 1580 Z"
+                      d="M -30 1050 C 100 950, 220 1150, 360 1030 C 500 890, 620 1060, 730 960 L 730 1060 C 620 1160, 500 990, 360 1130 C 220 1250, 100 1050, -30 1150 Z"
                       fill="url(#ayurWaveAccentGrad)"
                     />
 
                     {/* Branded center badge echoing the reference sticker */}
-                    <g transform="translate(450, 915)" className="doctor-liquid-wipe__emblem">
+                    <g transform="translate(350, 600)" className="doctor-liquid-wipe__emblem">
                       <circle r="46" fill="#FFFFFF" filter="drop-shadow(0 6px 14px rgba(0,0,0,0.18))" />
                       <circle r="40" fill="none" stroke="#C98D3B" strokeWidth="1.5" strokeDasharray="3 3" />
                       <circle r="36" fill="#1B6B50" />
