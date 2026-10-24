@@ -79,8 +79,22 @@
   transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.doctor-intro-section__portrait--primary {
+  position: relative;
+  z-index: 1;
+}
+
+.doctor-intro-section__portrait--secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
 .doctor-intro-section__portrait-wrap:hover .doctor-intro-section__portrait {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 /* Organic Liquid Wave Curtain Overlay */
@@ -93,6 +107,10 @@
   pointer-events: none;
   border-radius: 30px;
   overflow: hidden;
+}
+
+#doctor-liquid-path {
+  filter: drop-shadow(0 -8px 16px rgba(18, 76, 56, 0.45));
 }
 
 .doctor-intro-section__credential {
@@ -113,6 +131,7 @@
   font-weight: 700;
   line-height: 1.25;
   backdrop-filter: blur(12px);
+  pointer-events: none;
 }
 
 .doctor-intro-section__stamp {

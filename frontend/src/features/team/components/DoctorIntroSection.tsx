@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion, useScroll, useTransform, useSpring, useAnimate, type Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, type Variants } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BookAppointmentButton } from '@/features/appointments';
@@ -8,24 +8,63 @@ import consultationImg from '@/assets/ayurveda_consultation.jpg';
 import { DR_AHALYA_DATA } from '../data/drAhalyaData';
 import './DoctorIntroSection.css';
 
-// SVG Morphing Paths for Organic Liquid Wave Wipe (5-frame sequence)
-// P_START: Collapsed at bottom (height = 0, completely invisible)
-const P_START = 'M 0 100 C 25 100, 25 100, 50 100 C 75 100, 75 100, 100 100 L 100 100 L 0 100 Z';
+// SVG Morphing Coordinate Arrays (11 coordinate values matching the 5 frames)
+// Format: [y0, x1, y1, x2, y2, y3, x4, y4, x5, y5, y6]
+// M 0 y0 C x1 y1, x2 y2, 50 y3 C x4 y4, x5 y5, 100 y6 L 100 100 L 0 100 Z
 
-// P_IN_1 (Frame 1): Wave begins rising with curved crest from bottom-right
-const P_IN_1 = 'M 0 100 C 25 98, 40 90, 55 82 C 70 72, 85 52, 100 42 L 100 100 L 0 100 Z';
+// Frame 0 & 5: Completely collapsed at bottom (invisible, height = 0)
+const COORDS_START = [100, 25, 100, 25, 100, 100, 75, 100, 75, 100, 100];
 
-// P_IN_2 (Frame 2): Organic liquid wave surges upwards across ~80% of card
-const P_IN_2 = 'M 0 45 C 15 58, 35 38, 55 24 C 75 12, 88 5, 100 2 L 100 100 L 0 100 Z';
+// Frame 1: Wave rising with curved crest from bottom-right corner
+const COORDS_IN_1 = [96, 25, 96, 40, 88, 78, 68, 68, 85, 48, 38];
 
-// P_FULL (Frame 3): Completely blanks out card in solid brand green (100% cover)
-const P_FULL = 'M 0 0 C 25 0, 25 0, 50 0 C 75 0, 75 0, 100 0 L 100 100 L 0 100 Z';
+// Frame 2: Organic liquid wave surges upwards across ~80% of card
+const COORDS_IN_2 = [42, 15, 55, 35, 36, 22, 72, 10, 88, 4, 1];
 
-// P_OUT_1 (Frame 4): Wave drops downwards diagonally, revealing top/center of new image
-const P_OUT_1 = 'M 0 28 C 22 42, 38 58, 58 68 C 76 76, 90 84, 100 90 L 100 100 L 0 100 Z';
+// Frame 3: Completely covers card in solid color (100% blank) with slight negative margin for full bleed
+const COORDS_FULL = [-2, 25, -2, 25, -2, -2, 75, -2, 75, -2, -2];
 
-// P_OUT_END (Frame 5): Liquid wave clears off bottom completely
-const P_OUT_END = 'M 0 100 C 25 100, 25 100, 50 100 C 75 100, 75 100, 100 100 L 100 100 L 0 100 Z';
+// Frame 4: Wave drops downwards diagonally, revealing top/center of new image
+const COORDS_OUT_1 = [28, 22, 42, 38, 58, 68, 76, 76, 90, 84, 90];
+
+// Format coordinates to SVG path string
+const formatPath = (c: number[]) =>
+  `M 0 ${c[0].toFixed(2)} C ${c[1].toFixed(2)} ${c[2].toFixed(2)}, ${c[3].toFixed(2)} ${c[4].toFixed(2)}, 50 ${c[5].toFixed(2)} C ${c[6].toFixed(2)} ${c[7].toFixed(2)}, ${c[8].toFixed(2)} ${c[9].toFixed(2)}, 100 ${c[10].toFixed(2)} L 100 100 L 0 100 Z`;
+
+// Smooth cubic ease-in-out
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+const interpolateCoords = (from: number[], to: number[], t: number) =>
+  from.map((val, i) => lerp(val, to[i], t));
+
+// Frame-by-frame rAF path animator
+const animateSvgPath = (
+  pathEl: SVGPathElement,
+  from: number[],
+  to: number[],
+  durationMs: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = easeInOutCubic(progress);
+      const current = interpolateCoords(from, to, eased);
+      pathEl.setAttribute('d', formatPath(current));
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        resolve();
+      }
+    };
+    requestAnimationFrame(step);
+  });
+};
 
 const revealVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -34,23 +73,22 @@ const revealVariants: Variants = {
 
 export const DoctorIntroSection: React.FC = React.memo(() => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const primaryImgRef = useRef<HTMLImageElement>(null);
+  const secondaryImgRef = useRef<HTMLImageElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [currentImage, setCurrentImage] = useState<string>(DR_AHALYA_DATA.image);
 
   // References for managing smooth queueing during rapid hover transitions
-  const currentImageRef = useRef<string>(DR_AHALYA_DATA.image);
-  const desiredImageRef = useRef<string>(DR_AHALYA_DATA.image);
+  const currentModeRef = useRef<'primary' | 'secondary'>('primary');
+  const desiredModeRef = useRef<'primary' | 'secondary'>('primary');
   const isAnimatingRef = useRef(false);
 
-  // Framer Motion scoped animator for SVG liquid wave
-  const [scope, animate] = useAnimate();
-
-  // Pre-load secondary image into browser cache
+  // Initialize SVG path once on mount
   useEffect(() => {
-    const img1 = new Image();
-    img1.src = DR_AHALYA_DATA.image;
-    const img2 = new Image();
-    img2.src = consultationImg;
+    if (pathRef.current) {
+      pathRef.current.setAttribute('d', formatPath(COORDS_START));
+      pathRef.current.style.opacity = '0';
+    }
   }, []);
 
   // Parallax subtle glide inside the frame
@@ -67,57 +105,61 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
 
   const imageY = useTransform(smoothProgress, [0, 1], [-20, 20]);
 
-  // Liquid Wave Cycle: Wipe in -> Swap Image -> Wipe out
+  // Liquid Wave Cycle: Wipe in (Frames 1-3) -> Swap Image -> Wipe out (Frames 4-5)
   const startWipeCycle = useCallback(async () => {
     if (isAnimatingRef.current) return;
+    const pathEl = pathRef.current;
+    const primaryImg = primaryImgRef.current;
+    const secondaryImg = secondaryImgRef.current;
+    if (!pathEl || !primaryImg || !secondaryImg) return;
+
     isAnimatingRef.current = true;
 
-    while (currentImageRef.current !== desiredImageRef.current) {
-      const nextTarget = desiredImageRef.current;
+    while (currentModeRef.current !== desiredModeRef.current) {
+      pathEl.style.opacity = '1';
 
-      try {
-        // Step 1: Liquid wave draws in from bottom right to cover 100% (Frames 1 -> 2 -> 3)
-        await animate(
-          '#doctor-liquid-path',
-          { d: [P_START, P_IN_1, P_IN_2, P_FULL] },
-          { duration: 0.38, times: [0, 0.35, 0.7, 1], ease: [0.22, 1, 0.36, 1] }
-        );
+      // Phase 1: Draw wave in from bottom-right (Frame 1 -> Frame 2 -> Frame 3 100% blank)
+      await animateSvgPath(pathEl, COORDS_START, COORDS_IN_1, 110);
+      await animateSvgPath(pathEl, COORDS_IN_1, COORDS_IN_2, 110);
+      await animateSvgPath(pathEl, COORDS_IN_2, COORDS_FULL, 100);
 
-        // Step 2: Swap the underlying image while covered ("fully that blank")
-        currentImageRef.current = nextTarget;
-        setCurrentImage(nextTarget);
-
-        // Step 3: Liquid wave wipes away downwards, revealing new image (Frames 4 -> 5)
-        await animate(
-          '#doctor-liquid-path',
-          { d: [P_FULL, P_OUT_1, P_OUT_END] },
-          { duration: 0.38, times: [0, 0.45, 1], ease: [0.22, 1, 0.36, 1] }
-        );
-
-        // Instant reset back to starting zero-height base
-        animate('#doctor-liquid-path', { d: P_START }, { duration: 0 });
-      } catch {
-        // Animation cleanup if interrupted
-        break;
+      // Phase 2: Instant swap while fully covered in solid green
+      const targetMode = desiredModeRef.current;
+      if (targetMode === 'secondary') {
+        secondaryImg.style.opacity = '1';
+        primaryImg.style.opacity = '0';
+      } else {
+        primaryImg.style.opacity = '1';
+        secondaryImg.style.opacity = '0';
       }
+      currentModeRef.current = targetMode;
+
+      // Brief hold at peak coverage (Frame 3 "solid blank")
+      await new Promise((r) => setTimeout(r, 35));
+
+      // Phase 3: Liquid wave wipes away downwards, revealing new image (Frame 4 -> Frame 5)
+      await animateSvgPath(pathEl, COORDS_FULL, COORDS_OUT_1, 120);
+      await animateSvgPath(pathEl, COORDS_OUT_1, COORDS_START, 120);
+
+      pathEl.setAttribute('d', formatPath(COORDS_START));
+      pathEl.style.opacity = '0';
     }
 
     isAnimatingRef.current = false;
-  }, [animate]);
+  }, []);
 
   const handleMouseEnter = () => {
-    desiredImageRef.current = consultationImg;
+    desiredModeRef.current = 'secondary';
     startWipeCycle();
   };
 
   const handleMouseLeave = () => {
-    desiredImageRef.current = DR_AHALYA_DATA.image;
+    desiredModeRef.current = 'primary';
     startWipeCycle();
   };
 
   const handleCardClick = () => {
-    desiredImageRef.current =
-      currentImageRef.current === DR_AHALYA_DATA.image ? consultationImg : DR_AHALYA_DATA.image;
+    desiredModeRef.current = currentModeRef.current === 'primary' ? 'secondary' : 'primary';
     startWipeCycle();
   };
 
@@ -129,7 +171,6 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
         <div className="doctor-intro-section__media" ref={cardRef}>
           <div className="doctor-intro-section__shadow-carrier">
             <motion.div
-              ref={scope}
               className="doctor-intro-section__portrait-wrap"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -144,17 +185,27 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
               onAnimationComplete={() => setIsRevealed(true)}
               style={isRevealed ? { clipPath: 'none' } : undefined}
             >
-              {/* Smooth animated image container with dynamic image swap */}
+              {/* Smooth animated image container with zero-rerender dual images */}
               <motion.div
                 className="doctor-intro-section__portrait-motion"
                 style={{ y: imageY }}
               >
                 <img
-                  src={currentImage}
+                  ref={primaryImgRef}
+                  src={DR_AHALYA_DATA.image}
                   alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
-                  className="doctor-intro-section__portrait"
+                  className="doctor-intro-section__portrait doctor-intro-section__portrait--primary"
                   loading="eager"
                   decoding="async"
+                />
+                <img
+                  ref={secondaryImgRef}
+                  src={consultationImg}
+                  alt={`${DR_AHALYA_DATA.name} — Personalized Consultations`}
+                  className="doctor-intro-section__portrait doctor-intro-section__portrait--secondary"
+                  loading="eager"
+                  decoding="async"
+                  style={{ opacity: 0 }}
                 />
               </motion.div>
 
@@ -167,7 +218,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
               >
                 <path
                   id="doctor-liquid-path"
-                  d={P_START}
+                  ref={pathRef}
                   fill="var(--primary-green, #1B6B50)"
                 />
               </svg>
