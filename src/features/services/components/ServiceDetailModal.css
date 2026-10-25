@@ -1,0 +1,375 @@
+/* ServiceDetailModal.css - Modern Clinical Healthcare Modal */
+
+.svc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(5, 12, 9, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: svcModalFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes svcModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.svc-modal-card {
+  width: 100%;
+  max-width: 660px;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  border-radius: 24px;
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E2E8DE);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme='dark'] .svc-modal-card,
+.dark .svc-modal-card {
+  background: linear-gradient(170deg, #12241C 0%, #0C1A14 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.svc-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color, #E2E8DE);
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+[data-theme='dark'] .svc-modal-close,
+.dark .svc-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.svc-modal-close:hover {
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  border-color: var(--primary-green, #1B6B50);
+  transform: rotate(90deg);
+}
+
+/* Modal Header */
+.svc-modal-header {
+  padding: 32px 32px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-color, #E2E8DE);
+}
+
+[data-theme='dark'] .svc-modal-header,
+.dark .svc-modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.svc-modal-icon-pod {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15);
+}
+
+.svc-modal-header-info {
+  flex: 1;
+  padding-right: 36px;
+}
+
+.svc-modal-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.svc-modal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.svc-modal-pill--tag {
+  background: rgba(201, 141, 59, 0.14);
+  color: var(--accent-gold, #C98D3B);
+  border: 1px solid rgba(201, 141, 59, 0.28);
+}
+
+.svc-modal-pill--duration {
+  background: rgba(27, 107, 80, 0.12);
+  color: var(--primary-green, #1B6B50);
+  border: 1px solid rgba(27, 107, 80, 0.25);
+}
+
+[data-theme='dark'] .svc-modal-pill--duration,
+.dark .svc-modal-pill--duration {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.svc-modal-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.svc-modal-lead {
+  font-size: 0.88rem;
+  color: var(--text-secondary, #475569);
+  font-weight: 500;
+}
+
+/* Modal Body */
+.svc-modal-body {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.svc-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.svc-modal-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--primary-green, #1B6B50);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+[data-theme='dark'] .svc-modal-section-title,
+.dark .svc-modal-section-title {
+  color: var(--accent-gold, #DDA34E);
+}
+
+.svc-modal-para {
+  font-size: 0.94rem;
+  line-height: 1.68;
+  color: var(--text-secondary, #475569);
+}
+
+[data-theme='dark'] .svc-modal-para,
+.dark .svc-modal-para {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Benefits Grid */
+.svc-modal-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.svc-modal-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--surface-secondary, #F3F6F1);
+  border: 1px solid var(--border-color, #E2E8DE);
+  transition: transform 0.2s ease;
+}
+
+[data-theme='dark'] .svc-modal-benefit-item,
+.dark .svc-modal-benefit-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.svc-modal-check-wrap {
+  color: var(--primary-green, #1B6B50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme='dark'] .svc-modal-check-wrap,
+.dark .svc-modal-check-wrap {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.svc-modal-benefit-text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary, #0F172A);
+}
+
+/* Method Banner */
+.svc-modal-method-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(27, 107, 80, 0.06);
+  border: 1px solid rgba(27, 107, 80, 0.15);
+}
+
+[data-theme='dark'] .svc-modal-method-banner,
+.dark .svc-modal-method-banner {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.svc-modal-method-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.svc-modal-method-item svg {
+  color: var(--accent-gold, #C98D3B);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.svc-modal-method-item h4 {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 2px;
+}
+
+.svc-modal-method-item p {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #475569);
+}
+
+[data-theme='dark'] .svc-modal-method-item p,
+.dark .svc-modal-method-item p {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Modal Footer */
+.svc-modal-footer {
+  padding: 20px 32px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  border-top: 1px solid var(--border-color, #E2E8DE);
+}
+
+[data-theme='dark'] .svc-modal-footer,
+.dark .svc-modal-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.svc-modal-cancel-btn {
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--border-color, #E2E8DE);
+  color: var(--text-secondary, #475569);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme='dark'] .svc-modal-cancel-btn,
+.dark .svc-modal-cancel-btn {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.svc-modal-cancel-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary, #0F172A);
+}
+
+[data-theme='dark'] .svc-modal-cancel-btn:hover,
+.dark .svc-modal-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .svc-modal-card {
+    border-radius: 20px;
+    max-height: 92vh;
+  }
+
+  .svc-modal-header {
+    padding: 22px 20px 16px;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .svc-modal-header-info {
+    padding-right: 0;
+  }
+
+  .svc-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .svc-modal-body {
+    padding: 18px 20px;
+    gap: 18px;
+  }
+
+  .svc-modal-method-banner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .svc-modal-footer {
+    padding: 16px 20px 20px;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .svc-modal-cancel-btn,
+  .svc-modal-cta-wrap,
+  .svc-modal-cta-wrap button {
+    width: 100%;
+  }
+}
