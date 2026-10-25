@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import catCircle1 from '@/assets/cat_circle_1.png';
 import catCircle2 from '@/assets/cat_circle_2.png';
 import catCircle3 from '@/assets/cat_circle_3.png';
@@ -29,7 +29,7 @@ const CATEGORIES: CategoryItem[] = [
 
 export const CategoryCirclesRail: React.FC = React.memo(() => {
   return (
-    <section className="exact-circles-section" aria-label="Product Categories">
+    <section className="exact-circles-section" aria-label="Ayurvedic Healthcare Focus Areas">
       <div className="exact-circles-container">
         <motion.div
           className="exact-circles-row"
@@ -40,7 +40,7 @@ export const CategoryCirclesRail: React.FC = React.memo(() => {
         >
           {CATEGORIES.map((cat) => (
             <motion.div key={cat.id} variants={fadeUpVariants}>
-              <Link to={cat.link} className="exact-circle-item">
+              <Link to={cat.link} className="exact-circle-item" title={cat.alt}>
                 <img
                   src={cat.img}
                   alt={cat.alt}

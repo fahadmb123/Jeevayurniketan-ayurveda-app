@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+﻿import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { BookAppointmentButton } from '@/features/appointments';
@@ -59,7 +59,7 @@ export const Navbar: React.FC = React.memo(() => {
                 onClick={() => handleNavAnchor('#about')}
                 className={location.pathname === ROUTES.ABOUT ? 'active-link' : ''}
               >
-                Events & Heritage
+                About Heritage
               </Link>
             </li>
             <li>
@@ -75,10 +75,10 @@ export const Navbar: React.FC = React.memo(() => {
             </li>
             <li>
               <a
-                href="#healing"
+                href="#treatments"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavAnchor('#healing');
+                  handleNavAnchor('#treatments');
                 }}
               >
                 Healing
@@ -185,7 +185,7 @@ export const Navbar: React.FC = React.memo(() => {
               <a href="#about" onClick={(e) => { e.preventDefault(); handleNavAnchor('#about'); }}>
                 Yoga & Meditation
               </a>
-              <a href="#healing" onClick={(e) => { e.preventDefault(); handleNavAnchor('#healing'); }}>
+              <a href="#treatments" onClick={(e) => { e.preventDefault(); handleNavAnchor('#treatments'); }}>
                 Healing Journey
               </a>
               <a href="#services" onClick={(e) => { e.preventDefault(); handleNavAnchor('#services'); }}>

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+﻿import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -161,7 +161,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
   };
 
   return (
-    <section className="doctor-intro-section" aria-label={`${DR_AHALYA_DATA.name} introduction`}>
+    <section id="practitioner" className="doctor-intro-section" aria-label={`${DR_AHALYA_DATA.name} introduction`}>
       <div className="doctor-intro-section__glow" />
       <div className="doctor-intro-section__container">
         {/* Outer media container animated with fade-up */}

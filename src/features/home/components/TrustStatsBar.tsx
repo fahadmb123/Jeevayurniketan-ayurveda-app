@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+﻿import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Award, Users, HeartHandshake, ShieldCheck, Sparkles } from 'lucide-react';
+import { Award, HeartHandshake, ShieldCheck, Sparkles, Stethoscope } from 'lucide-react';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './TrustStatsBar.css';
 
@@ -14,27 +14,27 @@ interface StatItem {
 const STATS: StatItem[] = [
   {
     icon: <Award size={26} className="trust-stat__icon" />,
-    value: '20+ Years',
+    value: 'Classical',
     label: 'Clinical Heritage',
-    sublabel: 'Pioneers in Ayurvedic Psychotherapy',
+    sublabel: 'Tridosha, Agni & Prakriti diagnosis',
   },
   {
-    icon: <Users size={26} className="trust-stat__icon" />,
-    value: '15,000+',
-    label: 'Healed Patients',
-    sublabel: 'Across India & 18+ Countries',
+    icon: <Stethoscope size={26} className="trust-stat__icon" />,
+    value: 'Individual',
+    label: 'Personalized Care',
+    sublabel: 'Tailored diet, herbs & daily routine',
   },
   {
     icon: <HeartHandshake size={26} className="trust-stat__icon" />,
-    value: '98.4%',
+    value: 'Integrative',
     label: 'Relief Rate',
-    sublabel: 'In stress, anxiety & psychosomatic cases',
+    sublabel: 'Mind-body balance & breath regulation',
   },
   {
     icon: <ShieldCheck size={26} className="trust-stat__icon" />,
-    value: '100% Natural',
+    value: 'Authentic',
     label: 'Classical Protocols',
-    sublabel: 'Zero synthetic dependence or side effects',
+    sublabel: 'Grounded in classical Samhita protocols',
   },
 ];
 
@@ -90,7 +90,7 @@ export const TrustStatsBar: React.FC = React.memo(() => {
   );
 
   return (
-    <section ref={sectionRef} className="health-wellness-section" aria-label="Health and Wellness Foundation">
+    <section ref={sectionRef} className="health-wellness-section" aria-label="Clinical Foundation and Holistic Health">
       {/* Intro Heading with smooth scroll-driven leftward movement */}
       <div className="health-wellness-header-wrap">
         <motion.div

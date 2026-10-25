@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { BlogPostCard } from './BlogPostCard';
 import { useBlogPosts } from '../hooks/useBlogPosts';
@@ -20,7 +20,7 @@ export const BlogSection: React.FC = React.memo(() => {
         <motion.h4 className="section-subtitle" variants={fadeUpVariants}>Our Blog</motion.h4>
         <motion.h2 className="section-title" variants={fadeUpVariants}>Insights & Articles</motion.h2>
         <motion.p className="blog-subtitle" variants={fadeUpVariants}>
-          Read about the latest research and thoughts in Ayurvedic Psychotherapy.
+          Explore classical Ayurvedic principles, holistic well-being, and lifestyle wisdom from our clinical physicians.
         </motion.p>
       </motion.div>
 
