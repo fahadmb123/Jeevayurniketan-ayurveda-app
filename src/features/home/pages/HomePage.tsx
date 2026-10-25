@@ -19,10 +19,10 @@ export const HomePage: React.FC = React.memo(() => {
       <HeroSection />
       <CategoryCirclesRail />
       <TrustStatsBar />
-      <AboutSection />
       <DoctorIntroSection />
-      <HealingJourneySection />
       <ServicesSection />
+      <HealingJourneySection />
+      <AboutSection />
       <TeamSection />
       <FAQSection />
       <BlogSection />

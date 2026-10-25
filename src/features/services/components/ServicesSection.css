@@ -1,7 +1,12 @@
 .services-section {
   padding: 100px 5%;
-  background-color: var(--bg-color, #F8FAFC);
+  background-color: var(--bg-color, #FBFBF9);
   position: relative;
+}
+
+[data-theme='dark'] .services-section,
+.dark .services-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 .text-center {

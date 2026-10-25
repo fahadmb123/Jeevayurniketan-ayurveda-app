@@ -1,6 +1,6 @@
 .faq-section {
   padding: 100px 5%;
-  background-color: var(--surface-color, #ffffff);
+  background-color: var(--bg-color, #FBFBF9);
   position: relative;
 }
 

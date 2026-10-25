@@ -4,7 +4,7 @@
 
 .exact-circles-section {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-color, #FBFBF9);
   padding: 0 4% 50px;
   position: relative;
   z-index: 20;
@@ -55,8 +55,9 @@
 }
 
 /* Dark Mode Accommodations */
-[data-theme='dark'] .exact-circles-section {
-  background-color: #14281E;
+[data-theme='dark'] .exact-circles-section,
+.dark .exact-circles-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 [data-theme='dark'] .exact-circle-item {

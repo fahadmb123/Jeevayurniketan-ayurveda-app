@@ -5,7 +5,7 @@
 
 .healing-journey-section {
   padding: 100px 5% 96px;
-  background: #FFFFFF;
+  background-color: var(--bg-color, #FBFBF9);
   position: relative;
   overflow: hidden;
   --fixed-left: clamp(20px, 4.5vw, 60px);
@@ -276,8 +276,9 @@
    Dark Theme Overrides
    ========================================================================== */
 
-[data-theme='dark'] .healing-journey-section {
-  background: #0A1410;
+[data-theme='dark'] .healing-journey-section,
+.dark .healing-journey-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 [data-theme='dark'] .journey-title {
