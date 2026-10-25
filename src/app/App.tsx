@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
+import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from '@/shared/context/ThemeContext';
+import { LoadingScreen, useInitialPageLoad, InitialLoadProvider } from '@/shared/ui/LoadingScreen';
 import { AppRoutes } from './routes';
 
 const lenisOptions = {
@@ -14,14 +16,29 @@ const lenisOptions = {
 };
 
 export const App: React.FC = React.memo(() => {
+  const { isInitialLoading } = useInitialPageLoad({ minDuration: 5000, maxTimeout: 6500 });
+
   return (
     <ReactLenis root options={lenisOptions}>
       <ThemeProvider>
-        <Router>
-          <div className="app">
-            <AppRoutes />
-          </div>
-        </Router>
+        <InitialLoadProvider isInitialLoading={isInitialLoading}>
+          <Router>
+            <div className="app">
+              {/* Initial App Load Overlay - Stays until components, DOM & fonts settle */}
+              <AnimatePresence mode="wait">
+                {isInitialLoading && (
+                  <LoadingScreen
+                    key="initial-app-loader"
+                    fullScreen
+                    message="Loading Jeevayurniketan..."
+                  />
+                )}
+              </AnimatePresence>
+
+              <AppRoutes />
+            </div>
+          </Router>
+        </InitialLoadProvider>
       </ThemeProvider>
     </ReactLenis>
   );

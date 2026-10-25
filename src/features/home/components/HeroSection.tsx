@@ -4,6 +4,7 @@ import type { Variants } from 'framer-motion';
 import heroFlatlayExact from '@/assets/hero_flatlay_exact.png';
 import { Calendar } from 'lucide-react';
 import { BookAppointmentModal } from '@/features/appointments/components/BookAppointmentModal';
+import { useInitialLoading } from '@/shared/ui/LoadingScreen';
 import './HeroSection.css';
 
 const textContainerVariants: Variants = {
@@ -11,8 +12,8 @@ const textContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.08,
+      staggerChildren: 0.15,
+      delayChildren: 0.18,
     },
   },
 };
@@ -23,20 +24,20 @@ const slideFromTopVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.65,
+      duration: 0.8,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
 
 const imageSlideFromRightVariants: Variants = {
-  hidden: { opacity: 0, x: 300 },
+  hidden: { opacity: 0, x: 220 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.5,
-      ease: 'easeOut',
+      duration: 1.3,
+      ease: [0.16, 1, 0.3, 1],
       delay: 0.2,
     },
   },
@@ -44,6 +45,8 @@ const imageSlideFromRightVariants: Variants = {
 
 export const HeroSection: React.FC = React.memo(() => {
   const [isBookingOpen, setIsBookingOpen] = React.useState(false);
+  const { isInitialLoading } = useInitialLoading();
+  const animationState = isInitialLoading ? 'hidden' : 'visible';
 
   return (
     <LazyMotion features={domAnimation}>
@@ -55,8 +58,7 @@ export const HeroSection: React.FC = React.memo(() => {
             <m.div
               className="hero-exact-content"
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              animate={animationState}
               variants={textContainerVariants}
             >
               {/* Welcome Pill */}
@@ -99,8 +101,7 @@ export const HeroSection: React.FC = React.memo(() => {
             <m.div
               className="hero-exact-card"
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              animate={animationState}
               variants={imageSlideFromRightVariants}
             >
               <img

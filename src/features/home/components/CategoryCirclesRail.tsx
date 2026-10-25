@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
+import { useInitialLoading } from '@/shared/ui/LoadingScreen';
 import './CategoryCirclesRail.css';
 
 interface CategoryItem {
@@ -28,6 +29,8 @@ const CATEGORIES: CategoryItem[] = [
 ];
 
 export const CategoryCirclesRail: React.FC = React.memo(() => {
+  const { isInitialLoading } = useInitialLoading();
+
   return (
     <section className="exact-circles-section" aria-label="Ayurvedic Healthcare Focus Areas">
       <div className="exact-circles-container">
@@ -35,7 +38,7 @@ export const CategoryCirclesRail: React.FC = React.memo(() => {
           className="exact-circles-row"
           variants={staggerContainerVariants}
           initial="hidden"
-          whileInView="visible"
+          animate={!isInitialLoading ? 'visible' : 'hidden'}
           viewport={standardViewport}
         >
           {CATEGORIES.map((cat) => (

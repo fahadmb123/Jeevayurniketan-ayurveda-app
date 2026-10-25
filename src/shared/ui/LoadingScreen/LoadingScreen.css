@@ -1,7 +1,8 @@
 /* ==========================================================================
    LoadingScreen Component Styles
-   Full covered, tranquil light green background, logo centered.
-   Clean, simple Amazon/Flipkart-style soft pulse animation (no zooming).
+   Horizontal Split Curtain (Shutter) Reveal
+   Pure white background, clean static logo (zero pulsing/color changing),
+   Smooth horizontal split from the middle (half goes up, half goes down).
    ========================================================================== */
 
 .loading-screen {
@@ -10,15 +11,12 @@
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Tranquil Kerala Ayurveda herbal green background (a little bit darker green) */
-  background-color: #bfe4c9;
   margin: 0;
   padding: 0;
   overflow: hidden;
   user-select: none;
+  pointer-events: all;
+  background: transparent;
 }
 
 .loading-screen--fullscreen {
@@ -28,35 +26,90 @@
   height: 100vh;
 }
 
-/* Central Logo Container */
-.loading-screen__logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+/* Base Shutter: strictly zero borders, shadows, or seams */
+.loading-screen__shutter {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  will-change: transform;
+}
+
+/* 1. White Shutter Mode (Used when website theme is Dark) */
+.loading-screen--shutter-white .loading-screen__shutter,
+[data-theme='dark'] .loading-screen--shutter-white .loading-screen__shutter,
+.dark .loading-screen--shutter-white .loading-screen__shutter {
+  background-color: #FFFFFF;
+}
+
+.loading-screen--shutter-white .loading-screen__logo,
+[data-theme='dark'] .loading-screen--shutter-white .loading-screen__logo,
+.dark .loading-screen--shutter-white .loading-screen__logo {
+  filter: none;
+}
+
+/* 2. Light Green Shutter Mode (Used when website theme is White / Light) */
+.loading-screen--shutter-light-green .loading-screen__shutter,
+[data-theme='light'] .loading-screen--shutter-light-green .loading-screen__shutter {
+  background-color: #bfe4c9;
+}
+
+.loading-screen--shutter-light-green .loading-screen__logo,
+[data-theme='light'] .loading-screen--shutter-light-green .loading-screen__logo {
+  filter: none;
+}
+
+/* Top Horizontal Shutter (Top Half: 0 to 50vh + 1px overlap to prevent subpixel seam) */
+.loading-screen__shutter--top {
+  top: 0;
+  height: calc(50vh + 1px);
+  z-index: 11;
+}
+
+/* Bottom Horizontal Shutter (Bottom Half: 50vh to 100vh) */
+.loading-screen__shutter--bottom {
+  top: 50vh;
+  height: 50vh;
   z-index: 10;
 }
 
-/* Logo with simple, clean Amazon/Flipkart-style pulse (pure opacity, zero zoom) */
+/* Viewport-sized content wrapper inside each shutter.
+   Both are exactly 100vw x 100vh with flex centering, offset so the
+   paper cut occurs at the exact horizontal midpoint of both the screen and the logo. */
+.loading-screen__half-viewport {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Top half viewport: lines up 1:1 with screen top */
+.loading-screen__half-viewport--top {
+  top: 0;
+}
+
+/* Bottom half viewport: shifted by -50vh so its center meets the 50vh split line */
+.loading-screen__half-viewport--bottom {
+  top: -50vh;
+}
+
+/* Clean, static logo - NO light/dark brightness pulsing, NO color changing, NO drop shadow */
 .loading-screen__logo {
-  width: 260px;
+  width: 250px;
   height: auto;
   max-width: 80vw;
   max-height: 80vh;
   object-fit: contain;
-  animation: logoPulse 1.6s ease-in-out infinite;
-  will-change: opacity;
-}
-
-@keyframes logoPulse {
-  0%, 100% {
-    opacity: 0.55;
-    filter: drop-shadow(0 4px 14px rgba(27, 107, 80, 0.08));
-  }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 8px 24px rgba(27, 107, 80, 0.2));
-  }
+  opacity: 1;
+  animation: none; /* Zero pulsing or brightness flickering */
+  filter: none; /* Absolutely no shadow across the cut line */
 }
 
 /* Mobile Responsiveness */
@@ -65,3 +118,4 @@
     width: 200px;
   }
 }
+
