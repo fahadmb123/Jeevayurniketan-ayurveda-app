@@ -3,6 +3,7 @@ export interface TeamMember {
   name: string;
   role: string;
   qualifications: string;
+  qualificationLine2?: string;
   image: string;
   description: string;
 }
