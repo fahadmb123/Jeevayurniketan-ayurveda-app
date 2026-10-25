@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Card } from '@/shared/ui/card';
 import { Button } from '@/shared/ui/button';
 import { CheckCircle2, User, Bell, Shield, Clock } from 'lucide-react';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import type { DoctorProfile } from '../types';
 import './DoctorSettingsPage.css';
 
 export const DoctorSettingsPage: React.FC = React.memo(() => {
+  const { user } = useAuth();
   const [profile, setProfile] = useState<DoctorProfile>({
-    name: 'Dr. Sharma',
-    specialty: 'Ayurvedic Psychotherapy & Smriti Meditation',
-    email: 'dr.sharma@jeevayurniketan.com',
+    name: user?.name || 'Dr. Ahalya T.S.',
+    specialty: 'Ayurvedic Medicine & Satvavajaya Chikitsa',
+    email: user?.email || 'dr.ahalya@jeevayurniketan.com',
     phone: '+91 9544 260 145',
     consultDuration: '45 mins',
     emailAlerts: true,

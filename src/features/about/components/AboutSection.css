@@ -12,12 +12,7 @@
 }
 
 .ayurveda-pure-banner-section::before {
-  content: '';
-  position: absolute;
-  inset: 16% 0 auto;
-  height: 360px;
-  background: radial-gradient(circle at 18% 50%, rgba(201, 141, 59, 0.12), transparent 34%), radial-gradient(circle at 82% 50%, rgba(27, 107, 80, 0.1), transparent 38%);
-  pointer-events: none;
+  display: none;
 }
 
 .pure-banner-outer-wrap {
@@ -260,8 +255,9 @@
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations
    -------------------------------------------------------------------------- */
-[data-theme='dark'] .ayurveda-pure-banner-section {
-  background-color: #0A140F;
+[data-theme='dark'] .ayurveda-pure-banner-section,
+.dark .ayurveda-pure-banner-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 [data-theme='dark'] .pure-banner-card {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
 import type { AyurvedaService } from '../types';
 import { fadeUpVariants } from '@/shared/lib/animations';
 import './ServiceCard.css';
@@ -21,7 +23,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service }) 
       <div className="service-card__icon">{service.icon}</div>
       <h3 className="service-card__title">{service.title}</h3>
       <p className="service-card__desc">{service.description}</p>
-      <button className="service-card__btn">Learn More &rarr;</button>
+      <Link to={ROUTES.SERVICES} className="service-card__btn">
+        Learn More &rarr;
+      </Link>
     </motion.div>
   );
 });

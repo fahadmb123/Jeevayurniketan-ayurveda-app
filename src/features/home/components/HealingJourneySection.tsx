@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Compass, Sparkles } from 'lucide-react';
@@ -75,7 +75,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
             Our <span className="text-primary-green">Treatments</span>
           </motion.h2>
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
-            From classical Ayurvedic psychotherapy to personalized herbal rasayanas, discover our specialized treatments designed for complete mind-body equilibrium.
+            Classical Ayurvedic treatments including Abhyanga, Shirodhara, and customized herbal formulations prescribed following individual clinical assessment.
           </motion.p>
 
           <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
@@ -151,7 +151,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
             Our <span className="text-primary-green">Yoga</span>
           </motion.h2>
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
-            Cultivate somatic vitality, respiratory harmony, and inner peace through doctor-guided restorative asanas, classical pranayama, and mindful meditation.
+            Restorative Asanas, Pranayama breath regulation, and meditation practices tailored to your constitution to support physical vitality and mental equilibrium.
           </motion.p>
 
           <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
@@ -216,8 +216,8 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           viewport={standardViewport}
         >
           <div className="journey-cta-content">
-            <h3>Begin Your Personal Healing Journey Today</h3>
-            <p>Schedule your confidential consultation with our Ayurvedic medical specialists.</p>
+            <h3>Begin Your Personalized Healthcare Journey</h3>
+            <p>Schedule an individual consultation with Dr. Ahalya T.S. for classical Ayurvedic healthcare and lifestyle guidance.</p>
           </div>
           <BookAppointmentButton
             label="Schedule Consultation Now"

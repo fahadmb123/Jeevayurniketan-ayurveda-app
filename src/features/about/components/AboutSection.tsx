@@ -17,7 +17,7 @@ const PRINCIPLES: PrincipleItem[] = [
     id: 'sourcing',
     title: 'Ingredients & Classical Sourcing',
     description:
-      'Our medicinal herbs and formulations are sourced directly from Kerala valleys where plants thrive in chemical-free soil and pristine climatic conditions. Harvested according to seasonal biological rhythms (Ritu Charya) to ensure superior vital potency.',
+      'Our medicinal herbs and formulations are sourced directly from Kerala valleys where plants thrive in chemical-free soil and pristine climatic conditions. Harvested according to seasonal biological rhythms (Ritucharya) to ensure superior vital potency.',
   },
   {
     id: 'purity',
@@ -27,15 +27,15 @@ const PRINCIPLES: PrincipleItem[] = [
   },
   {
     id: 'synergy',
-    title: 'Synergy of Caraka Samhita & Psychotherapy',
+    title: 'Synergy of Classical Samhitas & Mind-Body Care',
     description:
-      'We combine classical Ayurvedic internal medicine with Satvavajaya Chikitsa (mind-restraining psychotherapy) and guided Smriti Meditation—dissolving the deep emotional and trauma roots of psychosomatic illness without synthetic psychiatric dependency.',
+      'We combine classical Ayurvedic internal medicine with Satvavajaya Chikitsa (mind-restraining psychotherapy) and guided Smriti Meditation — dissolving the deep emotional and trauma roots of psychosomatic illness without synthetic psychiatric dependency.',
   },
   {
     id: 'guidance',
     title: 'Masterfully Crafted Under Expert Guidance',
     description:
-      'Pioneered by Dr. K.V. Dilipkumar with over 20 years of clinical heritage, bringing authentic Caraka Samhita principles and compassionate holistic healing to thousands of patients across India and 18+ countries.',
+      'Guided by Dr. Ahalya T.S., bringing authentic Caraka Samhita principles and compassionate holistic healing to patients seeking constitutional balance and long-term wellness.',
   },
 ];
 
@@ -55,7 +55,7 @@ const QUICK_PILLS: QuickPill[] = [
   },
   {
     id: 'mind',
-    label: 'Psychotherapy',
+    label: 'Mind Wellness',
     sub: 'Satvavajaya',
     icon: <Brain size={20} />,
   },
@@ -68,13 +68,13 @@ const QUICK_PILLS: QuickPill[] = [
   {
     id: 'vaidya',
     label: 'Doctor Consult',
-    sub: 'Pulse Diagnosis',
+    sub: 'Prakriti Assessment',
     icon: <UserCheck size={20} />,
   },
   {
     id: 'heritage',
-    label: '20+ Yrs Legacy',
-    sub: 'Govt. Approved',
+    label: 'Classical Legacy',
+    sub: 'Samhita Protocols',
     icon: <ShieldCheck size={20} />,
   },
 ];
@@ -176,7 +176,7 @@ export const AboutSection: React.FC = React.memo(() => {
 
             <m.div className="pure-banner-action-row" variants={principleVariants}>
               <Link to={ROUTES.ABOUT} className="pure-banner-cta-link">
-                <span>Explore Our Full Clinical Heritage & Research</span>
+                <span>Explore Our Full Clinical Heritage & Philosophy</span>
                 <ArrowRight size={17} />
               </Link>
             </m.div>

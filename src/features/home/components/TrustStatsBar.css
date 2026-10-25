@@ -13,6 +13,12 @@
   align-items: flex-start;
   width: 100%;
   overflow-x: clip;
+  background-color: var(--bg-color, #FBFBF9);
+}
+
+[data-theme='dark'] .health-wellness-section,
+.dark .health-wellness-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 /* Header matching the reference screenshot directly under torn edge */

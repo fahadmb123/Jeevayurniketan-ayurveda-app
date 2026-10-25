@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight, Sparkles, Brain, Leaf, HeartPulse } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/shared/config/routes';
 
 interface SearchItem {
   title: string;
@@ -16,36 +15,36 @@ const SEARCH_DATABASE: SearchItem[] = [
   {
     title: 'Smriti Meditation (Subconscious Recall)',
     category: 'Yoga & Meditation',
-    description: 'Pioneered by Dr. K.V. Dilipkumar for deep trauma and anxiety resolution.',
-    link: '#about',
+    description: 'Classical therapeutic meditation for deep emotional equilibrium and stress resolution.',
+    link: '#yoga',
     icon: <Sparkles size={16} className="text-amber-500" />,
   },
   {
     title: 'Ayurvedic Psychotherapy (Satvavajaya Chikitsa)',
-    category: 'Healing',
-    description: 'Classical mind-body alignment without synthetic tranquilizers.',
-    link: '#about',
+    category: 'Clinical Therapy',
+    description: 'Classical mind-body alignment and emotional counseling without synthetic tranquilizers.',
+    link: '#practitioner',
     icon: <Brain size={16} className="text-emerald-600" />,
   },
   {
     title: 'Panchakarma Detox & Shirodhara',
-    category: 'Spa & Wellness',
-    description: 'Purifying bio-cleansing therapies and warm herbal oil therapy.',
-    link: '#services',
+    category: 'Treatments',
+    description: 'Purifying bio-cleansing therapies, warm herbal oil therapy, and classical Abhyanga.',
+    link: '#treatments',
     icon: <Leaf size={16} className="text-teal-600" />,
   },
   {
-    title: 'Physiotherapy & Musculoskeletal Rejuvenation',
-    category: 'Physiotherapy',
-    description: 'Integrative physical rehabilitation with medicinal Kizhi & Kati Vasti.',
+    title: 'Musculoskeletal Care & Rejuvenation',
+    category: 'Clinical Care',
+    description: 'Integrative Ayurvedic management for joint comfort, spine stiffness, and mobility.',
     link: '#services',
     icon: <HeartPulse size={16} className="text-rose-500" />,
   },
   {
-    title: 'Consult Clinical Doctors',
-    category: 'Doctor Portal',
-    description: 'One-on-one personalized pulse diagnosis & confidential consultation.',
-    link: ROUTES.DOCTOR,
+    title: 'Consult Dr. Ahalya T.S.',
+    category: 'Consultation',
+    description: 'One-on-one personalized constitutional assessment, Prakriti analysis & confidential consultation.',
+    link: '#practitioner',
     icon: <Brain size={16} className="text-emerald-700" />,
   },
 ];

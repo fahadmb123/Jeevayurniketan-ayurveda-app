@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { ServiceCard } from './ServiceCard';
 import { useTreatments } from '../hooks/useTreatments';
@@ -18,13 +18,13 @@ export const ServicesSection: React.FC = React.memo(() => {
         viewport={standardViewport}
       >
         <motion.h4 className="section-subtitle" variants={fadeUpVariants}>
-          Our Services
+          Healthcare Categories
         </motion.h4>
         <motion.h2 className="section-title" variants={fadeUpVariants}>
-          Healing Through Ancient Wisdom
+          Ayurvedic Clinical Services
         </motion.h2>
         <motion.p className="services-subtitle" variants={fadeUpVariants}>
-          We offer specialized programs to restore harmony to your mind, body, and soul.
+          Individualized healthcare consultations, classical herbal formulations, and personalized lifestyle guidance across key medical domains.
         </motion.p>
       </motion.div>
 

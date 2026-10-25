@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { ROUTES } from '@/shared/config/routes';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
@@ -19,7 +20,7 @@ export const Footer: React.FC = React.memo(() => {
         <motion.div className="footer-col" variants={fadeUpVariants}>
           <BrandLogo linkTo={ROUTES.HOME} size="md" className="footer-brand-logo" />
           <p className="footer-desc">
-            Reach out to society through direct and online clinics to address various illnesses where a psychological component has a definite role in the aetiology and pathogenesis of the illness.
+            Providing authentic Ayurvedic healthcare, personalized consultations with Dr. Ahalya T.S., individualized dietary and lifestyle guidance, and classical healing protocols.
           </p>
         </motion.div>
         
@@ -27,8 +28,8 @@ export const Footer: React.FC = React.memo(() => {
           <h3>Quick Links</h3>
           <ul className="footer-links">
             <li><Link to={ROUTES.HOME}>Home</Link></li>
-            <li><Link to={ROUTES.ABOUT}>About Us</Link></li>
-            <li><Link to={ROUTES.SERVICES}>Services</Link></li>
+            <li><Link to={ROUTES.ABOUT}>About Heritage</Link></li>
+            <li><Link to={ROUTES.SERVICES}>Healthcare Services</Link></li>
             <li><Link to={ROUTES.TEAM}>Our Team</Link></li>
             <li><Link to={ROUTES.BLOG}>Blog</Link></li>
             <li><Link to={ROUTES.GALLERY}>Gallery</Link></li>
@@ -40,15 +41,15 @@ export const Footer: React.FC = React.memo(() => {
           <h3>Contact Us</h3>
           <ul className="footer-contact">
             <li>
-              <span className="contact-icon">📍</span>
+              <span className="contact-icon"><MapPin size={18} /></span>
               <p>Near Ayurveda College, Kottakkal, Malappuram, Pin: 676501, Kerala</p>
             </li>
             <li>
-              <span className="contact-icon">📞</span>
+              <span className="contact-icon"><Phone size={18} /></span>
               <a href="tel:+919544260145">+91 9544 260 145</a>
             </li>
             <li>
-              <span className="contact-icon">✉️</span>
+              <span className="contact-icon"><Mail size={18} /></span>
               <a href="mailto:info@jeevayurniketan.com">info@jeevayurniketan.com</a>
             </li>
           </ul>
@@ -61,7 +62,7 @@ export const Footer: React.FC = React.memo(() => {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/918590807138?text=Hello,%20I%20am%20interested%20in%20your%20Ayurveda%20and%20Yoga%20treatments.%20Could%20you%20please%20share%20more%20details"
+        href="https://wa.me/918590807138?text=Hello,%20I%20am%20interested%20in%20an%20Ayurveda%20consultation%20with%20Dr.%20Ahalya%20T.S.%20Could%20you%20please%20share%20more%20details"
         className="floating-whatsapp"
         target="_blank"
         rel="noopener noreferrer"

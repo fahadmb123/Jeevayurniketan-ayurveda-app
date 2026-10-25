@@ -2,9 +2,8 @@ import React from 'react';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import heroFlatlayExact from '@/assets/hero_flatlay_exact.png';
-import { ShoppingBag } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '@/shared/config/routes';
+import { Calendar } from 'lucide-react';
+import { BookAppointmentModal } from '@/features/appointments/components/BookAppointmentModal';
 import './HeroSection.css';
 
 const textContainerVariants: Variants = {
@@ -44,9 +43,11 @@ const imageSlideFromRightVariants: Variants = {
 };
 
 export const HeroSection: React.FC = React.memo(() => {
+  const [isBookingOpen, setIsBookingOpen] = React.useState(false);
+
   return (
     <LazyMotion features={domAnimation}>
-      <section id="home" className="hero-exact-section" aria-label="Ayuva Ayurvedic Sanctuary">
+      <section id="home" className="hero-exact-section" aria-label="Jeevayurniketan Ayurvedic Healthcare">
         <div className="hero-exact-layout">
           
           {/* Left Column: Ivory Background with Editorial Text */}
@@ -60,7 +61,7 @@ export const HeroSection: React.FC = React.memo(() => {
             >
               {/* Welcome Pill */}
               <m.div className="hero-exact-pill" variants={slideFromTopVariants}>
-                <span>WELCOME TO AYUVA</span>
+                <span>JEEVAYURNIKETAN AYURVEDA</span>
               </m.div>
 
               {/* Headline */}
@@ -71,19 +72,23 @@ export const HeroSection: React.FC = React.memo(() => {
 
               {/* Subtitle */}
               <m.p className="hero-exact-desc" variants={slideFromTopVariants}>
-                Discover herbal products and mindful treatments designed to support a calmer, more balanced lifestyle.
+                Consult with Dr. Ahalya T.S. for individualized Ayurvedic healthcare, restorative yoga therapy, and root-cause healing tailored to your unique constitution.
               </m.p>
 
               {/* Buttons Row */}
               <m.div className="hero-exact-actions" variants={slideFromTopVariants}>
-                <Link to={ROUTES.SERVICES} className="hero-exact-btn-shop">
-                  <ShoppingBag size={16} className="btn-icon" />
-                  <span>SHOP PRODUCT</span>
-                </Link>
+                <button
+                  type="button"
+                  className="hero-exact-btn-shop"
+                  onClick={() => setIsBookingOpen(true)}
+                >
+                  <Calendar size={16} className="btn-icon" />
+                  <span>BOOK CONSULTATION</span>
+                </button>
 
-                <a href="#about" className="hero-exact-btn-explore">
-                  <span>EXPLORE WELLNESS</span>
-                  <span className="btn-arrow">→</span>
+                <a href="#practitioner" className="hero-exact-btn-explore">
+                  <span>EXPLORE PRACTICE</span>
+                  <span className="btn-arrow">&rarr;</span>
                 </a>
               </m.div>
             </m.div>
@@ -100,7 +105,7 @@ export const HeroSection: React.FC = React.memo(() => {
             >
               <img
                 src={heroFlatlayExact}
-                alt="Ayurvedic herbal wellness flat lay: essential oils, dried lavender, rosebuds, and fresh mint on deep forest green linen"
+                alt="Classical Ayurvedic herbal formulations, medicinal oils, and restorative botanicals"
                 className="hero-exact-card-img"
                 loading="eager"
                 decoding="async"
@@ -109,6 +114,12 @@ export const HeroSection: React.FC = React.memo(() => {
           </div>
 
         </div>
+
+        {/* Modal Dialog */}
+        <BookAppointmentModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+        />
 
         {/* Exact Organic Wave Divider Transition into Category Circles */}
         <div className="hero-exact-wave" aria-hidden="true">

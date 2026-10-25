@@ -5,6 +5,7 @@ import { DoctorStats } from '../components/DoctorStats';
 import { RecentPatientsWidget, usePatients } from '@/features/patients';
 import { TodayScheduleWidget, useAppointments } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import {
   DoctorSearchFilterStrip,
   type FilterSelectConfig,
@@ -29,8 +30,11 @@ type DashboardTabFilter = 'all' | 'schedule' | 'patients' | 'in-treatment' | 'co
 
 export const DoctorDashboardPage: React.FC = React.memo(() => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { patients } = usePatients();
   const { appointments } = useAppointments();
+
+  const doctorGreetingName = user?.name || 'Dr. Ahalya T.S.';
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState<DashboardTabFilter>('all');
@@ -178,7 +182,7 @@ export const DoctorDashboardPage: React.FC = React.memo(() => {
           animate={{ opacity: 1, x: 0 }}
           className="doctor-greeting-title"
         >
-          Good Morning, <span className="doctor-greeting-highlight">Dr. Sharma</span>
+          Good Morning, <span className="doctor-greeting-highlight">{doctorGreetingName}</span>
         </motion.h1>
         <p className="doctor-greeting-sub">
           Here is what's happening with your clinic today.

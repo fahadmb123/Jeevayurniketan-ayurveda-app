@@ -5,7 +5,7 @@
 .hero-exact-section {
   position: relative;
   width: 100%;
-  background-color: #F8F6F0;
+  background-color: var(--bg-color, #FBFBF9);
   overflow: hidden;
   padding-top: 76px;
   display: flex;
@@ -31,7 +31,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 40px 5% 50px 8%;
-  background-color: #F8F6F0;
+  background-color: var(--bg-color, #FBFBF9);
 }
 
 /* Botanical Pencil Sketch in bottom left corner */
@@ -212,7 +212,7 @@
   z-index: 10;
   pointer-events: none;
   line-height: 0;
-  color: #ffffff;
+  color: var(--bg-color, #FBFBF9);
 }
 
 .hero-wave-svg {
@@ -228,12 +228,14 @@
 /* --------------------------------------------------------------------------
    Dark Mode Accommodations
    -------------------------------------------------------------------------- */
-[data-theme='dark'] .hero-exact-section {
-  background-color: #0E1A14;
+[data-theme='dark'] .hero-exact-section,
+.dark .hero-exact-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
-[data-theme='dark'] .hero-exact-left {
-  background-color: #0E1A14;
+[data-theme='dark'] .hero-exact-left,
+.dark .hero-exact-left {
+  background-color: var(--bg-color, #0A140F);
 }
 
 [data-theme='dark'] .hero-exact-title {
@@ -258,14 +260,16 @@
   color: #EDF7F2;
 }
 
-[data-theme='dark'] .hero-exact-wave {
-  color: #14281E;
+[data-theme='dark'] .hero-exact-wave,
+.dark .hero-exact-wave {
+  color: var(--bg-color, #0A140F);
 }
 
-[data-theme='dark'] .hero-wave-svg path {
-  fill: #14281E;
-  stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 1.5;
+[data-theme='dark'] .hero-wave-svg path,
+.dark .hero-wave-svg path {
+  fill: var(--bg-color, #0A140F);
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 1;
 }
 
 /* --------------------------------------------------------------------------

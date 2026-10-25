@@ -2,57 +2,137 @@ import type { AyurvedaService, FaqItem } from '../types';
 
 export const MOCK_SERVICES: AyurvedaService[] = [
   {
-    id: 'psychotherapy',
-    title: 'Psychotherapy',
-    description: 'Expert counseling tailored to resolve deep-seated psychological conflicts and bring mental clarity.',
-    icon: '🧠',
-    benefits: ['Emotional resilience', 'Stress reduction', 'Trauma resolution'],
-    duration: '60 mins',
-  },
-  {
-    id: 'smriti-meditation',
-    title: 'Smriti Meditation',
-    description: 'A guided interactive therapeutic meditation used to identify the root cause of psychosomatic illness.',
-    icon: '🧘',
-    benefits: ['Subconscious unburdening', 'Somatic relief', 'Mental rejuvenation'],
-    duration: '45 mins',
-  },
-  {
-    id: 'stress-management',
-    title: 'Stress Management',
-    description: 'Comprehensive programs combining ancient wisdom and modern techniques to relieve stress.',
+    id: 'metabolic-health',
+    title: 'Metabolic Health',
+    description: 'Ayurvedic evaluation and management of Prameha, lipid imbalances, and metabolic sluggishness through Agni balancing.',
     icon: '🌿',
-    benefits: ['Cortisol balance', 'Deep relaxation', 'Sleep quality enhancement'],
-    duration: '7-14 days',
+    benefits: ['Insulin sensitivity support', 'Lipid balance & circulation', 'Agni metabolic rejuvenation'],
+    duration: 'Personalized Plan',
   },
   {
-    id: 'ayurveda-healing',
-    title: 'Ayurveda Healing',
-    description: 'Personalized treatments based on traditional Ayurvedic principles for full body wellness.',
-    icon: '💊',
-    benefits: ['Dosha harmonization', 'Detoxification', 'Immunity revitalization'],
-    duration: 'Custom program',
+    id: 'womens-health',
+    title: "Women's Health",
+    description: 'Holistic care for menstrual regularities, hormonal harmony, PCOD/PCOS, and cyclical vitality through herbs and lifestyle.',
+    icon: '🌸',
+    benefits: ['Hormonal balance', 'Menstrual rhythm support', 'Holistic female vitality'],
+    duration: 'Ongoing Care',
+  },
+  {
+    id: 'musculoskeletal-care',
+    title: 'Musculoskeletal Care',
+    description: 'Classical management of joint mobility, spine health, cervical & lumbar stiffness, and degenerative discomfort.',
+    icon: '🦴',
+    benefits: ['Joint flexibility & ease', 'Spinal alignment support', 'Herbal anti-inflammatory relief'],
+    duration: 'Custom Protocol',
+  },
+  {
+    id: 'mental-wellbeing',
+    title: 'Mental Well-being',
+    description: 'Integrating classical Satvavajaya concepts, mindful counseling, and stress mitigation for emotional equilibrium.',
+    icon: '🧠',
+    benefits: ['Stress & burnout recovery', 'Emotional resilience', 'Nervous system relaxation'],
+    duration: '45-60 mins',
+  },
+  {
+    id: 'digestive-health',
+    title: 'Digestive Health (Agni)',
+    description: 'Restoring gut digestive fire (Jatharagni) to relieve bloating, IBS tendencies, acidity, and metabolic toxin buildup.',
+    icon: '🔥',
+    benefits: ['Agni digestive optimization', 'Ama toxin elimination', 'Balanced nutrient assimilation'],
+    duration: 'Structured Care',
+  },
+  {
+    id: 'skin-hair-health',
+    title: 'Skin & Hair Health',
+    description: 'Root-cause management for chronic skin flare-ups, eczema, psoriasis tendencies, acne, and scalp nourishment.',
+    icon: '✨',
+    benefits: ['Blood purification (Rakta Sodhana)', 'Natural skin glow', 'Hair follicle revitalization'],
+    duration: 'Custom Program',
+  },
+  {
+    id: 'neurological-health',
+    title: 'Neurological Health',
+    description: 'Supportive classical care for nerve vitality, chronic headaches, sleep disturbances, and sensory rejuvenation.',
+    icon: '⚡',
+    benefits: ['Nerve tone strengthening', 'Restful sleep regulation', 'Pranic vitality restoration'],
+    duration: 'Holistic Plan',
+  },
+  {
+    id: 'pediatric-health',
+    title: 'Pediatric Health (Kaumarbhritya)',
+    description: 'Gentle Ayurvedic guidance for childhood immunity, balanced appetite, cognitive focus, and wholesome physical growth.',
+    icon: '🌱',
+    benefits: ['Natural pediatric immunity', 'Digestive ease for children', 'Wholesome growth support'],
+    duration: 'Consultation',
+  },
+  {
+    id: 'respiratory-health',
+    title: 'Respiratory Health',
+    description: 'Strengthening Pranavaha srotas to relieve recurrent allergies, chronic sinusitis, cough, and bronchial sensitivity.',
+    icon: '🌬️',
+    benefits: ['Clear airway flow', 'Pranayama lung expansion', 'Allergic sensitivity reduction'],
+    duration: 'Targeted Plan',
+  },
+  {
+    id: 'liver-health',
+    title: 'Liver & Metabolism',
+    description: 'Yakrit support and hepatic metabolic purification using classical bitter and cooling herbs to restore metabolism.',
+    icon: '🍃',
+    benefits: ['Hepatic detoxification', 'Metabolic clearance', 'Bile balance regulation'],
+    duration: 'Comprehensive',
+  },
+  {
+    id: 'renal-urinary-care',
+    title: 'Renal & Urinary Health',
+    description: 'Soothing urinary tracts (Mutravaha srotas), optimizing fluid balance, and promoting healthy renal function naturally.',
+    icon: '💧',
+    benefits: ['Fluid regulation support', 'Urinary tract comfort', 'Natural tissue cleansing'],
+    duration: 'Supportive Care',
+  },
+  {
+    id: 'geriatric-health',
+    title: 'Geriatric Health (Rasayana)',
+    description: 'Promoting healthy aging, preserving tissue strength (Dhatus), bone density, and memory in elder years.',
+    icon: '🪵',
+    benefits: ['Longevity & vitality support', 'Mobility & joint ease', 'Cognitive sharpness'],
+    duration: 'Ongoing Rejuvenation',
+  },
+  {
+    id: 'preventive-healthcare',
+    title: 'Preventive Healthcare (Swastha)',
+    description: 'Constitution analysis (Prakriti), Dinacharya daily routines, and Ritucharya seasonal adjustments to maintain health.',
+    icon: '☀️',
+    benefits: ['Prakriti self-awareness', 'Circadian lifestyle rhythm', 'Sustainable disease prevention'],
+    duration: 'Foundational Care',
   },
 ];
 
 export const MOCK_FAQS: FaqItem[] = [
   {
-    q: 'What is Smriti Meditation?',
-    a: 'Smriti meditation is an interactive Ayurvedic psychotherapeutic procedure where the patient is guided into deep relaxation to re-experience and resolve repressed emotional traumas that manifest as physical and psychological illnesses.',
-  },
-  {
-    q: 'How many sessions are typically required?',
-    a: 'Most clinical programs consist of 3 to 7 structured sessions depending on the nature and chronicity of the condition, complemented with follow-up lifestyle and diet protocols.',
+    q: 'How does Dr. Ahalya personalize an Ayurvedic consultation?',
+    a: 'Each consultation starts with an in-depth Prakriti assessment to understand your unique constitutional baseline, followed by evaluating current Dosha imbalances, digestive fire (Agni), tissue health (Dhatu), and daily lifestyle habits before creating your care plan.',
   },
   {
     q: 'Can online consultations be conducted for remote patients?',
-    a: 'Yes, we provide specialized video telemedicine consultations and remote guided counseling sessions for patients across India and internationally.',
+    a: 'Yes, we provide secure video telemedicine consultations for patients across India and internationally, followed by personalized lifestyle guidance, diet protocols, and medicine delivery where indicated.',
+  },
+  {
+    q: 'Is Ayurvedic healthcare safe alongside conventional medical treatments?',
+    a: 'Yes. Our clinical care emphasizes safety, non-interference, and medical transparency. We review your current medications and health history carefully, and provide medical evaluation or referral whenever clinically indicated.',
+  },
+  {
+    q: 'What role do diet and yoga play in the treatment process?',
+    a: 'Diet (Ahara) and lifestyle/yoga (Vihara) are foundational in Ayurveda. Dr. Ahalya prescribes customized dietary guidelines and restorative yoga practices alongside herbal preparations to support lasting, root-cause recovery.',
+  },
+  {
+    q: 'How are follow-up appointments scheduled and monitored?',
+    a: 'Progress is monitored through structured follow-ups to evaluate symptom relief, digestive improvements, and tolerance to therapies, making dynamic adjustments as your health naturally restores.',
   },
 ];
 
 export const treatmentService = {
   async getServices(): Promise<AyurvedaService[]> {
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 150));
     return MOCK_SERVICES;
   },
 

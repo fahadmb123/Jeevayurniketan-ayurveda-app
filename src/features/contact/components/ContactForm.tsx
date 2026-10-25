@@ -27,7 +27,7 @@ export const ContactForm: React.FC = React.memo(() => {
     <div className="contact-form-wrapper">
       <Card className="contact-form-card">
         <h3>Send a Message</h3>
-        <p>Have an inquiry about treatments, Smriti meditation training, or admissions?</p>
+        <p>Have an inquiry about consultations, classical treatments, or yoga sessions?</p>
 
         {success ? (
           <div className="contact-form__success">
