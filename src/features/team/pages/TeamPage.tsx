@@ -34,12 +34,12 @@ export const TeamPage: React.FC = React.memo(() => {
             transition={{ delay: 0.2 }}
             className="page-hero__desc"
           >
-            Led by Dr. Ahalya T.S. (Chief Ayurvedic Physician) and Devadarsan T.S. (Yoga &amp; Meditation Teacher), integrating classical Ayurveda, constitutional care, and mindful disciplines.
+            Led by Dr. Ahalya T.S. (Ayurveda &amp; Wellness Consultant) and Devadarsan T.S. (Yoga &amp; Meditation Teacher), integrating classical Ayurveda, constitutional care, and mindful disciplines.
           </motion.p>
         </div>
       </header>
 
-      <TeamSection />
+      <TeamSection hideHeader={true} />
 
       <DrAhalyaSpotlightSection />
 

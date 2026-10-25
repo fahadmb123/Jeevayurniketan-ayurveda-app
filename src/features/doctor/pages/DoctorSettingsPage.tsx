@@ -10,7 +10,7 @@ export const DoctorSettingsPage: React.FC = React.memo(() => {
   const { user } = useAuth();
   const [profile, setProfile] = useState<DoctorProfile>({
     name: user?.name || 'Dr. Ahalya T.S.',
-    specialty: 'Ayurvedic Medicine & Satvavajaya Chikitsa',
+    specialty: 'Ayurveda & Wellness Consultant',
     email: user?.email || 'dr.ahalya@jeevayurniketan.com',
     phone: '+91 9544 260 145',
     consultDuration: '45 mins',

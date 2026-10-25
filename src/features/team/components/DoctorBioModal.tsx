@@ -60,6 +60,9 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
               <h2 className="doc-header-name">{member.name}</h2>
               <p className="doc-header-role">{member.role}</p>
               <p className="doc-header-degrees">{member.qualifications}</p>
+              {member.qualificationLine2 && (
+                <p className="doc-header-degrees" style={{ marginTop: '2px' }}>{member.qualificationLine2}</p>
+              )}
             </div>
           </div>
 

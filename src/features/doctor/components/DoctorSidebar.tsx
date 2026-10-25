@@ -126,7 +126,7 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
           <div className="doctor-sidebar__profile-avatar">{doctorInitial}</div>
           <div className="doctor-sidebar__profile-info">
             <span className="doctor-sidebar__profile-name">{doctorName}</span>
-            <span className="doctor-sidebar__profile-role">Chief Physician</span>
+            <span className="doctor-sidebar__profile-role">Ayurveda &amp; Wellness Consultant</span>
           </div>
         </div>
       </div>

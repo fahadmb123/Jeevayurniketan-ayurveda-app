@@ -21,7 +21,7 @@ interface DoctorStyleConfig {
 const DOCTOR_STYLES: Record<string, DoctorStyleConfig> = {
   'dr-ahalya': {
     bgColor: '#124C38', // Deep Ayurvedic forest emerald
-    category: 'CHIEF AYURVEDIC PHYSICIAN',
+    category: 'AYURVEDA & WELLNESS CONSULTANT',
     icon: <Sparkles size={24} color="#FFFFFF" strokeWidth={2.2} />,
   },
   'devadarsan': {
@@ -67,7 +67,10 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ membe
           
           {/* Subtle qualifications floating tag */}
           <div className="team-card__floating-chip">
-            <span>{member.qualifications}</span>
+            <span>
+              {member.qualifications}
+              {member.qualificationLine2 ? ` • ${member.qualificationLine2}` : ''}
+            </span>
           </div>
         </div>
 

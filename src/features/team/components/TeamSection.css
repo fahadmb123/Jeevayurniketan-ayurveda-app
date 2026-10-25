@@ -6,6 +6,11 @@
   transition: background-color 0.3s ease;
 }
 
+.team-section--compact {
+  padding-top: 20px;
+  padding-bottom: 70px;
+}
+
 [data-theme='dark'] .team-section,
 .dark .team-section {
   background-color: var(--bg-color, #0A140F);

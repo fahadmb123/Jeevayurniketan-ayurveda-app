@@ -20,15 +20,15 @@ export interface TrainingItem {
 
 export const DR_AHALYA_DATA = {
   name: 'Dr. Ahalya T.S.',
-  role: 'Ayurvedic Physician | Yoga & Holistic Wellness Practitioner',
-  degrees: 'BAMS, FCCAP (Kottakkal), Smriti Meditation, YIC (S-VYASA)',
+  role: 'Ayurveda & Wellness Consultant',
+  degrees: 'BAMS, YIC, CSAMT',
   image: 'https://res.cloudinary.com/liccrmic/image/upload/v1792910336/athalya-cmprsd.jpg',
   tagline: 'Integrating the wisdom of Ayurveda with the science of holistic well-being.',
   shortIntroTitle: 'Rediscover balance. Embrace holistic well-being.',
   shortIntro:
     'Rooted in the timeless wisdom of Ayurveda and enriched by yoga and meditation, my approach focuses on personalized wellness, mindful living, and the harmonious connection between body and mind. Supporting your journey towards a healthier, more balanced life.',
   aboutBio: [
-    'I am Dr. Ahalya T.S., a qualified Ayurvedic physician with a deep passion for holistic healing and the timeless wisdom of traditional Indian medicine. With a Bachelor of Ayurvedic Medicine and Surgery (BAMS) degree and clinical experience in Ayurvedic healthcare, I strive to support individuals in achieving better health through a balanced, personalized, and compassionate approach.',
+    'I am Dr. Ahalya T.S., an Ayurveda & Wellness Consultant with a Bachelor of Ayurvedic Medicine and Surgery (BAMS) degree, certified in Yoga (YIC) and Smriti Meditation (CSAMT), striving to support individuals in achieving better health through a balanced, personalized, and compassionate approach.',
     'My practice is rooted in the fundamental principles of Ayurveda, including Tridoshas, Panchamahabhutas, and Agni. I believe that well-being extends beyond physical health and encompasses mental, emotional, and lifestyle factors. My approach emphasizes Ayurvedic healthcare, individualized dietary guidance, preventive care, yoga, meditation, and mind-body wellness.',
   ],
   philosophyOfCare:
@@ -64,34 +64,14 @@ export const DR_AHALYA_DATA = {
       badge: 'Core Clinical Degree',
     },
     {
-      degree: 'FCCAP (Counselling & Ayurvedic Psychotherapy)',
-      institution: 'Kottakkal Ayurveda School of Excellence (KASE)',
-      badge: 'Psychotherapy',
-    },
-    {
-      degree: 'Basic Course in Smriti Ayurveda Meditation Therapy',
-      institution: 'Classical Smriti Meditation Center',
-      badge: 'Mind Therapy',
-    },
-    {
       degree: 'YIC (Yoga Instructor Course)',
       institution: 'S-VYASA Yoga University, Bengaluru',
       badge: 'Yoga Science',
     },
     {
-      degree: 'Short-Term Course in Mudra Therapy',
-      institution: 'S-VYASA Yoga University, Bengaluru',
-      badge: 'Pranic Regulation',
-    },
-    {
-      degree: 'Mind Imagery Relaxation Technique (MIRT)',
-      institution: 'S-VYASA Yoga University, Bengaluru',
-      badge: 'Deep Relaxation',
-    },
-    {
-      degree: 'Ayurvedic Cosmetic Therapies & Medicine-Making',
-      institution: 'Traditional Ayurvedic Heritage Centers',
-      badge: 'Herbal Formulations',
+      degree: 'CSAMT (Course in Smriti Ayurveda Meditation Therapy)',
+      institution: 'Classical Smriti Meditation Center',
+      badge: 'Mind Therapy',
     },
   ] as TrainingItem[],
   treatmentSteps: [
