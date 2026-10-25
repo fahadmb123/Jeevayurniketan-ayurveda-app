@@ -1,8 +1,14 @@
 .team-section {
   padding: 100px 5%;
-  background-color: var(--bg-sanctuary, #FAF7F2);
+  background-color: var(--bg-color, #FBFBF9);
   position: relative;
   overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme='dark'] .team-section,
+.dark .team-section {
+  background-color: var(--bg-color, #0A140F);
 }
 
 .team-header {
@@ -11,10 +17,15 @@
 }
 
 .team-subtitle {
-  color: var(--text-secondary, #475569);
+  color: var(--text-secondary, #485E53);
   font-size: 1.05rem;
   margin-top: 16px;
   line-height: 1.6;
+}
+
+[data-theme='dark'] .team-subtitle,
+.dark .team-subtitle {
+  color: var(--text-secondary, #A6C2B4);
 }
 
 /* 2 Big Cards side-by-side matching the reference image */
@@ -41,5 +52,6 @@
     max-width: 580px;
   }
 }
+
 
 

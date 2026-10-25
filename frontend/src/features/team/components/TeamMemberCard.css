@@ -180,17 +180,27 @@
 }
 
 /* Dark Mode Adaptations */
-[data-theme='dark'] .team-card__name {
-  color: #F8FAFC;
+[data-theme='dark'] .team-card__name,
+.dark .team-card__name {
+  color: #F2F7F4;
 }
 
-[data-theme='dark'] .team-card:hover .team-card__name {
+[data-theme='dark'] .team-card:hover .team-card__name,
+.dark .team-card:hover .team-card__name {
   color: #41BA91;
 }
 
-[data-theme='dark'] .team-card__image-box {
-  background-color: #1A2E26;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+[data-theme='dark'] .team-card__image-box,
+.dark .team-card__image-box {
+  background-color: #11221B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] .team-card:hover .team-card__image-box,
+.dark .team-card:hover .team-card__image-box {
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.7);
+  border-color: rgba(65, 186, 145, 0.3);
 }
 
 /* Responsive adjustments */
