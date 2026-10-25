@@ -5,9 +5,13 @@ import { useTeam } from '../hooks/useTeam';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
 import './TeamSection.css';
 
-export const TeamSection: React.FC = React.memo(() => {
+export interface TeamSectionProps {
+  limit?: number;
+}
+
+export const TeamSection: React.FC<TeamSectionProps> = React.memo(({ limit = 2 }) => {
   const { members } = useTeam();
-  const expertMembers = members;
+  const expertMembers = limit ? members.slice(0, limit) : members;
 
   return (
     <section id="team" className="team-section">
