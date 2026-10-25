@@ -196,7 +196,7 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
               >
                 <img
                   ref={primaryImgRef}
-                  src={DR_AHALYA_DATA.image}
+                  src={"https://res.cloudinary.com/liccrmic/image/upload/v1792910336/athalya-cmprsd.jpg"}
                   alt={`${DR_AHALYA_DATA.name} — ${DR_AHALYA_DATA.role}`}
                   className="doctor-intro-section__portrait doctor-intro-section__portrait--primary"
                   loading="eager"

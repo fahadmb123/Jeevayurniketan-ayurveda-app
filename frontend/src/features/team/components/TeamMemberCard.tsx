@@ -22,22 +22,22 @@ const DOCTOR_STYLES: Record<string, DoctorStyleConfig> = {
   'dr-dilipkumar': {
     bgColor: '#3B1C54', // Royal purple / indigo like card 1
     category: 'CHIEF PATRON & PSYCHOTHERAPY',
-    icon: <Award size={20} color="#FFFFFF" strokeWidth={2.2} />,
+    icon: <Award size={24} color="#FFFFFF" strokeWidth={2.2} />,
   },
   'dr-ahalya': {
     bgColor: '#124C38', // Deep Ayurvedic forest emerald
     category: 'HOLISTIC WELLNESS & YOGA',
-    icon: <Sparkles size={20} color="#FFFFFF" strokeWidth={2.2} />,
+    icon: <Sparkles size={24} color="#FFFFFF" strokeWidth={2.2} />,
   },
   'dr-safeer': {
     bgColor: '#0F2C59', // Deep navy cobalt like card 2
     category: 'SMRITI MEDITATION & YOGA',
-    icon: <Compass size={20} color="#FFFFFF" strokeWidth={2.2} />,
+    icon: <Compass size={24} color="#FFFFFF" strokeWidth={2.2} />,
   },
   'dr-shamna': {
     bgColor: '#4A1228', // Dark plum/berry like card 3
     category: 'EMOTIONAL HEALING & THERAPY',
-    icon: <Leaf size={20} color="#FFFFFF" strokeWidth={2.2} />,
+    icon: <Leaf size={24} color="#FFFFFF" strokeWidth={2.2} />,
   },
 };
 
@@ -100,7 +100,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = React.memo(({ membe
 
           {/* Right Vibrant Orange Arrow Button */}
           <div className="team-card__action-btn" aria-hidden="true">
-            <ArrowUpRight size={20} strokeWidth={2.6} />
+            <ArrowUpRight size={24} strokeWidth={2.6} />
           </div>
         </div>
       </motion.article>

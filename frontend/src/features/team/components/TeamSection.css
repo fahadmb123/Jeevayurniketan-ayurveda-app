@@ -6,8 +6,8 @@
 }
 
 .team-header {
-  max-width: 720px;
-  margin: 0 auto 60px;
+  max-width: 760px;
+  margin: 0 auto 64px;
 }
 
 .team-subtitle {
@@ -17,23 +17,16 @@
   line-height: 1.6;
 }
 
+/* 2 Big Cards side-by-side matching the reference image */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  max-width: 1360px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 56px 40px;
+  max-width: 1260px;
   margin: 0 auto;
 }
 
-@media (max-width: 1200px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 800px;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .team-section {
     padding: 64px 20px;
   }
@@ -44,16 +37,9 @@
 
   .team-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
-    max-width: 420px;
+    gap: 40px;
+    max-width: 580px;
   }
 }
 
-@media (min-width: 540px) and (max-width: 768px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 680px;
-  }
-}
 
