@@ -23,9 +23,9 @@ export const TeamSection: React.FC<TeamSectionProps> = React.memo(({ limit = 2 }
         viewport={standardViewport}
       >
         <motion.h4 className="section-subtitle" variants={fadeUpVariants}>Our Team</motion.h4>
-        <motion.h2 className="section-title" variants={fadeUpVariants}>Meet Our Experts</motion.h2>
+        <motion.h2 className="section-title" variants={fadeUpVariants}>Meet Our Practitioners</motion.h2>
         <motion.p className="team-subtitle" variants={fadeUpVariants}>
-          Dedicated professionals bringing you the best of Ayurveda and modern therapy.
+          Dedicated practitioners bringing you the time-tested wisdom of Ayurveda and classical yoga disciplines.
         </motion.p>
       </motion.div>
 

@@ -1,10 +1,9 @@
-﻿import React from 'react';
+import React from 'react';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import heroFlatlayExact from '@/assets/hero_flatlay_exact.png';
 import { Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '@/shared/config/routes';
+import { BookAppointmentModal } from '@/features/appointments/components/BookAppointmentModal';
 import './HeroSection.css';
 
 const textContainerVariants: Variants = {
@@ -44,6 +43,8 @@ const imageSlideFromRightVariants: Variants = {
 };
 
 export const HeroSection: React.FC = React.memo(() => {
+  const [isBookingOpen, setIsBookingOpen] = React.useState(false);
+
   return (
     <LazyMotion features={domAnimation}>
       <section id="home" className="hero-exact-section" aria-label="Jeevayurniketan Ayurvedic Healthcare">
@@ -76,12 +77,16 @@ export const HeroSection: React.FC = React.memo(() => {
 
               {/* Buttons Row */}
               <m.div className="hero-exact-actions" variants={slideFromTopVariants}>
-                <Link to={ROUTES.SERVICES} className="hero-exact-btn-shop">
+                <button
+                  type="button"
+                  className="hero-exact-btn-shop"
+                  onClick={() => setIsBookingOpen(true)}
+                >
                   <Calendar size={16} className="btn-icon" />
                   <span>BOOK CONSULTATION</span>
-                </Link>
+                </button>
 
-                <a href="#about" className="hero-exact-btn-explore">
+                <a href="#practitioner" className="hero-exact-btn-explore">
                   <span>EXPLORE PRACTICE</span>
                   <span className="btn-arrow">&rarr;</span>
                 </a>
@@ -109,6 +114,12 @@ export const HeroSection: React.FC = React.memo(() => {
           </div>
 
         </div>
+
+        {/* Modal Dialog */}
+        <BookAppointmentModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+        />
 
         {/* Exact Organic Wave Divider Transition into Category Circles */}
         <div className="hero-exact-wave" aria-hidden="true">

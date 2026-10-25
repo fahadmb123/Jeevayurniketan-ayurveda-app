@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import cupImg from '@/assets/cup.jpg';
 import { Leaf, Brain, Sparkles, UserCheck, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -29,13 +29,13 @@ const PRINCIPLES: PrincipleItem[] = [
     id: 'synergy',
     title: 'Synergy of Classical Samhitas & Mind-Body Care',
     description:
-      'We combine classical Ayurvedic internal medicine with Satvavajaya Chikitsa (mind-restraining psychotherapy) and guided Smriti Meditationâ€”dissolving the deep emotional and trauma roots of psychosomatic illness without synthetic psychiatric dependency.',
+      'We combine classical Ayurvedic internal medicine with Satvavajaya Chikitsa (mind-restraining psychotherapy) and guided Smriti Meditation — dissolving the deep emotional and trauma roots of psychosomatic illness without synthetic psychiatric dependency.',
   },
   {
     id: 'guidance',
     title: 'Masterfully Crafted Under Expert Guidance',
     description:
-      'Pioneered by Dr. K.V. Dilipkumar with over 20 years of clinical heritage, bringing authentic Caraka Samhita principles and compassionate holistic healing to thousands of patients across India and 18+ countries.',
+      'Guided by Dr. Ahalya T.S., bringing authentic Caraka Samhita principles and compassionate holistic healing to patients seeking constitutional balance and long-term wellness.',
   },
 ];
 

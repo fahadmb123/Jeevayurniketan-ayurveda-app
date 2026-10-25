@@ -14,6 +14,8 @@ interface DoctorBioModalProps {
 export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpen, onClose, member }) => {
   if (!isOpen) return null;
 
+  const isYogaMember = member.id === 'devadarsan';
+
   return (
     <AnimatePresence>
       <div className="doc-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
@@ -30,7 +32,7 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
             type="button"
             className="doc-modal-close"
             onClick={onClose}
-            aria-label="Close Doctor Profile"
+            aria-label="Close Profile"
           >
             <X size={20} />
           </button>
@@ -43,13 +45,17 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
                 alt={member.name}
                 className="doc-header-portrait"
               />
-              <span className="doc-header-active-badge" title="Available for Consultations"></span>
+              <span className="doc-header-active-badge" title="Available for Sessions"></span>
             </div>
 
             <div className="doc-header-info">
               <div className="doc-header-pill">
                 <Sparkles size={13} />
-                <span>Ayurveda • Clinical Psychotherapy • Healing</span>
+                <span>
+                  {isYogaMember
+                    ? 'Classical Yoga • Pranayama • Meditation'
+                    : 'Ayurveda • Clinical Psychotherapy • Healing'}
+                </span>
               </div>
               <h2 className="doc-header-name">{member.name}</h2>
               <p className="doc-header-role">{member.role}</p>
@@ -60,12 +66,12 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
           {/* Modal Body */}
           <div className="doc-modal-body">
             <div className="doc-text-block">
-              <h3 className="doc-section-heading">Clinical Overview & Philosophy</h3>
+              <h3 className="doc-section-heading">Practice Overview & Philosophy</h3>
               <p className="doc-para">{member.description}</p>
               <p className="doc-para">
-                Bringing classical Caraka Samhita methodologies and Satvavajaya Chikitsa (mind-restraining psychotherapy) 
-                into comprehensive treatment plans. Dedicated to helping individuals address root causes of psychosomatic 
-                distress, emotional trauma, and chronic lifestyle conditions without synthetic dependency.
+                {isYogaMember
+                  ? 'Guiding students and seekers in classical yoga disciplines, sukshma vyayama (joint-freeing movements), pranayama breath regulation, and restorative meditation. Focused on cultivating body awareness, mental calmness, and daily movement routines that complement Ayurvedic constitutional wellness.'
+                  : 'Bringing classical Caraka Samhita methodologies and Satvavajaya Chikitsa (mind-restraining psychotherapy) into comprehensive treatment plans. Dedicated to helping individuals address root causes of psychosomatic distress, emotional trauma, and chronic lifestyle conditions without synthetic dependency.'}
               </p>
             </div>
 
@@ -74,8 +80,12 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
                 <div className="doc-feature-icon-wrap">
                   <Award size={18} />
                 </div>
-                <h4>Clinical Heritage</h4>
-                <p>Decades of experience in classical Ayurvedic internal medicine, pulse diagnosis, and psychosomatic care.</p>
+                <h4>{isYogaMember ? 'Yogic Foundation' : 'Clinical Heritage'}</h4>
+                <p>
+                  {isYogaMember
+                    ? 'Grounded in traditional Yogic scriptures, pranayama breath science, and therapeutic alignment.'
+                    : 'Decades of experience in classical Ayurvedic internal medicine, pulse diagnosis, and psychosomatic care.'}
+                </p>
               </div>
 
               <div className="doc-feature-card">
@@ -83,18 +93,30 @@ export const DoctorBioModal: React.FC<DoctorBioModalProps> = React.memo(({ isOpe
                   <Sparkles size={18} />
                 </div>
                 <h4>Integrative Approach</h4>
-                <p>Personalized internal herbal protocols harmonized with guided meditation and classical yoga therapies.</p>
+                <p>
+                  {isYogaMember
+                    ? 'Mindful postures and guided meditation structured in synergy with Ayurvedic health principles.'
+                    : 'Personalized internal herbal protocols harmonized with guided meditation and classical yoga therapies.'}
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Modal Footer with Direct Consultation Booking */}
+          {/* Modal Footer with Action */}
           <div className="doc-modal-footer">
             <div className="doc-footer-prompt">
               <Calendar size={18} className="text-primary-green" />
-              <span>Schedule a comprehensive 1-on-1 consultation with {member.name}</span>
+              <span>
+                {isYogaMember
+                  ? `Inquire about yoga & meditation sessions with ${member.name}`
+                  : `Schedule a comprehensive 1-on-1 consultation with ${member.name}`}
+              </span>
             </div>
-            <BookAppointmentButton size="md" variant="primary" label="Book Consultation" />
+            <BookAppointmentButton
+              size="md"
+              variant="primary"
+              label={isYogaMember ? 'Book Yoga Session' : 'Book Consultation'}
+            />
           </div>
         </motion.div>
       </div>

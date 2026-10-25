@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import catCircle1 from '@/assets/cat_circle_1.png';
 import catCircle2 from '@/assets/cat_circle_2.png';
 import catCircle3 from '@/assets/cat_circle_3.png';
@@ -19,12 +19,12 @@ interface CategoryItem {
 }
 
 const CATEGORIES: CategoryItem[] = [
-  { id: 'supplements', img: catCircle1, alt: 'Herbal capsules and raw turmeric', link: ROUTES.SERVICES },
-  { id: 'teas', img: catCircle2, alt: 'Herbal tea in glass cup with chamomile', link: ROUTES.SERVICES },
-  { id: 'oils', img: catCircle3, alt: 'Herbal body oils and moisturizing cream', link: ROUTES.SERVICES },
-  { id: 'soaps', img: catCircle4, alt: 'Handmade botanical soaps and citrus slices', link: ROUTES.SERVICES },
-  { id: 'amla', img: catCircle5, alt: 'Amla gooseberry vitality oil', link: ROUTES.SERVICES },
-  { id: 'roots', img: catCircle6, alt: 'Ashwagandha roots and raw botanical dravya', link: ROUTES.SERVICES },
+  { id: 'haridra', img: catCircle1, alt: 'Classical Haridra and raw botanical preparations', link: ROUTES.SERVICES },
+  { id: 'kashaya', img: catCircle2, alt: 'Therapeutic herbal infusions and digestive kwathas', link: ROUTES.SERVICES },
+  { id: 'taila', img: catCircle3, alt: 'Medicated classical thailams and external oils', link: ROUTES.SERVICES },
+  { id: 'lepa', img: catCircle4, alt: 'Natural therapeutic lepas and cleansing botanicals', link: ROUTES.SERVICES },
+  { id: 'amalaki', img: catCircle5, alt: 'Fresh Amalaki rasayana and restorative herbs', link: ROUTES.SERVICES },
+  { id: 'ashwagandha', img: catCircle6, alt: 'Ashwagandha roots and authentic medicinal dravya', link: ROUTES.SERVICES },
 ];
 
 export const CategoryCirclesRail: React.FC = React.memo(() => {

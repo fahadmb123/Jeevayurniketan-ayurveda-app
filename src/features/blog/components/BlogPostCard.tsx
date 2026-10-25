@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
 import type { BlogPost } from '../types';
 import { fadeUpVariants } from '@/shared/lib/animations';
 import './BlogPostCard.css';
@@ -30,7 +32,9 @@ export const BlogPostCard: React.FC<BlogPostCardProps> = React.memo(({ post }) =
         </div>
         <h3 className="blog-card__title">{post.title}</h3>
         <p className="blog-card__excerpt">{post.excerpt}</p>
-        <button className="blog-card__btn">Read Article &rarr;</button>
+        <Link to={ROUTES.BLOG} className="blog-card__btn">
+          Read Article &rarr;
+        </Link>
       </div>
     </motion.article>
   );

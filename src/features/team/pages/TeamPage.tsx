@@ -26,7 +26,7 @@ export const TeamPage: React.FC = React.memo(() => {
             transition={{ delay: 0.1 }}
             className="page-hero__title"
           >
-            Our Physicians & Counselors
+            Our Practitioners & Teachers
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export const TeamPage: React.FC = React.memo(() => {
             transition={{ delay: 0.2 }}
             className="page-hero__desc"
           >
-            Led by pioneers in Ayurvedic psychotherapy with decades of clinical experience in psychiatric care, counseling, and integrative medicine.
+            Led by Dr. Ahalya T.S. (Chief Ayurvedic Physician) and Devadarsan T.S. (Yoga &amp; Meditation Teacher), integrating classical Ayurveda, constitutional care, and mindful disciplines.
           </motion.p>
         </div>
       </header>
@@ -53,12 +53,12 @@ export const TeamPage: React.FC = React.memo(() => {
           <div className="advisory-grid">
             <Card className="advisory-card">
               <h3>Authentic Lineage</h3>
-              <p>Rooted in the renowned classical traditions of Kottakkal, Kerala, backed by evidence-informed research.</p>
+              <p>Rooted in the renowned classical traditions of Kerala Ayurveda, backed by time-tested Samhita methodology.</p>
             </Card>
 
             <Card className="advisory-card">
               <h3>Certified Practitioners</h3>
-              <p>All sessions are supervised by qualified MD (Ayurveda) doctors, yoga therapists, and licensed counselors.</p>
+              <p>All consultations and sessions are conducted by qualified Ayurvedic physicians and certified yoga instructors.</p>
             </Card>
 
             <Card className="advisory-card">

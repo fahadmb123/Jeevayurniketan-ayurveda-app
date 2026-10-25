@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-react';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
@@ -49,7 +49,7 @@ const FAQS: FAQItem[] = [
   {
     id: 'conditions-addressed',
     question: 'What health conditions can be evaluated and supported through consultation?',
-    answer: 'We provide consultations for metabolic health (Prameha, lipid imbalances), digestive disorders (IBS, acidity, bloating), musculoskeletal conditions (joint pain, spine stiffness), womenâ€™s health (hormonal harmony, menstrual rhythms), stress management, respiratory allergies, and general preventive healthcare (Swasthavritta).',
+    answer: 'We provide consultations for metabolic health (Prameha, lipid imbalances), digestive disorders (IBS, acidity, bloating), musculoskeletal conditions (joint pain, spine stiffness), women’s health (hormonal harmony, menstrual rhythms), stress management, respiratory allergies, and general preventive healthcare (Swasthavritta).',
     category: 'Conditions',
   },
   {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGallery, type GalleryFilterTab } from '../hooks/useGallery';
 import { GalleryLightboxModal } from '../components/GalleryLightboxModal';
 import { ROUTES } from '@/shared/config/routes';
+import { Navbar, Footer } from '@/shared/layout';
 import './GalleryPage.css';
 
 export const GalleryPage: React.FC = () => {
@@ -25,6 +26,8 @@ export const GalleryPage: React.FC = () => {
 
   return (
     <div className="gallery-page">
+      <Navbar />
+
       {/* Hero Section */}
       <section className="gallery-page__hero">
         <div className="gallery-page__hero-content">
@@ -152,7 +155,7 @@ export const GalleryPage: React.FC = () => {
               Ready to Experience Personal Healing?
             </h2>
             <p className="gallery-page__cta-desc">
-              Schedule a personalized consultation with our chief physicians or reserve your spot in our daily morning yoga sessions.
+              Schedule a personalized consultation with Dr. Ahalya T.S. or reserve your spot in our yoga &amp; meditation sessions.
             </p>
             <div className="gallery-page__cta-actions">
               <Link to={ROUTES.CONTACT} className="gallery-page__cta-btn gallery-page__cta-btn--primary">
@@ -173,6 +176,8 @@ export const GalleryPage: React.FC = () => {
         onClose={() => setActiveLightboxItem(null)}
         canManage={false}
       />
+
+      <Footer />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { useRequests } from '@/features/requests';
 import type { DoctorNavItem } from '../types';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import { BrandLogo } from '@/shared/ui/BrandLogo';
 import feviconSvg from '@/assets/fevicon.svg';
 import './DoctorSidebar.css';
@@ -38,6 +39,9 @@ export const useDoctorSidebar = () => {
 
 export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen, onToggle }) => {
   const location = useLocation();
+  const { user } = useAuth();
+  const doctorName = user?.name || 'Dr. Ahalya T.S.';
+  const doctorInitial = doctorName.replace(/^Dr\.\s*/i, '').charAt(0) || 'A';
   const { pendingCount } = useRequests();
 
   const navItems = useMemo<DoctorNavItem[]>(
@@ -119,10 +123,10 @@ export const DoctorSidebar: React.FC<DoctorSidebarProps> = React.memo(({ isOpen,
 
       <div className="doctor-sidebar__footer">
         <div className="doctor-sidebar__profile">
-          <div className="doctor-sidebar__profile-avatar">S</div>
+          <div className="doctor-sidebar__profile-avatar">{doctorInitial}</div>
           <div className="doctor-sidebar__profile-info">
-            <span className="doctor-sidebar__profile-name">Dr. Sharma</span>
-            <span className="doctor-sidebar__profile-role">Specialist</span>
+            <span className="doctor-sidebar__profile-name">{doctorName}</span>
+            <span className="doctor-sidebar__profile-role">Chief Physician</span>
           </div>
         </div>
       </div>

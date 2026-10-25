@@ -13,6 +13,7 @@ import { useYogaSchedule } from '../hooks/useYogaSchedule';
 import { YogaClassCard } from '../components/YogaClassCard';
 import { YogaClassModal } from '../components/YogaClassModal';
 import { YogaFilterBar } from '../components/YogaFilterBar';
+import { Navbar, Footer } from '@/shared/layout';
 import './YogaSchedulePage.css';
 
 export const YogaSchedulePage: React.FC = React.memo(() => {
@@ -40,8 +41,10 @@ export const YogaSchedulePage: React.FC = React.memo(() => {
   } = useYogaSchedule();
 
   return (
-    <main className="yoga-page">
-      <div className="yoga-container">
+    <div className="yoga-page-shell">
+      <Navbar />
+      <main className="yoga-page">
+        <div className="yoga-container">
         {/* Page Hero Header */}
         <section className="yoga-hero">
           <div className="yoga-hero__badge">
@@ -198,6 +201,8 @@ export const YogaSchedulePage: React.FC = React.memo(() => {
         )}
       </div>
     </main>
+    <Footer />
+  </div>
   );
 });
 

@@ -12,7 +12,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=80',
     description: 'Traditional 12-step sun salutation flow welcoming the morning prana in our courtyard.',
     createdAt: '2026-10-10',
-    author: 'Dr. Akhil Varma',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -22,7 +22,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80',
     description: 'Deep meditative stillness focusing on breath awareness and nervous system calmitude.',
     createdAt: '2026-10-12',
-    author: 'Yogacharya Meera',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -32,7 +32,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=1200&q=80',
     description: 'Root grounding and spine alignment within our natural teakwood yoga shala.',
     createdAt: '2026-10-14',
-    author: 'Dr. Akhil Varma',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'portrait',
   },
   {
@@ -42,7 +42,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80',
     description: 'Gentle mindful movement suited for stress relief and musculoskeletal recovery.',
     createdAt: '2026-10-15',
-    author: 'Yogacharya Meera',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -52,7 +52,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=1200&q=80',
     description: 'Nadi Shodhana and Kapalabhati practices harmonizing vital bio-energies (Vata & Pitta).',
     createdAt: '2026-10-17',
-    author: 'Dr. Akhil Varma',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
 
@@ -64,7 +64,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80',
     description: 'Continuous rhythmic stream of warm herbal oil over the forehead chakra to relieve anxiety and insomnia.',
     createdAt: '2026-10-08',
-    author: 'Dr. Radhika Sen',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -74,7 +74,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=80',
     description: 'Therapeutic warm medicated oil massage along energy meridians to invigorate cellular vitality.',
     createdAt: '2026-10-11',
-    author: 'Dr. Akhil Varma',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -84,7 +84,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80',
     description: 'Hand-ground Ayurvedic roots, Ashwagandha, and therapeutic botanical formulations.',
     createdAt: '2026-10-13',
-    author: 'Dr. Radhika Sen',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -94,7 +94,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
     description: 'Detoxifying therapeutic steam bath infused with aromatic medicinal leaves and cedar.',
     createdAt: '2026-10-16',
-    author: 'Dr. Akhil Varma',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
   {
@@ -104,7 +104,7 @@ export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=80',
     description: 'Warm Kizhi herbal bolus application to relieve joint inflammation and muscle stiffness.',
     createdAt: '2026-10-18',
-    author: 'Dr. Radhika Sen',
+    author: 'Jeevayurniketan Ayurveda',
     aspectRatio: 'landscape',
   },
 ];

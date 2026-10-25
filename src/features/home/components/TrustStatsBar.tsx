@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Award, HeartHandshake, ShieldCheck, Sparkles, Stethoscope } from 'lucide-react';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
@@ -15,7 +15,7 @@ const STATS: StatItem[] = [
   {
     icon: <Award size={26} className="trust-stat__icon" />,
     value: 'Classical',
-    label: 'Clinical Heritage',
+    label: 'Diagnostic Lineage',
     sublabel: 'Tridosha, Agni & Prakriti diagnosis',
   },
   {
@@ -27,14 +27,14 @@ const STATS: StatItem[] = [
   {
     icon: <HeartHandshake size={26} className="trust-stat__icon" />,
     value: 'Integrative',
-    label: 'Relief Rate',
-    sublabel: 'Mind-body balance & breath regulation',
+    label: 'Mind-Body Balance',
+    sublabel: 'Emotional harmony & breath regulation',
   },
   {
     icon: <ShieldCheck size={26} className="trust-stat__icon" />,
     value: 'Authentic',
     label: 'Classical Protocols',
-    sublabel: 'Grounded in classical Samhita protocols',
+    sublabel: 'Grounded in authentic Samhita traditions',
   },
 ];
 
@@ -105,7 +105,7 @@ export const TrustStatsBar: React.FC = React.memo(() => {
           className="health-wellness-title"
           style={{ x: titleX, opacity: headerOpacity }}
         >
-          Health and fitness
+          Holistic Health & Constitutional Balance
         </motion.h2>
 
         <motion.p

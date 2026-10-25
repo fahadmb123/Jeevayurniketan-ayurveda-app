@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, HeartPulse, Leaf, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -251,9 +251,12 @@ export const DoctorIntroSection: React.FC = React.memo(() => {
             <span>Meet your practitioner</span>
           </motion.div>
           <motion.h2 className="doctor-intro-section__title" variants={fadeUpVariants}>
-            Care that sees the person,<br />not just the symptoms.
+            {DR_AHALYA_DATA.name}
           </motion.h2>
           <motion.p className="doctor-intro-section__role" variants={fadeUpVariants}>{DR_AHALYA_DATA.role}</motion.p>
+          <motion.p className="doctor-intro-section__tagline" variants={fadeUpVariants} style={{ margin: '10px 0 0', fontStyle: 'italic', color: 'var(--text-secondary)' }}>
+            Care that sees the person, not just the symptoms.
+          </motion.p>
           <motion.p className="doctor-intro-section__summary" variants={fadeUpVariants}>{DR_AHALYA_DATA.shortIntro}</motion.p>
 
           <motion.div className="doctor-intro-section__principles" variants={fadeUpVariants}>

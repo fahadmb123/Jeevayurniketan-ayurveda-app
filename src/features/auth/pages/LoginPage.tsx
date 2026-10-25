@@ -63,7 +63,7 @@ export const LoginPage: React.FC = React.memo(() => {
               </p>
               <div className="auth-quote-author">
                 <span className="author-name">Jeevayurniketan Ayurveda</span>
-                <span className="author-meta">Pioneered by Dr. K.V. Dilipkumar & Dr. Ahalya T.S.</span>
+                <span className="author-meta">Clinical Practice of Dr. Ahalya T.S.</span>
               </div>
             </div>
 

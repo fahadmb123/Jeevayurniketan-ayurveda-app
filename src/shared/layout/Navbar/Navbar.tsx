@@ -1,5 +1,5 @@
-﻿import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/shared/config/routes';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ThemeToggle } from '@/shared/ui/ThemeToggle';
@@ -13,6 +13,7 @@ export const Navbar: React.FC = React.memo(() => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let ticking = false;
@@ -39,8 +40,10 @@ export const Navbar: React.FC = React.memo(() => {
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      navigate(`${ROUTES.HOME}${targetId}`);
     }
-  }, [location.pathname]);
+  }, [location.pathname, navigate]);
 
   return (
     <>
@@ -51,27 +54,15 @@ export const Navbar: React.FC = React.memo(() => {
             <BrandLogo linkTo={ROUTES.HOME} showDivider={false} size="md" />
           </div>
 
-          {/* Centered Desktop Menu Links matching the reference */}
+          {/* Centered Desktop Menu Links */}
           <ul className="navbar-links">
             <li>
               <Link
                 to={ROUTES.ABOUT}
-                onClick={() => handleNavAnchor('#about')}
                 className={location.pathname === ROUTES.ABOUT ? 'active-link' : ''}
               >
                 About Heritage
               </Link>
-            </li>
-            <li>
-              <a
-                href="#about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavAnchor('#about');
-                }}
-              >
-                Yoga & Meditation
-              </a>
             </li>
             <li>
               <a
@@ -81,7 +72,7 @@ export const Navbar: React.FC = React.memo(() => {
                   handleNavAnchor('#treatments');
                 }}
               >
-                Healing
+                Treatments
               </a>
             </li>
             <li>
@@ -92,18 +83,29 @@ export const Navbar: React.FC = React.memo(() => {
                   handleNavAnchor('#services');
                 }}
               >
-                Physiotherapy
+                Services
               </a>
             </li>
             <li>
               <a
-                href="#services"
+                href="#yoga"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavAnchor('#services');
+                  handleNavAnchor('#yoga');
                 }}
               >
-                Spa & Rejuvenation
+                Yoga &amp; Meditation
+              </a>
+            </li>
+            <li>
+              <a
+                href="#team"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavAnchor('#team');
+                }}
+              >
+                Team
               </a>
             </li>
             <li>
@@ -182,19 +184,19 @@ export const Navbar: React.FC = React.memo(() => {
 
             <div className="mobile-menu-links">
               <Link to={ROUTES.HOME} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-              <a href="#about" onClick={(e) => { e.preventDefault(); handleNavAnchor('#about'); }}>
-                Yoga & Meditation
-              </a>
+              <Link to={ROUTES.ABOUT} onClick={() => setIsMobileMenuOpen(false)}>About Heritage</Link>
               <a href="#treatments" onClick={(e) => { e.preventDefault(); handleNavAnchor('#treatments'); }}>
-                Healing Journey
+                Treatments
               </a>
               <a href="#services" onClick={(e) => { e.preventDefault(); handleNavAnchor('#services'); }}>
-                Physiotherapy & Panchakarma
+                Services
               </a>
-              <a href="#services" onClick={(e) => { e.preventDefault(); handleNavAnchor('#services'); }}>
-                Spa & Herbal Care
+              <a href="#yoga" onClick={(e) => { e.preventDefault(); handleNavAnchor('#yoga'); }}>
+                Yoga &amp; Meditation
               </a>
-              <Link to={ROUTES.ABOUT} onClick={() => setIsMobileMenuOpen(false)}>About Our Heritage</Link>
+              <a href="#team" onClick={(e) => { e.preventDefault(); handleNavAnchor('#team'); }}>
+                Our Team
+              </a>
               <Link to={ROUTES.GALLERY} onClick={() => setIsMobileMenuOpen(false)}>Photo Gallery</Link>
               <Link to={ROUTES.LOGIN} onClick={() => setIsMobileMenuOpen(false)}>Sign In / Login</Link>
               <Link to={ROUTES.DOCTOR} onClick={() => setIsMobileMenuOpen(false)}>Doctor Portal</Link>
