@@ -1,5 +1,3 @@
-import drAhalyaImg from '@/assets/dr_ahalya.jpg';
-
 export interface TreatmentStep {
   step: number;
   title: string;
@@ -24,7 +22,7 @@ export const DR_AHALYA_DATA = {
   name: 'Dr. Ahalya T.S.',
   role: 'Ayurvedic Physician | Yoga & Holistic Wellness Practitioner',
   degrees: 'BAMS, FCCAP (Kottakkal), Smriti Meditation, YIC (S-VYASA)',
-  image: drAhalyaImg,
+  image: 'https://res.cloudinary.com/liccrmic/image/upload/v1792910336/athalya-cmprsd.jpg',
   tagline: 'Integrating the wisdom of Ayurveda with the science of holistic well-being.',
   shortIntroTitle: 'Rediscover balance. Embrace holistic well-being.',
   shortIntro:

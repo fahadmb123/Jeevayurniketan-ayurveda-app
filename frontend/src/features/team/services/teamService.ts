@@ -1,5 +1,4 @@
 import type { TeamMember } from '../types';
-import drAhalyaImg from '@/assets/dr_ahalya.jpg';
 
 export const MOCK_TEAM_MEMBERS: TeamMember[] = [
   {
@@ -7,7 +6,7 @@ export const MOCK_TEAM_MEMBERS: TeamMember[] = [
     name: 'Dr. K.V. Dilipkumar',
     role: 'Emeritus Professor & Chief Patron',
     qualifications: 'MD (Ayu), Pioneer in Ayurvedic Psychotherapy',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=800&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/liccrmic/image/upload/v1792913029/Devadersan_T.S.jpg',
     description: 'Focusing on Ayurvedic psychotherapy for over two decades. Founder of Clinical Research Institute of Yoga and Ayurveda.',
   },
   {
@@ -15,7 +14,7 @@ export const MOCK_TEAM_MEMBERS: TeamMember[] = [
     name: 'Dr. Ahalya T.S.',
     role: 'Ayurvedic Physician | Yoga & Holistic Wellness',
     qualifications: 'BAMS (Alva’s), FCCAP (Kottakkal), YIC (S-VYASA)',
-    image: drAhalyaImg,
+    image: 'https://res.cloudinary.com/liccrmic/image/upload/v1792910336/athalya-cmprsd.jpg',
     description: 'Rooted in timeless Ayurveda and enriched by yoga and meditation. Supporting your journey towards sustainable, personalized health and mind-body balance.',
   },
   {
