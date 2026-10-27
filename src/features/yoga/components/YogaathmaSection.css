@@ -1,0 +1,502 @@
+/* Jeevayurniketan | Yogaathma Section Styles */
+
+.yogaathma-section {
+  position: relative;
+  padding: clamp(60px, 8vw, 100px) 24px;
+  background: linear-gradient(180deg, #FAFCF9 0%, #F4F8F4 50%, #FAFBF8 100%);
+  overflow: hidden;
+}
+
+[data-theme='dark'] .yogaathma-section,
+.dark .yogaathma-section {
+  background: linear-gradient(180deg, #0D1914 0%, #11221B 50%, #0E1C16 100%);
+}
+
+.yogaathma-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 72px);
+}
+
+/* Header */
+.yogaathma-header {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.yogaathma-badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.yogaathma-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px;
+  background: rgba(201, 141, 59, 0.12);
+  border: 1px solid rgba(201, 141, 59, 0.35);
+  border-radius: 9999px;
+  color: var(--accent-gold, #C98D3B);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.yogaathma-badge-icon {
+  color: var(--accent-gold, #C98D3B);
+}
+
+.yogaathma-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  line-height: 1.18;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.015em;
+}
+
+[data-theme='dark'] .yogaathma-title,
+.dark .yogaathma-title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yogaathma-tagline {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-style: italic;
+  color: var(--primary-green, #1B6B50);
+  margin: 0 0 18px 0;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .yogaathma-tagline,
+.dark .yogaathma-tagline {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yogaathma-desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--text-secondary, #485E53);
+  margin: 0 0 28px 0;
+}
+
+[data-theme='dark'] .yogaathma-desc,
+.dark .yogaathma-desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Actions */
+.yogaathma-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.yogaathma-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(27, 107, 80, 0.28);
+  transition: all 0.25s ease;
+}
+
+.yogaathma-btn-primary:hover {
+  background: #14523D;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 107, 80, 0.4);
+}
+
+.yogaathma-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: rgba(27, 107, 80, 0.08);
+  border: 1px solid rgba(27, 107, 80, 0.2);
+  color: var(--primary-green, #1B6B50);
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+[data-theme='dark'] .yogaathma-btn-secondary,
+.dark .yogaathma-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yogaathma-btn-secondary:hover {
+  background: rgba(27, 107, 80, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 5 Pillars Row */
+.yogaathma-pillars-row {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.yogaathma-subheading-tag {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold, #C98D3B);
+  margin-bottom: 6px;
+}
+
+.yogaathma-approach-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  margin: 0 0 10px 0;
+}
+
+[data-theme='dark'] .yogaathma-approach-title,
+.dark .yogaathma-approach-title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yogaathma-approach-lead {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1rem;
+  color: var(--text-secondary, #485E53);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .yogaathma-approach-lead,
+.dark .yogaathma-approach-lead {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yogaathma-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.yogaathma-pillar-card {
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E8EDE5);
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px -2px rgba(18, 76, 56, 0.04);
+}
+
+[data-theme='dark'] .yogaathma-pillar-card,
+.dark .yogaathma-pillar-card {
+  background: var(--surface-color, #11221B);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.yogaathma-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 141, 59, 0.4);
+  box-shadow: 0 10px 24px -4px rgba(18, 76, 56, 0.12);
+}
+
+.yogaathma-pillar-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(27, 107, 80, 0.08);
+  color: var(--primary-green, #1B6B50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='dark'] .yogaathma-pillar-card__icon,
+.dark .yogaathma-pillar-card__icon {
+  background: rgba(65, 186, 145, 0.12);
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yogaathma-pillar-card:hover .yogaathma-pillar-card__icon {
+  background: var(--accent-gold, #C98D3B);
+  color: #FFFFFF;
+}
+
+.yogaathma-pillar-card__title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  margin: 0;
+}
+
+[data-theme='dark'] .yogaathma-pillar-card__title,
+.dark .yogaathma-pillar-card__title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yogaathma-pillar-card__desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #485E53);
+  margin: 0;
+}
+
+[data-theme='dark'] .yogaathma-pillar-card__desc,
+.dark .yogaathma-pillar-card__desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* 5 Programs Grid - Animated Open/Close Like Treatment Cards */
+.yogaathma-programs-block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.yogaathma-programs-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  margin: 0 0 8px 0;
+}
+
+[data-theme='dark'] .yogaathma-programs-title,
+.dark .yogaathma-programs-title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yogaathma-programs-desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  color: var(--text-secondary, #485E53);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+[data-theme='dark'] .yogaathma-programs-desc,
+.dark .yogaathma-programs-desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yogaathma-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+@media (max-width: 1040px) {
+  .yogaathma-programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .yogaathma-programs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Direct Booking & Consultation Banner */
+.yogaathma-booking-card {
+  background: linear-gradient(135deg, #14382B 0%, #1B6B50 100%);
+  border-radius: 24px;
+  padding: clamp(32px, 5vw, 44px);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 16px 40px -8px rgba(18, 76, 56, 0.35);
+}
+
+@media (max-width: 900px) {
+  .yogaathma-booking-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.yogaathma-booking-card__content {
+  flex: 1;
+}
+
+.yogaathma-booking-card__tag {
+  display: inline-block;
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #E2BC7A;
+  margin-bottom: 6px;
+}
+
+.yogaathma-booking-card__title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 12px 0;
+  line-height: 1.25;
+}
+
+.yogaathma-booking-card__desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 12px 0;
+  max-width: 640px;
+}
+
+.yogaathma-booking-card__options {
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.yogaathma-booking-card__options strong {
+  color: #E2BC7A;
+}
+
+.yogaathma-booking-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.yogaathma-booking-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: #25D366;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+}
+
+.yogaathma-booking-btn-whatsapp:hover {
+  background: #20BD5A;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+}
+
+.yogaathma-booking-btn-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.yogaathma-booking-btn-call:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.yogaathma-booking-btn-schedule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: var(--accent-gold, #C98D3B);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.yogaathma-booking-btn-schedule:hover {
+  background: #B67C2E;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Philosophy & Disclaimer */
+.yogaathma-philosophy-quote {
+  max-width: 820px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.yogaathma-mantra {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--primary-green, #1B6B50);
+  margin: 0 0 12px 0;
+  letter-spacing: 0.01em;
+}
+
+[data-theme='dark'] .yogaathma-mantra,
+.dark .yogaathma-mantra {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yogaathma-disclaimer {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-light, #7E9387);
+  margin: 0;
+}
+
+[data-theme='dark'] .yogaathma-disclaimer,
+.dark .yogaathma-disclaimer {
+  color: var(--text-light, #6C8176);
+}

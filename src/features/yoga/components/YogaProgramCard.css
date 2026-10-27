@@ -1,0 +1,322 @@
+/* Clean Editorial Yoga Program Card (Open & Close animated like Treatment Cards) */
+
+/* Rigid Slot maintaining 3-column alignment without jumpy layout shift */
+.yoga-program-card-slot {
+  position: relative;
+  width: 100%;
+  height: 124px;
+}
+
+/* Single card centering if solitary in bottom row */
+@media (min-width: 1041px) {
+  .yoga-program-card-slot.is-centered-single {
+    grid-column: 2;
+  }
+}
+
+/* Card Body (Centered in closed state, expands smoothly downward on hover) */
+.yoga-program-clean-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 124px;
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E8EDE5);
+  border-radius: 20px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 18px -2px rgba(18, 76, 56, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+[data-theme='dark'] .yoga-program-clean-card,
+.dark .yoga-program-clean-card {
+  background: var(--surface-color, #11221B);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover/Expanded State: Elevated floating card with rich shadow */
+.yoga-program-clean-card:hover,
+.yoga-program-clean-card.is-expanded {
+  z-index: 50;
+  transform: translateY(-4px);
+  border-color: rgba(201, 141, 59, 0.5);
+  box-shadow: 0 20px 48px -6px rgba(18, 76, 56, 0.18), 0 0 0 1px rgba(201, 141, 59, 0.25);
+}
+
+[data-theme='dark'] .yoga-program-clean-card:hover,
+[data-theme='dark'] .yoga-program-clean-card.is-expanded,
+.dark .yoga-program-clean-card:hover,
+.dark .yoga-program-clean-card.is-expanded {
+  border-color: rgba(221, 163, 78, 0.5);
+  box-shadow: 0 24px 52px -8px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(221, 163, 78, 0.3);
+}
+
+/* Prominent Centered Serif Heading */
+.yoga-program-clean-card__title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.42rem, 2.1vw, 1.65rem);
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  line-height: 1.25;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .yoga-program-clean-card__title,
+.dark .yoga-program-clean-card__title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yoga-program-clean-card:hover .yoga-program-clean-card__title,
+.yoga-program-clean-card.is-expanded .yoga-program-clean-card__title {
+  color: var(--primary-green, #1B6B50);
+}
+
+[data-theme='dark'] .yoga-program-clean-card:hover .yoga-program-clean-card__title,
+[data-theme='dark'] .yoga-program-clean-card.is-expanded .yoga-program-clean-card__title,
+.dark .yoga-program-clean-card:hover .yoga-program-clean-card__title,
+.dark .yoga-program-clean-card.is-expanded .yoga-program-clean-card__title {
+  color: var(--primary-green-light, #41BA91);
+}
+
+/* Smooth Accordion/Collapsible Content Area */
+.yoga-program-clean-card__collapsible {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.yoga-program-clean-card:hover .yoga-program-clean-card__collapsible,
+.yoga-program-clean-card.is-expanded .yoga-program-clean-card__collapsible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.yoga-program-clean-card__collapsible-inner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Tagline */
+.yoga-program-clean-card__tagline {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--accent-gold, #C98D3B);
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Thumbnail Wrap */
+.yoga-program-clean-card__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.yoga-program-clean-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.yoga-program-clean-card:hover .yoga-program-clean-card__image {
+  transform: scale(1.04);
+}
+
+.yoga-program-clean-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(18, 76, 56, 0.85);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Description */
+.yoga-program-clean-card__desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #485E53);
+  margin: 0 0 12px 0;
+}
+
+[data-theme='dark'] .yoga-program-clean-card__desc,
+.dark .yoga-program-clean-card__desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Highlights List */
+.yoga-program-clean-card__highlights {
+  margin-bottom: 12px;
+}
+
+.yoga-program-clean-card__highlights-title {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-green, #1B6B50);
+  margin-bottom: 6px;
+}
+
+[data-theme='dark'] .yoga-program-clean-card__highlights-title,
+.dark .yoga-program-clean-card__highlights-title {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yoga-program-clean-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.yoga-program-clean-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #485E53);
+}
+
+[data-theme='dark'] .yoga-program-clean-card__list li,
+.dark .yoga-program-clean-card__list li {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yoga-program-clean-card__check {
+  color: var(--accent-gold, #C98D3B);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Focus */
+.yoga-program-clean-card__focus {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-light, #6C8176);
+  padding: 7px 10px;
+  background: rgba(18, 76, 56, 0.04);
+  border-radius: 8px;
+  margin: 0 0 12px 0;
+}
+
+[data-theme='dark'] .yoga-program-clean-card__focus,
+.dark .yoga-program-clean-card__focus {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Footer & CTA */
+.yoga-program-clean-card__footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color, #EEF2EB);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+[data-theme='dark'] .yoga-program-clean-card__footer,
+.dark .yoga-program-clean-card__footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.yoga-program-clean-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.yoga-program-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  color: var(--text-light, #7E9387);
+}
+
+[data-theme='dark'] .yoga-program-meta-item,
+.dark .yoga-program-meta-item {
+  color: var(--text-light, #709483);
+}
+
+.yoga-program-clean-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(27, 107, 80, 0.25);
+  flex-shrink: 0;
+}
+
+.yoga-program-clean-card__cta:hover {
+  background: var(--accent-gold, #C98D3B);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201, 141, 59, 0.35);
+}
+
+/* Mobile responsive */
+@media (max-width: 680px) {
+  .yoga-program-card-slot {
+    height: auto;
+  }
+
+  .yoga-program-clean-card {
+    position: relative;
+    min-height: auto;
+  }
+}

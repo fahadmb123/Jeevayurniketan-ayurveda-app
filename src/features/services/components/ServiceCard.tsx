@@ -1,23 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Activity,
-  Heart,
-  ShieldCheck,
-  Brain,
-  Flame,
-  Sparkles,
-  Zap,
-  Sprout,
-  Wind,
-  Leaf,
-  Droplet,
-  HeartPulse,
-  Compass,
-  ArrowUpRight,
-  Check,
-  Clock,
-} from 'lucide-react';
+import { Clock, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import type { AyurvedaService } from '../types';
 import { fadeUpVariants } from '@/shared/lib/animations';
 import { ServiceDetailModal } from './ServiceDetailModal';
@@ -25,183 +8,157 @@ import './ServiceCard.css';
 
 export interface ServiceCardProps {
   service: AyurvedaService;
+  index?: number;
+  isCenteredSingle?: boolean;
 }
 
 const SERVICE_THEMES: Record<
   string,
   {
-    icon: React.ComponentType<{ size?: number; className?: string }>;
     tag: string;
     accentColor: string;
   }
 > = {
   'metabolic-health': {
-    icon: Activity,
-    tag: 'Prameha & Agni',
+    tag: 'PRAMEHA & AGNI',
     accentColor: '#1B6B50',
   },
   'womens-health': {
-    icon: Heart,
-    tag: 'Stree Roga',
+    tag: 'STREE ROGA',
     accentColor: '#E06D85',
   },
   'musculoskeletal-care': {
-    icon: ShieldCheck,
-    tag: 'Sandhi Chikitsa',
-    accentColor: '#3B82F6',
+    tag: 'SANDHI CHIKITSA',
+    accentColor: '#2563EB',
   },
   'mental-wellbeing': {
-    icon: Brain,
-    tag: 'Satvavajaya',
+    tag: 'SATVAVAJAYA',
     accentColor: '#8B5CF6',
   },
   'digestive-health': {
-    icon: Flame,
-    tag: 'Jatharagni',
+    tag: 'JATHARAGNI',
     accentColor: '#EA580C',
   },
   'skin-hair-health': {
-    icon: Sparkles,
-    tag: 'Twak & Kesa',
+    tag: 'TWAK & KESA',
     accentColor: '#C98D3B',
   },
   'neurological-health': {
-    icon: Zap,
-    tag: 'Vata & Majja',
+    tag: 'VATA & MAJJA',
     accentColor: '#0EA5E9',
   },
-  'pediatric-health': {
-    icon: Sprout,
-    tag: 'Kaumarbhritya',
-    accentColor: '#10B981',
-  },
   'respiratory-health': {
-    icon: Wind,
-    tag: 'Pranavaha Srotas',
+    tag: 'PRANAWAHA SROTAS',
     accentColor: '#06B6D4',
   },
-  'liver-health': {
-    icon: Leaf,
-    tag: 'Yakrit Shodhana',
-    accentColor: '#16A34A',
-  },
-  'renal-urinary-care': {
-    icon: Droplet,
-    tag: 'Mutravaha Srotas',
-    accentColor: '#2563EB',
-  },
   'geriatric-health': {
-    icon: HeartPulse,
-    tag: 'Rasayana Chikitsa',
+    tag: 'RASAYANA CHIKITSA',
     accentColor: '#D97706',
   },
   'preventive-healthcare': {
-    icon: Compass,
-    tag: 'Swasthavritta',
+    tag: 'SWASTHAVRITTA',
     accentColor: '#059669',
   },
 };
 
-export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({
+  service,
+  isCenteredSingle = false,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
 
   const theme = SERVICE_THEMES[service.id] || {
-    icon: Sparkles,
-    tag: 'Clinical Ayurveda',
+    tag: (service.categoryTag || 'Clinical Care').toUpperCase(),
     accentColor: '#1B6B50',
   };
 
-  const IconComp = theme.icon;
-
-  // Split title if it has parenthetical Ayurvedic term e.g. "Digestive Health (Agni)"
-  const titleMatch = service.title.match(/^(.+?)\s*\((.+?)\)$/);
-  const mainTitle = titleMatch ? titleMatch[1] : service.title;
-  const ayurvedicTerm = titleMatch ? titleMatch[2] : null;
-
   return (
     <>
-      <motion.article
-        className="service-card"
-        variants={fadeUpVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        whileHover={{ y: -6 }}
-        onClick={() => setIsModalOpen(true)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setIsModalOpen(true);
-          }
-        }}
-        aria-label={`View clinical details for ${service.title}`}
+      <div
+        className={`treatment-card-slot ${isCenteredSingle ? 'is-centered-single' : ''}`}
       >
-        {/* Top Meta Header: Vector Icon Pod + Duration/Scope Pill */}
-        <div className="service-card__header">
-          <div
-            className="service-card__icon-pod"
-            style={{
-              borderColor: `${theme.accentColor}40`,
-              background: `linear-gradient(135deg, ${theme.accentColor}20, ${theme.accentColor}08)`,
-              color: theme.accentColor,
-            }}
-          >
-            <IconComp size={24} />
+        <motion.article
+          className={`treatment-clean-card ${isToggled ? 'is-expanded' : ''}`}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          onClick={() => {
+            // On touch screens toggle open/close; on desktop open details modal
+            if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
+              setIsToggled((prev) => !prev);
+            } else {
+              setIsModalOpen(true);
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setIsModalOpen(true);
+            }
+          }}
+          aria-label={`View clinical details for ${service.title}`}
+        >
+          {/* Prominent Serif Treatment Title (Centered in middle of card) */}
+          <h3 className="treatment-clean-card__title">
+            {service.title}
+          </h3>
+
+          {/* Collapsible Content: Expands on hover with details */}
+          <div className="treatment-clean-card__collapsible">
+            <div className="treatment-clean-card__collapsible-inner">
+              {/* Clinical Description Paragraph */}
+              <p className="treatment-clean-card__desc">
+                {service.description}
+              </p>
+
+              {/* Benefits Checklist */}
+              {service.benefits && service.benefits.length > 0 && (
+                <ul className="treatment-clean-card__benefits">
+                  {service.benefits.slice(0, 2).map((benefit, i) => (
+                    <li key={i}>
+                      <Check size={14} className="treatment-clean-card__check" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Bottom Footer: Explore Protocol Link + Duration */}
+              <div className="treatment-clean-card__footer">
+                <button
+                  type="button"
+                  className="treatment-clean-card__cta"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsModalOpen(true);
+                  }}
+                >
+                  <span>Explore Protocol</span>
+                  <ArrowUpRight size={14} />
+                </button>
+
+                {service.duration && (
+                  <span className="treatment-clean-card__duration">
+                    <Clock size={13} className="treatment-clean-card__clock" />
+                    <span>{service.duration}</span>
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
+        </motion.article>
+      </div>
 
-          <div className="service-card__badge-wrap">
-            <span className="service-card__duration-pill">
-              <Clock size={11} className="service-card__clock-icon" />
-              <span>{service.duration || 'Personalized Care'}</span>
-            </span>
-          </div>
-        </div>
-
-        {/* Clinical Domain / Ayurvedic Sanskrit Sub-label */}
-        <div className="service-card__meta-tag">
-          <span className="service-card__tag-text">{theme.tag}</span>
-          {ayurvedicTerm && (
-            <span className="service-card__term-badge">{ayurvedicTerm}</span>
-          )}
-        </div>
-
-        {/* Main Title */}
-        <h3 className="service-card__title">{mainTitle}</h3>
-
-        {/* Clinical Summary */}
-        <p className="service-card__desc">{service.description}</p>
-
-        {/* Therapeutic Key Focus Chips */}
-        {service.benefits && service.benefits.length > 0 && (
-          <div className="service-card__benefits">
-            {service.benefits.slice(0, 2).map((benefit, i) => (
-              <span key={i} className="service-card__benefit-chip">
-                <Check size={11} className="service-card__benefit-check" />
-                <span>{benefit}</span>
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Modern Interactive Action Footer */}
-        <div className="service-card__footer">
-          <span className="service-card__cta-text">
-            <span>Explore Care Details</span>
-          </span>
-          <div className="service-card__action-btn" aria-hidden="true">
-            <ArrowUpRight size={18} strokeWidth={2.4} />
-          </div>
-        </div>
-      </motion.article>
-
-      {/* Service Detail Modal */}
+      {/* Detail Modal */}
       <ServiceDetailModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         service={service}
-        iconComponent={IconComp}
+        iconComponent={Sparkles}
         themeTag={theme.tag}
         accentColor={theme.accentColor}
       />
