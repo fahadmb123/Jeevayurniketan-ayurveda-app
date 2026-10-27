@@ -128,7 +128,7 @@ export const MOCK_FAQS: FaqItem[] = [
   },
   {
     q: 'What role do diet and yoga play in the treatment process?',
-    a: 'Diet (Ahara) and lifestyle/yoga (Vihara) are foundational in Ayurveda. Dr. Ahalya prescribes customized dietary guidelines and restorative yoga practices alongside herbal preparations to support lasting, root-cause recovery.',
+    a: 'Diet (Ahara) and mindful movement/yoga (Vihara) are foundational in Ayurveda. Through Jeevayurniketan | Yogaathma, Dr. Ahalya coordinates doctor-guided personalized yoga, gentle restorative postures, and pranayama breathing practices alongside classical herbal preparations to support lasting, root-cause recovery.',
   },
   {
     q: 'How are follow-up appointments scheduled and monitored?',

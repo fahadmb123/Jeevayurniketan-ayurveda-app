@@ -8,6 +8,7 @@ import { HealingJourneySection } from '../components/HealingJourneySection';
 import { ServicesSection } from '@/features/services';
 import { TeamSection } from '@/features/team';
 import { DoctorIntroSection } from '@/features/team';
+import { YogaathmaSection } from '@/features/yoga';
 import { FAQSection } from '../components/FAQSection';
 import { BlogSection } from '@/features/blog';
 import './HomePage.css';
@@ -22,6 +23,7 @@ export const HomePage: React.FC = React.memo(() => {
       <DoctorIntroSection />
       <ServicesSection />
       <HealingJourneySection />
+      <YogaathmaSection />
       <AboutSection />
       <TeamSection />
       <FAQSection />

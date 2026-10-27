@@ -11,46 +11,142 @@
   padding: 0 24px;
 }
 
-/* Page Header */
+/* Page Hero */
 .yoga-hero {
   text-align: center;
-  max-width: 780px;
-  margin: 0 auto 44px;
+  max-width: 860px;
+  margin: 0 auto 48px;
 }
 
 .yoga-hero__badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  border-radius: 30px;
-  background-color: var(--primary-green-tint, #EDF6F1);
-  color: var(--primary-green, #1B6B50);
-  border: 1px solid rgba(27, 107, 80, 0.15);
-  font-size: 0.85rem;
+  gap: 7px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background-color: rgba(201, 141, 59, 0.12);
+  color: var(--accent-gold, #C98D3B);
+  border: 1px solid rgba(201, 141, 59, 0.35);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.yoga-hero__title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--primary-green-deep, #0B3326);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
   margin-bottom: 18px;
 }
 
-.yoga-hero__title span.gold-highlight {
-  color: var(--accent-gold, #C98D3B);
+.yoga-hero__title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 12px 0;
+}
+
+[data-theme='dark'] .yoga-hero__title,
+.dark .yoga-hero__title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yoga-hero__tagline {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-style: italic;
+  color: var(--primary-green, #1B6B50);
+  margin: 0 0 20px 0;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .yoga-hero__tagline,
+.dark .yoga-hero__tagline {
+  color: var(--primary-green-light, #41BA91);
 }
 
 .yoga-hero__desc {
-  font-size: 1.1rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
   color: var(--text-secondary, #485E53);
-  line-height: 1.7;
+  line-height: 1.72;
+  margin: 0 0 14px 0;
+}
+
+[data-theme='dark'] .yoga-hero__desc,
+.dark .yoga-hero__desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yoga-hero__subdesc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.94rem;
+  color: var(--text-light, #6C8176);
+  line-height: 1.65;
+  margin: 0 0 28px 0;
+}
+
+[data-theme='dark'] .yoga-hero__subdesc,
+.dark .yoga-hero__subdesc {
+  color: var(--text-secondary, #8BA396);
+}
+
+.yoga-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.yoga-hero__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: var(--primary-green, #1B6B50);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(27, 107, 80, 0.28);
+  transition: all 0.25s ease;
+}
+
+.yoga-hero__btn-primary:hover {
+  background: #14523D;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 107, 80, 0.4);
+}
+
+.yoga-hero__btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: rgba(27, 107, 80, 0.08);
+  border: 1px solid rgba(27, 107, 80, 0.2);
+  color: var(--primary-green, #1B6B50);
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+[data-theme='dark'] .yoga-hero__btn-secondary,
+.dark .yoga-hero__btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yoga-hero__btn-secondary:hover {
+  background: rgba(27, 107, 80, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Quick Stats Bar */
@@ -58,36 +154,48 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 56px;
 }
 
 .yoga-stat-card {
   background: var(--surface-color, #FFFFFF);
-  border: 1px solid var(--border-color, #E2E8DE);
+  border: 1px solid var(--border-color, #E8EDE5);
   border-radius: 16px;
   padding: 18px 20px;
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.2s;
+  box-shadow: 0 4px 14px -2px rgba(18, 76, 56, 0.04);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+[data-theme='dark'] .yoga-stat-card,
+.dark .yoga-stat-card {
+  background: var(--surface-color, #11221B);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .yoga-stat-card:hover {
   transform: translateY(-2px);
-  border-color: var(--border-color-hover, #CCD6C6);
+  border-color: rgba(201, 141, 59, 0.4);
 }
 
 .yoga-stat-card__icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--primary-green-tint, #EDF6F1);
+  background: rgba(27, 107, 80, 0.08);
   color: var(--primary-green, #1B6B50);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+[data-theme='dark'] .yoga-stat-card__icon,
+.dark .yoga-stat-card__icon {
+  background: rgba(65, 186, 145, 0.12);
+  color: var(--primary-green-light, #41BA91);
 }
 
 .yoga-stat-card__info {
@@ -96,15 +204,156 @@
 }
 
 .yoga-stat-card__value {
-  font-size: 1.25rem;
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--primary-green-deep, #0B3326);
+  color: var(--text-primary, #14241C);
   line-height: 1.2;
 }
 
+[data-theme='dark'] .yoga-stat-card__value,
+.dark .yoga-stat-card__value {
+  color: var(--text-primary, #F2F7F4);
+}
+
 .yoga-stat-card__label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-secondary, #485E53);
+}
+
+[data-theme='dark'] .yoga-stat-card__label,
+.dark .yoga-stat-card__label {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* Our Approach Section */
+.yoga-page-approach {
+  margin-bottom: clamp(60px, 7vw, 90px);
+}
+
+.yoga-approach-body {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #485E53);
+  max-width: 800px;
+  margin: 10px auto 0 auto;
+}
+
+[data-theme='dark'] .yoga-approach-body,
+.dark .yoga-approach-body {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yoga-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.yoga-pillar-card {
+  background: var(--surface-color, #FFFFFF);
+  border: 1px solid var(--border-color, #E8EDE5);
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px -2px rgba(18, 76, 56, 0.04);
+}
+
+[data-theme='dark'] .yoga-pillar-card,
+.dark .yoga-pillar-card {
+  background: var(--surface-color, #11221B);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.yoga-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 141, 59, 0.4);
+  box-shadow: 0 10px 24px -4px rgba(18, 76, 56, 0.12);
+}
+
+.yoga-pillar-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(27, 107, 80, 0.08);
+  color: var(--primary-green, #1B6B50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='dark'] .yoga-pillar-card__icon,
+.dark .yoga-pillar-card__icon {
+  background: rgba(65, 186, 145, 0.12);
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yoga-pillar-card:hover .yoga-pillar-card__icon {
+  background: var(--accent-gold, #C98D3B);
+  color: #FFFFFF;
+}
+
+.yoga-pillar-card__title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary, #14241C);
+  margin: 0;
+}
+
+[data-theme='dark'] .yoga-pillar-card__title,
+.dark .yoga-pillar-card__title {
+  color: var(--text-primary, #F2F7F4);
+}
+
+.yoga-pillar-card__desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary, #485E53);
+  margin: 0;
+}
+
+[data-theme='dark'] .yoga-pillar-card__desc,
+.dark .yoga-pillar-card__desc {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+/* 5 Programs Section (Animated Open/Close Like Treatment Cards) */
+.yoga-programs-section {
+  margin-bottom: clamp(60px, 7vw, 90px);
+}
+
+.yoga-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+  margin-top: 36px;
+}
+
+@media (max-width: 1040px) {
+  .yoga-programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .yoga-programs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Timetable Section */
+.yoga-timetable-section {
+  margin: clamp(60px, 7vw, 90px) 0;
 }
 
 /* Toast Message */
@@ -181,6 +430,74 @@
   color: var(--text-secondary, #485E53);
   font-size: 0.925rem;
   margin: 0;
+}
+
+/* Booking Card Wrap */
+.yoga-booking-card-wrap {
+  margin: clamp(48px, 6vw, 72px) 0;
+}
+
+/* Philosophy & Disclaimer Footer */
+.yoga-philosophy-footer {
+  max-width: 860px;
+  margin: 0 auto 40px auto;
+  padding: 32px 24px;
+  border-top: 1px solid var(--border-color, #E8EDE5);
+}
+
+[data-theme='dark'] .yoga-philosophy-footer,
+.dark .yoga-philosophy-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.yoga-philosophy-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-gold, #C98D3B);
+  margin: 0 0 12px 0;
+}
+
+.yoga-philosophy-quote {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary, #485E53);
+  margin: 0 0 14px 0;
+}
+
+[data-theme='dark'] .yoga-philosophy-quote,
+.dark .yoga-philosophy-quote {
+  color: var(--text-secondary, #A6C2B4);
+}
+
+.yoga-philosophy-mantra {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--primary-green, #1B6B50);
+  margin: 0 0 16px 0;
+}
+
+[data-theme='dark'] .yoga-philosophy-mantra,
+.dark .yoga-philosophy-mantra {
+  color: var(--primary-green-light, #41BA91);
+}
+
+.yoga-philosophy-disclaimer {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-light, #7E9387);
+  margin: 0;
+}
+
+[data-theme='dark'] .yoga-philosophy-disclaimer,
+.dark .yoga-philosophy-disclaimer {
+  color: var(--text-light, #6C8176);
 }
 
 @media (max-width: 900px) {
