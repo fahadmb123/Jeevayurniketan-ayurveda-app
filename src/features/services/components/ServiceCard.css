@@ -1,359 +1,416 @@
-/* Modern Clinical Service Card Styles */
+/* 3-Cards-Per-Line Visual Treatment Card with Automatic Smooth Covering Animation */
 
-.service-card {
-  position: relative;
-  background: var(--surface-color, #FFFFFF);
-  padding: 30px 26px 24px;
-  border-radius: 20px;
-  border: 1px solid var(--border-color, #E2E8DE);
-  box-shadow: 0 4px 20px -3px rgba(18, 76, 56, 0.06);
+.treatment-hover-card {
+  width: 100%;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  overflow: hidden;
-  text-align: left;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-color 0.3s ease;
   user-select: none;
+  position: relative;
 }
 
-[data-theme='dark'] .service-card,
-.dark .service-card {
-  background: var(--surface-color, #11221B);
+/* Tall Rounded Photographic Frame */
+.treatment-hover-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--surface-secondary, #E8EEEA);
+  box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.service-card:hover {
+[data-theme='dark'] .treatment-hover-card__media,
+.dark .treatment-hover-card__media {
+  background-color: #152720;
+  box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.treatment-hover-card:hover .treatment-hover-card__media {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 46px -10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .treatment-hover-card:hover .treatment-hover-card__media,
+.dark .treatment-hover-card:hover .treatment-hover-card__media {
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.85);
+}
+
+.treatment-hover-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.treatment-hover-card:hover .treatment-hover-card__img {
+  transform: scale(1.08);
+}
+
+.treatment-hover-card__placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1B6B50, #0B3326);
+}
+
+/* Duration Pill Badge */
+.treatment-hover-card__duration-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background: rgba(10, 20, 15, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.treatment-hover-card__duration-badge.is-hidden {
+  opacity: 0;
   transform: translateY(-6px);
-  border-color: rgba(201, 141, 59, 0.45);
-  box-shadow: 0 20px 40px -12px rgba(18, 76, 56, 0.15), 0 0 0 1px rgba(201, 141, 59, 0.25);
 }
 
-[data-theme='dark'] .service-card:hover,
-.dark .service-card:hover {
-  border-color: rgba(221, 163, 78, 0.45);
-  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(221, 163, 78, 0.25);
+/* Smooth Covering Panel (Slides up smoothly over the image to display the information) */
+.treatment-cover-panel {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 24, 18, 0.94) 0%,
+    rgba(12, 28, 21, 0.97) 50%,
+    rgba(8, 20, 15, 0.99) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 24px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 2px solid var(--accent-gold, #C98D3B);
+  box-shadow: inset 0 2px 16px rgba(201, 141, 59, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Smooth covering animation */
+  transform: translateY(102%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease,
+              visibility 0.65s;
+  z-index: 4;
 }
 
-/* Header: Icon Pod & Duration/Scope Pill */
-.service-card__header {
+.treatment-cover-panel.is-active {
+  transform: translateY(0%);
+  opacity: 1;
+  visibility: visible;
+}
+
+.treatment-cover-panel__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.treatment-cover-panel__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 12px;
 }
 
-.service-card__icon-pod {
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+.treatment-cover-panel__tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.service-card:hover .service-card__icon-pod {
-  transform: scale(1.1) rotate(4deg);
-}
-
-.service-card__badge-wrap {
-  display: flex;
-  align-items: center;
-}
-
-.service-card__duration-pill {
+.treatment-cover-panel__pulse-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--text-secondary, #485E53);
-  background: var(--surface-secondary, #F3F6F1);
-  border: 1px solid var(--border-color, #E2E8DE);
-  padding: 4px 10px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold, #DDA34E);
+  background: rgba(201, 141, 59, 0.15);
+  border: 1px solid rgba(201, 141, 59, 0.3);
+  padding: 2px 8px;
   border-radius: 9999px;
-  letter-spacing: 0.01em;
 }
 
-[data-theme='dark'] .service-card__duration-pill,
-.dark .service-card__duration-pill {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary, #A6C2B4);
+.treatment-cover-panel__pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-gold, #DDA34E);
+  box-shadow: 0 0 8px var(--accent-gold, #DDA34E);
+  animation: pulseDot 2s infinite ease-in-out;
 }
 
-.service-card__clock-icon {
-  opacity: 0.7;
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
 }
 
-/* Domain Sub-label */
-.service-card__meta-tag {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  position: relative;
-  z-index: 1;
+.treatment-cover-panel__title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin: 0 0 10px 0;
 }
 
-.service-card__tag-text {
+.treatment-cover-panel__para {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: #D6E4DC;
+  margin: 0 0 14px 0;
+}
+
+.treatment-cover-panel__benefits {
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.treatment-cover-panel__benefits-title {
+  display: block;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--accent-gold, #C98D3B);
-}
-
-[data-theme='dark'] .service-card__tag-text,
-.dark .service-card__tag-text {
   color: var(--accent-gold, #DDA34E);
+  margin-bottom: 6px;
 }
 
-.service-card__term-badge {
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 6px;
-  background: rgba(27, 107, 80, 0.08);
-  color: var(--primary-green, #1B6B50);
-}
-
-[data-theme='dark'] .service-card__term-badge,
-.dark .service-card__term-badge {
-  background: rgba(46, 157, 119, 0.15);
-  color: var(--primary-green-light, #41BA91);
-}
-
-/* Title */
-.service-card__title {
-  font-family: var(--font-display, 'Outfit', sans-serif);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary, #14241C);
-  line-height: 1.3;
-  margin-bottom: 10px;
-  transition: color 0.2s ease;
-  position: relative;
-  z-index: 1;
-}
-
-[data-theme='dark'] .service-card__title,
-.dark .service-card__title {
-  color: var(--text-primary, #F2F7F4);
-}
-
-.service-card:hover .service-card__title {
-  color: var(--primary-green, #1B6B50);
-}
-
-[data-theme='dark'] .service-card:hover .service-card__title,
-.dark .service-card:hover .service-card__title {
-  color: var(--primary-green-light, #41BA91);
-}
-
-/* Description */
-.service-card__desc {
-  font-size: 0.88rem;
-  line-height: 1.62;
-  color: var(--text-secondary, #485E53);
-  margin-bottom: 16px;
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-[data-theme='dark'] .service-card__desc,
-.dark .service-card__desc {
-  color: var(--text-secondary, #A6C2B4);
-}
-
-/* Clinical Benefits Micro-Chips */
-.service-card__benefits {
+.treatment-cover-panel__benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
+  gap: 5px;
 }
 
-.service-card__benefit-chip {
-  display: inline-flex;
+.treatment-cover-panel__benefits li {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
-  font-weight: 500;
-  color: var(--text-primary, #14241C);
-  background: rgba(27, 107, 80, 0.05);
-  border: 1px solid rgba(27, 107, 80, 0.12);
-  padding: 4px 10px;
-  border-radius: 8px;
-  width: fit-content;
+  gap: 7px;
+  font-size: 0.78rem;
+  color: #B4CEBF;
 }
 
-[data-theme='dark'] .service-card__benefit-chip,
-.dark .service-card__benefit-chip {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.07);
-  color: var(--text-secondary, #A6C2B4);
-}
-
-.service-card__benefit-check {
-  color: var(--primary-green, #1B6B50);
+.treatment-cover-panel__check {
+  color: var(--accent-gold, #DDA34E);
   flex-shrink: 0;
 }
 
-[data-theme='dark'] .service-card__benefit-check,
-.dark .service-card__benefit-check {
-  color: var(--primary-green-light, #41BA91);
+.treatment-cover-panel__footer {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Footer: Modern Action Row */
-.service-card__footer {
+.treatment-cover-panel__cta-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-gold, #DDA34E);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.treatment-hover-card:hover .treatment-cover-panel__cta-text {
+  transform: translateX(3px);
+  color: #FFFFFF;
+}
+
+/* Bottom Meta Row (Matching Reference Style) */
+.treatment-hover-card__bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-color, #E2E8DE);
-  margin-top: auto;
-  position: relative;
-  z-index: 1;
+  margin-top: 14px;
+  padding: 0 2px;
+  gap: 10px;
 }
 
-[data-theme='dark'] .service-card__footer,
-.dark .service-card__footer {
-  border-top-color: rgba(255, 255, 255, 0.08);
-}
-
-.service-card__cta-text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary-green, #1B6B50);
-  transition: color 0.2s ease, transform 0.2s ease;
-  display: inline-flex;
+.treatment-hover-card__left {
+  display: flex;
   align-items: center;
+  gap: 11px;
+  min-width: 0;
 }
 
-[data-theme='dark'] .service-card__cta-text,
-.dark .service-card__cta-text {
-  color: var(--accent-gold, #DDA34E);
-}
-
-.service-card:hover .service-card__cta-text {
-  transform: translateX(2px);
-}
-
-.service-card__action-btn {
-  width: 36px;
-  height: 36px;
+.treatment-hover-card__avatar {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-secondary, #F3F6F1);
-  border: 1px solid var(--border-color, #E2E8DE);
-  color: var(--primary-green, #1B6B50);
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #FFFFFF;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
-[data-theme='dark'] .service-card__action-btn,
-.dark .service-card__action-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+.treatment-hover-card:hover .treatment-hover-card__avatar {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.treatment-hover-card__text-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.treatment-hover-card__name {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: var(--text-primary, #14241C);
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .treatment-hover-card__name,
+.dark .treatment-hover-card__name {
   color: var(--text-primary, #F2F7F4);
 }
 
-.service-card:hover .service-card__action-btn {
-  background: var(--primary-green, #1B6B50);
-  border-color: var(--primary-green, #1B6B50);
+.treatment-hover-card:hover .treatment-hover-card__name {
+  color: var(--primary-green-light, #2E9D77);
+}
+
+.treatment-hover-card__category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold, #C98D3B);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme='dark'] .treatment-hover-card__category,
+.dark .treatment-hover-card__category {
+  color: var(--accent-gold, #DDA34E);
+}
+
+/* Right Actions (Status Indicator + Vibrant Arrow Button) */
+.treatment-hover-card__right-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.treatment-state-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.treatment-state-pill.is-img {
+  background: var(--surface-secondary, #F3F6F1);
+  color: var(--text-light, #7E9387);
+  border: 1px solid var(--border-color, #E2E8DE);
+}
+
+[data-theme='dark'] .treatment-state-pill.is-img,
+.dark .treatment-state-pill.is-img {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light, #709483);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.treatment-state-pill.is-info {
+  background: rgba(201, 141, 59, 0.16);
+  color: var(--accent-gold, #C98D3B);
+  border: 1px solid rgba(201, 141, 59, 0.35);
+}
+
+[data-theme='dark'] .treatment-state-pill.is-info,
+.dark .treatment-state-pill.is-info {
+  background: rgba(221, 163, 78, 0.2);
+  color: var(--accent-gold, #DDA34E);
+  border-color: rgba(221, 163, 78, 0.4);
+}
+
+/* Vibrant Circular Orange Action Button */
+.treatment-hover-card__action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #EA580C;
   color: #FFFFFF;
-  transform: translate(2px, -2px) scale(1.08);
-  box-shadow: 0 4px 14px rgba(27, 107, 80, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.25s ease,
+              box-shadow 0.25s ease;
 }
 
-[data-theme='dark'] .service-card:hover .service-card__action-btn,
-.dark .service-card:hover .service-card__action-btn {
-  background: var(--accent-gold, #DDA34E);
-  border-color: var(--accent-gold, #DDA34E);
-  color: #0A140F;
-  box-shadow: 0 4px 16px rgba(221, 163, 78, 0.4);
+.treatment-hover-card:hover .treatment-hover-card__action-btn {
+  transform: scale(1.15) rotate(6deg);
+  background: #F97316;
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.5);
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 768px) {
-  .service-card {
-    padding: 20px 18px 18px;
-    border-radius: 16px;
+@media (max-width: 680px) {
+  .treatment-hover-card__media {
+    border-radius: 20px;
   }
 
-  .service-card__header {
-    margin-bottom: 14px;
+  .treatment-cover-panel {
+    padding: 18px 16px;
   }
 
-  .service-card__icon-pod {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+  .treatment-cover-panel__title {
+    font-size: 1.15rem;
   }
 
-  .service-card__title {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-
-  .service-card__desc {
+  .treatment-cover-panel__para {
     font-size: 0.82rem;
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-
-  .service-card__benefits {
-    gap: 5px;
-    margin-bottom: 14px;
-  }
-
-  .service-card__benefit-chip {
-    font-size: 0.72rem;
-    padding: 3px 8px;
-  }
-
-  .service-card__footer {
-    padding-top: 12px;
-  }
-
-  .service-card__cta-text {
-    font-size: 0.78rem;
-  }
-
-  .service-card__action-btn {
-    width: 32px;
-    height: 32px;
+    line-height: 1.55;
   }
 }
-
-@media (max-width: 480px) {
-  .service-card {
-    padding: 16px 14px 14px;
-  }
-
-  .service-card__title {
-    font-size: 0.98rem;
-  }
-
-  .service-card__desc {
-    font-size: 0.76rem;
-  }
-
-  .service-card__duration-pill {
-    font-size: 0.68rem;
-    padding: 3px 8px;
-  }
-}
-
