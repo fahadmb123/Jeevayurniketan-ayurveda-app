@@ -39,11 +39,11 @@ export const ServicesSection: React.FC = React.memo(() => {
         </motion.h2>
 
         <motion.p className="services-subtitle" variants={fadeUpVariants}>
-          Individualized healthcare consultations, classical herbal formulations, and personalized lifestyle guidance across key medical domains.
+          Individualized healthcare consultations, classical herbal formulations, and personalized lifestyle guidance across our specialized treatment domains.
         </motion.p>
       </motion.div>
 
-      {/* 3-Cards-Per-Line Grid with Hover Reveal */}
+      {/* 3-Cards-Per-Line Grid */}
       <motion.div
         className="treatments-grid-3col"
         variants={staggerContainerVariants}
@@ -51,13 +51,20 @@ export const ServicesSection: React.FC = React.memo(() => {
         whileInView="visible"
         viewport={standardViewport}
       >
-        {visibleServices.map((service, index) => (
-          <ServiceCard
-            key={service.id}
-            service={service}
-            index={index}
-          />
-        ))}
+        {visibleServices.map((service, index) => {
+          // If the last card is alone in its row (e.g. 10th card in a 3-col grid), center it in column 2
+          const isCenteredSingle =
+            visibleServices.length % 3 === 1 && index === visibleServices.length - 1;
+
+          return (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              isCenteredSingle={isCenteredSingle}
+            />
+          );
+        })}
       </motion.div>
 
       {/* Toggle View More/Less Button if more than 6 treatments */}

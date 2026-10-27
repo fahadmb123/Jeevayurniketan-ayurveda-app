@@ -1,92 +1,80 @@
-/* Clean Editorial Treatment Card (Exact Match to User Screenshot) */
+/* Clean Editorial Treatment Card (Centered Heading in Middle) */
 
+/* Slot maintaining rigid, perfectly aligned 3-column grid */
+.treatment-card-slot {
+  position: relative;
+  width: 100%;
+  height: 124px;
+}
+
+/* Center single remaining card on bottom row directly in column 2 */
+@media (min-width: 1041px) {
+  .treatment-card-slot.is-centered-single {
+    grid-column: 2;
+  }
+}
+
+/* Card Body (Centered in closed state, smoothly expands downward on hover) */
 .treatment-clean-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 124px;
   background: var(--surface-color, #FFFFFF);
   border: 1px solid var(--border-color, #E8EDE5);
   border-radius: 20px;
-  padding: 30px 26px 24px;
+  padding: 24px 22px;
   display: flex;
   flex-direction: column;
-  text-align: left;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   cursor: pointer;
   user-select: none;
-  box-shadow: 0 4px 20px -2px rgba(18, 76, 56, 0.04);
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+  box-shadow: 0 4px 18px -2px rgba(18, 76, 56, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
 }
 
 [data-theme='dark'] .treatment-clean-card,
 .dark .treatment-clean-card {
   background: var(--surface-color, #11221B);
   border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 28px -4px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
 }
 
-.treatment-clean-card:hover {
+/* Hover/Expanded State: Elevated floating card with rich shadow */
+.treatment-clean-card:hover,
+.treatment-clean-card.is-expanded {
+  z-index: 50;
   transform: translateY(-4px);
-  border-color: rgba(201, 141, 59, 0.45);
-  box-shadow: 0 14px 34px -4px rgba(18, 76, 56, 0.1), 0 0 0 1px rgba(201, 141, 59, 0.2);
+  border-color: rgba(201, 141, 59, 0.5);
+  box-shadow: 0 20px 48px -6px rgba(18, 76, 56, 0.18), 0 0 0 1px rgba(201, 141, 59, 0.25);
 }
 
 [data-theme='dark'] .treatment-clean-card:hover,
-.dark .treatment-clean-card:hover {
-  border-color: rgba(221, 163, 78, 0.45);
-  box-shadow: 0 16px 38px -6px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(221, 163, 78, 0.25);
+[data-theme='dark'] .treatment-clean-card.is-expanded,
+.dark .treatment-clean-card:hover,
+.dark .treatment-clean-card.is-expanded {
+  border-color: rgba(221, 163, 78, 0.5);
+  box-shadow: 0 24px 52px -8px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(221, 163, 78, 0.3);
 }
 
-/* Header: Index Pill & Sanskrit Tag */
-.treatment-clean-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
-}
-
-.treatment-clean-card__index-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 13px;
-  border-radius: 9999px;
-  font-family: var(--font-display, 'Outfit', monospace);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--primary-green, #1B6B50);
-  background: #E8F5EE;
-  letter-spacing: 0.03em;
-}
-
-[data-theme='dark'] .treatment-clean-card__index-pill,
-.dark .treatment-clean-card__index-pill {
-  color: var(--primary-green-light, #41BA91);
-  background: rgba(46, 157, 119, 0.18);
-}
-
-.treatment-clean-card__tag {
-  font-family: var(--font-display, 'Outfit', sans-serif);
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  color: var(--accent-gold, #C98D3B);
-}
-
-[data-theme='dark'] .treatment-clean-card__tag,
-.dark .treatment-clean-card__tag {
-  color: var(--accent-gold, #DDA34E);
-}
-
-/* Serif Treatment Title */
+/* Prominent Serif Treatment Title (Aligned to the center & middle of the card) */
 .treatment-clean-card__title {
   font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
-  font-size: 1.48rem;
+  font-size: clamp(1.48rem, 2.2vw, 1.7rem);
   font-weight: 700;
   color: var(--text-primary, #14241C);
   line-height: 1.25;
-  margin: 0 0 14px 0;
+  margin: 0;
+  text-align: center;
   letter-spacing: -0.01em;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 [data-theme='dark'] .treatment-clean-card__title,
@@ -94,21 +82,51 @@
   color: var(--text-primary, #F2F7F4);
 }
 
-.treatment-clean-card:hover .treatment-clean-card__title {
+.treatment-clean-card:hover .treatment-clean-card__title,
+.treatment-clean-card.is-expanded .treatment-clean-card__title {
   color: var(--primary-green, #1B6B50);
 }
 
-[data-theme='dark'] .treatment-clean-card:hover .treatment-clean-card__title {
+[data-theme='dark'] .treatment-clean-card:hover .treatment-clean-card__title,
+[data-theme='dark'] .treatment-clean-card.is-expanded .treatment-clean-card__title,
+.dark .treatment-clean-card:hover .treatment-clean-card__title,
+.dark .treatment-clean-card.is-expanded .treatment-clean-card__title {
   color: var(--primary-green-light, #41BA91);
+}
+
+/* Smooth Accordion/Collapsible Open & Close Animation */
+.treatment-clean-card__collapsible {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.treatment-clean-card:hover .treatment-clean-card__collapsible,
+.treatment-clean-card.is-expanded .treatment-clean-card__collapsible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.treatment-clean-card__collapsible-inner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Clinical Paragraph */
 .treatment-clean-card__desc {
   font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: 0.94rem;
-  line-height: 1.65;
+  font-size: 0.93rem;
+  line-height: 1.62;
   color: var(--text-secondary, #485E53);
-  margin: 0 0 18px 0;
+  margin: 0 0 16px 0;
+  text-align: center;
 }
 
 [data-theme='dark'] .treatment-clean-card__desc,
@@ -120,10 +138,11 @@
 .treatment-clean-card__benefits {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px 0;
+  margin: 0 0 18px 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 
 .treatment-clean-card__benefits li {
@@ -151,13 +170,13 @@
 
 /* Bottom Footer Row */
 .treatment-clean-card__footer {
-  margin-top: auto;
-  padding-top: 16px;
+  padding-top: 15px;
   border-top: 1px solid var(--border-color, #EEF2EB);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
 }
 
 [data-theme='dark'] .treatment-clean-card__footer,
@@ -166,6 +185,10 @@
 }
 
 .treatment-clean-card__cta {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -181,12 +204,12 @@
   color: var(--primary-green-light, #41BA91);
 }
 
-.treatment-clean-card:hover .treatment-clean-card__cta {
+.treatment-clean-card__cta:hover {
   color: var(--accent-gold, #C98D3B);
   transform: translateX(2px);
 }
 
-[data-theme='dark'] .treatment-clean-card:hover .treatment-clean-card__cta {
+[data-theme='dark'] .treatment-clean-card__cta:hover {
   color: var(--accent-gold, #DDA34E);
 }
 
@@ -205,4 +228,16 @@
 
 .treatment-clean-card__clock {
   opacity: 0.75;
+}
+
+/* Mobile: Single column naturally expands */
+@media (max-width: 680px) {
+  .treatment-card-slot {
+    height: auto;
+  }
+
+  .treatment-clean-card {
+    position: relative;
+    min-height: auto;
+  }
 }
