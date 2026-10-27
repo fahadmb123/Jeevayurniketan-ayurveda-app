@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Activity,
-  Heart,
-  ShieldCheck,
-  Brain,
-  Flame,
-  Sparkles,
-  Zap,
-  Wind,
-  HeartPulse,
-  Compass,
-  ArrowUpRight,
-  Check,
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Clock, ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import type { AyurvedaService } from '../types';
+import { fadeUpVariants } from '@/shared/lib/animations';
 import { ServiceDetailModal } from './ServiceDetailModal';
 import './ServiceCard.css';
 
@@ -25,121 +14,71 @@ export interface ServiceCardProps {
 const SERVICE_THEMES: Record<
   string,
   {
-    icon: React.ComponentType<{ size?: number; className?: string }>;
     tag: string;
     accentColor: string;
-    avatarBg: string;
   }
 > = {
   'metabolic-health': {
-    icon: Activity,
-    tag: 'Prameha & Agni',
+    tag: 'PRAMEHA & AGNI',
     accentColor: '#1B6B50',
-    avatarBg: '#1B6B50',
   },
   'womens-health': {
-    icon: Heart,
-    tag: 'Stree Roga',
+    tag: 'STREE ROGA',
     accentColor: '#E06D85',
-    avatarBg: '#D84B68',
   },
   'musculoskeletal-care': {
-    icon: ShieldCheck,
-    tag: 'Sandhi Chikitsa',
+    tag: 'SANDHI CHIKITSA',
     accentColor: '#2563EB',
-    avatarBg: '#1D4ED8',
   },
   'mental-wellbeing': {
-    icon: Brain,
-    tag: 'Satvavajaya',
+    tag: 'SATVAVAJAYA',
     accentColor: '#8B5CF6',
-    avatarBg: '#7C3AED',
   },
   'digestive-health': {
-    icon: Flame,
-    tag: 'Jatharagni',
+    tag: 'JATHARAGNI',
     accentColor: '#EA580C',
-    avatarBg: '#C2410C',
   },
   'skin-hair-health': {
-    icon: Sparkles,
-    tag: 'Twak & Kesa',
+    tag: 'TWAK & KESA',
     accentColor: '#C98D3B',
-    avatarBg: '#B47A2B',
   },
   'neurological-health': {
-    icon: Zap,
-    tag: 'Vata & Majja',
+    tag: 'VATA & MAJJA',
     accentColor: '#0EA5E9',
-    avatarBg: '#0284C7',
   },
   'respiratory-health': {
-    icon: Wind,
-    tag: 'Pranavaha Srotas',
+    tag: 'PRANAWAHA SROTAS',
     accentColor: '#06B6D4',
-    avatarBg: '#0891B2',
   },
   'geriatric-health': {
-    icon: HeartPulse,
-    tag: 'Rasayana Chikitsa',
+    tag: 'RASAYANA CHIKITSA',
     accentColor: '#D97706',
-    avatarBg: '#B45309',
   },
   'preventive-healthcare': {
-    icon: Compass,
-    tag: 'Swasthavritta',
+    tag: 'SWASTHAVRITTA',
     accentColor: '#059669',
-    avatarBg: '#047857',
   },
 };
 
 export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service, index = 0 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isAutoActive, setIsAutoActive] = useState(false);
 
   const theme = SERVICE_THEMES[service.id] || {
-    icon: Sparkles,
-    tag: service.categoryTag || 'Clinical Care',
+    tag: (service.categoryTag || 'Clinical Care').toUpperCase(),
     accentColor: '#1B6B50',
-    avatarBg: '#1B6B50',
   };
 
-  const IconComp = theme.icon;
-
-  // Staggered automatic covering animation:
-  // Each card smoothly cycles between Image and Information cover panel
-  useEffect(() => {
-    if (isHovered) return;
-
-    // Stagger start by column so cards animate in an organic cascading wave
-    const staggerDelay = (index % 3) * 1600;
-    let intervalId: ReturnType<typeof setInterval>;
-
-    const initialTimer = setTimeout(() => {
-      setIsAutoActive(true);
-
-      // Cycle every 4.6 seconds (4.6s info, 4.6s image)
-      intervalId = setInterval(() => {
-        setIsAutoActive((prev) => !prev);
-      }, 4600);
-    }, staggerDelay + 1400);
-
-    return () => {
-      clearTimeout(initialTimer);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [index, isHovered]);
-
-  const isInfoVisible = isHovered || isAutoActive;
+  const formattedIndex = String(index + 1).padStart(2, '0');
 
   return (
     <>
-      <article
-        className="treatment-hover-card"
+      <motion.article
+        className="treatment-clean-card"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
         onClick={() => setIsModalOpen(true)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
@@ -150,138 +89,60 @@ export const ServiceCard: React.FC<ServiceCardProps> = React.memo(({ service, in
         }}
         aria-label={`View clinical details for ${service.title}`}
       >
-        {/* Tall Rounded Image Frame with Smooth Covering Information Panel */}
-        <div className="treatment-hover-card__media">
-          {service.image ? (
-            <img
-              src={service.image}
-              alt={service.title}
-              className="treatment-hover-card__img"
-              loading="lazy"
-            />
-          ) : (
-            <div className="treatment-hover-card__placeholder" />
-          )}
+        {/* Top Header Row: Index Capsule + Category Tag */}
+        <div className="treatment-clean-card__header">
+          <span className="treatment-clean-card__index-pill">
+            {formattedIndex}
+          </span>
+          <span className="treatment-clean-card__tag">
+            {theme.tag}
+          </span>
+        </div>
 
-          {/* Duration Badge */}
+        {/* Serif Treatment Title */}
+        <h3 className="treatment-clean-card__title">
+          {service.title}
+        </h3>
+
+        {/* Clinical Description Paragraph */}
+        <p className="treatment-clean-card__desc">
+          {service.description}
+        </p>
+
+        {/* Benefits Checklist */}
+        {service.benefits && service.benefits.length > 0 && (
+          <ul className="treatment-clean-card__benefits">
+            {service.benefits.slice(0, 2).map((benefit, i) => (
+              <li key={i}>
+                <Check size={14} className="treatment-clean-card__check" />
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Bottom Footer: Explore Protocol Link + Duration */}
+        <div className="treatment-clean-card__footer">
+          <span className="treatment-clean-card__cta">
+            <span>Explore Protocol</span>
+            <ArrowUpRight size={14} />
+          </span>
+
           {service.duration && (
-            <span
-              className={`treatment-hover-card__duration-badge ${
-                isInfoVisible ? 'is-hidden' : ''
-              }`}
-            >
-              {service.duration}
+            <span className="treatment-clean-card__duration">
+              <Clock size={13} className="treatment-clean-card__clock" />
+              <span>{service.duration}</span>
             </span>
           )}
-
-          {/* Smooth Covering Panel (Auto-cycles and locks on hover) */}
-          <div
-            className={`treatment-cover-panel ${isInfoVisible ? 'is-active' : ''}`}
-            aria-hidden={!isInfoVisible}
-          >
-            <div className="treatment-cover-panel__inner">
-              <div className="treatment-cover-panel__top">
-                <span
-                  className="treatment-cover-panel__tag"
-                  style={{ color: theme.accentColor }}
-                >
-                  {theme.tag}
-                </span>
-
-                <span className="treatment-cover-panel__pulse-badge">
-                  <span className="treatment-cover-panel__pulse-dot" />
-                  <span>OVERVIEW</span>
-                </span>
-              </div>
-
-              <h3 className="treatment-cover-panel__title">
-                {service.title}
-              </h3>
-
-              <p className="treatment-cover-panel__para">
-                {service.description}
-              </p>
-
-              {service.benefits && service.benefits.length > 0 && (
-                <div className="treatment-cover-panel__benefits">
-                  <span className="treatment-cover-panel__benefits-title">
-                    Clinical Focus:
-                  </span>
-                  <ul>
-                    {service.benefits.slice(0, 3).map((benefit, i) => (
-                      <li key={i}>
-                        <Check
-                          size={12}
-                          className="treatment-cover-panel__check"
-                        />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="treatment-cover-panel__footer">
-                <span className="treatment-cover-panel__cta-text">
-                  <span>Explore Full Protocol</span>
-                  <ArrowUpRight size={14} />
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
+      </motion.article>
 
-        {/* Bottom Meta Row (Avatar + Title + Category + Orange Arrow Button) */}
-        <div className="treatment-hover-card__bottom">
-          <div className="treatment-hover-card__left">
-            <div
-              className="treatment-hover-card__avatar"
-              style={{ backgroundColor: theme.avatarBg }}
-            >
-              <IconComp size={18} />
-            </div>
-
-            <div className="treatment-hover-card__text-group">
-              <h4 className="treatment-hover-card__name">
-                {service.title.toUpperCase()}
-              </h4>
-              <span className="treatment-hover-card__category">
-                {(service.categoryTag || theme.tag).toUpperCase()}
-              </span>
-            </div>
-          </div>
-
-          <div className="treatment-hover-card__right-actions">
-            {/* Status indicator pill (PHOTO / INFO) */}
-            <span
-              className={`treatment-state-pill ${
-                isInfoVisible ? 'is-info' : 'is-img'
-              }`}
-            >
-              {isInfoVisible ? 'INFO' : 'PHOTO'}
-            </span>
-
-            <button
-              type="button"
-              className="treatment-hover-card__action-btn"
-              aria-label={`View clinical details for ${service.title}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsModalOpen(true);
-              }}
-            >
-              <ArrowUpRight size={20} strokeWidth={2.4} />
-            </button>
-          </div>
-        </div>
-      </article>
-
-      {/* Service Detail Modal */}
+      {/* Detail Modal */}
       <ServiceDetailModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         service={service}
-        iconComponent={IconComp}
+        iconComponent={Sparkles}
         themeTag={theme.tag}
         accentColor={theme.accentColor}
       />
