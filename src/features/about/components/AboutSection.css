@@ -85,9 +85,53 @@
    -------------------------------------------------------------------------- */
 .pure-banner-content-col {
   flex: 1;
-  max-width: 580px;
+  max-width: 680px;
   position: relative;
   z-index: 5;
+}
+
+.pure-banner-about-header {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pure-banner-about-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 5px 14px;
+  background: rgba(201, 141, 59, 0.2);
+  border: 1px solid rgba(201, 141, 59, 0.45);
+  border-radius: 999px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #F8D8A0;
+  text-transform: uppercase;
+}
+
+.pure-banner-about-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(1.85rem, 2.8vw, 2.45rem);
+  font-weight: 700;
+  color: #FAFBF9;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.015em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.pure-banner-about-lead {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #E2EFE8;
+  margin: 0;
+  max-width: 95%;
 }
 
 .pure-banner-principles-list {

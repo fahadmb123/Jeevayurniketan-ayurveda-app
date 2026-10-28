@@ -6,36 +6,30 @@ import { LazyMotion, domAnimation, m, type Variants } from 'framer-motion';
 import { ROUTES } from '@/shared/config/routes';
 import './AboutSection.css';
 
-interface PrincipleItem {
+interface AboutPillar {
   id: string;
   title: string;
   description: string;
 }
 
-const PRINCIPLES: PrincipleItem[] = [
+const ABOUT_PILLARS: AboutPillar[] = [
   {
-    id: 'sourcing',
-    title: 'Ingredients & Classical Sourcing',
+    id: 'heritage',
+    title: 'Kottakkal Heritage & Classical Lineage',
     description:
-      'Our medicinal herbs and formulations are sourced directly from Kerala valleys where plants thrive in chemical-free soil and pristine climatic conditions. Harvested according to seasonal biological rhythms (Ritucharya) to ensure superior vital potency.',
+      'Deeply rooted in the revered Ayurvedic heartland of Kottakkal, Kerala, our practice adheres faithfully to original Caraka and Ashtanga Hridaya texts. Every diagnostic evaluation and therapeutic protocol is uniquely customized to an individual’s constitutional Prakriti and current imbalances.',
   },
   {
-    id: 'purity',
-    title: 'Quality, Authenticity & Safety',
+    id: 'mission',
+    title: 'Our Healing Mission',
     description:
-      'Every classical preparation undergoes multi-tier testing to ensure complete safety, botanical purity, and therapeutic efficacy. We verify natural identity, screen for heavy metals, and maintain rigorous clinical-grade preparation standards.',
+      'To provide genuine, root-cause resolution free from synthetic dependency. Through physician-supervised Panchakarma detoxification, ethically harvested medicinal botanicals, and personalized dietetics (Pathya), we guide each seeker toward lasting physical and metabolic balance.',
   },
   {
-    id: 'synergy',
-    title: 'Synergy of Classical Samhitas & Mind-Body Care',
+    id: 'philosophy',
+    title: 'Clinical Philosophy & Mind-Body Synergy',
     description:
-      'We combine classical Ayurvedic internal medicine with Satvavajaya Chikitsa (mind-restraining psychotherapy) and guided Smriti Meditation — dissolving the deep emotional and trauma roots of psychosomatic illness without synthetic psychiatric dependency.',
-  },
-  {
-    id: 'guidance',
-    title: 'Masterfully Crafted Under Expert Guidance',
-    description:
-      'Guided by Dr. Ahalya T.S., bringing authentic Caraka Samhita principles and compassionate holistic healing to patients seeking constitutional balance and long-term wellness.',
+      'Under the clinical guidance of Dr. Ahalya T.S., we pioneer the synergy of internal Ayurvedic medicine with Satvavajaya Chikitsa (Ayurvedic psychotherapy) and guided Smriti Meditation — resolving the deep subconscious emotional stress and trauma roots of chronic illness.',
   },
 ];
 
@@ -165,8 +159,23 @@ export const AboutSection: React.FC = React.memo(() => {
           </div>
 
           <m.div className="pure-banner-content-col" variants={contentVariants}>
+            {/* About Us Header */}
+            <m.div className="pure-banner-about-header" variants={principleVariants}>
+              <span className="pure-banner-about-badge">
+                <Sparkles size={12} />
+                <span>ABOUT JEEVAYURNIKETAN</span>
+              </span>
+              <h2 className="pure-banner-about-title">
+                Rooted in Kottakkal, Dedicated to Constitutional Healing
+              </h2>
+              <p className="pure-banner-about-lead">
+                An authentic Ayurvedic healing sanctuary in Kerala combining classical Samhita medicine, Ayurvedic psychotherapy, and physician-guided holistic restoration.
+              </p>
+            </m.div>
+
+            {/* About Us Story Pillars */}
             <m.div className="pure-banner-principles-list" variants={sectionVariants}>
-              {PRINCIPLES.map((item) => (
+              {ABOUT_PILLARS.map((item) => (
                 <m.div key={item.id} className="pure-principle-block" variants={principleVariants}>
                   <h3 className="pure-principle-title">{item.title}</h3>
                   <p className="pure-principle-desc">{item.description}</p>
@@ -176,7 +185,7 @@ export const AboutSection: React.FC = React.memo(() => {
 
             <m.div className="pure-banner-action-row" variants={principleVariants}>
               <Link to={ROUTES.ABOUT} className="pure-banner-cta-link">
-                <span>Explore Our Full Clinical Heritage & Philosophy</span>
+                <span>Explore Our Full Story &amp; Clinical Heritage</span>
                 <ArrowRight size={17} />
               </Link>
             </m.div>
