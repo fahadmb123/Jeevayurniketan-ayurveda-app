@@ -343,24 +343,24 @@
 @media (max-width: 900px) {
   .pure-banner-card {
     flex-direction: column;
-    padding: 130px 28px 40px;
-    gap: 36px;
+    padding: 120px 28px 36px;
+    gap: 32px;
   }
 
   .pure-banner-bowl-anchor {
-    top: -100px;
+    top: -90px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
   }
 
   .pure-banner-rail {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
   }
 
   .pure-banner-content-col {
@@ -368,32 +368,117 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .ayurveda-pure-banner-section {
-    padding: 80px 16px 50px;
+    padding: 55px 14px 35px;
   }
 
   .pure-banner-card {
-    padding: 110px 20px 32px;
-    border-radius: 20px;
+    padding: 70px 16px 26px;
+    border-radius: 18px;
+    gap: 22px;
+    box-shadow: 0 16px 40px rgba(10, 46, 32, 0.14);
   }
 
   .pure-banner-bowl-anchor {
-    top: -80px;
-    width: 190px;
-    height: 190px;
+    top: -55px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 135px;
+    height: 135px;
+  }
+
+  .pure-banner-about-header {
+    margin-bottom: 18px;
+    gap: 8px;
+  }
+
+  .pure-banner-about-badge {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+  }
+
+  .pure-banner-about-title {
+    font-size: 1.28rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .pure-banner-about-lead {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .pure-banner-principles-list {
+    gap: 14px;
+  }
+
+  .pure-principle-block {
+    gap: 4px;
+    padding-left: 10px;
+  }
+
+  .pure-principle-block::before {
+    width: 2px;
+    top: 0.2rem;
+    bottom: 0.2rem;
   }
 
   .pure-principle-title {
-    font-size: 1.3rem;
+    font-size: 1.0rem;
+    line-height: 1.3;
   }
 
   .pure-principle-desc {
-    font-size: 0.88rem;
+    font-size: 0.78rem;
+    line-height: 1.48;
+    max-width: 100%;
+  }
+
+  .pure-banner-action-row {
+    margin-top: 18px;
+    padding-top: 14px;
   }
 
   .pure-banner-cta-link {
     width: 100%;
     justify-content: center;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+
+  .pure-banner-rail-col {
+    padding-top: 0;
+  }
+
+  .pure-banner-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .pure-rail-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .pure-rail-circle svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pure-rail-circle::after {
+    width: 54px;
+    height: 54px;
+  }
+
+  .pure-rail-label {
+    font-size: 0.68rem;
+    max-width: 72px;
   }
 }
+
