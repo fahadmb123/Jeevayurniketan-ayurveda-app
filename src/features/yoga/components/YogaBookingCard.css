@@ -1,0 +1,21 @@
+/* Yoga Journey Bottom Section */
+
+.yoga-journey-bottom-section {
+  position: relative;
+  padding: clamp(48px, 6vw, 76px) 24px clamp(56px, 7vw, 84px);
+  background: linear-gradient(180deg, #F4F8F4 0%, #FAFCF9 100%);
+  overflow: hidden;
+}
+
+[data-theme='dark'] .yoga-journey-bottom-section,
+.dark .yoga-journey-bottom-section {
+  background: linear-gradient(180deg, #11221B 0%, #0D1914 100%);
+}
+
+.yoga-journey-bottom-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}

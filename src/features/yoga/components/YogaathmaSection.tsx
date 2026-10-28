@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Sparkles,
-  PhoneCall,
   MessageCircle,
   Calendar,
   ArrowRight,
@@ -25,7 +24,7 @@ import './YogaathmaSection.css';
 const PILLAR_ICONS = [Compass, Award, Heart, Sparkles, ShieldCheck];
 
 export const YogaathmaSection: React.FC = React.memo(() => {
-  const { hero, approach, programs, philosophy, booking } = YOGAATHMA_DATA;
+  const { hero, approach, programs } = YOGAATHMA_DATA;
 
   const whatsappHeroUrl = `https://wa.me/918970695250?text=${encodeURIComponent(
     hero.whatsappMessage
@@ -141,64 +140,6 @@ export const YogaathmaSection: React.FC = React.memo(() => {
             ))}
           </div>
         </motion.div>
-
-        {/* Direct Booking & Consultation Banner */}
-        <motion.div
-          className="yogaathma-booking-card"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
-          <div className="yogaathma-booking-card__content">
-            <span className="yogaathma-booking-card__tag">
-              {booking.tagline}
-            </span>
-            <h3 className="yogaathma-booking-card__title">
-              {booking.heading}
-            </h3>
-            <p className="yogaathma-booking-card__desc">
-              {booking.description}
-            </p>
-            <p className="yogaathma-booking-card__options">
-              <strong>Session options:</strong> {booking.options}
-            </p>
-          </div>
-
-          <div className="yogaathma-booking-card__actions">
-            <a
-              href={`https://wa.me/918970695250?text=${encodeURIComponent(
-                'Hello Jeevayurniketan | Yogaathma, I would like to book a yoga session.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="yogaathma-booking-btn-whatsapp"
-            >
-              <MessageCircle size={18} />
-              <span>WhatsApp: {booking.phone}</span>
-            </a>
-
-            <a href={`tel:+918970695250`} className="yogaathma-booking-btn-call">
-              <PhoneCall size={16} />
-              <span>Call: {booking.phone}</span>
-            </a>
-
-            <Link to={ROUTES.YOGA} className="yogaathma-booking-btn-schedule">
-              <Calendar size={16} />
-              <span>Full Schedule &amp; Timetable</span>
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* Philosophy & Disclaimer Quote */}
-        <div className="yogaathma-philosophy-quote text-center">
-          <p className="yogaathma-mantra">
-            &ldquo;{philosophy.mantra}&rdquo;
-          </p>
-          <p className="yogaathma-disclaimer">
-            {philosophy.disclaimer}
-          </p>
-        </div>
       </div>
     </section>
   );
