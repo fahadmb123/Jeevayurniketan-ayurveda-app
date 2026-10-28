@@ -274,10 +274,50 @@
 @media (max-width: 680px) {
   .yoga-program-card-slot {
     height: auto;
+    min-height: 72px;
   }
 
   .yoga-program-clean-card {
     position: relative;
-    min-height: auto;
+    min-height: 72px;
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .yoga-program-clean-card__title {
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .yoga-program-clean-card__desc {
+    font-size: 0.82rem;
+    line-height: 1.48;
+    margin: 0 0 10px 0;
+  }
+
+  .yoga-program-clean-card__benefits {
+    gap: 6px;
+    margin: 0 0 12px 0;
+  }
+
+  .yoga-program-clean-card__benefits li {
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .yoga-program-clean-card__focus {
+    font-size: 0.74rem;
+    padding: 5px 8px;
+    margin: 0 0 10px 0;
+  }
+
+  .yoga-program-clean-card__footer {
+    padding-top: 10px;
+  }
+
+  .yoga-program-clean-card__cta {
+    font-size: 0.78rem;
+    padding: 7px 12px;
   }
 }
+
