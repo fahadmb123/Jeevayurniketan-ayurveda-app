@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
@@ -67,21 +67,10 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           whileInView="visible"
           viewport={standardViewport}
         >
-          <motion.div className="section-pill" variants={fadeUpVariants}>
-            <Compass size={14} />
-            <span>Therapeutic Modalities</span>
-          </motion.div>
-          <motion.h2 className="journey-title" variants={fadeUpVariants}>
-            Our <span className="text-primary-green">Treatments</span>
-          </motion.h2>
+
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             Classical Ayurvedic treatments including Abhyanga, Shirodhara, and customized herbal formulations prescribed following individual clinical assessment.
           </motion.p>
-
-          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
-            <span className="stream-pulse-dot" aria-hidden="true" />
-            <span>Continuous Care Stream</span>
-          </motion.div>
         </motion.div>
 
         {/* Treatments Live Stream Marquee */}
@@ -110,17 +99,33 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         </div>
 
         {/* Action Button: View Our Treatments */}
+
+
+        {/* Doctor-Guided Therapeutic Yoga & Chikitsa Synergy Bridge */}
         <motion.div
-          className="journey-actions-bar"
+          className="services-yoga-bridge"
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={standardViewport}
         >
-          <Link to={ROUTES.SERVICES} className="journey-view-treatments-btn">
-            <span>View Our Treatments</span>
-            <ArrowRight size={18} />
-          </Link>
+          <div className="services-yoga-bridge__inner">
+            <div className="services-yoga-bridge__text">
+              <h3 className="services-yoga-bridge__title">
+                Doctor-Guided Therapeutic Yoga &amp; Chikitsa
+              </h3>
+              <p className="services-yoga-bridge__desc">
+                To complement our clinical treatments, <strong>Jeevayurniketan | Yogaathma</strong> provides personalized therapeutic movement, joint mobility protocols, and pranayama breathing tailored for musculoskeletal care, metabolic balance, and nervous rejuvenation.
+              </p>
+            </div>
+
+            <div className="services-yoga-bridge__actions">
+              <Link to={ROUTES.SERVICES} className="journey-view-treatments-btn">
+                <span>View Our Treatments</span>
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
         </motion.div>
 
         {/* Section Divider */}

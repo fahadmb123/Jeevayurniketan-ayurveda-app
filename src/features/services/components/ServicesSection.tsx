@@ -81,45 +81,6 @@ export const ServicesSection: React.FC = React.memo(() => {
           </button>
         </div>
       )}
-
-      {/* Therapeutic Yoga & Chikitsa Synergy Bridge */}
-      <motion.div
-        className="services-yoga-bridge"
-        variants={fadeUpVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={standardViewport}
-      >
-        <div className="services-yoga-bridge__inner">
-          <div className="services-yoga-bridge__text">
-            <span className="services-yoga-bridge__badge">
-              <Sparkles size={13} />
-              <span>AYURVEDA &amp; YOGAATHMA SYNERGY</span>
-            </span>
-            <h3 className="services-yoga-bridge__title">
-              Doctor-Guided Therapeutic Yoga &amp; Chikitsa
-            </h3>
-            <p className="services-yoga-bridge__desc">
-              To complement our clinical treatments, <strong>Jeevayurniketan | Yogaathma</strong> provides personalized therapeutic movement, joint mobility protocols, and pranayama breathing tailored for musculoskeletal care, metabolic balance, and nervous rejuvenation.
-            </p>
-          </div>
-
-          <div className="services-yoga-bridge__actions">
-            <a href="#yoga" className="services-yoga-bridge__btn-primary">
-              <span>Explore Yogaathma Programs</span>
-              <Sparkles size={15} />
-            </a>
-            <a
-              href="https://wa.me/918970695250?text=Hello%20Jeevayurniketan%2C%20I%20would%20like%20to%20enquire%20about%20combining%20Therapeutic%20Yoga%20with%20Ayurvedic%20Treatments."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="services-yoga-bridge__btn-whatsapp"
-            >
-              <span>WhatsApp: 89706 95250</span>
-            </a>
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 });
