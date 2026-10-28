@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, MessageCircle, Clock, Video, Sparkles } from 'lucide-react';
+import { Check, MessageCircle, Clock, Video } from 'lucide-react';
 import type { YogaProgram } from '../data/yogaathmaData';
 import { fadeUpVariants } from '@/shared/lib/animations';
 import './YogaProgramCard.css';
@@ -50,22 +50,6 @@ export const YogaProgramCard: React.FC<YogaProgramCardProps> = React.memo(({
             <p className="yoga-program-clean-card__tagline">
               {program.tagline}
             </p>
-
-            {/* Visual Thumbnail */}
-            {program.image && (
-              <div className="yoga-program-clean-card__image-wrap">
-                <img
-                  src={program.image}
-                  alt={program.title}
-                  className="yoga-program-clean-card__image"
-                  loading="lazy"
-                />
-                <span className="yoga-program-clean-card__badge">
-                  <Sparkles size={11} />
-                  <span>{program.categoryTag}</span>
-                </span>
-              </div>
-            )}
 
             {/* Description */}
             <p className="yoga-program-clean-card__desc">

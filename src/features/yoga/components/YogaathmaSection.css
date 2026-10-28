@@ -2,7 +2,7 @@
 
 .yogaathma-section {
   position: relative;
-  padding: clamp(60px, 8vw, 100px) 24px;
+  padding: clamp(60px, 8vw, 100px) 0;
   background: linear-gradient(180deg, #FAFCF9 0%, #F4F8F4 50%, #FAFBF8 100%);
   overflow: hidden;
 }
@@ -15,6 +15,7 @@
 .yogaathma-container {
   max-width: 1240px;
   margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   gap: clamp(48px, 6vw, 72px);
@@ -499,4 +500,29 @@
 [data-theme='dark'] .yogaathma-disclaimer,
 .dark .yogaathma-disclaimer {
   color: var(--text-light, #6C8176);
+}
+
+/* ==========================================================================
+   Continuous Yoga Live Stream Wrapper
+   ========================================================================== */
+
+.yogaathma-stream-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(40px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+.yogaathma-stream-wrapper .journey-stream-viewport {
+  position: relative;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  padding: 34px 0 54px;
 }

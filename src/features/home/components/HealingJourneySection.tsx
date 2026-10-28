@@ -31,24 +31,6 @@ const TREATMENT_IMAGES: GalleryCardItem[] = [
   },
 ];
 
-const YOGA_IMAGES: GalleryCardItem[] = [
-  {
-    id: 'yoga-1',
-    src: '/yoga/yoga-1.jpg',
-    alt: 'Therapeutic Asana & Mindful Movement',
-  },
-  {
-    id: 'yoga-2',
-    src: '/yoga/yoga-2.jpg',
-    alt: 'Pranayama Breathwork & Guided Meditation',
-  },
-  {
-    id: 'yoga-3',
-    src: '/yoga/yoga-3.jpg',
-    alt: 'Restorative Yogic Healing & Dosha Balance',
-  },
-];
-
 export const HealingJourneySection: React.FC = React.memo(() => {
   return (
     <section
@@ -152,50 +134,6 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             Restorative Asanas, Pranayama breath regulation, and meditation practices tailored to your constitution to support physical vitality and mental equilibrium.
           </motion.p>
-
-          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
-            <span className="stream-pulse-dot" aria-hidden="true" />
-            <span>Continuous Yoga Stream</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
-        <div className="journey-stream-viewport">
-          <div className="journey-stream-track journey-stream-track--reverse">
-            {[
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-            ].map((item, index) => (
-              <article
-                key={`yoga-${item.id}-${index}`}
-                className="journey-card journey-card--image-only"
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="journey-card__img"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </article>
-            ))}
-          </div>
-        </div>
-
-        {/* Action Button: View Our Yoga */}
-        <motion.div
-          className="journey-actions-bar"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
-          <Link to={ROUTES.YOGA} className="journey-view-treatments-btn">
-            <span>View Our Yoga</span>
-            <ArrowRight size={18} />
-          </Link>
         </motion.div>
 
         {/* ==================================================================
