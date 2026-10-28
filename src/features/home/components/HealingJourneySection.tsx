@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { BookAppointmentButton } from '@/features/appointments';
 import { ROUTES } from '@/shared/config/routes';
 import { staggerContainerVariants, fadeUpVariants, standardViewport } from '@/shared/lib/animations';
@@ -31,24 +31,6 @@ const TREATMENT_IMAGES: GalleryCardItem[] = [
   },
 ];
 
-const YOGA_IMAGES: GalleryCardItem[] = [
-  {
-    id: 'yoga-1',
-    src: '/yoga/yoga-1.jpg',
-    alt: 'Therapeutic Asana & Mindful Movement',
-  },
-  {
-    id: 'yoga-2',
-    src: '/yoga/yoga-2.jpg',
-    alt: 'Pranayama Breathwork & Guided Meditation',
-  },
-  {
-    id: 'yoga-3',
-    src: '/yoga/yoga-3.jpg',
-    alt: 'Restorative Yogic Healing & Dosha Balance',
-  },
-];
-
 export const HealingJourneySection: React.FC = React.memo(() => {
   return (
     <section
@@ -67,31 +49,14 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           whileInView="visible"
           viewport={standardViewport}
         >
-          <motion.div className="section-pill" variants={fadeUpVariants}>
-            <Compass size={14} />
-            <span>Therapeutic Modalities</span>
-          </motion.div>
-          <motion.h2 className="journey-title" variants={fadeUpVariants}>
-            Our <span className="text-primary-green">Treatments</span>
-          </motion.h2>
+
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             Classical Ayurvedic treatments including Abhyanga, Shirodhara, and customized herbal formulations prescribed following individual clinical assessment.
           </motion.p>
-
-          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
-            <span className="stream-pulse-dot" aria-hidden="true" />
-            <span>Continuous Care Stream</span>
-          </motion.div>
         </motion.div>
 
         {/* Treatments Live Stream Marquee */}
-        <motion.div
-          className="journey-stream-viewport"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
+        <div className="journey-stream-viewport">
           <div className="journey-stream-track">
             {[
               ...TREATMENT_IMAGES,
@@ -113,20 +78,36 @@ export const HealingJourneySection: React.FC = React.memo(() => {
               </article>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Action Button: View Our Treatments */}
+
+
+        {/* Doctor-Guided Therapeutic Yoga & Chikitsa Synergy Bridge */}
         <motion.div
-          className="journey-actions-bar"
+          className="services-yoga-bridge"
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={standardViewport}
         >
-          <Link to={ROUTES.SERVICES} className="journey-view-treatments-btn">
-            <span>View Our Treatments</span>
-            <ArrowRight size={18} />
-          </Link>
+          <div className="services-yoga-bridge__inner">
+            <div className="services-yoga-bridge__text">
+              <h3 className="services-yoga-bridge__title">
+                Doctor-Guided Therapeutic Yoga &amp; Chikitsa
+              </h3>
+              <p className="services-yoga-bridge__desc">
+                To complement our clinical treatments, <strong>Jeevayurniketan | Yogaathma</strong> provides personalized therapeutic movement, joint mobility protocols, and pranayama breathing tailored for musculoskeletal care, metabolic balance, and nervous rejuvenation.
+              </p>
+            </div>
+
+            <div className="services-yoga-bridge__actions">
+              <Link to={ROUTES.SERVICES} className="journey-view-treatments-btn">
+                <span>View Our Treatments</span>
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
         </motion.div>
 
         {/* Section Divider */}
@@ -153,56 +134,6 @@ export const HealingJourneySection: React.FC = React.memo(() => {
           <motion.p className="journey-subtitle" variants={fadeUpVariants}>
             Restorative Asanas, Pranayama breath regulation, and meditation practices tailored to your constitution to support physical vitality and mental equilibrium.
           </motion.p>
-
-          <motion.div className="journey-stream-badge" variants={fadeUpVariants}>
-            <span className="stream-pulse-dot" aria-hidden="true" />
-            <span>Continuous Yoga Stream</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
-        <motion.div
-          className="journey-stream-viewport"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
-          <div className="journey-stream-track journey-stream-track--reverse">
-            {[
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-              ...YOGA_IMAGES,
-            ].map((item, index) => (
-              <article
-                key={`yoga-${item.id}-${index}`}
-                className="journey-card journey-card--image-only"
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="journey-card__img"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </article>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Action Button: View Our Yoga */}
-        <motion.div
-          className="journey-actions-bar"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
-          <Link to={ROUTES.YOGA} className="journey-view-treatments-btn">
-            <span>View Our Yoga</span>
-            <ArrowRight size={18} />
-          </Link>
         </motion.div>
 
         {/* ==================================================================

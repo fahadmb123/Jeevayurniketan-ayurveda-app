@@ -8,7 +8,6 @@ import {
   Award,
   CheckCircle2,
   Inbox,
-  PhoneCall,
   MessageCircle,
   Compass,
   Heart,
@@ -21,6 +20,7 @@ import { YogaFilterBar } from '../components/YogaFilterBar';
 import { YogaProgramCard } from '../components/YogaProgramCard';
 import { YogaLearningSection } from '../components/YogaLearningSection';
 import { YogaStepsSection } from '../components/YogaStepsSection';
+import { YogaBookingCard } from '../components/YogaBookingCard';
 import { YOGAATHMA_DATA } from '../data/yogaathmaData';
 import { Navbar, Footer } from '@/shared/layout';
 import {
@@ -56,7 +56,7 @@ export const YogaSchedulePage: React.FC = React.memo(() => {
     handleResetDefaults,
   } = useYogaSchedule();
 
-  const { hero, approach, programs, booking, philosophy } = YOGAATHMA_DATA;
+  const { hero, approach, programs } = YOGAATHMA_DATA;
 
   const whatsappHeroUrl = `https://wa.me/918970695250?text=${encodeURIComponent(
     hero.whatsappMessage
@@ -309,51 +309,7 @@ export const YogaSchedulePage: React.FC = React.memo(() => {
           </section>
 
           {/* Begin Your Journey Booking Banner */}
-          <div className="yoga-booking-card-wrap">
-            <div className="yogaathma-booking-card">
-              <div className="yogaathma-booking-card__content">
-                <span className="yogaathma-booking-card__tag">
-                  {booking.tagline}
-                </span>
-                <h3 className="yogaathma-booking-card__title">
-                  {booking.heading}
-                </h3>
-                <p className="yogaathma-booking-card__desc">
-                  {booking.description}
-                </p>
-                <p className="yogaathma-booking-card__options">
-                  <strong>Session options:</strong> {booking.options}
-                </p>
-              </div>
-
-              <div className="yogaathma-booking-card__actions">
-                <a
-                  href={`https://wa.me/918970695250?text=${encodeURIComponent(
-                    'Hello Jeevayurniketan | Yogaathma, I would like to book a yoga session.'
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="yogaathma-booking-btn-whatsapp"
-                >
-                  <MessageCircle size={18} />
-                  <span>WhatsApp: {booking.phone}</span>
-                </a>
-
-                <a href={`tel:+918970695250`} className="yogaathma-booking-btn-call">
-                  <PhoneCall size={16} />
-                  <span>Call: {booking.phone}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Philosophy & Medical Disclaimer */}
-          <div className="yoga-philosophy-footer text-center">
-            <h4 className="yoga-philosophy-title">{philosophy.title}</h4>
-            <p className="yoga-philosophy-quote">{philosophy.quote}</p>
-            <p className="yoga-philosophy-mantra">&ldquo;{philosophy.mantra}&rdquo;</p>
-            <p className="yoga-philosophy-disclaimer">{philosophy.disclaimer}</p>
-          </div>
+          <YogaBookingCard />
 
           {/* Add / Edit Yoga Class Modal */}
           <YogaClassModal

@@ -5,3 +5,4 @@ export * from './YogaProgramCard';
 export * from './YogaathmaSection';
 export * from './YogaLearningSection';
 export * from './YogaStepsSection';
+export * from './YogaBookingCard';

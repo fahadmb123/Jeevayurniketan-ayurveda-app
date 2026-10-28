@@ -6,11 +6,9 @@ import { TrustStatsBar } from '../components/TrustStatsBar';
 import { AboutSection } from '@/features/about';
 import { HealingJourneySection } from '../components/HealingJourneySection';
 import { ServicesSection } from '@/features/services';
-import { TeamSection } from '@/features/team';
-import { DoctorIntroSection } from '@/features/team';
-import { YogaathmaSection } from '@/features/yoga';
+import { TeamSection, DoctorIntroSection } from '@/features/team';
+import { YogaathmaSection, YogaBookingCard } from '@/features/yoga';
 import { FAQSection } from '../components/FAQSection';
-import { BlogSection } from '@/features/blog';
 import './HomePage.css';
 
 export const HomePage: React.FC = React.memo(() => {
@@ -27,7 +25,7 @@ export const HomePage: React.FC = React.memo(() => {
       <AboutSection />
       <TeamSection />
       <FAQSection />
-      <BlogSection />
+      <YogaBookingCard />
       <Footer />
     </main>
   );

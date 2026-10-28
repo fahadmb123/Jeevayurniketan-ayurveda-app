@@ -10,7 +10,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   overflow-x: clip;
   background-color: var(--bg-color, #FBFBF9);
@@ -23,12 +23,12 @@
 
 /* Header matching the reference screenshot directly under torn edge */
 .health-wellness-header-wrap {
-  text-align: left;
+  text-align: center;
   max-width: 820px;
-  margin-bottom: 36px;
+  margin: 0 auto 36px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
@@ -60,6 +60,7 @@
   letter-spacing: -0.015em;
   margin: 0 0 12px;
   line-height: 1.18;
+  text-align: center;
   will-change: transform, opacity;
 }
 
@@ -68,7 +69,8 @@
   font-size: 1.04rem;
   line-height: 1.7;
   color: var(--text-secondary, #485E53);
-  margin: 0;
+  margin: 0 auto;
+  text-align: center;
   will-change: transform, opacity;
 }
 
@@ -219,45 +221,53 @@
 
 @media (max-width: 640px) {
   .health-wellness-section {
-    padding: 16px 16px 32px;
+    padding: 16px 14px 28px;
   }
   .health-wellness-header-wrap {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .health-wellness-badge {
-    padding: 5px 12px;
-    font-size: 0.74rem;
-    margin-bottom: 10px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    margin-bottom: 8px;
   }
   .health-wellness-title {
-    font-size: 1.85rem;
-    line-height: 1.2;
-    margin-bottom: 10px;
+    font-size: 1.55rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
   }
   .health-wellness-desc {
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
   .trust-stats-container {
     grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 18px 14px;
+    gap: 10px;
+    padding: 14px 12px;
+    border-radius: 16px;
   }
   .trust-stat-card {
-    padding: 6px;
+    padding: 4px;
+    gap: 12px;
   }
   .trust-stat-card__icon-wrap {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+  }
+  .trust-stat-card__icon-wrap svg {
+    width: 18px;
+    height: 18px;
   }
   .trust-stat-card__value {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
   .trust-stat-card__label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   .trust-stat-card__sublabel {
-    font-size: 0.76rem;
+    font-size: 0.72rem;
   }
 }
+

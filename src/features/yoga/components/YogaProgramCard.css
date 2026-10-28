@@ -126,48 +126,9 @@
   font-style: italic;
   font-size: 0.95rem;
   color: var(--accent-gold, #C98D3B);
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
   text-align: center;
   font-weight: 500;
-}
-
-/* Thumbnail Wrap */
-.yoga-program-clean-card__image-wrap {
-  position: relative;
-  width: 100%;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.yoga-program-clean-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.yoga-program-clean-card:hover .yoga-program-clean-card__image {
-  transform: scale(1.04);
-}
-
-.yoga-program-clean-card__badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  border-radius: 9999px;
-  background: rgba(18, 76, 56, 0.85);
-  backdrop-filter: blur(4px);
-  color: #FFFFFF;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 /* Description */
@@ -313,10 +274,50 @@
 @media (max-width: 680px) {
   .yoga-program-card-slot {
     height: auto;
+    min-height: 72px;
   }
 
   .yoga-program-clean-card {
     position: relative;
-    min-height: auto;
+    min-height: 72px;
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .yoga-program-clean-card__title {
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .yoga-program-clean-card__desc {
+    font-size: 0.82rem;
+    line-height: 1.48;
+    margin: 0 0 10px 0;
+  }
+
+  .yoga-program-clean-card__benefits {
+    gap: 6px;
+    margin: 0 0 12px 0;
+  }
+
+  .yoga-program-clean-card__benefits li {
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .yoga-program-clean-card__focus {
+    font-size: 0.74rem;
+    padding: 5px 8px;
+    margin: 0 0 10px 0;
+  }
+
+  .yoga-program-clean-card__footer {
+    padding-top: 10px;
+  }
+
+  .yoga-program-clean-card__cta {
+    font-size: 0.78rem;
+    padding: 7px 12px;
   }
 }
+

@@ -2,7 +2,7 @@
 
 .yogaathma-section {
   position: relative;
-  padding: clamp(60px, 8vw, 100px) 24px;
+  padding: clamp(60px, 8vw, 100px) 0;
   background: linear-gradient(180deg, #FAFCF9 0%, #F4F8F4 50%, #FAFBF8 100%);
   overflow: hidden;
 }
@@ -15,6 +15,7 @@
 .yogaathma-container {
   max-width: 1240px;
   margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   gap: clamp(48px, 6vw, 72px);
@@ -500,3 +501,174 @@
 .dark .yogaathma-disclaimer {
   color: var(--text-light, #6C8176);
 }
+
+/* ==========================================================================
+   Continuous Yoga Live Stream Wrapper
+   ========================================================================== */
+
+.yogaathma-stream-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(40px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+.yogaathma-stream-wrapper .journey-stream-viewport {
+  position: relative;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  padding: 34px 0 54px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .yogaathma-section {
+    padding: 48px 0;
+  }
+
+  .yogaathma-container {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .yogaathma-title {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .yogaathma-tagline {
+    font-size: 0.92rem;
+    margin-bottom: 10px;
+  }
+
+  .yogaathma-desc {
+    font-size: 0.84rem;
+    line-height: 1.52;
+    margin-bottom: 18px;
+  }
+
+  .yogaathma-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .yogaathma-btn-primary,
+  .yogaathma-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 18px;
+    font-size: 0.86rem;
+  }
+
+  .yogaathma-approach-title {
+    font-size: 1.35rem;
+  }
+
+  .yogaathma-approach-lead {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .yogaathma-pillars-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .yogaathma-pillar-card {
+    padding: 14px 10px;
+    border-radius: 12px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .yogaathma-pillar-card__icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+
+  .yogaathma-pillar-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .yogaathma-pillar-card h4,
+  .yogaathma-pillar-card__title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .yogaathma-pillar-card p,
+  .yogaathma-pillar-card__desc {
+    font-size: 0.72rem;
+    line-height: 1.42;
+    text-align: center;
+  }
+
+  .yogaathma-pillar-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .yogaathma-pillar-card:last-child:nth-child(odd) p {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+
+
+  .yogaathma-booking-card {
+    padding: 22px 16px;
+    border-radius: 16px;
+    gap: 18px;
+  }
+
+  .yogaathma-booking-card__title {
+    font-size: 1.35rem;
+  }
+
+  .yogaathma-booking-card__desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .yogaathma-booking-card__actions {
+    width: 100%;
+    min-width: auto;
+    gap: 10px;
+  }
+
+  .yogaathma-booking-btn-whatsapp,
+  .yogaathma-booking-btn-call,
+  .yogaathma-booking-btn-schedule {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 0.84rem;
+  }
+
+  .yogaathma-stream-wrapper {
+    margin-top: 28px;
+  }
+
+  .yogaathma-stream-wrapper .journey-stream-viewport {
+    padding: 20px 0 36px;
+  }
+}
+

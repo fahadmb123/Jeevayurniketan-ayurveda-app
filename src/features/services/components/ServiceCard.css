@@ -234,10 +234,47 @@
 @media (max-width: 680px) {
   .treatment-card-slot {
     height: auto;
+    min-height: 72px;
   }
 
   .treatment-clean-card {
     position: relative;
-    min-height: auto;
+    min-height: 72px;
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .treatment-clean-card__title {
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .treatment-clean-card__desc {
+    font-size: 0.82rem;
+    line-height: 1.48;
+    margin: 0 0 10px 0;
+  }
+
+  .treatment-clean-card__benefits {
+    gap: 6px;
+    margin: 0 0 12px 0;
+  }
+
+  .treatment-clean-card__benefits li {
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .treatment-clean-card__footer {
+    padding-top: 10px;
+  }
+
+  .treatment-clean-card__cta {
+    font-size: 0.82rem;
+  }
+
+  .treatment-clean-card__duration {
+    font-size: 0.74rem;
   }
 }
+

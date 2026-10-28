@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Sparkles,
-  PhoneCall,
   MessageCircle,
   Calendar,
   ArrowRight,
@@ -22,10 +21,34 @@ import {
 } from '@/shared/lib/animations';
 import './YogaathmaSection.css';
 
+interface GalleryCardItem {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+const YOGA_IMAGES: GalleryCardItem[] = [
+  {
+    id: 'yoga-1',
+    src: '/yoga/yoga-1.jpg',
+    alt: 'Therapeutic Asana & Mindful Movement',
+  },
+  {
+    id: 'yoga-2',
+    src: '/yoga/yoga-2.jpg',
+    alt: 'Pranayama Breathwork & Guided Meditation',
+  },
+  {
+    id: 'yoga-3',
+    src: '/yoga/yoga-3.jpg',
+    alt: 'Restorative Yogic Healing & Dosha Balance',
+  },
+];
+
 const PILLAR_ICONS = [Compass, Award, Heart, Sparkles, ShieldCheck];
 
 export const YogaathmaSection: React.FC = React.memo(() => {
-  const { hero, approach, programs, philosophy, booking } = YOGAATHMA_DATA;
+  const { hero, approach, programs } = YOGAATHMA_DATA;
 
   const whatsappHeroUrl = `https://wa.me/918970695250?text=${encodeURIComponent(
     hero.whatsappMessage
@@ -141,64 +164,48 @@ export const YogaathmaSection: React.FC = React.memo(() => {
             ))}
           </div>
         </motion.div>
+      </div>
 
-        {/* Direct Booking & Consultation Banner */}
+      {/* Continuous Yoga Live Stream Showcase */}
+      <div className="yogaathma-stream-wrapper">
+        {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
+        <div className="journey-stream-viewport">
+          <div className="journey-stream-track journey-stream-track--reverse">
+            {[
+              ...YOGA_IMAGES,
+              ...YOGA_IMAGES,
+              ...YOGA_IMAGES,
+              ...YOGA_IMAGES,
+            ].map((item, index) => (
+              <article
+                key={`yoga-${item.id}-${index}`}
+                className="journey-card journey-card--image-only"
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="journey-card__img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Action Button: View Our Yoga */}
         <motion.div
-          className="yogaathma-booking-card"
+          className="journey-actions-bar"
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={standardViewport}
         >
-          <div className="yogaathma-booking-card__content">
-            <span className="yogaathma-booking-card__tag">
-              {booking.tagline}
-            </span>
-            <h3 className="yogaathma-booking-card__title">
-              {booking.heading}
-            </h3>
-            <p className="yogaathma-booking-card__desc">
-              {booking.description}
-            </p>
-            <p className="yogaathma-booking-card__options">
-              <strong>Session options:</strong> {booking.options}
-            </p>
-          </div>
-
-          <div className="yogaathma-booking-card__actions">
-            <a
-              href={`https://wa.me/918970695250?text=${encodeURIComponent(
-                'Hello Jeevayurniketan | Yogaathma, I would like to book a yoga session.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="yogaathma-booking-btn-whatsapp"
-            >
-              <MessageCircle size={18} />
-              <span>WhatsApp: {booking.phone}</span>
-            </a>
-
-            <a href={`tel:+918970695250`} className="yogaathma-booking-btn-call">
-              <PhoneCall size={16} />
-              <span>Call: {booking.phone}</span>
-            </a>
-
-            <Link to={ROUTES.YOGA} className="yogaathma-booking-btn-schedule">
-              <Calendar size={16} />
-              <span>Full Schedule &amp; Timetable</span>
-            </Link>
-          </div>
+          <Link to={ROUTES.YOGA} className="journey-view-treatments-btn">
+            <span>View Our Yoga</span>
+            <ArrowRight size={18} />
+          </Link>
         </motion.div>
-
-        {/* Philosophy & Disclaimer Quote */}
-        <div className="yogaathma-philosophy-quote text-center">
-          <p className="yogaathma-mantra">
-            &ldquo;{philosophy.mantra}&rdquo;
-          </p>
-          <p className="yogaathma-disclaimer">
-            {philosophy.disclaimer}
-          </p>
-        </div>
       </div>
     </section>
   );
