@@ -85,13 +85,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         </motion.div>
 
         {/* Treatments Live Stream Marquee */}
-        <motion.div
-          className="journey-stream-viewport"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
+        <div className="journey-stream-viewport">
           <div className="journey-stream-track">
             {[
               ...TREATMENT_IMAGES,
@@ -113,7 +107,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
               </article>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Action Button: View Our Treatments */}
         <motion.div
@@ -161,13 +155,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
         </motion.div>
 
         {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
-        <motion.div
-          className="journey-stream-viewport"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
+        <div className="journey-stream-viewport">
           <div className="journey-stream-track journey-stream-track--reverse">
             {[
               ...YOGA_IMAGES,
@@ -189,7 +177,7 @@ export const HealingJourneySection: React.FC = React.memo(() => {
               </article>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Action Button: View Our Yoga */}
         <motion.div
