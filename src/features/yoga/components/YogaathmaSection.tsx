@@ -168,17 +168,6 @@ export const YogaathmaSection: React.FC = React.memo(() => {
 
       {/* Continuous Yoga Live Stream Showcase */}
       <div className="yogaathma-stream-wrapper">
-        <motion.div
-          className="journey-stream-badge"
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={standardViewport}
-        >
-          <span className="stream-pulse-dot" aria-hidden="true" />
-          <span>Continuous Yoga Stream</span>
-        </motion.div>
-
         {/* Yoga Live Stream Marquee (Flows from Left to Right) */}
         <div className="journey-stream-viewport">
           <div className="journey-stream-track journey-stream-track--reverse">
