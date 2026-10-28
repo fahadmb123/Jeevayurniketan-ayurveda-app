@@ -60,33 +60,33 @@ export const TrustStatsBar: React.FC = React.memo(() => {
   // Spring configuration for silky smooth momentum synced with Lenis
   const springConfig = { stiffness: 90, damping: 22, mass: 0.25 };
 
-  // Scroll-linked horizontal translation: moves smoothly to the left and docks at 0px (left-aligned)
+  // Scroll-linked horizontal translation: initially starts from the left side and glides smoothly into center (0px)
   const rawTitleX = useTransform(
     scrollYProgress,
-    [0, 0.42, 0.78, 1],
-    [isMobile ? 60 : 180, 0, 0, isMobile ? -20 : -45]
+    [0, 0.40, 0.85, 1],
+    [isMobile ? -60 : -180, 0, 0, isMobile ? 15 : 25]
   );
   const titleX = useSpring(rawTitleX, springConfig);
 
   const rawBadgeX = useTransform(
     scrollYProgress,
-    [0, 0.42, 0.78, 1],
-    [isMobile ? 35 : 90, 0, 0, isMobile ? -10 : -20]
+    [0, 0.40, 0.85, 1],
+    [isMobile ? -35 : -100, 0, 0, isMobile ? 10 : 18]
   );
   const badgeX = useSpring(rawBadgeX, springConfig);
 
   const rawDescX = useTransform(
     scrollYProgress,
-    [0, 0.42, 0.78, 1],
-    [isMobile ? 45 : 130, 0, 0, isMobile ? -15 : -30]
+    [0, 0.40, 0.85, 1],
+    [isMobile ? -45 : -140, 0, 0, isMobile ? 12 : 20]
   );
   const descX = useSpring(rawDescX, springConfig);
 
-  // Smooth opacity fade-in as it scrolls in from the bottom
+  // Smooth opacity fade-in: starts with low opacity from left side and blossoms to 1 in center
   const headerOpacity = useTransform(
     scrollYProgress,
-    [0, 0.22, 0.85, 1],
-    [0.25, 1, 1, 0.65]
+    [0, 0.32, 0.85, 1],
+    [0.15, 1, 1, 0.7]
   );
 
   return (
